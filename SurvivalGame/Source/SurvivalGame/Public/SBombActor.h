@@ -50,8 +50,6 @@ class SURVIVALGAME_API ASBombActor : public ASUsableActor
 	UPROPERTY(EditDefaultsOnly, Category = "Bomb|Settings")
 	TSubclassOf<UDamageType> DamageType;
 
-	virtual void BeginPlay() override;
-
 	/* Activates the bomb fuze */
 	virtual void OnUsed(APawn* InstigatorPawn) override;
 	

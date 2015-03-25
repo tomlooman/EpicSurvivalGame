@@ -13,6 +13,16 @@ ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	UCharacterMovementComponent* MoveComp = GetCharacterMovement();
+	// Adjust jump to make it less floaty
+	MoveComp->GravityScale = 1.5f;
+	MoveComp->JumpZVelocity = 620;
+	MoveComp->bCanWalkOffLedgesWhenCrouching = true;
+	MoveComp->MaxWalkSpeedCrouched = 200;
+
+	// Enable crouching
+	MoveComp->GetNavAgentPropertiesRef().bCanCrouch = true;
+
 	CameraBoomComp = ObjectInitializer.CreateDefaultSubobject<USpringArmComponent>(this, TEXT("CameraBoom"));
 	CameraBoomComp->SocketOffset = FVector(0, 35, 0);
 	CameraBoomComp->TargetOffset = FVector(0, 0, 55);
@@ -25,19 +35,19 @@ ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
 	MaxUseDistance = 800;
 	bHasNewFocus = true;
 	TargetingSpeedModifier = 0.5f;
+	SprintingSpeedModifier = 2.0f;
 }
 
-// Called when the game starts or when spawned
-void ASCharacter::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
 
 // Called every frame
 void ASCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (bWantsToRun && !IsSprinting())
+	{
+		SetSprinting(true);
+	}
 
 	if (Controller && Controller->IsLocalController())
 	{
@@ -79,6 +89,14 @@ void ASCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponen
 	InputComponent->BindAxis("MoveRight", this, &ASCharacter::MoveRight);
 	InputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
 	InputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
+
+	InputComponent->BindAction("SprintHold", IE_Pressed, this, &ASCharacter::OnStartSprinting);
+	InputComponent->BindAction("SprintHold", IE_Released, this, &ASCharacter::OnStopSprinting);
+
+	InputComponent->BindAction("CrouchToggle", IE_Released, this, &ASCharacter::OnCrouchToggle);
+
+	InputComponent->BindAction("Jump", IE_Pressed, this, &ASCharacter::OnStartJump);
+	InputComponent->BindAction("Jump", IE_Released, this, &ASCharacter::OnStopJump);
 
 	// Interaction
 	InputComponent->BindAction("Use", IE_Pressed, this, &ASCharacter::Use);
@@ -181,4 +199,131 @@ bool ASCharacter::IsTargeting() const
 float ASCharacter::GetTargetingSpeedModifier() const
 {
 	return TargetingSpeedModifier;
+}
+
+
+void ASCharacter::OnStartJump()
+{
+	bPressedJump = true;
+
+	SetIsJumping(true);
+}
+
+
+void ASCharacter::OnStopJump()
+{
+	bPressedJump = false;
+}
+
+
+bool ASCharacter::IsInitiatedJump() const
+{
+	return bIsJumping;
+}
+
+
+void ASCharacter::SetIsJumping(bool NewJumping)
+{
+	bIsJumping = NewJumping;
+
+	if (Role < ROLE_Authority)
+	{
+		ServerSetIsJumping(NewJumping);
+	}
+}
+
+
+void ASCharacter::OnLanded(const FHitResult& Hit)
+{
+	Super::OnLanded(Hit);
+
+	SetIsJumping(false);
+}
+
+void ASCharacter::ServerSetIsJumping_Implementation(bool NewJumping)
+{
+	SetIsJumping(NewJumping);
+}
+
+bool ASCharacter::ServerSetIsJumping_Validate(bool NewJumping)
+{
+	return true;
+}
+
+void ASCharacter::SetSprinting(bool NewSprinting)
+{
+	bWantsToRun = NewSprinting;
+
+	if (bIsCrouched)
+		UnCrouch();
+
+	// TODO: Stop weapon fire
+
+	if (Role < ROLE_Authority)
+	{
+		ServerSetSprinting(NewSprinting);
+	}
+}
+
+
+void ASCharacter::OnStartSprinting()
+{
+	SetSprinting(true);
+}
+
+
+void ASCharacter::OnStopSprinting()
+{
+	SetSprinting(false);
+}
+
+
+void ASCharacter::ServerSetSprinting_Implementation(bool NewSprinting)
+{
+	SetSprinting(NewSprinting);
+}
+
+
+bool ASCharacter::ServerSetSprinting_Validate(bool NewSprinting)
+{
+	return true;
+}
+
+
+bool ASCharacter::IsSprinting() const
+{
+	if (!GetCharacterMovement())
+		return false;
+
+	// Don't allow sprint while strafing sideways or standing still
+	return bWantsToRun && !GetVelocity().IsZero() && (GetVelocity().GetSafeNormal2D() | GetActorRotation().Vector()) > 0.1;
+}
+
+
+float ASCharacter::GetSprintingSpeedModifier() const
+{
+	return SprintingSpeedModifier;
+}
+
+
+void ASCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME_CONDITION(ASCharacter, bWantsToRun, COND_SkipOwner);
+	DOREPLIFETIME_CONDITION(ASCharacter, bIsTargeting, COND_SkipOwner);
+	DOREPLIFETIME_CONDITION(ASCharacter, bIsJumping, COND_SkipOwner);
+}
+
+void ASCharacter::OnCrouchToggle()
+{
+	// If we are crouching then CanCrouch will return false. If we cannot crouch then calling Crouch() wont do anything
+	if (CanCrouch())
+	{
+		Crouch();
+	}
+	else
+	{
+		UnCrouch();
+	}
 }

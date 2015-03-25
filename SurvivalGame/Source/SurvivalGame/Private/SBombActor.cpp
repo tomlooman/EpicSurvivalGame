@@ -28,12 +28,9 @@ ASBombActor::ASBombActor(const class FObjectInitializer& ObjectInitializer)
 	MaxFuzeTime = 5.0f;
 	ExplosionDamage = 100;
 	ExplosionRadius = 512;
-}
 
-
-void ASBombActor::BeginPlay()
-{
-	Super::BeginPlay();
+	bReplicates = true;
+	bReplicateMovement = true;
 }
 
 

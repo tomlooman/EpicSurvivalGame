@@ -22,18 +22,67 @@ private:
 
 public:
 
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-	
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
+	/************************************************************************/
+	/* Movement                                                             */
+	/************************************************************************/
+
 	virtual void MoveForward(float Val);
 
 	virtual void MoveRight(float Val);
+
+	/* Client mapped to Input */
+	void OnCrouchToggle();
+
+	/* Client mapped to Input */
+	void OnStartJump();
+
+	/* Client mapped to Input */
+	void OnStopJump();
+
+	/* Client mapped to Input */
+	void OnStartSprinting();
+
+	/* Client mapped to Input */
+	void OnStopSprinting();
+
+	/* Character wants to run, checked during Tick to see if allowed */
+	UPROPERTY(Transient, Replicated)
+	bool bWantsToRun;
+
+	/* Is character currently performing a jump action. Resets on landed.  */
+	UPROPERTY(Transient, Replicated)
+	bool bIsJumping;
+
+	UFUNCTION(BlueprintCallable, Category = "Movement")
+	bool IsInitiatedJump() const;
+
+	void SetIsJumping(bool NewJumping);
+
+	UFUNCTION(Reliable, Server, WithValidation)
+	void ServerSetIsJumping(bool NewJumping);
+
+	void OnLanded(const FHitResult& Hit) override;
+
+	/* Client/local call to update sprint state  */
+	void SetSprinting(bool NewSprinting);
+
+	/* Server side call to update actual sprint state */
+	UFUNCTION(Server, Reliable, WithValidation)
+	void ServerSetSprinting(bool NewSprinting);
+
+	UFUNCTION(BlueprintCallable, Category = Movement)
+	bool IsSprinting() const;
+
+	float GetSprintingSpeedModifier() const;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Movement")
+	float SprintingSpeedModifier;
 
 	/************************************************************************/
 	/* Object Interaction                                                   */
@@ -68,6 +117,7 @@ public:
 
 	float GetTargetingSpeedModifier() const;
 
+	UPROPERTY(Transient, Replicated)
 	bool bIsTargeting;
 
 	float TargetingSpeedModifier;
