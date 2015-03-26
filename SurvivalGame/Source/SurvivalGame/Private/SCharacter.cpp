@@ -35,7 +35,7 @@ ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
 	MaxUseDistance = 800;
 	bHasNewFocus = true;
 	TargetingSpeedModifier = 0.5f;
-	SprintingSpeedModifier = 2.0f;
+	SprintingSpeedModifier = 2.5f;
 }
 
 
@@ -187,7 +187,25 @@ void ASCharacter::OnEndTargeting()
 void ASCharacter::SetTargeting(bool NewTargeting)
 {
 	bIsTargeting = NewTargeting;
+
+	if (Role < ROLE_Authority)
+	{
+		ServerSetTargeting(NewTargeting);
+	}
 }
+
+
+void ASCharacter::ServerSetTargeting_Implementation(bool NewTargeting)
+{
+	SetTargeting(NewTargeting);
+}
+
+
+bool ASCharacter::ServerSetTargeting_Validate(bool NewTargeting)
+{
+	return true;
+}
+
 
 
 bool ASCharacter::IsTargeting() const
@@ -224,7 +242,15 @@ bool ASCharacter::IsInitiatedJump() const
 
 void ASCharacter::SetIsJumping(bool NewJumping)
 {
-	bIsJumping = NewJumping;
+	// Go to standing pose if trying to jump while crouched
+	if (bIsCrouched && NewJumping)
+	{
+		UnCrouch();
+	}
+	else
+	{
+		bIsJumping = NewJumping;
+	}
 
 	if (Role < ROLE_Authority)
 	{
@@ -296,7 +322,7 @@ bool ASCharacter::IsSprinting() const
 		return false;
 
 	// Don't allow sprint while strafing sideways or standing still
-	return bWantsToRun && !GetVelocity().IsZero() && (GetVelocity().GetSafeNormal2D() | GetActorRotation().Vector()) > 0.1;
+	return bWantsToRun && !IsTargeting() && !GetVelocity().IsZero() && (GetVelocity().GetSafeNormal2D() | GetActorRotation().Vector()) > 0.1;
 }
 
 
@@ -326,4 +352,14 @@ void ASCharacter::OnCrouchToggle()
 	{
 		UnCrouch();
 	}
+}
+
+
+FRotator ASCharacter::GetAimOffsets() const
+{
+	const FVector AimDirWS = GetBaseAimRotation().Vector();
+	const FVector AimDirLS = ActorToWorld().InverseTransformVectorNoScale(AimDirWS);
+	const FRotator AimRotLS = AimDirLS.Rotation();
+
+	return AimRotLS;
 }

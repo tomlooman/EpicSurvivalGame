@@ -111,11 +111,19 @@ public:
 	void OnEndTargeting();
 
 	void SetTargeting(bool NewTargeting);
+
+	UFUNCTION(Server, Reliable, WithValidation)
+	void ServerSetTargeting(bool NewTargeting);
 	
 	/* Is player aiming down sights */
+	UFUNCTION(BlueprintCallable, Category = "Targeting")
 	bool IsTargeting() const;
 
 	float GetTargetingSpeedModifier() const;
+
+	/* Retrieve Pitch/Yaw from current camera */
+	UFUNCTION(BlueprintCallable, Category = "Targeting")
+	FRotator GetAimOffsets() const;
 
 	UPROPERTY(Transient, Replicated)
 	bool bIsTargeting;
