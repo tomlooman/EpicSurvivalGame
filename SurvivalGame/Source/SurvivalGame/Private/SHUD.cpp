@@ -8,7 +8,7 @@
 
 
 ASHUD::ASHUD(const class FObjectInitializer& ObjectInitializer)
-	: Super(ObjectInitializer)
+: Super(ObjectInitializer)
 {
 	static ConstructorHelpers::FObjectFinder<UTexture2D> HUDCenterDotObj(TEXT("/Game/UI/HUD/T_CenterDot_M.T_CenterDot_M"));
 
@@ -35,20 +35,17 @@ void ASHUD::DrawCenterDot()
 	if (PCOwner)
 	{
 		ASCharacter* Pawn = Cast<ASCharacter>(PCOwner->GetPawn());
-		if (Pawn)
+		if (Pawn && Pawn->IsAlive())
 		{
 			// Boost size when hovering over a switchable object.
 			ASUsableActor* usable = Pawn->GetUsableInView();
 			if (usable)
 				CenterDotScale *= 1.5f;
 
-			//if (Pawn->IsAlive())
-			{
-				Canvas->SetDrawColor(255, 255, 255, 255);
-				Canvas->DrawIcon(CenterDotIcon,
-					CenterX - CenterDotIcon.UL*CenterDotScale / 2.0f,
-					CenterY - CenterDotIcon.VL*CenterDotScale / 2.0f, CenterDotScale);
-			}
+			Canvas->SetDrawColor(255, 255, 255, 255);
+			Canvas->DrawIcon(CenterDotIcon,
+				CenterX - CenterDotIcon.UL*CenterDotScale / 2.0f,
+				CenterY - CenterDotIcon.VL*CenterDotScale / 2.0f, CenterDotScale);
 		}
 	}
 }

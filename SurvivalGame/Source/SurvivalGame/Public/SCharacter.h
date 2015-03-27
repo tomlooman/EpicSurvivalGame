@@ -22,6 +22,8 @@ private:
 
 public:
 
+	virtual void PostInitializeComponents() override;
+
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
 
@@ -91,6 +93,9 @@ public:
 	/* Use the usable actor currently in focus, if any */
 	virtual void Use();
 
+	UFUNCTION(Server, Reliable, WithValidation)
+	void ServerUse();
+
 	class ASUsableActor* GetUsableInView();
 
 	/*Max distance to use/focus on actors. */
@@ -128,9 +133,38 @@ public:
 	UPROPERTY(Transient, Replicated)
 	bool bIsTargeting;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Targeting")
 	float TargetingSpeedModifier;
 
 	/************************************************************************/
-	/*                                                                      */
+	/* Hitpoints, Damage & Energy (Hunger)                                  */
 	/************************************************************************/
+
+	UFUNCTION(BlueprintCallable, Category = "PlayerCondition")
+	float GetHealth() const;
+
+	UFUNCTION(BlueprintCallable, Category = "PlayerCondition")
+	float GetEnergy() const;
+
+	UFUNCTION(BlueprintCallable, Category = "PlayerCondition")
+	float GetMaxHealth() const;
+
+	UFUNCTION(BlueprintCallable, Category = "PlayerCondition")
+	float GetMaxEnergy() const;
+
+	UFUNCTION(BlueprintCallable, Category = "PlayerCondition")
+	void RestoreEnergy(float Amount);
+
+	UFUNCTION(BlueprintCallable, Category = "PlayerCondition")
+	bool IsAlive() const;
+
+	UPROPERTY(EditDefaultsOnly, Category = "PlayerCondition", Replicated)
+	float Health;
+
+	UPROPERTY(EditDefaultsOnly, Category = "PlayerCondition", Replicated)
+	float Energy;
+
+	/* Take damage & handle death */
+	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser) override;
+
 };

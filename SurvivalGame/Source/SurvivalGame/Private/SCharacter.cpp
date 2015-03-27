@@ -36,6 +36,21 @@ ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
 	bHasNewFocus = true;
 	TargetingSpeedModifier = 0.5f;
 	SprintingSpeedModifier = 2.5f;
+
+	Health = 100;
+	Energy = 100;
+}
+
+
+void ASCharacter::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+
+// 	if (Role == ROLE_Authority)
+// 	{
+// 		Health = GetMaxHealth();
+// 		Energy = GetMaxEnergy();
+// 	}
 }
 
 
@@ -164,11 +179,31 @@ ASUsableActor* ASCharacter::GetUsableInView()
 
 void ASCharacter::Use()
 {
-	ASUsableActor* Usable = GetUsableInView();
-	if (Usable)
+	// Only allow on server. If called on client push this request to the server
+	if (Role == ROLE_Authority)
 	{
-		Usable->OnUsed(this);
+		ASUsableActor* Usable = GetUsableInView();
+		if (Usable)
+		{
+			Usable->OnUsed(this);
+		}
 	}
+	else
+	{
+		ServerUse();
+	}
+}
+
+
+void ASCharacter::ServerUse_Implementation()
+{
+	Use();
+}
+
+
+bool ASCharacter::ServerUse_Validate()
+{
+	return true;
 }
 
 
@@ -336,9 +371,14 @@ void ASCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifet
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
+	// Value is already updated locally, skip in replication step
 	DOREPLIFETIME_CONDITION(ASCharacter, bWantsToRun, COND_SkipOwner);
 	DOREPLIFETIME_CONDITION(ASCharacter, bIsTargeting, COND_SkipOwner);
 	DOREPLIFETIME_CONDITION(ASCharacter, bIsJumping, COND_SkipOwner);
+
+	// Replicate to every client, no special condition required
+	DOREPLIFETIME(ASCharacter, Health);
+	DOREPLIFETIME(ASCharacter, Energy);
 }
 
 void ASCharacter::OnCrouchToggle()
@@ -362,4 +402,73 @@ FRotator ASCharacter::GetAimOffsets() const
 	const FRotator AimRotLS = AimDirLS.Rotation();
 
 	return AimRotLS;
+}
+
+
+float ASCharacter::GetHealth() const
+{
+	return Health;
+}
+
+
+float ASCharacter::GetEnergy() const
+{
+	return Energy;
+}
+
+
+float ASCharacter::GetMaxHealth() const
+{
+	return GetClass()->GetDefaultObject<ASCharacter>()->Health;
+}
+
+
+float ASCharacter::GetMaxEnergy() const
+{
+	return GetClass()->GetDefaultObject<ASCharacter>()->Energy;
+}
+
+
+void ASCharacter::RestoreEnergy(float Amount)
+{
+	// Restore energy, ensure we do go outside of our bounds
+	Energy = FMath::Max(Energy + Amount, GetMaxEnergy());
+}
+
+
+bool ASCharacter::IsAlive() const
+{
+	return Health > 0;
+}
+
+
+float ASCharacter::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser)
+{
+	if (Health <= 0.f)
+	{
+		return 0.f;
+	}
+
+	// Temp
+	return Damage;
+// 
+// 	// Modify damage based on gametype rules
+// 	ASwitchGameGameMode* const MyGameMode = Cast<ASwitchGameGameMode>(GetWorld()->GetAuthGameMode());
+// 	Damage = MyGameMode ? MyGameMode->ModifyDamage(Damage, this, DamageEvent, EventInstigator, DamageCauser) : 0.f;
+// 
+// 	const float ActualDamage = Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
+// 	if (ActualDamage > 0.f)
+// 	{
+// 		Health -= ActualDamage;
+// 		if (Health <= 0)
+// 		{
+// 			Die(ActualDamage, DamageEvent, EventInstigator, DamageCauser);
+// 		}
+// 		else
+// 		{
+// 			PlayHit(ActualDamage, DamageEvent, EventInstigator->GetPawn(), DamageCauser, false);
+// 		}
+// 	}
+// 
+// 	return ActualDamage;
 }
