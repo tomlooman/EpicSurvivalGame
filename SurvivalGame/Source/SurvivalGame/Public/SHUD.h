@@ -19,4 +19,8 @@ class SURVIVALGAME_API ASHUD : public AHUD
 	virtual void DrawHUD() override;
 	
 	void DrawCenterDot();
+
+	/* An event hook to call HUD text events to display in the HUD. Blueprint HUD class must implement how to deal with this event. */
+	UFUNCTION(BlueprintImplementableEvent, Category = "HUDEvents")
+	void MessageReceived(const FString& TextMessage);
 };

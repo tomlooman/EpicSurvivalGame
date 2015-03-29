@@ -3,6 +3,7 @@
 #include "SurvivalGame.h"
 #include "SCharacter.h"
 #include "SUsableActor.h"
+#include "SHUD.h"
 #include "SCharacterMovementComponent.h"
 
 
@@ -38,7 +39,12 @@ ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
 	SprintingSpeedModifier = 2.5f;
 
 	Health = 100;
-	Energy = 100;
+
+	IncrementHungerAmount = 1.0f;
+	IncrementHungerInterval = 5.0f;
+	CriticalHungerThreshold = 90;
+	MaxHunger = 100;
+	Hunger = 0;
 }
 
 
@@ -46,11 +52,12 @@ void ASCharacter::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
 
-// 	if (Role == ROLE_Authority)
-// 	{
-// 		Health = GetMaxHealth();
-// 		Energy = GetMaxEnergy();
-// 	}
+	if (Role == ROLE_Authority)
+	{
+		// Set a timer to increment hunger every interval
+		FTimerHandle Handle;
+		GetWorld()->GetTimerManager().SetTimer(Handle, this, &ASCharacter::IncrementHunger, 1.0f, true);
+	}
 }
 
 
@@ -356,8 +363,9 @@ bool ASCharacter::IsSprinting() const
 	if (!GetCharacterMovement())
 		return false;
 
-	// Don't allow sprint while strafing sideways or standing still
-	return bWantsToRun && !IsTargeting() && !GetVelocity().IsZero() && (GetVelocity().GetSafeNormal2D() | GetActorRotation().Vector()) > 0.1;
+	return bWantsToRun && !IsTargeting() && !GetVelocity().IsZero() 
+		// Don't allow sprint while strafing sideways or standing still (1.0 is straight forward, -1.0 is backward while near 0 is sideways or standing still)
+		&& (GetVelocity().GetSafeNormal2D() | GetActorRotation().Vector()) > 0.8; // Changing this value to 0.1 allows for diagonal sprinting. (holding W+A or W+D keys)
 }
 
 
@@ -378,7 +386,7 @@ void ASCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifet
 
 	// Replicate to every client, no special condition required
 	DOREPLIFETIME(ASCharacter, Health);
-	DOREPLIFETIME(ASCharacter, Energy);
+	DOREPLIFETIME(ASCharacter, Hunger);
 }
 
 void ASCharacter::OnCrouchToggle()
@@ -411,28 +419,42 @@ float ASCharacter::GetHealth() const
 }
 
 
-float ASCharacter::GetEnergy() const
+float ASCharacter::GetHunger() const
 {
-	return Energy;
+	return Hunger;
 }
 
 
 float ASCharacter::GetMaxHealth() const
 {
+	// Retrieve the default value of the health property that is assigned on instantiation.
 	return GetClass()->GetDefaultObject<ASCharacter>()->Health;
 }
 
 
-float ASCharacter::GetMaxEnergy() const
+float ASCharacter::GetMaxHunger() const
 {
-	return GetClass()->GetDefaultObject<ASCharacter>()->Energy;
+	return MaxHunger;
 }
 
 
-void ASCharacter::RestoreEnergy(float Amount)
+void ASCharacter::ConsumeFood(float AmountRestored)
 {
-	// Restore energy, ensure we do go outside of our bounds
-	Energy = FMath::Max(Energy + Amount, GetMaxEnergy());
+	// Reduce Hunger, ensure we do not go outside of our bounds
+	Hunger = FMath::Clamp(Hunger - AmountRestored, 0.0f, GetMaxHunger());
+
+	// Restore Hitpoints
+	Health = FMath::Clamp(Health + AmountRestored, 0.0f, GetMaxHealth());
+
+	APlayerController* PC = Cast<APlayerController>(Controller);
+	if (PC)
+	{
+		ASHUD* MyHUD = Cast<ASHUD>(PC->GetHUD());
+		if (MyHUD)
+		{
+			MyHUD->MessageReceived("Food item consumed!");
+		}
+	}
 }
 
 
@@ -442,6 +464,18 @@ bool ASCharacter::IsAlive() const
 }
 
 
+void ASCharacter::IncrementHunger()
+{
+	Hunger = FMath::Clamp(Hunger + IncrementHungerAmount, 0.0f, GetMaxHunger());
+
+	if (Hunger > CriticalHungerThreshold)
+	{
+		// Apply damage to self.
+		// TODO: Set DamageType
+		TakeDamage(10.0f, FDamageEvent(), GetController(), this);
+	}
+}
+
 float ASCharacter::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser)
 {
 	if (Health <= 0.f)
@@ -449,26 +483,21 @@ float ASCharacter::TakeDamage(float Damage, struct FDamageEvent const& DamageEve
 		return 0.f;
 	}
 
-	// Temp
-	return Damage;
-// 
-// 	// Modify damage based on gametype rules
-// 	ASwitchGameGameMode* const MyGameMode = Cast<ASwitchGameGameMode>(GetWorld()->GetAuthGameMode());
-// 	Damage = MyGameMode ? MyGameMode->ModifyDamage(Damage, this, DamageEvent, EventInstigator, DamageCauser) : 0.f;
-// 
-// 	const float ActualDamage = Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
-// 	if (ActualDamage > 0.f)
-// 	{
-// 		Health -= ActualDamage;
-// 		if (Health <= 0)
-// 		{
-// 			Die(ActualDamage, DamageEvent, EventInstigator, DamageCauser);
-// 		}
-// 		else
-// 		{
-// 			PlayHit(ActualDamage, DamageEvent, EventInstigator->GetPawn(), DamageCauser, false);
-// 		}
-// 	}
-// 
-// 	return ActualDamage;
+	const float ActualDamage = Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
+	if (ActualDamage > 0.f)
+	{
+		Health -= ActualDamage;
+		if (Health <= 0)
+		{
+			// TODO: Handle death
+			//Die(ActualDamage, DamageEvent, EventInstigator, DamageCauser);
+		}
+		else
+		{
+			// TODO: Play hit
+			//PlayHit(ActualDamage, DamageEvent, EventInstigator->GetPawn(), DamageCauser, false);
+		}
+	}
+
+	return ActualDamage;
 }

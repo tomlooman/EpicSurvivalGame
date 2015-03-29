@@ -18,7 +18,7 @@ protected:
 	/* Consume item, restoring energy to player */
 	void OnUsed(APawn* InstigatorPawn) override;
 
-	/* Amount of energy restored when consumed. */
+	/* Amount of hitpoints restored and hunger reduced when consumed. */
 	UPROPERTY(EditDefaultsOnly, Category = "Consumable")
-	float EnergyToRestore;
+	float Nutrition;
 };

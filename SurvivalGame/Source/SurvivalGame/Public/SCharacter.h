@@ -137,32 +137,53 @@ public:
 	float TargetingSpeedModifier;
 
 	/************************************************************************/
-	/* Hitpoints, Damage & Energy (Hunger)                                  */
+	/* Hitpoints & Hunger                                                   */
 	/************************************************************************/
 
 	UFUNCTION(BlueprintCallable, Category = "PlayerCondition")
 	float GetHealth() const;
 
 	UFUNCTION(BlueprintCallable, Category = "PlayerCondition")
-	float GetEnergy() const;
+	float GetHunger() const;
 
 	UFUNCTION(BlueprintCallable, Category = "PlayerCondition")
 	float GetMaxHealth() const;
 
 	UFUNCTION(BlueprintCallable, Category = "PlayerCondition")
-	float GetMaxEnergy() const;
+	float GetMaxHunger() const;
 
 	UFUNCTION(BlueprintCallable, Category = "PlayerCondition")
-	void RestoreEnergy(float Amount);
+	void ConsumeFood(float AmountRestored);
 
 	UFUNCTION(BlueprintCallable, Category = "PlayerCondition")
 	bool IsAlive() const;
+
+	/* Increments hunger, used by timer. */
+	void IncrementHunger();
+
+	UPROPERTY(EditDefaultsOnly, Category = "PlayerCondition")
+	float IncrementHungerInterval;
+
+	UPROPERTY(EditDefaultsOnly, Category = "PlayerCondition")
+	float IncrementHungerAmount;
+
+	/* Limit when player suffers Hitpoints from extreme hunger */
+	UPROPERTY(EditDefaultsOnly, Category = "PlayerCondition")
+	float CriticalHungerThreshold;
 
 	UPROPERTY(EditDefaultsOnly, Category = "PlayerCondition", Replicated)
 	float Health;
 
 	UPROPERTY(EditDefaultsOnly, Category = "PlayerCondition", Replicated)
-	float Energy;
+	float Hunger;
+
+	// Note: MAxHunger does not need to be replicated, only values that change and are displayed or used by clients should ever be replicated.
+	UPROPERTY(EditDefaultsOnly, Category = "PlayerCondition")
+	float MaxHunger;
+
+	/************************************************************************/
+	/* Damage, Hit & Death                                                  */
+	/************************************************************************/
 
 	/* Take damage & handle death */
 	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser) override;

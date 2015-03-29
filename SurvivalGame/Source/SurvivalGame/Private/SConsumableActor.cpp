@@ -8,8 +8,8 @@
 ASConsumableActor::ASConsumableActor(const class FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-	// A default to tweak per item variation in Blueprint
-	EnergyToRestore = 25;
+	// A default to tweak per food variation in Blueprint
+	Nutrition = 25;
 }
 
 
@@ -21,10 +21,7 @@ void ASConsumableActor::OnUsed(APawn* InstigatorPawn)
 	ASCharacter* Pawn = Cast<ASCharacter>(InstigatorPawn);
 	if (Pawn)
 	{
-		Pawn->RestoreEnergy(EnergyToRestore);
-
-		// TODO: replace with HUD event message. Pawn>PC>GetHUD()>..
-		GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Green, "Item consumed!");
+		Pawn->ConsumeFood(Nutrition);
 	}
 
 	// Remove from level
