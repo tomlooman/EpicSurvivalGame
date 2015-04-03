@@ -177,7 +177,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "PlayerCondition", Replicated)
 	float Hunger;
 
-	// Note: MAxHunger does not need to be replicated, only values that change and are displayed or used by clients should ever be replicated.
+	// Documentation Note: MaxHunger does not need to be replicated, only values that change and are displayed or used by clients should ever be replicated.
 	UPROPERTY(EditDefaultsOnly, Category = "PlayerCondition")
 	float MaxHunger;
 

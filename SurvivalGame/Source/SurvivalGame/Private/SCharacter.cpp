@@ -56,7 +56,7 @@ void ASCharacter::PostInitializeComponents()
 	{
 		// Set a timer to increment hunger every interval
 		FTimerHandle Handle;
-		GetWorld()->GetTimerManager().SetTimer(Handle, this, &ASCharacter::IncrementHunger, 1.0f, true);
+		GetWorld()->GetTimerManager().SetTimer(Handle, this, &ASCharacter::IncrementHunger, IncrementHungerInterval, true);
 	}
 }
 

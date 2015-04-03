@@ -35,7 +35,7 @@ void ASHUD::DrawCenterDot()
 	if (PCOwner)
 	{
 		ASCharacter* Pawn = Cast<ASCharacter>(PCOwner->GetPawn());
-		if (Pawn && Pawn->IsAlive())
+		if (Pawn /*&& Pawn->IsAlive()*/) // Disabled this check until Death & Respawn is implemented.
 		{
 			// Boost size when hovering over a switchable object.
 			ASUsableActor* usable = Pawn->GetUsableInView();
