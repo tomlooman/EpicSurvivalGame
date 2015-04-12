@@ -10,6 +10,8 @@ ASPickupActor::ASPickupActor(const class FObjectInitializer& ObjectInitializer)
 {
 	// All objects that can be picked up are simulated and can be thrown around the level
 	MeshComp->SetSimulatePhysics(true);
+	/* Ignore Pawn - this is to prevent objects shooting through the level or pawns glitching on top of small items. */
+	MeshComp->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Ignore);
 
 	SetRemoteRoleForBackwardsCompat(ROLE_SimulatedProxy);
 	bReplicates = true;
@@ -28,7 +30,7 @@ void ASPickupActor::BeginPlay()
 
 void ASPickupActor::OnUsed(APawn* InstigatorPawn)
 {
-	Super::OnUsed(InstigatorPawn);
-
 	UGameplayStatics::PlaySoundAtLocation(this, PickupSound, GetActorLocation());
+
+	Super::OnUsed(InstigatorPawn);
 }

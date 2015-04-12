@@ -15,7 +15,7 @@ class SURVIVALGAME_API ASPickupActor : public ASUsableActor
 
 	void BeginPlay() override;
 
-	void OnUsed(APawn* InstigatorPawn) override;
+	virtual void OnUsed(APawn* InstigatorPawn) override;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Sound")
 	USoundCue* PickupSound;

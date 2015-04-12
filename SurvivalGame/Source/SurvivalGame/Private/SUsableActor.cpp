@@ -9,7 +9,7 @@ ASUsableActor::ASUsableActor(const class FObjectInitializer& ObjectInitializer)
 {
 	MeshComp = ObjectInitializer.CreateDefaultSubobject<UStaticMeshComponent>(this, TEXT("Mesh"));
 	RootComponent = MeshComp;
-}
+} 
 
 
 void ASUsableActor::OnUsed(APawn* InstigatorPawn)

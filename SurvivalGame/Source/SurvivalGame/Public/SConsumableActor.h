@@ -16,7 +16,7 @@ class SURVIVALGAME_API ASConsumableActor : public ASPickupActor
 protected:
 
 	/* Consume item, restoring energy to player */
-	void OnUsed(APawn* InstigatorPawn) override;
+	virtual void OnUsed(APawn* InstigatorPawn) override;
 
 	/* Amount of hitpoints restored and hunger reduced when consumed. */
 	UPROPERTY(EditDefaultsOnly, Category = "Consumable")
