@@ -13,6 +13,8 @@ class SURVIVALGAME_API ASBombActor : public ASUsableActor
 {
 	GENERATED_UCLASS_BODY()
 
+	virtual void Destroyed() override;
+
 	UPROPERTY(VisibleDefaultsOnly)
 	UParticleSystemComponent* ExplosionPCS;
 
@@ -59,6 +61,9 @@ class SURVIVALGAME_API ASBombActor : public ASUsableActor
 
 	UPROPERTY(EditDefaultsOnly, Category = "Bomb|Settings")
 	TSubclassOf<UDamageType> DamageType;
+
+	/* Handle to manage the timer */
+	FTimerHandle FuzeTimerHandle;
 
 	/* Activates the bomb fuze */
 	virtual void OnUsed(APawn* InstigatorPawn) override;

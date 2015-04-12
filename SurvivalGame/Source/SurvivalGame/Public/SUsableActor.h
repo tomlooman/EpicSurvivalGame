@@ -5,12 +5,12 @@
 #include "GameFramework/Actor.h"
 #include "SUsableActor.generated.h"
 
-UCLASS()
+UCLASS(ABSTRACT)
 class SURVIVALGAME_API ASUsableActor : public AActor
 {
 	GENERATED_UCLASS_BODY()
 
-	UPROPERTY(EditDefaultsOnly, Category = "Mesh")
+	UPROPERTY(VisibleAnywhere, Category = "Mesh")
 	UStaticMeshComponent* MeshComp;
 
 public:
@@ -24,4 +24,9 @@ public:
 	/* Called when player interacts with object */
 	virtual void OnUsed(APawn* InstigatorPawn);
 	
+	/* Public accessor to the mesh component. With FORCEINLINE we are allowed to define the function in the header, use this only for simple accessors! */
+	FORCEINLINE UStaticMeshComponent* GetMeshComponent() const
+	{
+		return MeshComp;
+	}
 };
