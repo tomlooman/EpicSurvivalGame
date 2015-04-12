@@ -18,3 +18,7 @@ SurvivalGame/SurvivalGame.opensdf
 /SurvivalGame/Binaries/Win64/UE4Editor-SurvivalGame-9685-Win64-DebugGame.pdb
 /SurvivalGame/Binaries/Win64/UE4Editor-SurvivalGame-Win64-DebugGame.dll
 /SurvivalGame/Binaries/Win64/UE4Editor-SurvivalGame-Win64-DebugGame.pdb
+*.exe
+SurvivalGame/Binaries/Win64/SurvivalGame.exp
+*.log
+SurvivalGame/Binaries/Win64/SurvivalGame.lib
