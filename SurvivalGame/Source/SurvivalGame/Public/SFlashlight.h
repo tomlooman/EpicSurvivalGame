@@ -36,6 +36,7 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	FName LightAttachPoint;
 
+	UPROPERTY(Transient, ReplicatedUsing = OnRep_IsActive)
 	bool bIsActive;
 
 	UPROPERTY(VisibleDefaultsOnly)
@@ -43,15 +44,8 @@ public:
 
 	UPROPERTY(VisibleDefaultsOnly)
 	USpotLightComponent* SpotLightComp;
-	
-	/* Spotlight w/ IES Profile */
-	
-	/* Lightcone Mesh */
 
-	/* Toggle light,cone and material when Fired */
-
-	/* Toggle the light */
-	virtual void FireWeapon() override;
+	virtual void HandleFiring() override;
 
 	virtual void OnEquipFinished() override;
 	
@@ -60,4 +54,7 @@ public:
 	virtual void OnEnterInventory(ASCharacter* NewOwner);
 
 	void UpdateLight(bool Enabled);
+
+	UFUNCTION()
+	void OnRep_IsActive();
 };

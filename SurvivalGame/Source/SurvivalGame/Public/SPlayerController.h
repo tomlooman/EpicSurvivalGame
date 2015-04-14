@@ -13,7 +13,6 @@ class SURVIVALGAME_API ASPlayerController : public APlayerController
 {
 	GENERATED_UCLASS_BODY()
 	
-	
-	
-	
+	/* Respawn after dying */
+	virtual void UnFreeze() override;
 };

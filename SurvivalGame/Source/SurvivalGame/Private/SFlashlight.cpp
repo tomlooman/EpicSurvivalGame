@@ -13,9 +13,6 @@ ASFlashlight::ASFlashlight(const FObjectInitializer& ObjectInitializer)
 
 	GetWeaponMesh()->AddLocalRotation(FRotator(0, 0, -90));
 
-	// Roll -90 Roll
-	// X -25
-
 	LightConeComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("LightConeComp"));
 	LightConeComp->SetCollisionResponseToAllChannels(ECR_Ignore);
 	LightConeComp->AttachTo(GetWeaponMesh(), LightAttachPoint, EAttachLocation::SnapToTarget);
@@ -46,19 +43,27 @@ void ASFlashlight::BeginPlay()
 }
 
 
-void ASFlashlight::FireWeapon()
+void ASFlashlight::HandleFiring()
 {
-	/* Toggle light,cone and material when Fired */
-	bIsActive = !bIsActive;
+	if (Role == ROLE_Authority)
+	{
+		/* Toggle light,cone and material when Fired */
+		bIsActive = !bIsActive;
 
-	UpdateLight(bIsActive);
+		UpdateLight(bIsActive);
+	}
 }
 
 
 void ASFlashlight::OnEnterInventory(ASCharacter* NewOwner)
 {
-	/* Turn off by default */
-	UpdateLight(false);
+	if (Role == ROLE_Authority)
+	{
+		bIsActive = false;
+
+		/* Turn off light while carried on belt  */
+		UpdateLight(bIsActive);
+	}
 
 	Super::OnEnterInventory(NewOwner);
 }
@@ -69,7 +74,13 @@ void ASFlashlight::OnEquipFinished()
 {
 	Super::OnEquipFinished();
 
-	UpdateLight(bIsActive);
+	if (Role == ROLE_Authority)
+	{
+		bIsActive = true;
+
+		/* Turn off light while carried on belt  */
+		UpdateLight(bIsActive);
+	}
 }
 
 
@@ -77,8 +88,13 @@ void ASFlashlight::OnUnEquip()
 {
 	Super::OnUnEquip();
 
-	/* Turn off light while  */
-	UpdateLight(false);
+	if (Role == ROLE_Authority)
+	{
+		bIsActive = false;
+
+		/* Turn off light while carried on belt  */
+		UpdateLight(bIsActive);
+	}
 }
 
 
@@ -88,12 +104,23 @@ void ASFlashlight::UpdateLight(bool Enabled)
 	SpotLightComp->SetVisibility(Enabled);
 	LightConeComp->SetVisibility(Enabled);
 
-	// TODO: Support this in multiplayer!
-	
 	/* Update material parameter */
 	if (MatDynamic)
 	{		
 		/* " Enabled ? MaxEmissiveIntensity : 0.0f " picks between first or second value based on "Enabled" boolean */
 		MatDynamic->SetScalarParameterValue(EmissiveParamName, Enabled ? MaxEmissiveIntensity : 0.0f);	
 	}
+}
+
+void ASFlashlight::OnRep_IsActive()
+{
+	UpdateLight(bIsActive);
+}
+
+
+void ASFlashlight::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(ASFlashlight, bIsActive);
 }

@@ -135,7 +135,7 @@ private:
 
 	void DetermineWeaponState();
 
-	void HandleFiring();
+	virtual void HandleFiring();
 
 	UFUNCTION(Reliable, Server, WithValidation)
 	void ServerStartFire();
@@ -205,7 +205,7 @@ protected:
 
 	UAudioComponent* PlayWeaponSound(USoundCue* SoundToPlay);
 
-	float PlayWeaponAnimation(UAnimMontage* Animation);
+	float PlayWeaponAnimation(UAnimMontage* Animation, float InPlayRate = 1.f, FName StartSectionName = NAME_None);
 
 	void StopWeaponAnimation(UAnimMontage* Animation);
 };

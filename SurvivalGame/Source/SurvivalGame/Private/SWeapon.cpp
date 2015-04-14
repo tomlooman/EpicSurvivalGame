@@ -315,7 +315,7 @@ void ASWeapon::HandleFiring()
 
 		if (MyPawn && MyPawn->IsLocallyControlled())
 		{
-			FireWeapon(); // TODO: Why: This is now also called on local clients??
+			FireWeapon();
 
 			// TODO: Consume Ammo
 
@@ -532,14 +532,14 @@ float ASWeapon::GetEquipDuration() const
 }
 
 
-float ASWeapon::PlayWeaponAnimation(UAnimMontage* Animation)
+float ASWeapon::PlayWeaponAnimation(UAnimMontage* Animation, float InPlayRate, FName StartSectionName)
 {
 	float Duration = 0.0f;
 	if (MyPawn)
 	{
 		if (Animation)
 		{
-			Duration = MyPawn->PlayAnimMontage(Animation);
+			Duration = MyPawn->PlayAnimMontage(Animation, InPlayRate, StartSectionName);
 		}
 	}
 
