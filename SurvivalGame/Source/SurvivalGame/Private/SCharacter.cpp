@@ -535,7 +535,9 @@ float ASCharacter::TakeDamage(float Damage, struct FDamageEvent const& DamageEve
 		}
 		else
 		{
-			PlayHit(ActualDamage, DamageEvent, EventInstigator->GetPawn(), DamageCauser, false);
+			/* Shorthand for - if x != null pick1 else pick2 */
+			APawn* Pawn = EventInstigator ? EventInstigator->GetPawn() : nullptr;
+			PlayHit(ActualDamage, DamageEvent, Pawn, DamageCauser, false);
 		}
 	}
 
@@ -545,7 +547,7 @@ float ASCharacter::TakeDamage(float Damage, struct FDamageEvent const& DamageEve
 
 bool ASCharacter::CanDie(float KillingDamage, FDamageEvent const& DamageEvent, AController* Killer, AActor* DamageCauser) const
 {
-	/* Check if character is already dying, destroyed orif we have authority */
+	/* Check if character is already dying, destroyed or if we have authority */
 	if (bIsDying ||
 		IsPendingKill() ||
 		Role != ROLE_Authority ||
@@ -562,7 +564,9 @@ bool ASCharacter::CanDie(float KillingDamage, FDamageEvent const& DamageEvent, A
 bool ASCharacter::Die(float KillingDamage, FDamageEvent const& DamageEvent, AController* Killer, AActor* DamageCauser)
 {
 	if (!CanDie(KillingDamage, DamageEvent, Killer, DamageCauser))
+	{
 		return false;
+	}
 
 	Health = FMath::Min(0.0f, Health);
 
@@ -578,7 +582,9 @@ bool ASCharacter::Die(float KillingDamage, FDamageEvent const& DamageEvent, ACon
 void ASCharacter::OnDeath(float KillingDamage, FDamageEvent const& DamageEvent, APawn* PawnInstigator, AActor* DamageCauser)
 {
 	if (bIsDying)
+	{	
 		return;
+	}
 
 	bReplicateMovement = false;
 	bTearOff = true;
@@ -746,7 +752,9 @@ FName ASCharacter::GetInventoryAttachPoint(EInventorySlot Slot) const
 void ASCharacter::SpawnDefaultInventory()
 {
 	if (Role < ROLE_Authority)
+	{	
 		return;
+	}
 
 	for (int32 i = 0; i < DefaultInventoryClasses.Num(); i++)
 	{
@@ -771,7 +779,9 @@ void ASCharacter::SpawnDefaultInventory()
 void ASCharacter::DestroyInventory()
 {
 	if (Role < ROLE_Authority)
+	{	
 		return;
+	}
 
 	for (int32 i = Inventory.Num() - 1; i >= 0; i--)
 	{

@@ -123,7 +123,7 @@ protected:
 
 	FHitResult WeaponTrace(const FVector& TraceFrom, const FVector& TraceTo) const;
 
-	/* [Local] weapon specific fire implementation that fires a trace or projectile */
+	/* With PURE_VIRTUAL we skip implementing the function in SWeapon.cpp and can do this in SWeaponInstant.cpp / SFlashlight.cpp instead */
 	virtual void FireWeapon() PURE_VIRTUAL(ASWeapon::FireWeapon, );
 
 	UPROPERTY(EditDefaultsOnly)

@@ -112,6 +112,7 @@ void ASFlashlight::UpdateLight(bool Enabled)
 	}
 }
 
+
 void ASFlashlight::OnRep_IsActive()
 {
 	UpdateLight(bIsActive);
