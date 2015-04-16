@@ -535,8 +535,8 @@ float ASCharacter::TakeDamage(float Damage, struct FDamageEvent const& DamageEve
 		}
 		else
 		{
-			auto pawn = EventInstigator ? EventInstigator->GetPawn() : nullptr;
-			PlayHit(ActualDamage, DamageEvent, pawn, DamageCauser, false);
+			auto Pawn = EventInstigator ? EventInstigator->GetPawn() : nullptr;
+			PlayHit(ActualDamage, DamageEvent, Pawn, DamageCauser, false);
 		}
 	}
 
