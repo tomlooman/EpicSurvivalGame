@@ -38,12 +38,6 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 	UParticleSystem* TracerFX;
 
-	UPROPERTY(EditDefaultsOnly)
-	USoundCue* NearHitSound;
-
-	UPROPERTY(EditDefaultsOnly)
-	float NearHitMaxDistance;
-
 	/* Minimum firing distance before spawning tracers or trails. */
 	UPROPERTY(EditDefaultsOnly)
 	float MinimumProjectileSpawnDistance;

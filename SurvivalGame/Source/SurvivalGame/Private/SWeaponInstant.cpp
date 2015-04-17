@@ -14,7 +14,6 @@ ASWeaponInstant::ASWeaponInstant(const class FObjectInitializer& PCIP)
 
 	AllowedViewDotHitDir = 0.8f;
 	ClientSideHitLeeway = 200.0f;
-	NearHitMaxDistance = 600;
 	MinimumProjectileSpawnDistance = 800;
 	TracerRoundInterval = 3;
 	TimeBetweenShots = 0.1f;
@@ -51,13 +50,13 @@ bool ASWeaponInstant::ShouldDealDamage(AActor* TestActor) const
 
 void ASWeaponInstant::DealDamage(const FHitResult& Impact, const FVector& ShootDir)
 {
-	FPointDamageEvent pointDmg;
-	pointDmg.DamageTypeClass = DamageType;
-	pointDmg.HitInfo = Impact;
-	pointDmg.ShotDirection = ShootDir;
-	pointDmg.Damage = HitDamage;
+	FPointDamageEvent PointDmg;
+	PointDmg.DamageTypeClass = DamageType;
+	PointDmg.HitInfo = Impact;
+	PointDmg.ShotDirection = ShootDir;
+	PointDmg.Damage = HitDamage;
 
-	Impact.GetActor()->TakeDamage(pointDmg.Damage, pointDmg, MyPawn->Controller, this);
+	Impact.GetActor()->TakeDamage(PointDmg.Damage, PointDmg, MyPawn->Controller, this);
 }
 
 
@@ -126,43 +125,6 @@ void ASWeaponInstant::SimulateInstantHit(const FVector& Origin)
 	else
 	{
 		SpawnTrailEffects(EndTrace);
-	}
-
-	// Do not spawn near-hit if we actually hit a pawn
-	if (Impact.GetActor() && Impact.GetActor()->IsA(ASCharacter::StaticClass()))
-	{
-		return;
-	}
-
-	for (FConstPawnIterator It = GetWorld()->GetPawnIterator(); It; It++)
-	{
-		// Find a locally controlled pawn that is not the instigator of the hit.
-		ASCharacter* OtherPawn = Cast<ASCharacter>(*It);
-		if (OtherPawn && OtherPawn != GetPawnOwner() && OtherPawn->IsLocallyControlled())
-		{
-			// Calculate shortest distance to point. (using the estimated eye height)
-			const float DistanceToPawn = FVector::CrossProduct(AimDir, OtherPawn->GetActorLocation() - Origin).Size();
-
-			/* Owner can be lost before client gets to simulate the hit. */
-			ASCharacter* P = GetPawnOwner();
-			if (P)
-			{
-				FVector LookAt = (OtherPawn->GetActorLocation() - GetPawnOwner()->GetActorLocation());
-				LookAt.Normalize();
-				float LookDot = FVector::DotProduct(AimDir, LookAt);
-
-				if (DistanceToPawn < NearHitMaxDistance && LookDot > 0)
-				{
-					// TODO: Play at nearest "almost" hit location.
-					const FVector SoundLocation = Origin + (AimDir * DistanceToPawn);
-
-					// Volume is based on distance to missed shot
-					float Volume = FMath::Clamp(1 - (DistanceToPawn / NearHitMaxDistance), 0.1f, 1.0f);
-
-					UGameplayStatics::PlaySoundAtLocation(this, NearHitSound, /*SoundLocation*/ OtherPawn->GetActorLocation(), Volume);
-				}
-			}
-		}
 	}
 }
 

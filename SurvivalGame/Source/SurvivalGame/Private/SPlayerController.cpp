@@ -10,3 +10,10 @@ ASPlayerController::ASPlayerController(const class FObjectInitializer& ObjectIni
 {
 	PlayerCameraManagerClass = ASPlayerCameraManager::StaticClass();
 }
+
+
+void ASPlayerController::UnFreeze()
+{
+	/* Respawn */
+	ServerRestartPlayer();
+}
