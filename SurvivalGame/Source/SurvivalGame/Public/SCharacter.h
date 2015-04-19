@@ -19,7 +19,7 @@ class SURVIVALGAME_API ASCharacter : public ACharacter
 	/* Called to bind functionality to input */
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
-	virtual void Destroyed() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 	virtual void PawnClientRestart() override;
 

@@ -37,9 +37,9 @@ ASWeapon::ASWeapon(const class FObjectInitializer& PCIP)
 }
 
 
-void ASWeapon::Destroyed()
+void ASWeapon::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-	Super::Destroyed();
+	Super::EndPlay(EndPlayReason);
 
 	DetachMeshFromPawn();
 	StopSimulatingWeaponFire();
