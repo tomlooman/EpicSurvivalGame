@@ -23,7 +23,7 @@ class SURVIVALGAME_API ASWeapon : public AActor
 {
 	GENERATED_UCLASS_BODY()
 
-	void Destroyed() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 	void OnEquip();
 

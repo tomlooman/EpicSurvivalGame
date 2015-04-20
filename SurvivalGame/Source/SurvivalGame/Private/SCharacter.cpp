@@ -114,9 +114,9 @@ void ASCharacter::Tick(float DeltaTime)
 	}
 }
 
-void ASCharacter::Destroyed()
+void ASCharacter::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-	Super::Destroyed();
+	Super::EndPlay(EndPlayReason);
 	DestroyInventory();
 }
 
