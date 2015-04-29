@@ -26,7 +26,7 @@ ASFlashlight::ASFlashlight(const FObjectInitializer& ObjectInitializer)
 	LastEmissiveStrength = -1.0f;
 
 	EmissiveParamName = TEXT("Brightness");
-	MaxEmissiveIntensity = 20.0f;
+	MaxEmissiveIntensity = 5.0f;
 }
 
 

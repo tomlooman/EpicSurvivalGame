@@ -25,9 +25,9 @@ ASBombActor::ASBombActor(const class FObjectInitializer& ObjectInitializer)
 	// Let the bomb be thrown and roll around
 	MeshComp->SetSimulatePhysics(true);
 
-	MaxFuzeTime = 5.0f;
+	MaxFuzeTime = 3.0f;
 	ExplosionDamage = 100;
-	ExplosionRadius = 512;
+	ExplosionRadius = 1024;
 
 	SetRemoteRoleForBackwardsCompat(ROLE_SimulatedProxy);
 	bReplicates = true;

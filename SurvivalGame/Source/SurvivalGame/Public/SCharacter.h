@@ -2,12 +2,11 @@
 
 #pragma once
 
-#include "GameFramework/Character.h"
-#include "STypes.h"
+#include "SBaseCharacter.h"
 #include "SCharacter.generated.h"
 
 UCLASS()
-class SURVIVALGAME_API ASCharacter : public ACharacter
+class SURVIVALGAME_API ASCharacter : public ASBaseCharacter
 {
 	GENERATED_UCLASS_BODY()
 
@@ -25,6 +24,10 @@ class SURVIVALGAME_API ASCharacter : public ACharacter
 
 	/* Stop playing all montages */
 	void StopAllAnimMontages();
+
+	/* MakeNoise hook to trigger AI noise emitting (Loudness between 0.0-1.0)  */
+	UFUNCTION(BlueprintCallable, Category = "AI")
+	void FootstepMakeNoise(float Loudness);
 
 private:
 
@@ -145,26 +148,17 @@ public:
 	float TargetingSpeedModifier;
 
 	/************************************************************************/
-	/* Hitpoints & Hunger                                                   */
+	/* Hunger                                                               */
 	/************************************************************************/
 
 	UFUNCTION(BlueprintCallable, Category = "PlayerCondition")
-	float GetHealth() const;
-
-	UFUNCTION(BlueprintCallable, Category = "PlayerCondition")
 	float GetHunger() const;
-
-	UFUNCTION(BlueprintCallable, Category = "PlayerCondition")
-	float GetMaxHealth() const;
 
 	UFUNCTION(BlueprintCallable, Category = "PlayerCondition")
 	float GetMaxHunger() const;
 
 	UFUNCTION(BlueprintCallable, Category = "PlayerCondition")
 	void ConsumeFood(float AmountRestored);
-
-	UFUNCTION(BlueprintCallable, Category = "PlayerCondition")
-	bool IsAlive() const;
 
 	/* Increments hunger, used by timer. */
 	void IncrementHunger();
@@ -180,9 +174,6 @@ public:
 	float CriticalHungerThreshold;
 
 	UPROPERTY(EditDefaultsOnly, Category = "PlayerCondition", Replicated)
-	float Health;
-
-	UPROPERTY(EditDefaultsOnly, Category = "PlayerCondition", Replicated)
 	float Hunger;
 
 	// Documentation Note: MaxHunger does not need to be replicated, only values that change and are displayed or used by clients should ever be replicated.
@@ -190,34 +181,10 @@ public:
 	float MaxHunger;
 
 	/************************************************************************/
-	/* Damage, Hit & Death                                                  */
+	/* Damage & Death                                                       */
 	/************************************************************************/
 
-	/* Take damage & handle death */
-	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser) override;
-
-	virtual bool CanDie(float KillingDamage, FDamageEvent const& DamageEvent, AController* Killer, AActor* DamageCauser) const;
-
-	virtual bool Die(float KillingDamage, FDamageEvent const& DamageEvent, AController* Killer, AActor* DamageCauser);
-
-	virtual void OnDeath(float KillingDamage, FDamageEvent const& DamageEvent, APawn* PawnInstigator, AActor* DamageCauser);
-
-	virtual void FellOutOfWorld(const class UDamageType& DmgType) override;
-
-	void SetRagdollPhysics();
-
-	virtual void PlayHit(float DamageTaken, struct FDamageEvent const& DamageEvent, APawn* PawnInstigator, AActor* DamageCauser, bool bKilled);
-
-	void ReplicateHit(float DamageTaken, struct FDamageEvent const& DamageEvent, APawn* PawnInstigator, AActor* DamageCauser, bool bKilled);
-
-	/* Holds hit data to replicate hits and death to clients */
-	UPROPERTY(Transient, ReplicatedUsing = OnRep_LastTakeHitInfo)
-	struct FTakeHitInfo LastTakeHitInfo;
-
-	UFUNCTION()
-	void OnRep_LastTakeHitInfo();
-
-	bool bIsDying;
+	virtual void OnDeath(float KillingDamage, FDamageEvent const& DamageEvent, APawn* PawnInstigator, AActor* DamageCauser) override;
 
 	/************************************************************************/
 	/* Weapons & Inventory                                                  */
@@ -272,9 +239,6 @@ private:
 
 	UFUNCTION(Reliable, Server, WithValidation)
 	void ServerDropWeapon();
-
-	/* Inventory is dropped on death */
-	//void DropInventory();
 
 public:
 

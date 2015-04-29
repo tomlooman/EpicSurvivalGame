@@ -27,13 +27,19 @@ public:
 	UParticleSystem* DefaultFX;
 
 	UPROPERTY(EditDefaultsOnly)
-	UParticleSystem* FleshFX;
+	UParticleSystem* PlayerFleshFX;
+
+	UPROPERTY(EditDefaultsOnly)
+	UParticleSystem* ZombieFleshFX;
 
 	UPROPERTY(EditDefaultsOnly)
 	USoundCue* DefaultSound;
 
 	UPROPERTY(EditDefaultsOnly)
-	USoundCue* FleshSound;
+	USoundCue* PlayerFleshSound;
+
+	UPROPERTY(EditDefaultsOnly)
+	USoundCue* ZombieFleshSound;
 
 	FHitResult SurfaceHit;
 };

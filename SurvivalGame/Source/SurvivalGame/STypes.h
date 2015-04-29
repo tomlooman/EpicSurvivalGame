@@ -31,7 +31,7 @@ struct FTakeHitInfo
 	UClass* DamageTypeClass;
 
 	UPROPERTY()
-	TWeakObjectPtr<class ASCharacter> PawnInstigator;
+	TWeakObjectPtr<class ASBaseCharacter> PawnInstigator;
 
 	UPROPERTY()
 	TWeakObjectPtr<class AActor> DamageCauser;

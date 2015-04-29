@@ -12,8 +12,21 @@ UCLASS()
 class SURVIVALGAME_API ASGameMode : public AGameMode
 {
 	GENERATED_BODY()
-	
-	
-	
-	
+
+	ASGameMode(const FObjectInitializer& ObjectInitializer);
+
+	/* Can we deal damage to players in the same team */
+	bool bAllowFriendlyFireDamage;
+
+	/* The teamnumber assigned to Players */
+	int32 PlayerTeamNum;
+
+	/* The teamnumber assigned to AI pawns */
+	int32 AITeamNum;
+
+	/* Called once on every new player that enters the gamemode */
+	virtual FString InitNewPlayer(class APlayerController* NewPlayerController, const TSharedPtr<FUniqueNetId>& UniqueId, const FString& Options, const FString& Portal /* = TEXT("") */);
+
+	/* Can the player deal damage according to gamemode rules (eg. friendly-fire disabled) */
+	virtual bool CanDealDamage(class ASPlayerState* DamageCauser, class ASPlayerState* DamagedPlayer) const;
 };

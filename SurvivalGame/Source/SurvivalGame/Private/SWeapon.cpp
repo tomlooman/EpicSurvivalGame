@@ -332,13 +332,17 @@ void ASWeapon::HandleFiring()
 			ServerHandleFiring();
 		}
 
-		// TODO: if weapon is automatic firing rifle -> Setup refiring timer. (calls HandleFiring()
-
 		bRefiring = (CurrentState == EWeaponState::Firing && TimeBetweenShots > 0.0f);
 		if (bRefiring)
 		{
 			GetWorldTimerManager().SetTimer(HandleFiringTimerHandle, this, &ASWeapon::HandleFiring, TimeBetweenShots, false);
 		}
+	}
+
+	/* Make Noise on every shot. The data is managed by the PawnNoiseEmitterComponent created in SBaseCharacter and used by PawnSensingComponent in SZombieCharacter */
+	if (MyPawn)
+	{
+		MakeNoise(1.0f, MyPawn, MyPawn->GetActorLocation());
 	}
 
 	LastFireTime = GetWorld()->GetTimeSeconds();

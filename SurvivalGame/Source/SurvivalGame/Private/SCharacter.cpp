@@ -7,6 +7,7 @@
 #include "SWeapon.h"
 #include "SWeaponPickup.h"
 #include "SCharacterMovementComponent.h"
+#include "SBaseCharacter.h"
 
 
 // Sets default values
@@ -142,7 +143,6 @@ void ASCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponen
 
 	// Interaction
 	InputComponent->BindAction("Use", IE_Pressed, this, &ASCharacter::Use);
-
 	InputComponent->BindAction("DropWeapon", IE_Pressed, this, &ASCharacter::DropWeapon);
 
 	// Weapons
@@ -454,22 +454,9 @@ FRotator ASCharacter::GetAimOffsets() const
 }
 
 
-float ASCharacter::GetHealth() const
-{
-	return Health;
-}
-
-
 float ASCharacter::GetHunger() const
 {
 	return Hunger;
-}
-
-
-float ASCharacter::GetMaxHealth() const
-{
-	// Retrieve the default value of the health property that is assigned on instantiation.
-	return GetClass()->GetDefaultObject<ASCharacter>()->Health;
 }
 
 
@@ -499,12 +486,6 @@ void ASCharacter::ConsumeFood(float AmountRestored)
 }
 
 
-bool ASCharacter::IsAlive() const
-{
-	return Health > 0;
-}
-
-
 void ASCharacter::IncrementHunger()
 {
 	Hunger = FMath::Clamp(Hunger + IncrementHungerAmount, 0.0f, GetMaxHunger());
@@ -518,203 +499,17 @@ void ASCharacter::IncrementHunger()
 }
 
 
-float ASCharacter::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser)
-{
-	if (Health <= 0.f)
-	{
-		return 0.f;
-	}
-
-	const float ActualDamage = Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
-	if (ActualDamage > 0.f)
-	{
-		Health -= ActualDamage;
-		if (Health <= 0)
-		{
-			Die(ActualDamage, DamageEvent, EventInstigator, DamageCauser);
-		}
-		else
-		{
-			/* Shorthand for - if x != null pick1 else pick2 */
-			APawn* Pawn = EventInstigator ? EventInstigator->GetPawn() : nullptr;
-			PlayHit(ActualDamage, DamageEvent, Pawn, DamageCauser, false);
-		}
-	}
-
-	return ActualDamage;
-}
-
-
-bool ASCharacter::CanDie(float KillingDamage, FDamageEvent const& DamageEvent, AController* Killer, AActor* DamageCauser) const
-{
-	/* Check if character is already dying, destroyed or if we have authority */
-	if (bIsDying ||
-		IsPendingKill() ||
-		Role != ROLE_Authority ||
-		GetWorld()->GetAuthGameMode() == NULL ||
-		GetWorld()->GetAuthGameMode()->GetMatchState() == MatchState::LeavingMap)
-	{
-		return false;
-	}
-
-	return true;
-}
-
-
-bool ASCharacter::Die(float KillingDamage, FDamageEvent const& DamageEvent, AController* Killer, AActor* DamageCauser)
-{
-	if (!CanDie(KillingDamage, DamageEvent, Killer, DamageCauser))
-	{
-		return false;
-	}
-
-	Health = FMath::Min(0.0f, Health);
-
-	/* Fallback to default DamageType if none is specified */
-	UDamageType const* const DamageType = DamageEvent.DamageTypeClass ? DamageEvent.DamageTypeClass->GetDefaultObject<UDamageType>() : GetDefault<UDamageType>();
-	Killer = GetDamageInstigator(Killer, *DamageType);
-
-	OnDeath(KillingDamage, DamageEvent, Killer ? Killer->GetPawn() : NULL, DamageCauser);
-	return true;
-}
-
-
 void ASCharacter::OnDeath(float KillingDamage, FDamageEvent const& DamageEvent, APawn* PawnInstigator, AActor* DamageCauser)
 {
 	if (bIsDying)
-	{	
+	{
 		return;
 	}
 
-	bReplicateMovement = false;
-	bTearOff = true;
-	bIsDying = true;
-
-	PlayHit(KillingDamage, DamageEvent, PawnInstigator, DamageCauser, true);
-
 	DestroyInventory();
-
-	DetachFromControllerPendingDestroy();
 	StopAllAnimMontages();
 
-	/* Disable all collision on capsule */
-	UCapsuleComponent* CapsuleComp = GetCapsuleComponent();
-	CapsuleComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	CapsuleComp->SetCollisionResponseToAllChannels(ECR_Ignore);
-
-	USkeletalMeshComponent* Mesh3P = GetMesh();
-	if (Mesh3P)
-	{
-		Mesh3P->SetCollisionProfileName(TEXT("Ragdoll"));
-	}
-	SetActorEnableCollision(true);
-
-	SetRagdollPhysics();
-}
-
-
-void ASCharacter::SetRagdollPhysics()
-{
-	bool bInRagdoll = false;
-	USkeletalMeshComponent* Mesh3P = GetMesh();
-
-	if (IsPendingKill())
-	{
-		bInRagdoll = false;
-	}
-	else if (!Mesh3P || !Mesh3P->GetPhysicsAsset())
-	{
-		bInRagdoll = false;
-	}
-	else
-	{
-		Mesh3P->SetAllBodiesSimulatePhysics(true);
-		Mesh3P->SetSimulatePhysics(true);
-		Mesh3P->WakeAllRigidBodies();
-		Mesh3P->bBlendPhysics = true;
-
-		bInRagdoll = true;
-	}
-
-	UCharacterMovementComponent* CharacterComp = Cast<UCharacterMovementComponent>(GetMovementComponent());
-	if (CharacterComp)
-	{
-		CharacterComp->StopMovementImmediately();
-		CharacterComp->DisableMovement();
-		CharacterComp->SetComponentTickEnabled(false);
-	}
-
-	if (!bInRagdoll)
-	{
-		// Immediately hide the pawn
-		TurnOff();
-		SetActorHiddenInGame(true);
-		SetLifeSpan(1.0f);
-	}
-	else
-	{
-		SetLifeSpan(10.0f);
-	}
-}
-
-
-void ASCharacter::FellOutOfWorld(const class UDamageType& DmgType)
-{
-	Die(Health, FDamageEvent(DmgType.GetClass()), NULL, NULL);
-}
-
-
-void ASCharacter::PlayHit(float DamageTaken, struct FDamageEvent const& DamageEvent, APawn* PawnInstigator, AActor* DamageCauser, bool bKilled)
-{
-	if (Role == ROLE_Authority)
-	{
-		ReplicateHit(DamageTaken, DamageEvent, PawnInstigator, DamageCauser, bKilled);
-	}
-
-	/* Apply damage momentum specific to the DamageType */
-	if (DamageTaken > 0.f)
-	{
-		ApplyDamageMomentum(DamageTaken, DamageEvent, PawnInstigator, DamageCauser);
-	}
-}
-
-
-void ASCharacter::ReplicateHit(float DamageTaken, struct FDamageEvent const& DamageEvent, APawn* PawnInstigator, AActor* DamageCauser, bool bKilled)
-{
-	const float TimeoutTime = GetWorld()->GetTimeSeconds() + 0.5f;
-
-	FDamageEvent const& LastDamageEvent = LastTakeHitInfo.GetDamageEvent();
-	if (PawnInstigator == LastTakeHitInfo.PawnInstigator.Get() && LastDamageEvent.DamageTypeClass == LastTakeHitInfo.DamageTypeClass)
-	{
-		// Same frame damage
-		if (bKilled && LastTakeHitInfo.bKilled)
-		{
-			// Redundant death take hit, ignore it
-			return;
-		}
-
-		DamageTaken += LastTakeHitInfo.ActualDamage;
-	}
-
-	LastTakeHitInfo.ActualDamage = DamageTaken;
-	LastTakeHitInfo.PawnInstigator = Cast<ASCharacter>(PawnInstigator);
-	LastTakeHitInfo.DamageCauser = DamageCauser;
-	LastTakeHitInfo.SetDamageEvent(DamageEvent);
-	LastTakeHitInfo.bKilled = bKilled;
-	LastTakeHitInfo.EnsureReplication();
-}
-
-
-void ASCharacter::OnRep_LastTakeHitInfo()
-{
-	if (LastTakeHitInfo.bKilled)
-	{
-		OnDeath(LastTakeHitInfo.ActualDamage, LastTakeHitInfo.GetDamageEvent(), LastTakeHitInfo.PawnInstigator.Get(), LastTakeHitInfo.DamageCauser.Get());
-	}
-	else
-	{
-		PlayHit(LastTakeHitInfo.ActualDamage, LastTakeHitInfo.GetDamageEvent(), LastTakeHitInfo.PawnInstigator.Get(), LastTakeHitInfo.DamageCauser.Get(), LastTakeHitInfo.bKilled);
-	}
+	Super::OnDeath(KillingDamage, DamageEvent, PawnInstigator, DamageCauser);
 }
 
 
@@ -1066,5 +861,18 @@ void ASCharacter::StopAllAnimMontages()
 	if (UseMesh && UseMesh->AnimScriptInstance)
 	{
 		UseMesh->AnimScriptInstance->Montage_Stop(0.0f);
+	}
+}
+
+
+void ASCharacter::FootstepMakeNoise(float Loudness)
+{
+	// TODO: Playback Sound.
+
+
+	if (Role == ROLE_Authority)
+	{
+		/* Make noise to be picked up by PawnSensingComponent by the enemy pawns */
+		MakeNoise(Loudness, this, GetActorLocation());
 	}
 }

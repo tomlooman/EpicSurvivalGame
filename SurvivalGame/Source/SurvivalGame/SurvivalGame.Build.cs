@@ -6,7 +6,8 @@ public class SurvivalGame : ModuleRules
 {
 	public SurvivalGame(TargetInfo Target)
 	{
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+        /* AIModule is not assigned by default, must be added when dealing with AI in your project */
+        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "AIModule" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 
