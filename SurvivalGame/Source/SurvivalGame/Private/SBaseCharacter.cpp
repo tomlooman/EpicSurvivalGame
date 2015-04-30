@@ -14,8 +14,8 @@ ASBaseCharacter::ASBaseCharacter(const class FObjectInitializer& ObjectInitializ
 	NoiseEmitterComp = CreateDefaultSubobject<UPawnNoiseEmitterComponent>(TEXT("NoiseEmitterComp"));
 
 	/* Don't collide with camera checks to keep 3rd person camera at position when zombies or other players are standing behind us */
-	Mesh->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
-	CapsuleComponent->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
+	GetMesh()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
+	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
 }
 
 float ASBaseCharacter::GetHealth() const

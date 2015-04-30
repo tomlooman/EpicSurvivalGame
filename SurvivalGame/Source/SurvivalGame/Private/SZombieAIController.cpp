@@ -18,8 +18,14 @@ ASZombieAIController::ASZombieAIController(const class FObjectInitializer& Objec
 	BlackboardComp = ObjectInitializer.CreateDefaultSubobject<UBlackboardComponent>(this, TEXT("BlackboardComp"));
 
 	/* Match with the AI/ZombieBlackboard */
-	TargetToFollowKeyName = "TargetToFollow";
-	NoiseLocationKeyName = "NoiseLocation";
+	TargetLocationKeyName = "TargetLocation";
+	PatrolLocationKeyName = "PatrolLocation";
+	CurrentWaypointKeyName = "CurrentWaypoint";
+	BotTypeKeyName = "BotType";
+	TargetEnemyKeyName = "TargetEnemy";
+
+	/* Initializes PlayerState so we can assign a team index to AI */
+	bWantsPlayerState = true;
 }
 
 
@@ -33,6 +39,9 @@ void ASZombieAIController::Possess(class APawn* InPawn)
 		if (ZombieBot->BehaviorTree->BlackboardAsset)
 		{
 			BlackboardComp->InitializeBlackboard(*ZombieBot->BehaviorTree->BlackboardAsset);
+
+			/* Make sure the Blackboard has the type of bot we possessed */
+			BlackboardComp->SetValueAsEnum(BotTypeKeyName, (uint8)ZombieBot->BotType);
 		}
 
 		BehaviorComp->StartTree(*ZombieBot->BehaviorTree);
@@ -40,41 +49,56 @@ void ASZombieAIController::Possess(class APawn* InPawn)
 }
 
 
-ASCharacter* ASZombieAIController::GetTargetPlayer()
+void ASZombieAIController::SetMoveToTarget(APawn* Pawn)
 {
 	if (BlackboardComp)
 	{
-		return Cast<ASCharacter>(BlackboardComp->GetValueAsObject(TargetToFollowKeyName));
+		SetTargetEnemy(Pawn);
+
+		if (Pawn)
+		{
+			BlackboardComp->SetValueAsVector(TargetLocationKeyName, Pawn->GetActorLocation());
+		}
+	}
+}
+
+
+void ASZombieAIController::SetWaypoint(ASBotWaypoint* NewWaypoint)
+{
+	if (BlackboardComp)
+	{
+		BlackboardComp->SetValueAsObject(CurrentWaypointKeyName, NewWaypoint);
+	}
+}
+
+
+void ASZombieAIController::SetTargetEnemy(APawn* NewTarget)
+{
+	if (BlackboardComp)
+	{
+		BlackboardComp->SetValueAsObject(TargetEnemyKeyName, NewTarget);
+	}
+}
+
+
+ASBotWaypoint* ASZombieAIController::GetWaypoint()
+{
+	if (BlackboardComp)
+	{
+		return Cast<ASBotWaypoint>(BlackboardComp->GetValueAsObject(CurrentWaypointKeyName));
 	}
 
 	return nullptr;
 }
 
-void ASZombieAIController::SetTargetPlayer(APawn* Pawn)
+
+ASBaseCharacter* ASZombieAIController::GetTargetEnemy()
 {
 	if (BlackboardComp)
 	{
-		BlackboardComp->SetValueAsObject(TargetToFollowKeyName, Pawn);
-		// TODO: Use AiController->SetFocus() ?
-	}
-}
-
-
-void ASZombieAIController::SetNoiseLocation(FVector NoiseHeardLocation)
-{
-	if (BlackboardComp)
-	{
-		BlackboardComp->SetValueAsVector(NoiseLocationKeyName, NoiseHeardLocation);
-	}
-}
-
-
-FVector ASZombieAIController::GetNoiseLocaton()
-{
-	if (BlackboardComp)
-	{
-		return BlackboardComp->GetValueAsVector(NoiseLocationKeyName);
+		return Cast<ASBaseCharacter>(BlackboardComp->GetValueAsObject(TargetEnemyKeyName));
 	}
 
-	return FVector::ZeroVector;
+	return nullptr;
 }
+

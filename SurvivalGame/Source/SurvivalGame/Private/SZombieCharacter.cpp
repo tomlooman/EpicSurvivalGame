@@ -5,6 +5,7 @@
 #include "SZombieAIController.h"
 #include "SCharacter.h"
 #include "SBaseCharacter.h"
+#include "SBotWaypoint.h"
 
 /* AI Include */
 #include "Perception/PawnSensingComponent.h"
@@ -33,6 +34,10 @@ ASZombieCharacter::ASZombieCharacter(const class FObjectInitializer& ObjectIniti
 
 	Health = 75;
 
+	/* By default we will not let the AI patrol, we can override this value per-instance. */
+	BotType = EBotBehaviorType::Passive;
+	SenseTimeOut = 2.5f;
+
 	/* Note: Visual Setup is done in the AI/ZombieCharacter Blueprint file */
 }
 
@@ -41,7 +46,7 @@ void ASZombieCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	/* This is the earliest moment we can bind our delegates */
+	/* This is the earliest moment we can bind our delegates to the component */
 	if (PawnSensingComp)
 	{
 		PawnSensingComp->OnSeePawn.AddDynamic(this, &ASZombieCharacter::OnSeePlayer);
@@ -50,32 +55,50 @@ void ASZombieCharacter::BeginPlay()
 }
 
 
+void ASZombieCharacter::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+	/* Check if the last time we sensed a player is beyond the time out value to prevent bot from endlessly following a player. */
+	if (bSensedTarget && (GetWorld()->TimeSeconds - LastSeenTime) > SenseTimeOut 
+		&& (GetWorld()->TimeSeconds - LastHeardTime) > SenseTimeOut)
+	{
+		ASZombieAIController* AIController = Cast<ASZombieAIController>(GetController());
+		if (AIController)
+		{
+			bSensedTarget = false;
+			/* Reset */
+			AIController->SetTargetEnemy(nullptr);
+		}
+	}
+}
+
+
 void ASZombieCharacter::OnSeePlayer(APawn* Pawn)
 {
+	/* Keep track of the time the player was last sensed in order to clear the target */
+	LastSeenTime = GetWorld()->GetTimeSeconds();
+	bSensedTarget = true;
+
 	ASZombieAIController* AIController = Cast<ASZombieAIController>(GetController());
 	ASBaseCharacter* SensedPawn = Cast<ASBaseCharacter>(Pawn);
 	if (AIController && SensedPawn->IsAlive())
 	{
-		AIController->SetTargetPlayer(Pawn);
+		AIController->SetMoveToTarget(SensedPawn);
 	}
-
-	/* Keep track of the time the player was last sensed in order to clear the target */
-	LastSeenTime = GetWorld()->GetTimeSeconds();
 }
 
 
 void ASZombieCharacter::OnHearNoise(APawn* PawnInstigator, const FVector& Location, float Volume)
 {
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::White, "Noise Heard!");
-	}
+	bSensedTarget = true;
+	LastHeardTime = GetWorld()->GetTimeSeconds();
 
-	DrawDebugDirectionalArrow(GetWorld(), GetActorLocation(), Location, 64, FColor::White, false, 1.0f);
+	DrawDebugDirectionalArrow(GetWorld(), GetActorLocation(), Location, 64, FColor::Green, false, 0.2f);
 
 	ASZombieAIController* AIController = Cast<ASZombieAIController>(GetController());
 	if (AIController)
 	{
-		AIController->SetNoiseLocation(Location);
+		AIController->SetMoveToTarget(PawnInstigator);
 	}
 }

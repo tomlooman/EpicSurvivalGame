@@ -4,6 +4,7 @@
 
 #include "AIController.h"
 #include "SCharacter.h"
+#include "SBotWaypoint.h"
 #include "SZombieAIController.generated.h"
 
 /**
@@ -24,21 +25,31 @@ class SURVIVALGAME_API ASZombieAIController : public AAIController
 	UBlackboardComponent* BlackboardComp;
 
 	UPROPERTY(EditDefaultsOnly, Category = "AI")
-	FName TargetToFollowKeyName;
+	FName TargetEnemyKeyName;
 
 	UPROPERTY(EditDefaultsOnly, Category = "AI")
-	FName NoiseLocationKeyName;
+	FName TargetLocationKeyName;
+
+	UPROPERTY(EditDefaultsOnly, Category = "AI")
+	FName PatrolLocationKeyName;
+
+	UPROPERTY(EditDefaultsOnly, Category = "AI")
+	FName CurrentWaypointKeyName;
+
+	UPROPERTY(EditDefaultsOnly, Category = "AI")
+	FName BotTypeKeyName;
 
 public:
 
-	void SetNoiseLocation(FVector NoiseHeardLocation);
+	ASBotWaypoint* GetWaypoint();
 
-	FVector GetNoiseLocaton();
+	ASBaseCharacter* GetTargetEnemy();
 
-	void SetTargetPlayer(APawn* Pawn);
+	void SetMoveToTarget(APawn* Pawn);
 
-	/* Returns the current TargetToFollow from the blackboard */
-	class ASCharacter* GetTargetPlayer();
+	void SetWaypoint(ASBotWaypoint* NewWaypoint);
+
+	void SetTargetEnemy(APawn* NewTarget);
 
 	/** Returns BehaviorComp subobject **/
 	FORCEINLINE UBehaviorTreeComponent* GetBehaviorComp() const { return BehaviorComp; }

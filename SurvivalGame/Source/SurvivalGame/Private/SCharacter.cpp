@@ -68,7 +68,7 @@ void ASCharacter::PostInitializeComponents()
 	{
 		// Set a timer to increment hunger every interval
 		FTimerHandle Handle;
-		GetWorld()->GetTimerManager().SetTimer(Handle, this, &ASCharacter::IncrementHunger, IncrementHungerInterval, true);
+		GetWorldTimerManager().SetTimer(Handle, this, &ASCharacter::IncrementHunger, IncrementHungerInterval, true);
 
 		SpawnDefaultInventory();
 	}
@@ -869,6 +869,10 @@ void ASCharacter::FootstepMakeNoise(float Loudness)
 {
 	// TODO: Playback Sound.
 
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, "(" +  FString::SanitizeFloat(GetWorld()->TimeSeconds) + ") Your footsteps made a noise! Loudness: " + FString::SanitizeFloat(Loudness));
+	}
 
 	if (Role == ROLE_Authority)
 	{

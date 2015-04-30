@@ -60,7 +60,7 @@ void ASBombActor::OnUsed(APawn* InstigatorPawn)
 		SimulateFuzeFX();
 
 		// Activate the fuze to explode the bomb after several seconds
-		GetWorld()->GetTimerManager().SetTimer(FuzeTimerHandle, this, &ASBombActor::OnExplode, MaxFuzeTime, false);
+		GetWorldTimerManager().SetTimer(FuzeTimerHandle, this, &ASBombActor::OnExplode, MaxFuzeTime, false);
 	}
 }
 
