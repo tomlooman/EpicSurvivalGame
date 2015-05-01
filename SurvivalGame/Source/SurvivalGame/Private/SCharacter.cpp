@@ -425,7 +425,6 @@ void ASCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifet
 
 	DOREPLIFETIME(ASCharacter, CurrentWeapon);
 	DOREPLIFETIME(ASCharacter, Inventory);
-
 	/* If we did not display the current inventory on the player mesh we could optimize replication by using this replication condition. */
 	/* DOREPLIFETIME_CONDITION(ASCharacter, Inventory, COND_OwnerOnly);*/
 }
@@ -562,12 +561,6 @@ void ASCharacter::SpawnDefaultInventory()
 			AddWeapon(NewWeapon);
 		}
 	}
-
-	// Equip first weapon in inventory
-// 	if (Inventory.Num() > 0)
-// 	{
-// 		EquipWeapon(Inventory[0]);
-// 	}
 }
 
 
@@ -865,18 +858,32 @@ void ASCharacter::StopAllAnimMontages()
 }
 
 
-void ASCharacter::FootstepMakeNoise(float Loudness)
+void ASCharacter::MakePawnNoise(float Loudness)
 {
-	// TODO: Playback Sound.
-
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, "(" +  FString::SanitizeFloat(GetWorld()->TimeSeconds) + ") Your footsteps made a noise! Loudness: " + FString::SanitizeFloat(Loudness));
-	}
+// 	if (GEngine)
+// 	{
+// 		GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, "(" + FString::SanitizeFloat(GetWorld()->TimeSeconds) + ") You made a noise! Loudness: " + FString::SanitizeFloat(Loudness));
+// 		GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, "Role: " + FString::FromInt(Role));
+// 	}
 
 	if (Role == ROLE_Authority)
 	{
 		/* Make noise to be picked up by PawnSensingComponent by the enemy pawns */
 		MakeNoise(Loudness, this, GetActorLocation());
 	}
+
+	LastNoiseLoudness = Loudness;
+	LastMakeNoiseTime = GetWorld()->GetTimeSeconds();
+}
+
+
+float ASCharacter::GetLastNoiseLoudness()
+{
+	return LastNoiseLoudness;
+}
+
+
+float ASCharacter::GetLastMakeNoiseTime()
+{
+	return LastMakeNoiseTime;
 }

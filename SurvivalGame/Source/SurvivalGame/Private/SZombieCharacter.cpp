@@ -6,6 +6,7 @@
 #include "SCharacter.h"
 #include "SBaseCharacter.h"
 #include "SBotWaypoint.h"
+#include "SPlayerState.h"
 
 /* AI Include */
 #include "Perception/PawnSensingComponent.h"
@@ -22,6 +23,8 @@ ASZombieCharacter::ASZombieCharacter(const class FObjectInitializer& ObjectIniti
 	PawnSensingComp = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("PawnSensingComp"));
 	PawnSensingComp->SetPeripheralVisionAngle(60.0f);
 	PawnSensingComp->SightRadius = 2000;
+	PawnSensingComp->HearingThreshold = 600;
+	PawnSensingComp->LOSHearingThreshold = 1200;
 
 	/* Ignore this channel or it will absorb the trace impacts instead of the skeletal mesh */
 	GetCapsuleComponent()->SetCollisionResponseToChannel(COLLISION_WEAPON, ECR_Ignore);
@@ -51,6 +54,13 @@ void ASZombieCharacter::BeginPlay()
 	{
 		PawnSensingComp->OnSeePawn.AddDynamic(this, &ASZombieCharacter::OnSeePlayer);
 		PawnSensingComp->OnHearNoise.AddDynamic(this, &ASZombieCharacter::OnHearNoise);
+	}
+
+	/* Assign a basic name to identify the bots in the HUD. */
+	ASPlayerState* PS = Cast<ASPlayerState>(PlayerState);
+	if (PS)
+	{
+		PS->SetPlayerName("Bot");
 	}
 }
 

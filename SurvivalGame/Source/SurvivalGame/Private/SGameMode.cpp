@@ -5,6 +5,7 @@
 #include "SPlayerController.h"
 #include "SPlayerState.h"
 #include "SGameState.h"
+#include "SBaseCharacter.h"
 
 
 ASGameMode::ASGameMode(const FObjectInitializer& ObjectInitializer)
@@ -13,11 +14,12 @@ ASGameMode::ASGameMode(const FObjectInitializer& ObjectInitializer)
 	/* Assign the class types used by this gamemode */
 	PlayerControllerClass = ASPlayerController::StaticClass();
 	PlayerStateClass = ASPlayerState::StaticClass();
-	GameStateClass = ASGameState::StaticClass();
-	
-	// TODO: Assign PlayerPawn through objectfinder trick, but explain how this should generally be avoided.
+	GameStateClass = ASGameState::StaticClass();	
 
 	bAllowFriendlyFireDamage = false;
+
+	/* Default team is 0 */
+	PlayerTeamNum = 1;
 }
 
 
@@ -26,7 +28,7 @@ bool ASGameMode::CanDealDamage(class ASPlayerState* DamageCauser, class ASPlayer
 	if (bAllowFriendlyFireDamage)
 		return true;
 
-	// TODO: Compare Team Numbers;
+	// Compare Team Numbers
 	return DamageCauser && DamagedPlayer && (DamageCauser->GetTeamNumber() != DamagedPlayer->GetTeamNumber());
 }
 
@@ -35,8 +37,6 @@ FString ASGameMode::InitNewPlayer(class APlayerController* NewPlayerController, 
 {
 	FString Result = Super::InitNewPlayer(NewPlayerController, UniqueId, Options, Portal);
 
-	// TODO: Find bot vs. player type and assign a different team to bots.
-
 	ASPlayerState* NewPlayerState = Cast<ASPlayerState>(NewPlayerController->PlayerState);
 	if (NewPlayerState)
 	{
@@ -44,4 +44,25 @@ FString ASGameMode::InitNewPlayer(class APlayerController* NewPlayerController, 
 	}
 
 	return Result;
+}
+
+
+float ASGameMode::ModifyDamage(float Damage, AActor* DamagedActor, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) const
+{
+	float ActualDamage = Damage;
+
+	ASBaseCharacter* DamagedPawn = Cast<ASBaseCharacter>(DamagedActor);
+	if (DamagedPawn && EventInstigator)
+	{
+		ASPlayerState* DamagedPlayerState = Cast<ASPlayerState>(DamagedPawn->PlayerState);
+		ASPlayerState* InstigatorPlayerState = Cast<ASPlayerState>(EventInstigator->PlayerState);
+
+		// Check for friendly fire
+		if (!CanDealDamage(InstigatorPlayerState, DamagedPlayerState))
+		{
+			ActualDamage = 0.f;
+		}
+	}
+
+	return ActualDamage;
 }

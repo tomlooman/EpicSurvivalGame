@@ -13,6 +13,8 @@ class SURVIVALGAME_API ASPlayerState : public APlayerState
 {
 	GENERATED_BODY()
 
+	ASPlayerState(const FObjectInitializer& ObjectInitializer);
+
 	UPROPERTY(Transient, Replicated)
 	int32 NumKills;
 
@@ -46,6 +48,5 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Score")
 	float GetScore() const;
-
 	
 };

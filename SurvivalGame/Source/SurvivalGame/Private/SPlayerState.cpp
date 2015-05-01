@@ -5,6 +5,12 @@
 
 
 
+ASPlayerState::ASPlayerState(const FObjectInitializer& ObjectInitializer)
+: Super(ObjectInitializer)
+{
+	/* AI will remain in team 0, players are updated to team 1 through the GameMode::InitNewPlayer */
+	TeamNumber = 0;
+}
 
 
 void ASPlayerState::Reset()
@@ -13,6 +19,7 @@ void ASPlayerState::Reset()
 
 	NumKills = 0;
 	NumDeaths = 0;
+	Score = 0;
 }
 
 void ASPlayerState::ScoreKill(ASPlayerState* Victim, int32 Points)
@@ -29,19 +36,6 @@ void ASPlayerState::ScoreDeath(ASPlayerState* KilledBy, int32 Points)
 
 void ASPlayerState::ScorePoints(int32 Points)
 {
-	// TODO: Accumulate total score for Coop team.
-
-// 	ASGameState* const MyGameState = Cast<ASGameState>(GetWorld()->GameState);
-// 	if (MyGameState && TeamNumber >= 0)
-// 	{
-// 		if (TeamNumber >= MyGameState->TeamScores.Num())
-// 		{
-// 			MyGameState->TeamScores.AddZeroed(TeamNumber - MyGameState->TeamScores.Num() + 1);
-// 		}
-// 
-// 		MyGameState->TeamScores[TeamNumber] += Points;
-// 	}
-
 	Score += Points;
 }
 
@@ -72,6 +66,7 @@ float ASPlayerState::GetScore() const
 {
 	return Score;
 }
+
 
 void ASPlayerState::GetLifetimeReplicatedProps(TArray< class FLifetimeProperty > & OutLifetimeProps) const
 {

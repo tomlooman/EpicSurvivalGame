@@ -342,7 +342,7 @@ void ASWeapon::HandleFiring()
 	/* Make Noise on every shot. The data is managed by the PawnNoiseEmitterComponent created in SBaseCharacter and used by PawnSensingComponent in SZombieCharacter */
 	if (MyPawn)
 	{
-		MakeNoise(1.0f, MyPawn, MyPawn->GetActorLocation());
+		MyPawn->MakePawnNoise(1.0f);
 	}
 
 	LastFireTime = GetWorld()->GetTimeSeconds();

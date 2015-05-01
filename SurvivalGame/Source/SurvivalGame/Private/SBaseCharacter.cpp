@@ -2,7 +2,7 @@
 
 #include "SurvivalGame.h"
 #include "SBaseCharacter.h"
-
+#include "SGameMode.h"
 
 // Sets default values
 ASBaseCharacter::ASBaseCharacter(const class FObjectInitializer& ObjectInitializer)
@@ -17,6 +17,7 @@ ASBaseCharacter::ASBaseCharacter(const class FObjectInitializer& ObjectInitializ
 	GetMesh()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
 }
+
 
 float ASBaseCharacter::GetHealth() const
 {
@@ -44,6 +45,10 @@ float ASBaseCharacter::TakeDamage(float Damage, struct FDamageEvent const& Damag
 	{
 		return 0.f;
 	}
+
+	/* Modify based based on gametype rules */
+	ASGameMode* MyGameMode = Cast<ASGameMode>(GetWorld()->GetAuthGameMode());
+	Damage = MyGameMode ? MyGameMode->ModifyDamage(Damage, this, DamageEvent, EventInstigator, DamageCauser) : Damage;
 
 	const float ActualDamage = Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
 	if (ActualDamage > 0.f)

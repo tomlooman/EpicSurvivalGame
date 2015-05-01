@@ -27,7 +27,17 @@ class SURVIVALGAME_API ASCharacter : public ASBaseCharacter
 
 	/* MakeNoise hook to trigger AI noise emitting (Loudness between 0.0-1.0)  */
 	UFUNCTION(BlueprintCallable, Category = "AI")
-	void FootstepMakeNoise(float Loudness);
+	void MakePawnNoise(float Loudness);
+
+	UFUNCTION(BlueprintCallable, Category = "AI")
+	float GetLastNoiseLoudness();
+
+	UFUNCTION(BlueprintCallable, Category = "AI")
+	float GetLastMakeNoiseTime();
+
+	float LastNoiseLoudness;
+
+	float LastMakeNoiseTime;
 
 private:
 

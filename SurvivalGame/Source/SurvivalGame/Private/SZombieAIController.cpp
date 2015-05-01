@@ -14,7 +14,6 @@ ASZombieAIController::ASZombieAIController(const class FObjectInitializer& Objec
 	: Super(ObjectInitializer)
 {
 	BehaviorComp = ObjectInitializer.CreateDefaultSubobject<UBehaviorTreeComponent>(this, TEXT("BehaviorComp"));
-
 	BlackboardComp = ObjectInitializer.CreateDefaultSubobject<UBlackboardComponent>(this, TEXT("BlackboardComp"));
 
 	/* Match with the AI/ZombieBlackboard */
