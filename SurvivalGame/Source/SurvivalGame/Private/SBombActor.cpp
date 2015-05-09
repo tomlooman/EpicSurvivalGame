@@ -25,13 +25,25 @@ ASBombActor::ASBombActor(const class FObjectInitializer& ObjectInitializer)
 	// Let the bomb be thrown and roll around
 	MeshComp->SetSimulatePhysics(true);
 
-	MaxFuzeTime = 5.0f;
+	MaxFuzeTime = 3.0f;
 	ExplosionDamage = 100;
-	ExplosionRadius = 512;
+	ExplosionRadius = 1024;
 
 	SetRemoteRoleForBackwardsCompat(ROLE_SimulatedProxy);
 	bReplicates = true;
 	bReplicateMovement = true;
+}
+
+
+void ASBombActor::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+
+	// Ensure the fuze timer is cleared
+	GetWorld()->GetTimerManager().ClearTimer(FuzeTimerHandle);
+
+	// Alternatively you can clear ALL timers.
+	/*GetWorld()->GetTimerManager().ClearAllTimersForObject(this);*/
 }
 
 
@@ -41,15 +53,14 @@ void ASBombActor::OnUsed(APawn* InstigatorPawn)
 
 	if (!bIsFuzeActive)
 	{
-		// This will trigger the ActivateFuze() on the clients
+		// This will trigger the SimulateFuzeFX() on the clients
 		bIsFuzeActive = true;
 
 		// Repnotify does not trigger on the server, so call the function here directly.
 		SimulateFuzeFX();
 
-		// Active the fuze to explode the bomb after several seconds
-		FTimerHandle TimerHandle;
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ASBombActor::OnExplode, MaxFuzeTime, false);
+		// Activate the fuze to explode the bomb after several seconds
+		GetWorldTimerManager().SetTimer(FuzeTimerHandle, this, &ASBombActor::OnExplode, MaxFuzeTime, false);
 	}
 }
 
@@ -62,16 +73,14 @@ void ASBombActor::OnExplode()
 	// Notify the clients to simulate the explosion
 	bExploded = true;
 	
-	// Run on server side
+	// Run on server side (OnExplode is executed on the server) too
 	SimulateExplosion();
 
 	// Apply damage to player, enemies and environmental objects
 	TArray<AActor*> IgnoreActors;
-	UGameplayStatics::ApplyRadialDamage(this, ExplosionDamage, GetActorLocation(), ExplosionRadius, DamageType, IgnoreActors, this, NULL);
+	UGameplayStatics::ApplyRadialDamage(this, ExplosionDamage, GetActorLocation(), ExplosionRadius, DamageType, IgnoreActors, this, nullptr);
 
-	// TODO: Deal Damage to objects that support it
 	// TODO: Apply radial impulse to supporting objects
-	// TODO: Prepare to destroy self
 }
 
 

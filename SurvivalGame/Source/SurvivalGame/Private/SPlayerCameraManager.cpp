@@ -19,7 +19,7 @@ ASPlayerCameraManager::ASPlayerCameraManager(const class FObjectInitializer& Obj
 
 void ASPlayerCameraManager::UpdateCamera(float DeltaTime)
 {
-	ASCharacter* MyPawn = PCOwner ? Cast<ASCharacter>(PCOwner->GetPawn()) : NULL;
+	ASCharacter* MyPawn = PCOwner ? Cast<ASCharacter>(PCOwner->GetPawn()) : nullptr;
 	if (MyPawn)
 	{
 		const float TargetFOV = MyPawn->IsTargeting() ? TargetingFOV : NormalFOV;

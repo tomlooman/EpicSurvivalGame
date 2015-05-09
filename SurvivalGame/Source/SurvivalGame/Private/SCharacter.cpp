@@ -4,7 +4,10 @@
 #include "SCharacter.h"
 #include "SUsableActor.h"
 #include "SHUD.h"
+#include "SWeapon.h"
+#include "SWeaponPickup.h"
 #include "SCharacterMovementComponent.h"
+#include "SBaseCharacter.h"
 
 
 // Sets default values
@@ -21,6 +24,9 @@ ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
 	MoveComp->bCanWalkOffLedgesWhenCrouching = true;
 	MoveComp->MaxWalkSpeedCrouched = 200;
 
+	/* Ignore this channel or it will absorb the trace impacts instead of the skeletal mesh */
+	GetCapsuleComponent()->SetCollisionResponseToChannel(COLLISION_WEAPON, ECR_Ignore);
+
 	// Enable crouching
 	MoveComp->GetNavAgentPropertiesRef().bCanCrouch = true;
 
@@ -33,7 +39,8 @@ ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
 	CameraComp = ObjectInitializer.CreateDefaultSubobject<UCameraComponent>(this, TEXT("Camera"));
 	CameraComp->AttachParent = CameraBoomComp;
 
-	MaxUseDistance = 800;
+	MaxUseDistance = 500;
+	DropItemDistance = 100;
 	bHasNewFocus = true;
 	TargetingSpeedModifier = 0.5f;
 	SprintingSpeedModifier = 2.5f;
@@ -45,6 +52,11 @@ ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
 	CriticalHungerThreshold = 90;
 	MaxHunger = 100;
 	Hunger = 0;
+
+	/* Names as specified in the character skeleton */
+	WeaponAttachPoint = TEXT("WeaponSocket");
+	PelvisAttachPoint = TEXT("PelvisSocket");
+	SpineAttachPoint = TEXT("SpineSocket");
 }
 
 
@@ -56,7 +68,9 @@ void ASCharacter::PostInitializeComponents()
 	{
 		// Set a timer to increment hunger every interval
 		FTimerHandle Handle;
-		GetWorld()->GetTimerManager().SetTimer(Handle, this, &ASCharacter::IncrementHunger, IncrementHungerInterval, true);
+		GetWorldTimerManager().SetTimer(Handle, this, &ASCharacter::IncrementHunger, IncrementHungerInterval, true);
+
+		SpawnDefaultInventory();
 	}
 }
 
@@ -101,6 +115,13 @@ void ASCharacter::Tick(float DeltaTime)
 	}
 }
 
+void ASCharacter::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+	DestroyInventory();
+}
+
+
 // Called to bind functionality to input
 void ASCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponent)
 {
@@ -122,10 +143,20 @@ void ASCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponen
 
 	// Interaction
 	InputComponent->BindAction("Use", IE_Pressed, this, &ASCharacter::Use);
+	InputComponent->BindAction("DropWeapon", IE_Pressed, this, &ASCharacter::DropWeapon);
 
 	// Weapons
 	InputComponent->BindAction("Targeting", IE_Pressed, this, &ASCharacter::OnStartTargeting);
 	InputComponent->BindAction("Targeting", IE_Released, this, &ASCharacter::OnEndTargeting);
+
+	InputComponent->BindAction("Fire", IE_Pressed, this, &ASCharacter::OnStartFire);
+	InputComponent->BindAction("Fire", IE_Released, this, &ASCharacter::OnStopFire);
+
+	InputComponent->BindAction("NextWeapon", IE_Pressed, this, &ASCharacter::OnNextWeapon);
+	InputComponent->BindAction("PrevWeapon", IE_Pressed, this, &ASCharacter::OnPrevWeapon);
+
+	InputComponent->BindAction("EquipPrimaryWeapon", IE_Pressed, this, &ASCharacter::OnEquipPrimaryWeapon);
+	InputComponent->BindAction("EquipSecondaryWeapon", IE_Pressed, this, &ASCharacter::OnEquipSecondaryWeapon);
 }
 
 
@@ -162,8 +193,8 @@ ASUsableActor* ASCharacter::GetUsableInView()
 	FVector CamLoc;
 	FRotator CamRot;
 
-	if (Controller == NULL)
-		return NULL;
+	if (Controller == nullptr)
+		return nullptr;
 
 	Controller->GetPlayerViewPoint(CamLoc, CamRot);
 	const FVector TraceStart = CamLoc;
@@ -173,7 +204,9 @@ ASUsableActor* ASCharacter::GetUsableInView()
 	FCollisionQueryParams TraceParams(FName(TEXT("TraceUsableActor")), true, this);
 	TraceParams.bTraceAsyncScene = true;
 	TraceParams.bReturnPhysicalMaterial = false;
-	TraceParams.bTraceComplex = true;
+
+	/* Not tracing complex uses the rough collision instead making tiny objects easier to select. */
+	TraceParams.bTraceComplex = false;
 
 	FHitResult Hit(ForceInit);
 	GetWorld()->LineTraceSingle(Hit, TraceStart, TraceEnd, ECC_Visibility, TraceParams);
@@ -387,6 +420,13 @@ void ASCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifet
 	// Replicate to every client, no special condition required
 	DOREPLIFETIME(ASCharacter, Health);
 	DOREPLIFETIME(ASCharacter, Hunger);
+
+	DOREPLIFETIME(ASCharacter, LastTakeHitInfo);
+
+	DOREPLIFETIME(ASCharacter, CurrentWeapon);
+	DOREPLIFETIME(ASCharacter, Inventory);
+	/* If we did not display the current inventory on the player mesh we could optimize replication by using this replication condition. */
+	/* DOREPLIFETIME_CONDITION(ASCharacter, Inventory, COND_OwnerOnly);*/
 }
 
 void ASCharacter::OnCrouchToggle()
@@ -413,22 +453,9 @@ FRotator ASCharacter::GetAimOffsets() const
 }
 
 
-float ASCharacter::GetHealth() const
-{
-	return Health;
-}
-
-
 float ASCharacter::GetHunger() const
 {
 	return Hunger;
-}
-
-
-float ASCharacter::GetMaxHealth() const
-{
-	// Retrieve the default value of the health property that is assigned on instantiation.
-	return GetClass()->GetDefaultObject<ASCharacter>()->Health;
 }
 
 
@@ -458,12 +485,6 @@ void ASCharacter::ConsumeFood(float AmountRestored)
 }
 
 
-bool ASCharacter::IsAlive() const
-{
-	return Health > 0;
-}
-
-
 void ASCharacter::IncrementHunger()
 {
 	Hunger = FMath::Clamp(Hunger + IncrementHungerAmount, 0.0f, GetMaxHunger());
@@ -476,28 +497,393 @@ void ASCharacter::IncrementHunger()
 	}
 }
 
-float ASCharacter::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser)
+
+void ASCharacter::OnDeath(float KillingDamage, FDamageEvent const& DamageEvent, APawn* PawnInstigator, AActor* DamageCauser)
 {
-	if (Health <= 0.f)
+	if (bIsDying)
 	{
-		return 0.f;
+		return;
 	}
 
-	const float ActualDamage = Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
-	if (ActualDamage > 0.f)
+	DestroyInventory();
+	StopAllAnimMontages();
+
+	Super::OnDeath(KillingDamage, DamageEvent, PawnInstigator, DamageCauser);
+}
+
+
+bool ASCharacter::CanFire() const
+{
+	/* Add your own checks here, for example non-shooting areas or checking if player is in an NPC dialogue etc. */
+	return IsAlive();
+}
+
+
+bool ASCharacter::IsFiring() const
+{
+	return CurrentWeapon && CurrentWeapon->GetCurrentState() == EWeaponState::Firing;
+}
+
+
+FName ASCharacter::GetInventoryAttachPoint(EInventorySlot Slot) const
+{
+	/* Return the socket name for the specified storage slot */
+	switch (Slot)
 	{
-		Health -= ActualDamage;
-		if (Health <= 0)
+	case EInventorySlot::Hands:
+		return WeaponAttachPoint;
+	case EInventorySlot::Primary:
+		return SpineAttachPoint;
+	case EInventorySlot::Secondary:
+		return PelvisAttachPoint;
+	default:
+		// Not implemented.
+		return "";
+	}
+}
+
+
+void ASCharacter::SpawnDefaultInventory()
+{
+	if (Role < ROLE_Authority)
+	{	
+		return;
+	}
+
+	for (int32 i = 0; i < DefaultInventoryClasses.Num(); i++)
+	{
+		if (DefaultInventoryClasses[i])
 		{
-			// TODO: Handle death
-			//Die(ActualDamage, DamageEvent, EventInstigator, DamageCauser);
+			FActorSpawnParameters SpawnInfo;
+			SpawnInfo.bNoCollisionFail = true;
+			ASWeapon* NewWeapon = GetWorld()->SpawnActor<ASWeapon>(DefaultInventoryClasses[i], SpawnInfo);
+
+			AddWeapon(NewWeapon);
+		}
+	}
+}
+
+
+void ASCharacter::DestroyInventory()
+{
+	if (Role < ROLE_Authority)
+	{	
+		return;
+	}
+
+	for (int32 i = Inventory.Num() - 1; i >= 0; i--)
+	{
+		ASWeapon* Weapon = Inventory[i];
+		if (Weapon)
+		{
+			RemoveWeapon(Weapon);
+			Weapon->Destroy();
+		}
+	}
+}
+
+
+void ASCharacter::SetCurrentWeapon(class ASWeapon* NewWeapon, class ASWeapon* LastWeapon)
+{
+	ASWeapon* LocalLastWeapon = nullptr;
+
+	if (LastWeapon)
+	{
+		LocalLastWeapon = LastWeapon;
+	}
+	else if (NewWeapon != CurrentWeapon)
+	{
+		LocalLastWeapon = CurrentWeapon;
+	}
+
+	// UnEquip the current
+	if (LocalLastWeapon)
+	{
+		LocalLastWeapon->OnUnEquip();
+	}
+
+	CurrentWeapon = NewWeapon;
+
+	if (NewWeapon)
+	{
+		NewWeapon->SetOwningPawn(this);
+		NewWeapon->OnEquip();
+	}
+}
+
+
+void ASCharacter::OnRep_CurrentWeapon(ASWeapon* LastWeapon)
+{
+	SetCurrentWeapon(CurrentWeapon, LastWeapon);
+}
+
+
+void ASCharacter::EquipWeapon(ASWeapon* Weapon)
+{
+	if (Weapon)
+	{
+		if (Role == ROLE_Authority)
+		{
+			SetCurrentWeapon(Weapon);
 		}
 		else
 		{
-			// TODO: Play hit
-			//PlayHit(ActualDamage, DamageEvent, EventInstigator->GetPawn(), DamageCauser, false);
+			ServerEquipWeapon(Weapon);
 		}
 	}
+}
 
-	return ActualDamage;
+
+bool ASCharacter::ServerEquipWeapon_Validate(ASWeapon* Weapon)
+{
+	return true;
+}
+
+
+void ASCharacter::ServerEquipWeapon_Implementation(ASWeapon* Weapon)
+{
+	EquipWeapon(Weapon);
+}
+
+
+void ASCharacter::AddWeapon(class ASWeapon* Weapon)
+{
+	if (Weapon && Role == ROLE_Authority)
+	{
+		Weapon->OnEnterInventory(this);
+		Inventory.AddUnique(Weapon);
+
+		// Equip first weapon in inventory
+		if (Inventory.Num() > 0)
+		{
+			EquipWeapon(Inventory[0]);
+		}
+	}
+}
+
+
+void ASCharacter::RemoveWeapon(class ASWeapon* Weapon)
+{
+	if (Weapon && Role == ROLE_Authority)
+	{
+		bool bIsCurrent = CurrentWeapon == Weapon;
+
+		if (Inventory.Contains(Weapon))
+		{
+			Weapon->OnLeaveInventory();
+		}
+		Inventory.RemoveSingle(Weapon);
+
+		/* Replace weapon if we removed our current weapon */
+		if (bIsCurrent && Inventory.Num() > 0)
+			SetCurrentWeapon(Inventory[0]);
+
+		/* Clear reference to weapon if we have no items left in inventory */
+		if (Inventory.Num() == 0)
+			SetCurrentWeapon(nullptr);
+	}
+}
+
+
+void ASCharacter::PawnClientRestart()
+{
+	Super::PawnClientRestart();
+
+	/* Equip the weapon on the client side. */
+	SetCurrentWeapon(CurrentWeapon);
+}
+
+
+void ASCharacter::OnStartFire()
+{
+	if (IsSprinting())
+	{
+		SetSprinting(false);
+	}
+	StartWeaponFire();
+}
+
+
+void ASCharacter::OnStopFire()
+{
+	StopWeaponFire();
+}
+
+
+void ASCharacter::StartWeaponFire()
+{
+	if (!bWantsToFire)
+	{
+		bWantsToFire = true;
+		if (CurrentWeapon)
+		{
+			CurrentWeapon->StartFire();
+		}
+	}
+}
+
+
+void ASCharacter::StopWeaponFire()
+{
+	if (bWantsToFire)
+	{
+		bWantsToFire = false;
+		if (CurrentWeapon)
+		{
+			CurrentWeapon->StopFire();
+		}
+	}
+}
+
+
+void ASCharacter::OnNextWeapon()
+{
+	if (Inventory.Num() >= 2) // TODO: Check for weaponstate.
+	{
+		const int32 CurrentWeaponIndex = Inventory.IndexOfByKey(CurrentWeapon);
+		ASWeapon* NextWeapon = Inventory[(CurrentWeaponIndex + 1) % Inventory.Num()];
+		EquipWeapon(NextWeapon);
+	}
+}
+
+
+void ASCharacter::OnPrevWeapon()
+{
+	if (Inventory.Num() >= 2) // TODO: Check for weaponstate.
+	{
+		const int32 CurrentWeaponIndex = Inventory.IndexOfByKey(CurrentWeapon);
+		ASWeapon* PrevWeapon = Inventory[(CurrentWeaponIndex - 1 + Inventory.Num()) % Inventory.Num()];
+		EquipWeapon(PrevWeapon);
+	}
+}
+
+
+void ASCharacter::DropWeapon()
+{
+	if (Role < ROLE_Authority)
+	{
+		ServerDropWeapon();
+		return;
+	}
+
+	if (CurrentWeapon)
+	{
+		FVector CamLoc;
+		FRotator CamRot;
+
+		if (Controller == nullptr)
+			return;
+
+		/* Find a location to drop the item, slightly in front of the player. */
+		Controller->GetPlayerViewPoint(CamLoc, CamRot);
+		const FVector Direction = CamRot.Vector();
+		const FVector SpawnLocation = GetActorLocation() + (Direction * DropItemDistance);
+
+		FActorSpawnParameters SpawnInfo;
+		SpawnInfo.bNoCollisionFail = true;
+		ASWeaponPickup* NewWeaponPickup = GetWorld()->SpawnActor<ASWeaponPickup>(CurrentWeapon->WeaponPickupClass, SpawnLocation, FRotator::ZeroRotator, SpawnInfo);
+
+		/* Apply torque to make it spin when dropped. */
+		UStaticMeshComponent* MeshComp = NewWeaponPickup->GetMeshComponent();
+		if (MeshComp)
+		{
+			MeshComp->AddTorque(FVector(1, 1, 1) * 4000000);
+		}
+
+		RemoveWeapon(CurrentWeapon);
+	}
+}
+
+
+void ASCharacter::ServerDropWeapon_Implementation()
+{
+	DropWeapon();
+}
+
+
+bool ASCharacter::ServerDropWeapon_Validate()
+{
+	return true;
+}
+
+
+void ASCharacter::OnEquipPrimaryWeapon()
+{
+	if (Inventory.Num() >= 1)
+	{
+		/* Find first weapon that uses primary slot. */
+		for (int32 i = 0; i < Inventory.Num(); i++)
+		{
+			ASWeapon* Weapon = Inventory[i];
+			if (Weapon->GetStorageSlot() == EInventorySlot::Primary)
+			{
+				EquipWeapon(Weapon);
+			}
+		}
+	}
+}
+
+
+void ASCharacter::OnEquipSecondaryWeapon()
+{
+	if (Inventory.Num() >= 2)
+	{
+		/* Find first weapon that uses secondary slot. */
+		for (int32 i = 0; i < Inventory.Num(); i++)
+		{
+			ASWeapon* Weapon = Inventory[i];
+			if (Weapon->GetStorageSlot() == EInventorySlot::Secondary)
+			{
+				EquipWeapon(Weapon);
+			}
+		}
+	}
+}
+
+bool ASCharacter::WeaponSlotAvailable(EInventorySlot CheckSlot)
+{
+	/* Special find function as alternative to looping the array and performing if statements 
+		the [=] prefix means "capture by value", other options include [] "capture nothing" and [&] "capture by reference" */
+	return nullptr == Inventory.FindByPredicate([=](ASWeapon* W){ return W->GetStorageSlot() == CheckSlot; });
+}
+
+
+void ASCharacter::StopAllAnimMontages()
+{
+	USkeletalMeshComponent* UseMesh = GetMesh();
+	if (UseMesh && UseMesh->AnimScriptInstance)
+	{
+		UseMesh->AnimScriptInstance->Montage_Stop(0.0f);
+	}
+}
+
+
+void ASCharacter::MakePawnNoise(float Loudness)
+{
+// 	if (GEngine)
+// 	{
+// 		GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, "(" + FString::SanitizeFloat(GetWorld()->TimeSeconds) + ") You made a noise! Loudness: " + FString::SanitizeFloat(Loudness));
+// 		GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, "Role: " + FString::FromInt(Role));
+// 	}
+
+	if (Role == ROLE_Authority)
+	{
+		/* Make noise to be picked up by PawnSensingComponent by the enemy pawns */
+		MakeNoise(Loudness, this, GetActorLocation());
+	}
+
+	LastNoiseLoudness = Loudness;
+	LastMakeNoiseTime = GetWorld()->GetTimeSeconds();
+}
+
+
+float ASCharacter::GetLastNoiseLoudness()
+{
+	return LastNoiseLoudness;
+}
+
+
+float ASCharacter::GetLastMakeNoiseTime()
+{
+	return LastMakeNoiseTime;
 }
