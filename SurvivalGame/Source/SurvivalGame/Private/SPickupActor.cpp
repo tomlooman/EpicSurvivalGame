@@ -13,8 +13,7 @@ ASPickupActor::ASPickupActor(const class FObjectInitializer& ObjectInitializer)
 	/* Ignore Pawn - this is to prevent objects shooting through the level or pawns glitching on top of small items. */
 	MeshComp->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Ignore);
 
-	SetRemoteRoleForBackwardsCompat(ROLE_SimulatedProxy);
-	bReplicates = true;
+	SetReplicates(true);
 	bReplicateMovement = true;
 }
 

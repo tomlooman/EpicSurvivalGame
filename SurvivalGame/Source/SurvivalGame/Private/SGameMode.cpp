@@ -5,7 +5,8 @@
 #include "SPlayerController.h"
 #include "SPlayerState.h"
 #include "SGameState.h"
-#include "SBaseCharacter.h"
+#include "SCharacter.h"
+#include "SHUD.h"
 
 
 ASGameMode::ASGameMode(const FObjectInitializer& ObjectInitializer)
@@ -20,6 +21,55 @@ ASGameMode::ASGameMode(const FObjectInitializer& ObjectInitializer)
 
 	/* Default team is 0 */
 	PlayerTeamNum = 1;
+}
+
+
+void ASGameMode::DefaultTimer()
+{
+	/* This function is called every 1 second. */
+	Super::DefaultTimer();
+
+	ASGameState* MyGameState = Cast<ASGameState>(GameState);
+	if (MyGameState)
+	{
+		/* Increment our time of day */
+		MyGameState->ElapsedGameMinutes += MyGameState->GetTimeOfDayIncrement();
+
+		const float TimeOfDay = MyGameState->ElapsedGameMinutes - MyGameState->GetElapsedDaysInMinutes();
+		if (TimeOfDay > (6 * 60) && TimeOfDay < (18 * 60))
+		{
+			MyGameState->bIsNight = false;
+		}
+		else
+		{
+			MyGameState->bIsNight = true;
+		}
+
+		if (MyGameState->bIsNight != bWasNight)
+		{
+			FString MessageText = MyGameState->bIsNight ? "NIGHT HAS FALLEN" : "SUNRISE!";
+
+			// Warn ALL alive players that we entered day or night through their HUD instances.
+			for (FConstPawnIterator It = GetWorld()->GetPawnIterator(); It; It++)
+			{
+				ASCharacter* PlayerPawn = Cast<ASCharacter>(*It);
+				if (PlayerPawn)
+				{
+					ASPlayerController* MyController = Cast<ASPlayerController>(PlayerPawn->GetController());
+					if (MyController)
+					{
+						ASHUD* MyHUD = Cast<ASHUD>(MyController->GetHUD());
+						if (MyHUD)
+						{
+							MyHUD->MessageReceived(MessageText);
+						}
+					}
+				}
+			}
+		}
+
+		bWasNight = MyGameState->bIsNight;
+	}
 }
 
 

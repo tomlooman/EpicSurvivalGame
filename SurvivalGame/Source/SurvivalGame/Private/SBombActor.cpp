@@ -29,8 +29,7 @@ ASBombActor::ASBombActor(const class FObjectInitializer& ObjectInitializer)
 	ExplosionDamage = 100;
 	ExplosionRadius = 1024;
 
-	SetRemoteRoleForBackwardsCompat(ROLE_SimulatedProxy);
-	bReplicates = true;
+	SetReplicates(true);
 	bReplicateMovement = true;
 }
 

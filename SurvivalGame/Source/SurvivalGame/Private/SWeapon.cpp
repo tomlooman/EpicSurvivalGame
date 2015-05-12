@@ -27,9 +27,8 @@ ASWeapon::ASWeapon(const class FObjectInitializer& PCIP)
 
 	PrimaryActorTick.bCanEverTick = true;
 	PrimaryActorTick.TickGroup = TG_PrePhysics;
-	SetRemoteRoleForBackwardsCompat(ROLE_SimulatedProxy);
-	bReplicates = true;
-	//bReplicateInstigator = true;
+
+	SetReplicates(true);
 	bNetUseOwnerRelevancy = true;
 
 	MuzzleAttachPoint = TEXT("MuzzleFlashSocket");

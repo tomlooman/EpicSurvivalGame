@@ -15,6 +15,8 @@ class SURVIVALGAME_API ASGameMode : public AGameMode
 
 	ASGameMode(const FObjectInitializer& ObjectInitializer);
 
+	virtual void DefaultTimer() override;
+
 	/* Can we deal damage to players in the same team */
 	bool bAllowFriendlyFireDamage;
 
@@ -24,7 +26,14 @@ class SURVIVALGAME_API ASGameMode : public AGameMode
 	/* The teamnumber assigned to Players */
 	int32 PlayerTeamNum;
 
+	/* Keep reference to the night state of the previous frame */
+	bool bWasNight;
+
 public: 
+
+	/* Primary sun of the level. Assigned in Blueprint during BeginPlay (BlueprintReadWrite is required as tag instead of EditDefaultsOnly) */
+	UPROPERTY(BlueprintReadWrite, Category = "DayNight")
+	ADirectionalLight* PrimarySunLight;
 
 	/* Can the player deal damage according to gamemode rules (eg. friendly-fire disabled) */
 	virtual bool CanDealDamage(class ASPlayerState* DamageCauser, class ASPlayerState* DamagedPlayer) const;
