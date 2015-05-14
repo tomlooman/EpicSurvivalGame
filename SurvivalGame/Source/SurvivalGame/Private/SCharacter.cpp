@@ -479,7 +479,7 @@ void ASCharacter::ConsumeFood(float AmountRestored)
 		ASHUD* MyHUD = Cast<ASHUD>(PC->GetHUD());
 		if (MyHUD)
 		{
-			MyHUD->MessageReceived("Food item consumed!");
+			MyHUD->MessageReceived("Food consumed!");
 		}
 	}
 }
@@ -783,11 +783,15 @@ void ASCharacter::DropWeapon()
 		SpawnInfo.bNoCollisionFail = true;
 		ASWeaponPickup* NewWeaponPickup = GetWorld()->SpawnActor<ASWeaponPickup>(CurrentWeapon->WeaponPickupClass, SpawnLocation, FRotator::ZeroRotator, SpawnInfo);
 
-		/* Apply torque to make it spin when dropped. */
-		UStaticMeshComponent* MeshComp = NewWeaponPickup->GetMeshComponent();
-		if (MeshComp)
+		if (NewWeaponPickup)
 		{
-			MeshComp->AddTorque(FVector(1, 1, 1) * 4000000);
+			/* Apply torque to make it spin when dropped. */
+			UStaticMeshComponent* MeshComp = NewWeaponPickup->GetMeshComponent();
+			if (MeshComp)
+			{
+				MeshComp->SetSimulatePhysics(true);
+				MeshComp->AddTorque(FVector(1, 1, 1) * 4000000);
+			}
 		}
 
 		RemoveWeapon(CurrentWeapon);
@@ -860,12 +864,6 @@ void ASCharacter::StopAllAnimMontages()
 
 void ASCharacter::MakePawnNoise(float Loudness)
 {
-// 	if (GEngine)
-// 	{
-// 		GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, "(" + FString::SanitizeFloat(GetWorld()->TimeSeconds) + ") You made a noise! Loudness: " + FString::SanitizeFloat(Loudness));
-// 		GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, "Role: " + FString::FromInt(Role));
-// 	}
-
 	if (Role == ROLE_Authority)
 	{
 		/* Make noise to be picked up by PawnSensingComponent by the enemy pawns */
@@ -886,4 +884,26 @@ float ASCharacter::GetLastNoiseLoudness()
 float ASCharacter::GetLastMakeNoiseTime()
 {
 	return LastMakeNoiseTime;
+}
+
+
+void ASCharacter::Suicide()
+{
+	KilledBy(this);
+}
+
+
+void ASCharacter::KilledBy(class APawn* EventInstigator)
+{
+	if (Role == ROLE_Authority && !bIsDying)
+	{
+		AController* Killer = nullptr;
+		if (EventInstigator != nullptr)
+		{
+			Killer = EventInstigator->Controller;
+			LastHitBy = nullptr;
+		}
+
+		Die(Health, FDamageEvent(UDamageType::StaticClass()), Killer, nullptr);
+	}
 }

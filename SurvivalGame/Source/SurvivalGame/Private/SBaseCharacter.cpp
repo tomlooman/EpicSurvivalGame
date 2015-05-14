@@ -105,6 +105,10 @@ bool ASBaseCharacter::Die(float KillingDamage, FDamageEvent const& DamageEvent, 
 	UDamageType const* const DamageType = DamageEvent.DamageTypeClass ? DamageEvent.DamageTypeClass->GetDefaultObject<UDamageType>() : GetDefault<UDamageType>();
 	Killer = GetDamageInstigator(Killer, *DamageType);
 
+	/* Notify the gamemode we got killed for scoring and game over state */
+	AController* KilledPlayer = Controller ? Controller : Cast<AController>(GetOwner());
+	GetWorld()->GetAuthGameMode<ASGameMode>()->Killed(Killer, KilledPlayer, this, DamageType);
+
 	OnDeath(KillingDamage, DamageEvent, Killer ? Killer->GetPawn() : NULL, DamageCauser);
 	return true;
 }

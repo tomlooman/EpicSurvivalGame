@@ -22,16 +22,14 @@ void ASPlayerState::Reset()
 	Score = 0;
 }
 
-void ASPlayerState::ScoreKill(ASPlayerState* Victim, int32 Points)
+void ASPlayerState::AddKill()
 {
 	NumKills++;
-	ScorePoints(Points);
 }
 
-void ASPlayerState::ScoreDeath(ASPlayerState* KilledBy, int32 Points)
+void ASPlayerState::AddDeath()
 {
 	NumDeaths++;
-	ScorePoints(Points);
 }
 
 void ASPlayerState::ScorePoints(int32 Points)

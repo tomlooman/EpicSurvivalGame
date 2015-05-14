@@ -48,4 +48,8 @@ public:
 
 	/* Classes can hook functions to this delegate to they may respond with their own logic, eg. to start spawning enemies during the night */
 	FNightChangedDelegate OnNightChanged;
+
+	/* NetMulticast will send this event to all clients that know about this object, in the case of GameState that means every client. */
+	UFUNCTION(Reliable, NetMulticast)
+	void BroadcastGameMessage(const FString& NewMessage);
 };

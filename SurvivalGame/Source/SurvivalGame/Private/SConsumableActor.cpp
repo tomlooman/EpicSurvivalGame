@@ -8,22 +8,22 @@
 ASConsumableActor::ASConsumableActor(const class FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-	// A default to tweak per food variation in Blueprint
-	Nutrition = 25;
+	/* A default to tweak per food variation in Blueprint */
+	Nutrition = 20;
+
+	bAllowRespawn = true;
+	RespawnDelay = 120.0f;
+	RespawnDelayRange = 120.0f;
 }
 
 
 void ASConsumableActor::OnUsed(APawn* InstigatorPawn)
 {
-	// Plays pickup sound from base class
-	Super::OnUsed(InstigatorPawn);
-
 	ASCharacter* Pawn = Cast<ASCharacter>(InstigatorPawn);
 	if (Pawn)
 	{
 		Pawn->ConsumeFood(Nutrition);
 	}
 
-	// Remove from level
-	Destroy();
+	Super::OnUsed(InstigatorPawn);
 }

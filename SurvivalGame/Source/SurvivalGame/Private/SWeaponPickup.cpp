@@ -4,16 +4,17 @@
 #include "SCharacter.h"
 #include "SWeapon.h"
 #include "SWeaponPickup.h"
-
+#include "SPlayerController.h"
+#include "SHUD.h"
 
 
 ASWeaponPickup::ASWeaponPickup(const FObjectInitializer& ObjectInitializer)
-	: Super(ObjectInitializer)
+: Super(ObjectInitializer)
 {
-	/* ObjectInitializer from constructor is no longer required to create components. */
-// 	SkelMeshComp = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SkelMesh"));
-// 	SkelMeshComp->SetSimulatePhysics(true);
-// 	SkelMeshComp->AttachParent = GetRootComponent();
+	bAllowRespawn = false;
+
+	/* Enabled to support simulated physics movement when weapons are dropped by a player */
+	bReplicateMovement = true;
 }
 
 
@@ -31,12 +32,21 @@ void ASWeaponPickup::OnUsed(APawn* InstigatorPawn)
 
 			MyPawn->AddWeapon(NewWeapon);
 
-			Destroy();
+			Super::OnUsed(InstigatorPawn);
 		}
+		else
 		{
-			// TODO: Add warning to user HUD.
-			if (GEngine)
-				GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Red, "Weapon slot taken!");
+			// TODO - FIXME: Send message request to client.
+
+			ASPlayerController* MyController = Cast<ASPlayerController>(MyPawn->GetController());
+			if (MyController)
+			{
+				ASHUD* MyHUD = Cast<ASHUD>(MyController->GetHUD());
+				if (MyHUD)
+				{
+					MyHUD->MessageReceived("Weapon slot already taken.");
+				}
+			}
 		}
 	}
 }

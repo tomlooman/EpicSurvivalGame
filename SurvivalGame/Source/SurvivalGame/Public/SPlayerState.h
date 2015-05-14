@@ -29,9 +29,9 @@ class SURVIVALGAME_API ASPlayerState : public APlayerState
 
 public: 
 
-	void ScoreKill(ASPlayerState* Victim, int32 Points);
+	void AddKill();
 
-	void ScoreDeath(ASPlayerState* KilledBy, int32 Points);
+	void AddDeath();
 
 	void ScorePoints(int32 Points);
 

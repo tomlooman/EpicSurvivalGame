@@ -13,10 +13,6 @@ class SURVIVALGAME_API ASWeaponPickup : public ASPickupActor
 {
 	GENERATED_BODY()
 
-	/* StaticMesh from base is now optional as we add a component or skeletal meshes. */
-// 	UPROPERTY(VisibleAnywhere, Category = "Mesh")
-// 	USkeletalMeshComponent* SkelMeshComp;
-
 	ASWeaponPickup(const FObjectInitializer& ObjectInitializer);
 
 	/* Class to add to inventory when picked up */

@@ -8,13 +8,16 @@
 ASPickupActor::ASPickupActor(const class FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-	// All objects that can be picked up are simulated and can be thrown around the level
-	MeshComp->SetSimulatePhysics(true);
 	/* Ignore Pawn - this is to prevent objects shooting through the level or pawns glitching on top of small items. */
 	MeshComp->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Ignore);
 
+	bIsActive = false;
+	bStartActive = true;
+	bAllowRespawn = true;
+	RespawnDelay = 5.0f;
+	RespawnDelayRange = 5.0f;
+
 	SetReplicates(true);
-	bReplicateMovement = true;
 }
 
 
@@ -22,8 +25,10 @@ void ASPickupActor::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// TODO: Remove Hack to workaround constructor call not currently working.
-	MeshComp->SetSimulatePhysics(true);
+	//if (bStartActive)
+	{
+		RespawnPickup();
+	}
 }
 
 
@@ -31,5 +36,60 @@ void ASPickupActor::OnUsed(APawn* InstigatorPawn)
 {
 	UGameplayStatics::PlaySoundAtLocation(this, PickupSound, GetActorLocation());
 
+	bIsActive = false;
+	OnPickedUp();
+
+	if (bAllowRespawn)
+	{
+		FTimerHandle RespawnTimerHandle;
+		GetWorld()->GetTimerManager().SetTimer(RespawnTimerHandle, this, &ASPickupActor::RespawnPickup, RespawnDelay + FMath::RandHelper(RespawnDelayRange), false);
+	}
+
 	Super::OnUsed(InstigatorPawn);
+}
+
+
+void ASPickupActor::OnPickedUp()
+{
+	if (MeshComp)
+	{
+		MeshComp->SetVisibility(false);
+	}
+}
+
+
+void ASPickupActor::RespawnPickup()
+{
+	bIsActive = true;
+	OnRespawned();
+}
+
+
+void ASPickupActor::OnRespawned()
+{
+	if (MeshComp)
+	{
+		MeshComp->SetVisibility(true);
+	}
+}
+
+
+void ASPickupActor::OnRep_IsActive()
+{
+	if (bIsActive)
+	{
+		OnRespawned();
+	}
+	else
+	{
+		OnPickedUp();
+	}
+}
+
+
+void ASPickupActor::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> & OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(ASPickupActor, bIsActive);
 }

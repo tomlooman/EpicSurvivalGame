@@ -196,6 +196,10 @@ public:
 
 	virtual void OnDeath(float KillingDamage, FDamageEvent const& DamageEvent, APawn* PawnInstigator, AActor* DamageCauser) override;
 
+	virtual void Suicide();
+
+	virtual void KilledBy(class APawn* EventInstigator);
+
 	/************************************************************************/
 	/* Weapons & Inventory                                                  */
 	/************************************************************************/
