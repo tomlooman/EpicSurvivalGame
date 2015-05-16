@@ -36,6 +36,7 @@ ASZombieCharacter::ASZombieCharacter(const class FObjectInitializer& ObjectIniti
 	GetMovementComponent()->NavAgentProps.AgentHeight = 192;
 
 	Health = 75;
+	PunchDamage = 10.0f;
 
 	/* By default we will not let the AI patrol, we can override this value per-instance. */
 	BotType = EBotBehaviorType::Passive;
@@ -105,11 +106,36 @@ void ASZombieCharacter::OnHearNoise(APawn* PawnInstigator, const FVector& Locati
 	bSensedTarget = true;
 	LastHeardTime = GetWorld()->GetTimeSeconds();
 
-	DrawDebugDirectionalArrow(GetWorld(), GetActorLocation(), Location, 64, FColor::Green, false, 0.2f);
-
 	ASZombieAIController* AIController = Cast<ASZombieAIController>(GetController());
 	if (AIController)
 	{
 		AIController->SetMoveToTarget(PawnInstigator);
+	}
+}
+
+
+void ASZombieCharacter::PunchHit(AActor* HitActor)
+{
+	if (HitActor && HitActor != this && IsAlive())
+	{
+		FPointDamageEvent PointDmg;
+		PointDmg.DamageTypeClass = PunchDamageType;
+		//PointDmg.HitInfo = Impact;
+		//PointDmg.ShotDirection = ShootDir;
+		PointDmg.Damage = PunchDamage;
+
+		HitActor->TakeDamage(PointDmg.Damage, PointDmg, GetController(), this);
+	}
+}
+
+
+void ASZombieCharacter::SetBotType(EBotBehaviorType NewType)
+{
+	BotType = NewType;
+	
+	ASZombieAIController* AIController = Cast<ASZombieAIController>(GetController());
+	if (AIController)
+	{
+		AIController->SetBlackboardBotType(NewType);
 	}
 }

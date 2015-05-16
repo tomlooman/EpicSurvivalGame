@@ -15,7 +15,11 @@ class SURVIVALGAME_API ASGameMode : public AGameMode
 
 	ASGameMode(const FObjectInitializer& ObjectInitializer);
 
+	virtual void InitGameState();
+
 	virtual void DefaultTimer() override;
+	
+	virtual void StartMatch();
 
 	/* End the match when all players are dead */
 	void CheckMatchEnd();
@@ -33,17 +37,29 @@ class SURVIVALGAME_API ASGameMode : public AGameMode
 	int32 PlayerTeamNum;
 
 	/* Keep reference to the night state of the previous frame */
-	bool bWasNight;
+	bool LastIsNight;
+
+	/* The start time for the gamemode */
+	int32 TimeOfDayStart;
 
 	/* The enemy pawn class */
 	UPROPERTY(EditDefaultsOnly, Category = "AI")
 	TSubclassOf<class APawn> BotPawnClass;
+
+	/* Handle for nightly bot spawning */
+	FTimerHandle TimerHandle_BotSpawns;
+
+	/* Handles bot spawning (during nighttime) */
+	void SpawnBotHandler();
 
 	/************************************************************************/
 	/* Player Spawning                                                      */
 	/************************************************************************/
 
 protected:
+
+	/* Don't allow spectating of bots */
+	virtual bool CanSpectate(APlayerController* Viewer, APlayerState* ViewTarget);
 
 	virtual AActor* ChoosePlayerStart(AController* Player) override;
 
@@ -78,10 +94,24 @@ protected:
 
 	void SpawnNewBot();
 
+	/* Set all bots back to idle mode */
+	void PassifyAllBots();
+
+	/* Set all bots to active patroling state */
+	void WakeAllBots();
+
 public:
 
 	/* Primary sun of the level. Assigned in Blueprint during BeginPlay (BlueprintReadWrite is required as tag instead of EditDefaultsOnly) */
 	UPROPERTY(BlueprintReadWrite, Category = "DayNight")
 	ADirectionalLight* PrimarySunLight;
+
+	/************************************************************************/
+	/* Scoring                                                              */
+	/************************************************************************/
+
+	/* Points awarded for surviving a night */
+	UPROPERTY(EditDefaultsOnly, Category = "Scoring")
+	int32 NightSurvivedScore;
 
 };

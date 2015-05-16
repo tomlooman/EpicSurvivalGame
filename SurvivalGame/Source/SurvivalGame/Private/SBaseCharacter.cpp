@@ -198,7 +198,7 @@ void ASBaseCharacter::PlayHit(float DamageTaken, struct FDamageEvent const& Dama
 	}
 
 	/* Apply damage momentum specific to the DamageType */
-	if (DamageTaken > 0.f)
+	if (DamageTaken > 0.f && DamageEvent.DamageTypeClass != nullptr)
 	{
 		ApplyDamageMomentum(DamageTaken, DamageEvent, PawnInstigator, DamageCauser);
 	}

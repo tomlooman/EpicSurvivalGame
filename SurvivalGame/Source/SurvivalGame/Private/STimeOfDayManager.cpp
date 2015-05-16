@@ -7,14 +7,22 @@
 
 ASTimeOfDayManager::ASTimeOfDayManager()
 {
+	AmbientAudioComp = CreateDefaultSubobject<UAudioComponent>(TEXT("AmbientAudioComp"));
+	AmbientAudioComp->bAutoActivate = false;
+
 	SetReplicates(true);
-	bReplicateMovement = true;
 }
 
 
 void ASTimeOfDayManager::BeginPlay()
 {
 	Super::BeginPlay();
+
+	if (PrimarySunLight)
+	{
+		OriginalSunBrightness = PrimarySunLight->GetBrightness();
+		TargetSunBrightness = OriginalSunBrightness;
+	}
 }
 
 
@@ -22,11 +30,11 @@ void ASTimeOfDayManager::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
-	/* Update the position of the sun. */
-	if (PrimarySunLight)
+	ASGameState* MyGameState = Cast<ASGameState>(GetWorld()->GetGameState());
+	if (MyGameState)
 	{
-		ASGameState* MyGameState = Cast<ASGameState>(GetWorld()->GetGameState());
-		if (MyGameState)
+		/* Update the position of the sun. */
+		if (PrimarySunLight)
 		{
 			if (LastTimeOfDay == MyGameState->ElapsedGameMinutes)
 			{
@@ -34,6 +42,7 @@ void ASTimeOfDayManager::Tick(float DeltaSeconds)
 			}
 			else
 			{
+				/* Reset prediction */
 				TimeSinceLastIncrement = 0;
 			}
 
@@ -49,6 +58,58 @@ void ASTimeOfDayManager::Tick(float DeltaSeconds)
 			PrimarySunLight->SetActorRelativeRotation(NewSunRotation);
 
 			LastTimeOfDay = MyGameState->ElapsedGameMinutes;
+		}
+
+		bool CurrentNightState = MyGameState->GetIsNight();
+		if (CurrentNightState != LastNightState)
+		{
+			AmbientAudioComp->Stop();
+
+			if (CurrentNightState)
+			{
+				// Play night started cue (position is irrelevant for non spatialized & attenuated sounds)
+				UGameplayStatics::PlaySoundAtLocation(this, SoundNightStarted, GetActorLocation());
+				AmbientAudioComp->SetSound(AmbientNight);
+
+				TargetSunBrightness = 0.01f;
+			}
+			else
+			{
+				// Play daytime started cue (position is irrelevant for non spatialized & attenuated sounds)
+				UGameplayStatics::PlaySoundAtLocation(this, SoundNightEnded, GetActorLocation());
+				AmbientAudioComp->SetSound(AmbientDaytime);
+
+				TargetSunBrightness = OriginalSunBrightness;
+			}
+
+			AmbientAudioComp->Play();
+		}
+
+		/* Update sun brightness to transition between day and night
+			(Note: We cannot simply disable the sunlight because BP_SkySphere depends on an enabled light to update the skydome) */
+		const float LerpSpeed = 0.05f;
+		float CurrentSunBrightness = PrimarySunLight->GetBrightness();
+		float NewSunBrightness = FMath::Lerp(CurrentSunBrightness, TargetSunBrightness, LerpSpeed);
+		PrimarySunLight->SetBrightness(NewSunBrightness);
+
+		LastNightState = CurrentNightState;
+	}
+
+	UpdateSkylight();
+}
+
+
+void ASTimeOfDayManager::UpdateSkylight()
+{
+	if (SkyLightActor)
+	{
+		ASGameState* MyGameState = Cast<ASGameState>(GetWorld()->GetGameState());
+		if (MyGameState)
+		{
+			const float MinutesInDay = 24 * 60;
+			const float Alpha = 1 - (MyGameState->GetElapsedMinutesCurrentDay() / MinutesInDay);
+
+			SkyLightActor->GetLightComponent()->Intensity = FMath::Lerp(0.1, 1.0, Alpha);
 		}
 	}
 }

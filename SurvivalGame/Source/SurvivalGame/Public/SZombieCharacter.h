@@ -40,9 +40,22 @@ protected:
 	UFUNCTION()
 	void OnHearNoise(APawn* PawnInstigator, const FVector& Location, float Volume);
 
+	/* Deal damage to the Actor that was hit by the punch animation */
+	UFUNCTION(BlueprintCallable, Category = "Attacking")
+	void PunchHit(AActor* HitActor);
+
+	UPROPERTY(EditDefaultsOnly, Category = "Attacking")
+	TSubclassOf<UDamageType> PunchDamageType;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Attacking")
+	float PunchDamage;
+
 public:
 
 	ASZombieCharacter(const class FObjectInitializer& ObjectInitializer);
+
+	UPROPERTY(BlueprintReadWrite, Category = "Attacking")
+	bool bIsPunching;
 	
 	/* The bot behavior we want this bot to execute, (passive/patrol) by specifying EditAnywhere we can edit this value per-instance when placed on the map. */
 	UPROPERTY(EditAnywhere, Category = "AI")
@@ -52,4 +65,7 @@ public:
 	/* Assigned at the Character level (instead of Controller) so we may use different zombie behaviors while re-using one controller. */
 	UPROPERTY(EditDefaultsOnly, Category = "AI")
 	class UBehaviorTree* BehaviorTree;
+
+	/* Change default bot type during gameplay */
+	void SetBotType(EBotBehaviorType NewType);
 };

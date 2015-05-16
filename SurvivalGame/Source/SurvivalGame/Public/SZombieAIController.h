@@ -51,6 +51,8 @@ public:
 
 	void SetTargetEnemy(APawn* NewTarget);
 
+	void SetBlackboardBotType(EBotBehaviorType NewType);
+
 	/** Returns BehaviorComp subobject **/
 	FORCEINLINE UBehaviorTreeComponent* GetBehaviorComp() const { return BehaviorComp; }
 

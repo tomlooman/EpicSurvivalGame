@@ -40,7 +40,7 @@ void ASZombieAIController::Possess(class APawn* InPawn)
 			BlackboardComp->InitializeBlackboard(*ZombieBot->BehaviorTree->BlackboardAsset);
 
 			/* Make sure the Blackboard has the type of bot we possessed */
-			BlackboardComp->SetValueAsEnum(BotTypeKeyName, (uint8)ZombieBot->BotType);
+			SetBlackboardBotType(ZombieBot->BotType);
 		}
 
 		BehaviorComp->StartTree(*ZombieBot->BehaviorTree);
@@ -99,5 +99,14 @@ ASBaseCharacter* ASZombieAIController::GetTargetEnemy()
 	}
 
 	return nullptr;
+}
+
+
+void ASZombieAIController::SetBlackboardBotType(EBotBehaviorType NewType)
+{
+	if (BlackboardComp)
+	{
+		BlackboardComp->SetValueAsEnum(BotTypeKeyName, (uint8)NewType);
+	}
 }
 

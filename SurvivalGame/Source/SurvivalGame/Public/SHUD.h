@@ -34,7 +34,7 @@ class SURVIVALGAME_API ASHUD : public AHUD
 	/* An event hook to call HUD text events to display in the HUD. Blueprint HUD class must implement how to deal with this event. */
 	UFUNCTION(BlueprintImplementableEvent, Category = "HUDEvents")
 	void MessageReceived(const FString& TextMessage);
-	
+
 	/* Event hook to update HUD state (eg. to determine visibility of widgets) */
 	UFUNCTION(BlueprintImplementableEvent, Category = "HUDEvents")
 	void OnStateChanged(EHUDState NewState);

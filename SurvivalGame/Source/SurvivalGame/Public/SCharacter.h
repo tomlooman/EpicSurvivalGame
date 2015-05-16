@@ -189,6 +189,13 @@ public:
 	// Documentation Note: MaxHunger does not need to be replicated, only values that change and are displayed or used by clients should ever be replicated.
 	UPROPERTY(EditDefaultsOnly, Category = "PlayerCondition")
 	float MaxHunger;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "PlayerCondition")
+	float HungerDamagePerInterval;
+
+	/* Damage type applied when player suffers critical hunger */
+	UPROPERTY(EditDefaultsOnly, Category = "PlayerCondition")
+	TSubclassOf<UDamageType> HungerDamageType;
 
 	/************************************************************************/
 	/* Damage & Death                                                       */

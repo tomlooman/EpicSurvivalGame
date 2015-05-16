@@ -50,6 +50,7 @@ ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
 	IncrementHungerAmount = 1.0f;
 	IncrementHungerInterval = 5.0f;
 	CriticalHungerThreshold = 90;
+	HungerDamagePerInterval = 1.0f;
 	MaxHunger = 100;
 	Hunger = 0;
 
@@ -491,9 +492,11 @@ void ASCharacter::IncrementHunger()
 
 	if (Hunger > CriticalHungerThreshold)
 	{
+		FDamageEvent DmgEvent;
+		DmgEvent.DamageTypeClass = HungerDamageType;
+
 		// Apply damage to self.
-		// TODO: Set DamageType
-		TakeDamage(10.0f, FDamageEvent(), GetController(), this);
+		TakeDamage(HungerDamagePerInterval, DmgEvent, GetController(), this);
 	}
 }
 

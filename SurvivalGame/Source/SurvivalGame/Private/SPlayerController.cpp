@@ -6,6 +6,7 @@
 #include "SCharacter.h"
 #include "STypes.h"
 #include "SHUD.h"
+#include "SGameState.h"
 
 
 ASPlayerController::ASPlayerController(const class FObjectInitializer& ObjectInitializer)
@@ -21,6 +22,14 @@ ASPlayerController::ASPlayerController(const class FObjectInitializer& ObjectIni
 void ASPlayerController::UnFreeze()
 {
 	Super::UnFreeze();
+
+	// Check if match is ending or has ended.
+	ASGameState* MyGameState = Cast<ASGameState>(GetWorld()->GameState);
+	if (MyGameState && MyGameState->HasMatchEnded())
+	{
+		/* Don't allow spectating or respawns */
+		return;
+	}
 
 	/* Respawn or spectate */
 	if (bRespawnImmediately)
@@ -39,6 +48,8 @@ void ASPlayerController::StartSpectating()
 	PlayerState->bIsSpectator = true;
 	ChangeState(NAME_Spectating);
 	ClientGotoState(NAME_Spectating);
+
+	ViewAPlayer(1);
 
 	ClientHUDStateChanged(EHUDState::Spectating);
 }

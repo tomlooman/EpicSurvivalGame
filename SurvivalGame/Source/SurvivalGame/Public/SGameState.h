@@ -13,18 +13,22 @@ class SURVIVALGAME_API ASGameState : public AGameState
 {
 	GENERATED_BODY()
 
-	/* Declare our own delegate to trigger and handle events for day/night event */
-	DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FNightChangedDelegate, bool, bIsNight);
-
 public:
 
 	ASGameState(const class FObjectInitializer& ObjectInitializer);
 
-	UPROPERTY(ReplicatedUsing=OnRep_NightChanged)
+	UPROPERTY(Replicated)
 	bool bIsNight;
 
-	UFUNCTION()
-	void OnRep_NightChanged();
+	/* Time in wallclock hours the day begins */
+	float SunriseTimeMark;
+
+	/* Time in wallclock hours the night begins */
+	float SunsetTimeMark;
+
+	bool GetIsNight();
+
+	bool GetAndUpdateIsNight();
 
 	/* Current time of day in the gamemode represented in full minutes */
 	UPROPERTY(BlueprintReadOnly, Replicated, Category = "TimeOfDay")
@@ -37,17 +41,22 @@ public:
 	/* Returns the time of day increment every real second (converted to accelerated game time, eg. 1 real second is 1 minute in time of day increment) */
 	float GetTimeOfDayIncrement();
 
-	/* By passing in "exec" we expose it as a command line (press ~ to open) */
-	UFUNCTION(exec)
-	void SetTimeOfDay(float NewTimeOfDay);
-
+	UFUNCTION(BlueprintCallable, Category = "TimeOfDay")
 	int32 GetElapsedDays();
 
 	/* Returns whole days elapsed, represented in minutes */
-	int32 GetElapsedDaysInMinutes();
+	UFUNCTION(BlueprintCallable, Category = "TimeOfDay")
+	int32 GetElapsedFullDaysInMinutes();
 
-	/* Classes can hook functions to this delegate to they may respond with their own logic, eg. to start spawning enemies during the night */
-	FNightChangedDelegate OnNightChanged;
+	/* Return the time in real seconds till next sunrise */
+	UFUNCTION(BlueprintCallable, Category = "TimeOfDay")
+	int32 GetRealSecondsTillSunrise();
+
+	int32 GetElapsedMinutesCurrentDay();
+
+	/* By passing in "exec" we expose it as a command line (press ~ to open) */
+	UFUNCTION(exec)
+	void SetTimeOfDay(float NewTimeOfDay);
 
 	/* NetMulticast will send this event to all clients that know about this object, in the case of GameState that means every client. */
 	UFUNCTION(Reliable, NetMulticast)
