@@ -30,6 +30,9 @@ class SURVIVALGAME_API ASGameMode : public AGameMode
 	/* Can we deal damage to players in the same team */
 	bool bAllowFriendlyFireDamage;
 
+	/* Spawn at team player if any are alive */
+	bool bSpawnAtTeamPlayer;
+
 	/* Called once on every new player that enters the gamemode */
 	virtual FString InitNewPlayer(class APlayerController* NewPlayerController, const TSharedPtr<FUniqueNetId>& UniqueId, const FString& Options, const FString& Portal /* = TEXT("") */);
 
@@ -51,6 +54,9 @@ class SURVIVALGAME_API ASGameMode : public AGameMode
 
 	/* Handles bot spawning (during nighttime) */
 	void SpawnBotHandler();
+
+	/* Spawn the player next to his living coop buddy instead of a PlayerStart */
+	virtual void RestartPlayer(class AController* NewPlayer) override;
 
 	/************************************************************************/
 	/* Player Spawning                                                      */

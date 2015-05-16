@@ -17,7 +17,3 @@
 #define SURFACE_DEFAULT				SurfaceType_Default
 #define SURFACE_FLESH				SurfaceType1
 #define SURFACE_ZOMBIE				SurfaceType2
-
-/* Tags set on PlayerStart objects in the levels to determine who may spawn where - used by the GameMode classes */
-#define NAME_PlayerStart TEXT("PlayerStart")
-#define NAME_EnemyStart TEXT("EnemyStart")
