@@ -114,7 +114,8 @@ void ASGameMode::DefaultTimer()
 						{
 							if (MyController->PlayerState->bIsSpectator)
 							{
-								MyController->RespawnPlayer();
+								RestartPlayer(MyController);
+								MyController->ClientHUDStateChanged(EHUDState::Playing);
 							}
 							else
 							{
@@ -333,6 +334,7 @@ bool ASGameMode::IsSpawnpointPreferred(APlayerStart* SpawnPoint, AController* Co
 {
 	if (SpawnPoint)
 	{
+		/* Iterate all pawns to check for collision overlaps with the spawn point */
 		const FVector SpawnLocation = SpawnPoint->GetActorLocation();
 		for (FConstPawnIterator It = GetWorld()->GetPawnIterator(); It; It++)
 		{
@@ -351,6 +353,7 @@ bool ASGameMode::IsSpawnpointPreferred(APlayerStart* SpawnPoint, AController* Co
 			}
 		}
 
+		/* Check if spawnpoint is exclusive to players */
 		ASPlayerStart* MyPlayerStart = Cast<ASPlayerStart>(SpawnPoint);
 		if (MyPlayerStart)
 		{

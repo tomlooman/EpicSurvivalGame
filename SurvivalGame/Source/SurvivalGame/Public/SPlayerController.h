@@ -34,7 +34,4 @@ public:
 	/* Kill the current pawn */
 	UFUNCTION(exec)
 	virtual void Suicide();
-
-	/* End spectating and respawn player. Should be called only on server */
-	void RespawnPlayer();
 };

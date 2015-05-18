@@ -15,6 +15,7 @@ ASPlayerController::ASPlayerController(const class FObjectInitializer& ObjectIni
 	/* Assign the class types we wish to use */
 	PlayerCameraManagerClass = ASPlayerCameraManager::StaticClass();
 
+	/* Example - Can be set to true for debugging, generally a value like this would exist in the GameMode instead */
 	bRespawnImmediately = false;
 }
 
@@ -45,22 +46,19 @@ void ASPlayerController::UnFreeze()
 
 void ASPlayerController::StartSpectating()
 {
+	/* Update the state on server */
 	PlayerState->bIsSpectator = true;
+	/* Waiting to respawn */
+	bPlayerIsWaiting = true;
 	ChangeState(NAME_Spectating);
+	/* Push the state update to the client */
 	ClientGotoState(NAME_Spectating);
 
+	/* Focus on the remaining alive player */
 	ViewAPlayer(1);
 
+	/* Update the HUD to show the spectator screen */
 	ClientHUDStateChanged(EHUDState::Spectating);
-}
-
-
-void ASPlayerController::RespawnPlayer()
-{
-	bPlayerIsWaiting = true;
-	ServerRestartPlayer();
-
-	ClientHUDStateChanged(EHUDState::Playing);
 }
 
 
