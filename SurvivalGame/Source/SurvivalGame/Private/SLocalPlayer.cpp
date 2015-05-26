@@ -16,7 +16,7 @@ FString USLocalPlayer::GetNickname() const
 	if (NickName.IsEmpty())
 	{
 		// Fall back if no nickname was available through the online subsystem.
-		NickName = FWindowsPlatformProcess::ComputerName() + FString::FromInt(FMath::RandRange(0, 999));
+		NickName = FPlatformProcess::ComputerName() + FString::FromInt(FMath::RandRange(0, 999));
 	}
 
 	return NickName;
