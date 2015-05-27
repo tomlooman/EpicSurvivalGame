@@ -41,5 +41,14 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	USoundCue* ZombieFleshSound;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Decal")
+	UMaterial* DecalMaterial;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Decal")
+	float DecalSize;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Decal")
+	float DecalLifeSpan;
+
 	FHitResult SurfaceHit;
 };

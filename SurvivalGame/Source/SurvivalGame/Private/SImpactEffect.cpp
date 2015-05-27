@@ -8,6 +8,11 @@
 ASImpactEffect::ASImpactEffect()
 {
 	bAutoDestroyWhenFinished = true;
+	/* Can ever tick is required to trigger bAutoDestroyWhenFinished, which is checked in AActor::Tick */
+	PrimaryActorTick.bCanEverTick = true;
+
+	DecalLifeSpan = 10.0f;
+	DecalSize = 16.0f;
 }
 
 
@@ -29,6 +34,17 @@ void ASImpactEffect::PostInitializeComponents()
 	if (ImpactSound)
 	{
 		UGameplayStatics::PlaySoundAtLocation(this, ImpactSound, GetActorLocation());
+	}
+
+	if (DecalMaterial)
+	{
+		FRotator RandomDecalRotation = SurfaceHit.ImpactNormal.Rotation();
+		RandomDecalRotation.Roll = FMath::FRandRange(-180.0f, 180.0f);
+
+		UGameplayStatics::SpawnDecalAttached(DecalMaterial, FVector(DecalSize, DecalSize, 1.0f),
+			SurfaceHit.Component.Get(), SurfaceHit.BoneName,
+			SurfaceHit.ImpactPoint, RandomDecalRotation, EAttachLocation::KeepWorldPosition,
+			DecalLifeSpan);
 	}
 }
 
