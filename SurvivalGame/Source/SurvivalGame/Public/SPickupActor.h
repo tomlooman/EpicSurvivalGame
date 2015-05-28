@@ -11,22 +11,22 @@
 UCLASS(ABSTRACT)
 class SURVIVALGAME_API ASPickupActor : public ASUsableActor
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 
 	void BeginPlay() override;
 
-	virtual void OnUsed(APawn* InstigatorPawn) override;
-
 	UPROPERTY(EditDefaultsOnly, Category = "Sound")
 	USoundCue* PickupSound;
-
-	UPROPERTY(Transient, ReplicatedUsing = OnRep_IsActive)
-	bool bIsActive;
 
 	UFUNCTION()
 	void OnRep_IsActive();
 
 protected:
+
+	ASPickupActor(const FObjectInitializer& ObjectInitializer);
+
+	UPROPERTY(Transient, ReplicatedUsing = OnRep_IsActive)
+	bool bIsActive;
 
 	virtual void RespawnPickup();
 
@@ -35,6 +35,8 @@ protected:
 	virtual void OnRespawned();
 
 public:
+
+	virtual void OnUsed(APawn* InstigatorPawn) override;
 
 	/* Immediately spawn on begin play */
 	UPROPERTY(EditDefaultsOnly, Category = "Pickup")

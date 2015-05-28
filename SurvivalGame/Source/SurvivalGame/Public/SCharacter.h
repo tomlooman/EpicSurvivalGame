@@ -8,9 +8,11 @@
 UCLASS()
 class SURVIVALGAME_API ASCharacter : public ASBaseCharacter
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 
-	virtual void PostInitializeComponents() override;
+	ASCharacter(const FObjectInitializer& ObjectInitializer);
+
+	virtual void BeginPlay() override;
 
 	/* Called every frame */
 	virtual void Tick(float DeltaSeconds) override;
@@ -24,10 +26,6 @@ class SURVIVALGAME_API ASCharacter : public ASBaseCharacter
 
 	/* Stop playing all montages */
 	void StopAllAnimMontages();
-
-	/* MakeNoise hook to trigger AI noise emitting (Loudness between 0.0-1.0)  */
-	UFUNCTION(BlueprintCallable, Category = "AI")
-	void MakePawnNoise(float Loudness);
 
 	UFUNCTION(BlueprintCallable, Category = "AI")
 	float GetLastNoiseLoudness();
@@ -49,7 +47,14 @@ private:
 	UPROPERTY(VisibleAnywhere, Category = "Camera")
 	UCameraComponent* CameraComp;
 
+	UPROPERTY(VisibleAnywhere, Category = "Camera")
+	class USCarryObjectComponent* CarriedObjectComp;
+
 public:
+
+	/* MakeNoise hook to trigger AI noise emitting (Loudness between 0.0-1.0)  */
+	UFUNCTION(BlueprintCallable, Category = "AI")
+	void MakePawnNoise(float Loudness);
 
 	/************************************************************************/
 	/* Movement                                                             */
@@ -90,6 +95,10 @@ public:
 	UFUNCTION(Reliable, Server, WithValidation)
 	void ServerSetIsJumping(bool NewJumping);
 
+	void ServerSetIsJumping_Implementation(bool NewJumping);
+
+	bool ServerSetIsJumping_Validate(bool NewJumping);
+
 	void OnLanded(const FHitResult& Hit) override;
 
 	/* Client/local call to update sprint state  */
@@ -98,6 +107,10 @@ public:
 	/* Server side call to update actual sprint state */
 	UFUNCTION(Server, Reliable, WithValidation)
 	void ServerSetSprinting(bool NewSprinting);
+
+	void ServerSetSprinting_Implementation(bool NewSprinting);
+
+	bool ServerSetSprinting_Validate(bool NewSprinting);
 
 	UFUNCTION(BlueprintCallable, Category = Movement)
 	bool IsSprinting() const;
@@ -111,11 +124,18 @@ public:
 	/* Object Interaction                                                   */
 	/************************************************************************/
 
+	/* Input mapped function for carry object component */
+	void OnToggleCarryActor();
+
 	/* Use the usable actor currently in focus, if any */
 	virtual void Use();
 
 	UFUNCTION(Server, Reliable, WithValidation)
 	void ServerUse();
+
+	void ServerUse_Implementation();
+
+	bool ServerUse_Validate();
 
 	class ASUsableActor* GetUsableInView();
 
@@ -140,6 +160,10 @@ public:
 
 	UFUNCTION(Server, Reliable, WithValidation)
 	void ServerSetTargeting(bool NewTargeting);
+
+	void ServerSetTargeting_Implementation(bool NewTargeting);
+
+	bool ServerSetTargeting_Validate(bool NewTargeting);
 	
 	/* Is player aiming down sights */
 	UFUNCTION(BlueprintCallable, Category = "Targeting")
@@ -261,6 +285,10 @@ private:
 	UFUNCTION(Reliable, Server, WithValidation)
 	void ServerDropWeapon();
 
+	void ServerDropWeapon_Implementation();
+
+	bool ServerDropWeapon_Validate();
+
 public:
 
 	/* Check if the specified slot is available, limited to one item per type (primary, secondary) */
@@ -287,6 +315,10 @@ public:
 
 	UFUNCTION(Reliable, Server, WithValidation)
 	void ServerEquipWeapon(ASWeapon* Weapon);
+
+	void ServerEquipWeapon_Implementation(ASWeapon* Weapon);
+
+	bool ServerEquipWeapon_Validate(ASWeapon* Weapon);
 
 	/* OnRep functions can use a parameter to hold the previous value of the variable. Very useful when you need to handle UnEquip etc. */
 	UFUNCTION()

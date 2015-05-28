@@ -108,23 +108,31 @@ void ASWeapon::DetachMeshFromPawn()
 }
 
 
-void ASWeapon::OnEquip()
+void ASWeapon::OnEquip(bool bPlayAnimation)
 {
 	AttachMeshToPawn();
 
 	bPendingEquip = true;
 	DetermineWeaponState();
 
-	float Duration = PlayWeaponAnimation(EquipAnim);
-	if (Duration <= 0.0f)
+	if (bPlayAnimation)
 	{
-		// Failsafe
-		Duration = 0.5f;
-	}
-	EquipStartedTime = GetWorld()->TimeSeconds;
-	EquipDuration = Duration;
+		float Duration = PlayWeaponAnimation(EquipAnim);
+		if (Duration <= 0.0f)
+		{
+			// Failsafe
+			Duration = 0.5f;
+		}
+		EquipStartedTime = GetWorld()->TimeSeconds;
+		EquipDuration = Duration;
 
-	GetWorldTimerManager().SetTimer(EquipFinishedTimerHandle, this, &ASWeapon::OnEquipFinished, Duration, false);
+		GetWorldTimerManager().SetTimer(EquipFinishedTimerHandle, this, &ASWeapon::OnEquipFinished, Duration, false);
+	}
+	else
+	{
+		/* Immediately finish equipping */
+		OnEquipFinished();
+	}
 
 	if (MyPawn && MyPawn->IsLocallyControlled())
 	{

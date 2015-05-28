@@ -29,6 +29,7 @@ ASGameMode::ASGameMode(const FObjectInitializer& ObjectInitializer)
 
 	bAllowFriendlyFireDamage = false;
 	bSpawnAtTeamPlayer = true;
+	bSpawnZombiesAtNight = true;
 
 	/* Start the game at 16:00 */
 	TimeOfDayStart = 16 * 60;
@@ -421,6 +422,9 @@ void ASGameMode::WakeAllBots()
 
 void ASGameMode::SpawnBotHandler()
 {
+	if (!bSpawnZombiesAtNight)
+		return;
+
 	ASGameState* MyGameState = Cast<ASGameState>(GameState);
 	if (MyGameState)
 	{
@@ -442,7 +446,8 @@ void ASGameMode::SpawnBotHandler()
 
 void ASGameMode::RestartPlayer(class AController* NewPlayer)
 {
-	if (!bSpawnAtTeamPlayer)
+	/* Fallback to PlayerStart picking if team spawning is disabled or we're trying to spawn a bot. */
+	if (!bSpawnAtTeamPlayer || (NewPlayer->PlayerState && NewPlayer->PlayerState->bIsABot))
 	{
 		Super::RestartPlayer(NewPlayer);
 		return;

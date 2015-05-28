@@ -27,6 +27,9 @@ EBTNodeResult::Type UBTTask_FindBotWaypoint::ExecuteTask(UBehaviorTreeComponent&
 	TArray<AActor*> AllWaypoints;
 	UGameplayStatics::GetAllActorsOfClass(MyController, ASBotWaypoint::StaticClass(), AllWaypoints);
 
+	if (AllWaypoints.Num() == 0)
+		return EBTNodeResult::Failed;
+
 	/* Find a new waypoint randomly by index (this can include the current waypoint) */
 	/* For more complex or human AI you could add some weights based on distance and other environmental conditions here */
 	NewWaypoint = AllWaypoints[FMath::RandRange(0, AllWaypoints.Num() - 1)];

@@ -11,7 +11,11 @@
 UCLASS()
 class SURVIVALGAME_API ASBombActor : public ASUsableActor
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
+
+	ASBombActor(const FObjectInitializer& ObjectInitializer);
+
+protected:
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 

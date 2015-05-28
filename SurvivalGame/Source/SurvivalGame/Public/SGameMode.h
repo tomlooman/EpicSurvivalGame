@@ -28,10 +28,16 @@ class SURVIVALGAME_API ASGameMode : public AGameMode
 	void FinishMatch();
 
 	/* Can we deal damage to players in the same team */
+	UPROPERTY(EditDefaultsOnly, Category = "Rules")
 	bool bAllowFriendlyFireDamage;
 
 	/* Spawn at team player if any are alive */
+	UPROPERTY(EditDefaultsOnly, Category = "Rules")
 	bool bSpawnAtTeamPlayer;
+
+	/* Allow zombie spawns to be disabled (for debugging) */
+	UPROPERTY(EditDefaultsOnly, Category = "Debug")
+	bool bSpawnZombiesAtNight;
 
 	/* Called once on every new player that enters the gamemode */
 	virtual FString InitNewPlayer(class APlayerController* NewPlayerController, const TSharedPtr<FUniqueNetId>& UniqueId, const FString& Options, const FString& Portal /* = TEXT("") */);

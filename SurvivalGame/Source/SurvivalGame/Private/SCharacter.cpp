@@ -7,6 +7,7 @@
 #include "SWeapon.h"
 #include "SWeaponPickup.h"
 #include "SCharacterMovementComponent.h"
+#include "SCarryObjectComponent.h"
 #include "SBaseCharacter.h"
 
 
@@ -39,6 +40,9 @@ ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
 	CameraComp = ObjectInitializer.CreateDefaultSubobject<UCameraComponent>(this, TEXT("Camera"));
 	CameraComp->AttachParent = CameraBoomComp;
 
+	CarriedObjectComp = ObjectInitializer.CreateDefaultSubobject<USCarryObjectComponent>(this, TEXT("CarriedObjectComp"));
+	CarriedObjectComp->AttachParent = GetRootComponent();
+
 	MaxUseDistance = 500;
 	DropItemDistance = 100;
 	bHasNewFocus = true;
@@ -61,9 +65,9 @@ ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
 }
 
 
-void ASCharacter::PostInitializeComponents()
+void ASCharacter::BeginPlay()
 {
-	Super::PostInitializeComponents();
+	Super::BeginPlay();
 
 	if (Role == ROLE_Authority)
 	{
@@ -76,7 +80,6 @@ void ASCharacter::PostInitializeComponents()
 }
 
 
-// Called every frame
 void ASCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -158,6 +161,9 @@ void ASCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponen
 
 	InputComponent->BindAction("EquipPrimaryWeapon", IE_Pressed, this, &ASCharacter::OnEquipPrimaryWeapon);
 	InputComponent->BindAction("EquipSecondaryWeapon", IE_Pressed, this, &ASCharacter::OnEquipSecondaryWeapon);
+
+	/* Input binding for the carry object component */
+	InputComponent->BindAction("PickupObject", IE_Pressed, this, &ASCharacter::OnToggleCarryActor);
 }
 
 
@@ -202,7 +208,7 @@ ASUsableActor* ASCharacter::GetUsableInView()
 	const FVector Direction = CamRot.Vector();
 	const FVector TraceEnd = TraceStart + (Direction * MaxUseDistance);
 
-	FCollisionQueryParams TraceParams(FName(TEXT("TraceUsableActor")), true, this);
+	FCollisionQueryParams TraceParams(TEXT("TraceUsableActor"), true, this);
 	TraceParams.bTraceAsyncScene = true;
 	TraceParams.bReturnPhysicalMaterial = false;
 
@@ -250,6 +256,11 @@ bool ASCharacter::ServerUse_Validate()
 
 void ASCharacter::OnStartTargeting()
 {
+	if (CarriedObjectComp->IsCarryingActor())
+	{
+		CarriedObjectComp->Drop();
+	}
+
 	SetTargeting(true);
 }
 
@@ -370,6 +381,11 @@ void ASCharacter::SetSprinting(bool NewSprinting)
 
 void ASCharacter::OnStartSprinting()
 {
+	if (CarriedObjectComp->IsCarryingActor())
+	{
+		CarriedObjectComp->Drop();
+	}
+
 	SetSprinting(true);
 }
 
@@ -600,9 +616,11 @@ void ASCharacter::SetCurrentWeapon(class ASWeapon* NewWeapon, class ASWeapon* La
 	}
 
 	// UnEquip the current
+	bool bHasPreviousWeapon = false;
 	if (LocalLastWeapon)
 	{
 		LocalLastWeapon->OnUnEquip();
+		bHasPreviousWeapon = true;
 	}
 
 	CurrentWeapon = NewWeapon;
@@ -610,7 +628,8 @@ void ASCharacter::SetCurrentWeapon(class ASWeapon* NewWeapon, class ASWeapon* La
 	if (NewWeapon)
 	{
 		NewWeapon->SetOwningPawn(this);
-		NewWeapon->OnEquip();
+		/* Only play equip animation when we already hold an item in hands */
+		NewWeapon->OnEquip(bHasPreviousWeapon);
 	}
 }
 
@@ -703,6 +722,15 @@ void ASCharacter::OnStartFire()
 	{
 		SetSprinting(false);
 	}
+
+	if (CarriedObjectComp->IsCarryingActor())
+	{
+		StopWeaponFire();
+
+		CarriedObjectComp->Throw();
+		return;
+	}
+
 	StartWeaponFire();
 }
 
@@ -741,6 +769,12 @@ void ASCharacter::StopWeaponFire()
 
 void ASCharacter::OnNextWeapon()
 {
+	if (CarriedObjectComp->IsCarryingActor())
+	{
+		CarriedObjectComp->Rotate(1.0f);
+		return;
+	}
+
 	if (Inventory.Num() >= 2) // TODO: Check for weaponstate.
 	{
 		const int32 CurrentWeaponIndex = Inventory.IndexOfByKey(CurrentWeapon);
@@ -752,6 +786,12 @@ void ASCharacter::OnNextWeapon()
 
 void ASCharacter::OnPrevWeapon()
 {
+	if (CarriedObjectComp->IsCarryingActor())
+	{
+		CarriedObjectComp->Rotate(-1.0f);
+		return;
+	}
+
 	if (Inventory.Num() >= 2) // TODO: Check for weaponstate.
 	{
 		const int32 CurrentWeaponIndex = Inventory.IndexOfByKey(CurrentWeapon);
@@ -909,4 +949,10 @@ void ASCharacter::KilledBy(class APawn* EventInstigator)
 
 		Die(Health, FDamageEvent(UDamageType::StaticClass()), Killer, nullptr);
 	}
+}
+
+
+void ASCharacter::OnToggleCarryActor()
+{
+	CarriedObjectComp->Pickup();
 }

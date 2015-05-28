@@ -22,7 +22,9 @@ enum class EHUDState : uint8
 UCLASS()
 class SURVIVALGAME_API ASHUD : public AHUD
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
+
+	ASHUD(const FObjectInitializer& ObjectInitializer);
 
 	FCanvasIcon CenterDotIcon;
 
@@ -30,6 +32,8 @@ class SURVIVALGAME_API ASHUD : public AHUD
 	virtual void DrawHUD() override;
 	
 	void DrawCenterDot();
+
+public:
 
 	/* An event hook to call HUD text events to display in the HUD. Blueprint HUD class must implement how to deal with this event. */
 	UFUNCTION(BlueprintImplementableEvent, Category = "HUDEvents")

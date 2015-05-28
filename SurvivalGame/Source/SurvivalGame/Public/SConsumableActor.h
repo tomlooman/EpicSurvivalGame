@@ -11,7 +11,9 @@
 UCLASS(ABSTRACT)
 class SURVIVALGAME_API ASConsumableActor : public ASPickupActor
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
+
+	ASConsumableActor(const FObjectInitializer& ObjectInitializer);
 
 protected:
 

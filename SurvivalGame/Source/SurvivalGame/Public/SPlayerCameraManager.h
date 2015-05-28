@@ -11,7 +11,9 @@
 UCLASS()
 class SURVIVALGAME_API ASPlayerCameraManager : public APlayerCameraManager
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
+
+	ASPlayerCameraManager(const FObjectInitializer& ObjectInitializer);
 
 	/* Update the FOV */
 	virtual void UpdateCamera(float DeltaTime) override;
