@@ -224,7 +224,7 @@ void ASCharacter::Use()
 	if (Role == ROLE_Authority)
 	{
 		ASUsableActor* Usable = GetUsableInView();
-		if (Usable)
+		if (Usable && Usable->MeshComp->IsVisible())
 		{
 			Usable->OnUsed(this);
 		}
