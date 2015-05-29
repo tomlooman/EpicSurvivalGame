@@ -285,8 +285,8 @@ FVector ASWeapon::GetCameraDamageStartLocation(const FVector& AimDir) const
 
 	if (PC)
 	{
-		FRotator dummyRot;
-		PC->GetPlayerViewPoint(OutStartTrace, dummyRot);
+		FRotator DummyRot;
+		PC->GetPlayerViewPoint(OutStartTrace, DummyRot);
 
 		// Adjust trace so there is nothing blocking the ray between the camera and the pawn, and calculate distance from adjusted start
 		// TODO: Break down into easy to understand code (copied from ShooterGame)

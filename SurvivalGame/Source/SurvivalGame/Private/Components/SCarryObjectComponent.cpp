@@ -170,6 +170,6 @@ void USCarryObjectComponent::Rotate(float Direction)
 	AActor* CarriedActor = GetCarriedActor();
 	if (CarriedActor)
 	{
-		CarriedActor->AddActorWorldRotation(FRotator(0, Direction * RotateSpeed, 0));
+		CarriedActor->AddActorWorldRotation(FRotator(Direction * RotateSpeed, 0, 0));
 	}
 }

@@ -19,7 +19,7 @@ private:
 	/* Visual Handlers                                                      */
 	/************************************************************************/
 
-	void SimulateInstantHit(const FVector& Origin);
+	void SimulateInstantHit(const FVector& ImpactPoint);
 
 	void SpawnImpactEffects(const FHitResult& Impact);
 
@@ -81,7 +81,7 @@ protected:
 	bool ServerNotifyMiss_Validate(FVector_NetQuantizeNormal ShootDir);
 
 	UPROPERTY(Transient, ReplicatedUsing=OnRep_HitLocation)
-	FVector HitOriginNotify;
+	FVector HitImpactNotify;
 
 	UFUNCTION()
 	void OnRep_HitLocation();
