@@ -61,9 +61,6 @@ protected:
 	UFUNCTION()
 	void OnRep_MyPawn();
 
-	/* You can assign default values to function parameters, these are then optional to specify/override when calling the function. */
-	void AttachMeshToPawn(EInventorySlot Slot = EInventorySlot::Hands);
-
 	/** detaches weapon mesh from pawn */
 	void DetachMeshFromPawn();
 
@@ -114,6 +111,9 @@ public:
 	void StopFire();
 
 	EWeaponState GetCurrentState() const;
+
+	/* You can assign default values to function parameters, these are then optional to specify/override when calling the function. */
+	void AttachMeshToPawn(EInventorySlot Slot = EInventorySlot::Hands);
 
 protected:
 

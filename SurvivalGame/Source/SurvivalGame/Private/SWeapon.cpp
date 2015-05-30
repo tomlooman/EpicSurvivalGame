@@ -110,8 +110,6 @@ void ASWeapon::DetachMeshFromPawn()
 
 void ASWeapon::OnEquip(bool bPlayAnimation)
 {
-	AttachMeshToPawn();
-
 	bPendingEquip = true;
 	DetermineWeaponState();
 
@@ -143,7 +141,6 @@ void ASWeapon::OnEquip(bool bPlayAnimation)
 
 void ASWeapon::OnUnEquip()
 {
-	AttachMeshToPawn(StorageSlot);
 	bIsEquipped = false;
 	StopFire();
 
@@ -289,8 +286,7 @@ FVector ASWeapon::GetCameraDamageStartLocation(const FVector& AimDir) const
 		PC->GetPlayerViewPoint(OutStartTrace, DummyRot);
 
 		// Adjust trace so there is nothing blocking the ray between the camera and the pawn, and calculate distance from adjusted start
-		// TODO: Break down into easy to understand code (copied from ShooterGame)
-		OutStartTrace = OutStartTrace + AimDir * ((Instigator->GetActorLocation() - OutStartTrace) | AimDir);
+		OutStartTrace = OutStartTrace + AimDir * (FVector::DotProduct((Instigator->GetActorLocation() - OutStartTrace), AimDir));
 	}
 
 	return OutStartTrace;
@@ -370,12 +366,6 @@ void ASWeapon::SimulateWeaponFire()
 	}
 
 	PlayWeaponSound(FireSound);
-
-	// 	ASPlayerController* PC = (MyPawn != nullptr) ? Cast<ASPlayerController>(MyPawn->Controller) : nullptr;
-	// 	if (PC && PC->IsLocalController())
-	// 	{
-	// 		// TODO: Add camera roll oscillation
-	// 	}
 }
 
 

@@ -415,7 +415,7 @@ bool ASCharacter::IsSprinting() const
 
 	return bWantsToRun && !IsTargeting() && !GetVelocity().IsZero() 
 		// Don't allow sprint while strafing sideways or standing still (1.0 is straight forward, -1.0 is backward while near 0 is sideways or standing still)
-		&& (GetVelocity().GetSafeNormal2D() | GetActorRotation().Vector()) > 0.8; // Changing this value to 0.1 allows for diagonal sprinting. (holding W+A or W+D keys)
+		&& (FVector::DotProduct(GetVelocity().GetSafeNormal2D(), GetActorRotation().Vector()) > 0.8); // Changing this value to 0.1 allows for diagonal sprinting. (holding W+A or W+D keys)
 }
 
 
@@ -604,8 +604,10 @@ void ASCharacter::DestroyInventory()
 
 void ASCharacter::SetCurrentWeapon(class ASWeapon* NewWeapon, class ASWeapon* LastWeapon)
 {
-	ASWeapon* LocalLastWeapon = nullptr;
+	/* Maintain a reference for visual weapon swapping */
+	PreviousWeapon = LastWeapon;
 
+	ASWeapon* LocalLastWeapon = nullptr;
 	if (LastWeapon)
 	{
 		LocalLastWeapon = LastWeapon;
@@ -631,6 +633,9 @@ void ASCharacter::SetCurrentWeapon(class ASWeapon* NewWeapon, class ASWeapon* La
 		/* Only play equip animation when we already hold an item in hands */
 		NewWeapon->OnEquip(bHasPreviousWeapon);
 	}
+
+	/* NOTE: If you don't have an equip animation w/ animnotify to swap the meshes halfway through, then uncomment this to immediately swap instead */
+	//SwapToNewWeaponMesh();
 }
 
 
@@ -644,9 +649,13 @@ void ASCharacter::EquipWeapon(ASWeapon* Weapon)
 {
 	if (Weapon)
 	{
+		/* Ignore if trying to equip already equipped weapon */
+		if (Weapon == CurrentWeapon)
+			return;
+
 		if (Role == ROLE_Authority)
 		{
-			SetCurrentWeapon(Weapon);
+			SetCurrentWeapon(Weapon, CurrentWeapon);
 		}
 		else
 		{
@@ -676,7 +685,7 @@ void ASCharacter::AddWeapon(class ASWeapon* Weapon)
 		Inventory.AddUnique(Weapon);
 
 		// Equip first weapon in inventory
-		if (Inventory.Num() > 0)
+		if (Inventory.Num() > 0 && CurrentWeapon == nullptr)
 		{
 			EquipWeapon(Inventory[0]);
 		}
@@ -889,9 +898,22 @@ void ASCharacter::OnEquipSecondaryWeapon()
 
 bool ASCharacter::WeaponSlotAvailable(EInventorySlot CheckSlot)
 {
+	/* Iterate all weapons to see if requested slot is occupied */
+	for (int32 i = 0; i < Inventory.Num(); i++)
+	{
+		ASWeapon* Weapon = Inventory[i];
+		if (Weapon)
+		{
+			if (Weapon->GetStorageSlot() == CheckSlot)
+				return true;
+		}
+	}
+
+	return false;
+
 	/* Special find function as alternative to looping the array and performing if statements 
 		the [=] prefix means "capture by value", other options include [] "capture nothing" and [&] "capture by reference" */
-	return nullptr == Inventory.FindByPredicate([=](ASWeapon* W){ return W->GetStorageSlot() == CheckSlot; });
+	//return nullptr == Inventory.FindByPredicate([=](ASWeapon* W){ return W->GetStorageSlot() == CheckSlot; });
 }
 
 
@@ -955,4 +977,18 @@ void ASCharacter::KilledBy(class APawn* EventInstigator)
 void ASCharacter::OnToggleCarryActor()
 {
 	CarriedObjectComp->Pickup();
+}
+
+
+void ASCharacter::SwapToNewWeaponMesh()
+{
+	if (PreviousWeapon)
+	{
+		PreviousWeapon->AttachMeshToPawn(PreviousWeapon->GetStorageSlot());
+	}
+
+	if (CurrentWeapon)
+	{
+		CurrentWeapon->AttachMeshToPawn(EInventorySlot::Hands);
+	}
 }
