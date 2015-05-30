@@ -5,7 +5,7 @@
 
 
 ASBombActor::ASBombActor(const class FObjectInitializer& ObjectInitializer)
-	: Super(ObjectInitializer)
+: Super(ObjectInitializer)
 {
 	FuzePCS = ObjectInitializer.CreateDefaultSubobject<UParticleSystemComponent>(this, TEXT("Fuze"));
 	FuzePCS->bAutoActivate = false;
@@ -48,60 +48,41 @@ void ASBombActor::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 void ASBombActor::OnUsed(APawn* InstigatorPawn)
 {
+	if (bIsFuzeActive)
+	{
+		return;
+	}
+
 	Super::OnUsed(InstigatorPawn);
 
-	if (!bIsFuzeActive)
-	{
-		// This will trigger the SimulateFuzeFX() on the clients
-		bIsFuzeActive = true;
+	bIsFuzeActive = true;
+	// Runs on all clients (NetMulticast)
+	SimulateFuzeFX();
 
-		// Repnotify does not trigger on the server, so call the function here directly.
-		SimulateFuzeFX();
+	// Activate the fuze to explode the bomb after several seconds
+	GetWorldTimerManager().SetTimer(FuzeTimerHandle, this, &ASBombActor::OnExplode, MaxFuzeTime, false);
 
-		// Activate the fuze to explode the bomb after several seconds
-		GetWorldTimerManager().SetTimer(FuzeTimerHandle, this, &ASBombActor::OnExplode, MaxFuzeTime, false);
-	}
 }
 
 
 void ASBombActor::OnExplode()
 {
 	if (bExploded)
+	{
 		return;
+	}
 
-	// Notify the clients to simulate the explosion
 	bExploded = true;
-	
-	// Run on server side (OnExplode is executed on the server) too
+	// Runs on all clients (NetMulticast)
 	SimulateExplosion();
 
 	// Apply damage to player, enemies and environmental objects
 	TArray<AActor*> IgnoreActors;
 	UGameplayStatics::ApplyRadialDamage(this, ExplosionDamage, GetActorLocation(), ExplosionRadius, DamageType, IgnoreActors, this, nullptr);
-
-	// TODO: Apply radial impulse to supporting objects
 }
 
 
-void ASBombActor::OnRep_FuzeActive()
-{
-	if (bIsFuzeActive && !bExploded)
-	{
-		SimulateFuzeFX();
-	}
-}
-
-
-void ASBombActor::OnRep_Exploded()
-{
-	if (bExploded)
-	{
-		SimulateExplosion();
-	}
-}
-
-
-void ASBombActor::SimulateFuzeFX()
+void ASBombActor::SimulateFuzeFX_Implementation()
 {
 	if (FuzeSound)
 	{
@@ -116,7 +97,7 @@ void ASBombActor::SimulateFuzeFX()
 }
 
 
-void ASBombActor::SimulateExplosion()
+void ASBombActor::SimulateExplosion_Implementation()
 {
 	// First deactivate all running fuze effects
 	FuzePCS->DeactivateSystem();
@@ -135,13 +116,4 @@ void ASBombActor::SimulateExplosion()
 		ExplosionPCS->SetTemplate(ExplosionFX);
 		ExplosionPCS->ActivateSystem();
 	}
-}
-
-
-void ASBombActor::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
-{
-	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-
-	DOREPLIFETIME(ASBombActor, bIsFuzeActive);
-	DOREPLIFETIME(ASBombActor, bExploded);
 }

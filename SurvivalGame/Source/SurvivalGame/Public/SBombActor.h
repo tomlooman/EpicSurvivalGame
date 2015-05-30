@@ -41,17 +41,9 @@ protected:
 	USoundCue* FuzeSound;
 
 	/* Is fuze lit and counting down */
-	UPROPERTY(Transient, ReplicatedUsing=OnRep_FuzeActive)
 	bool bIsFuzeActive;
 
-	UPROPERTY(Transient, ReplicatedUsing=OnRep_Exploded)
 	bool bExploded;
-
-	UFUNCTION() // Must be marked with UFUNCTION() when used as OnRep notify function
-	void OnRep_FuzeActive();
-	
-	UFUNCTION() // Must be marked with UFUNCTION() when used as OnRep notify function
-	void OnRep_Exploded();
 
 	/* Initial time on the fuze */
 	UPROPERTY(EditDefaultsOnly, Category = "Bomb|Settings")
@@ -75,7 +67,13 @@ protected:
 	/* Explode the bomb */
 	void OnExplode();
 
+	UFUNCTION(Reliable, NetMulticast)
 	void SimulateFuzeFX();
 
+	void SimulateFuzeFX_Implementation();
+
+	UFUNCTION(Reliable, NetMulticast)
 	void SimulateExplosion();
+
+	void SimulateExplosion_Implementation();
 };
