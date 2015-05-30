@@ -8,12 +8,17 @@ USCarryObjectComponent::USCarryObjectComponent(const FObjectInitializer& ObjectI
 {
 	MaxPickupDistance = 600;
 	RotateSpeed = 10.0f;
+
+	bUsePawnControlRotation = true;
+	bDoCollisionTest = false;
+
+	//SetNetAddressable();
+	SetIsReplicated(true);
 }
 
 
 void USCarryObjectComponent::TickComponent(float DeltaSeconds, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction)
 {
-	Super::TickComponent(DeltaSeconds, TickType, ThisTickFunction);
 
 	if (IsCarryingActor())
 	{
@@ -21,54 +26,77 @@ void USCarryObjectComponent::TickComponent(float DeltaSeconds, enum ELevelTick T
 
 		// Use param NAME to update the color between red and green
 	}
+
+	if (APawn* OwningPawn = Cast<APawn>(GetOwner()))
+	{
+		if (OwningPawn->IsLocallyControlled())
+		{
+			Super::TickComponent(DeltaSeconds, TickType, ThisTickFunction);
+
+		}
+		else
+		{
+			if (bUsePawnControlRotation)
+			{
+
+				{
+					/* Re-map uint8 to 360 degrees */
+					const float PawnViewPitch = (OwningPawn->RemoteViewPitch / 255.f)*360.f;
+					if (PawnViewPitch != GetComponentRotation().Pitch)
+					{
+						FRotator NewRotation = GetComponentRotation();
+						NewRotation.Pitch = PawnViewPitch;
+						SetWorldRotation(NewRotation);
+					}
+				}
+			}
+
+			UpdateDesiredArmLocation(bDoCollisionTest, bEnableCameraLag, bEnableCameraRotationLag, DeltaSeconds);
+		}
+	}
 }
 
 
 void USCarryObjectComponent::Pickup()
 {
 	/* Drop if we are already carrying an Actor */
-	if (GetChildComponent(0) != nullptr)
+	if (IsCarryingActor())
 	{
 		Drop();
 		return;
 	}
 
-	AActor* FocusActor = GetActorInView();
-	if (FocusActor && FocusActor->IsRootComponentMovable())
+	if (GetOwner()->Role < ROLE_Authority)
 	{
-		/* Find the static mesh (if any) to disable physics simulation while carried
-			Filter by objects that are physically simulated and can therefor be picked up */
-		UStaticMeshComponent* MeshComp = Cast<UStaticMeshComponent>(FocusActor->GetComponentByClass(UStaticMeshComponent::StaticClass()));
-		if (MeshComp && MeshComp->IsSimulatingPhysics())
-		{
-			MeshComp->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
-			MeshComp->SetSimulatePhysics(false);
-		}
+		ServerPickup();
+		return;
+	}
 
-		FocusActor->AttachRootComponentTo(this, NAME_None, EAttachLocation::KeepWorldPosition);
-	}	
+	AActor* FocusActor = GetActorInView();
+	OnPickupMulticast(FocusActor);
+}
+
+
+void USCarryObjectComponent::ServerPickup_Implementation()
+{
+	Pickup();
+}
+
+
+bool USCarryObjectComponent::ServerPickup_Validate()
+{
+	return true;
 }
 
 
 void USCarryObjectComponent::Drop()
 {
-	USceneComponent* ChildComp = GetChildComponent(0);
-	if (ChildComp)
+	if (GetOwner()->Role < ROLE_Authority)
 	{
-		AActor* OwningActor = ChildComp->GetOwner();
-		if (OwningActor)
-		{
-			/* Find the static mesh (if any) to re-enable physics simulation */
-			UStaticMeshComponent* MeshComp = Cast<UStaticMeshComponent>(OwningActor->GetComponentByClass(UStaticMeshComponent::StaticClass()));
-			if (MeshComp)
-			{
-				MeshComp->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-				MeshComp->SetSimulatePhysics(true);
-			}
-
-			OwningActor->GetRootComponent()->DetachFromParent(true);
-		}
+		ServerDrop();
 	}
+
+	OnDropMulticast();
 }
 
 
@@ -77,7 +105,7 @@ AActor* USCarryObjectComponent::GetActorInView()
 	APawn* PawnOwner = Cast<APawn>(GetOwner());
 	AController* Controller = PawnOwner->Controller;
 	if (Controller == nullptr)
-	{	
+	{
 		return nullptr;
 	}
 
@@ -136,10 +164,17 @@ void USCarryObjectComponent::Throw()
 	if (!IsCarryingActor())
 		return;
 
+	if (GetOwner()->Role < ROLE_Authority)
+	{
+		/* Detach and re-enable collision */
+		Drop();
+
+		ServerThrow();
+	}
+
 	UStaticMeshComponent* MeshComp = GetCarriedMeshComp();
 	if (MeshComp)
 	{
-		/* Detach and re-enable collision */
 		Drop();
 
 		APawn* PawnOwner = Cast<APawn>(GetOwner());
@@ -172,4 +207,76 @@ void USCarryObjectComponent::Rotate(float Direction)
 	{
 		CarriedActor->AddActorWorldRotation(FRotator(Direction * RotateSpeed, 0, 0));
 	}
+}
+
+
+void USCarryObjectComponent::OnPickupMulticast_Implementation(AActor* FocusActor)
+{
+// 	if (GEngine)
+// 	{
+// 		if (FocusActor == nullptr)
+// 		{
+// 			GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Red, "No object traced");
+// 		}
+// 		else
+// 		{
+// 			GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Red, "Object traced");
+// 		}
+// 	}
+
+	if (FocusActor && FocusActor->IsRootComponentMovable())
+	{
+		/* Find the static mesh (if any) to disable physics simulation while carried
+		Filter by objects that are physically simulated and can therefor be picked up */
+		UStaticMeshComponent* MeshComp = Cast<UStaticMeshComponent>(FocusActor->GetComponentByClass(UStaticMeshComponent::StaticClass()));
+		if (MeshComp && MeshComp->IsSimulatingPhysics())
+		{
+			MeshComp->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+			MeshComp->SetSimulatePhysics(false);
+		}
+
+		FocusActor->AttachRootComponentTo(this, NAME_None, EAttachLocation::KeepWorldPosition);
+	}
+}
+
+
+void USCarryObjectComponent::OnDropMulticast_Implementation()
+{
+	AActor* CarriedActor = GetCarriedActor();
+	if (CarriedActor)
+	{
+		/* Find the static mesh (if any) to re-enable physics simulation */
+		UStaticMeshComponent* MeshComp = Cast<UStaticMeshComponent>(CarriedActor->GetComponentByClass(UStaticMeshComponent::StaticClass()));
+		if (MeshComp)
+		{
+			MeshComp->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+			MeshComp->SetSimulatePhysics(true);
+		}
+
+		CarriedActor->GetRootComponent()->DetachFromParent(true);
+	}
+}
+
+
+void USCarryObjectComponent::ServerDrop_Implementation()
+{
+	Drop();
+}
+
+
+bool USCarryObjectComponent::ServerDrop_Validate()
+{
+	return true;
+}
+
+
+void USCarryObjectComponent::ServerThrow_Implementation()
+{
+	Throw();
+}
+
+
+bool USCarryObjectComponent::ServerThrow_Validate()
+{
+	return true;
 }

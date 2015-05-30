@@ -905,11 +905,11 @@ bool ASCharacter::WeaponSlotAvailable(EInventorySlot CheckSlot)
 		if (Weapon)
 		{
 			if (Weapon->GetStorageSlot() == CheckSlot)
-				return true;
+				return false;
 		}
 	}
 
-	return false;
+	return true;
 
 	/* Special find function as alternative to looping the array and performing if statements 
 		the [=] prefix means "capture by value", other options include [] "capture nothing" and [&] "capture by reference" */
