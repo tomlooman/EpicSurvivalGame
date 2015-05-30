@@ -12,7 +12,6 @@ USCarryObjectComponent::USCarryObjectComponent(const FObjectInitializer& ObjectI
 	bUsePawnControlRotation = true;
 	bDoCollisionTest = false;
 
-	//SetNetAddressable();
 	SetIsReplicated(true);
 }
 
@@ -61,7 +60,7 @@ void USCarryObjectComponent::Pickup()
 	{
 		Drop();
 		return;
-	}
+	} 
 
 	if (GetOwner()->Role < ROLE_Authority)
 	{
