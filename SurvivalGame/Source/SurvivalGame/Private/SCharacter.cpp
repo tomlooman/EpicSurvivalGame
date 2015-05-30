@@ -256,7 +256,7 @@ bool ASCharacter::ServerUse_Validate()
 
 void ASCharacter::OnStartTargeting()
 {
-	if (CarriedObjectComp->IsCarryingActor())
+	if (CarriedObjectComp->GetIsCarryingActor())
 	{
 		CarriedObjectComp->Drop();
 	}
@@ -381,7 +381,7 @@ void ASCharacter::SetSprinting(bool NewSprinting)
 
 void ASCharacter::OnStartSprinting()
 {
-	if (CarriedObjectComp->IsCarryingActor())
+	if (CarriedObjectComp->GetIsCarryingActor())
 	{
 		CarriedObjectComp->Drop();
 	}
@@ -732,7 +732,7 @@ void ASCharacter::OnStartFire()
 		SetSprinting(false);
 	}
 
-	if (CarriedObjectComp->IsCarryingActor())
+	if (CarriedObjectComp->GetIsCarryingActor())
 	{
 		StopWeaponFire();
 
@@ -778,7 +778,7 @@ void ASCharacter::StopWeaponFire()
 
 void ASCharacter::OnNextWeapon()
 {
-	if (CarriedObjectComp->IsCarryingActor())
+	if (CarriedObjectComp->GetIsCarryingActor())
 	{
 		CarriedObjectComp->Rotate(1.0f);
 		return;
@@ -795,7 +795,7 @@ void ASCharacter::OnNextWeapon()
 
 void ASCharacter::OnPrevWeapon()
 {
-	if (CarriedObjectComp->IsCarryingActor())
+	if (CarriedObjectComp->GetIsCarryingActor())
 	{
 		CarriedObjectComp->Rotate(-1.0f);
 		return;

@@ -78,8 +78,20 @@ public:
 	bool ServerThrow_Validate();
 
 	/* Is currently holding an Actor */
-	bool IsCarryingActor();
+	bool GetIsCarryingActor();
 
 	/* Rotate the Actor around the Up-axis.  */
 	void Rotate(float Direction);
+
+	UFUNCTION(Server, Reliable, WithValidation)
+	void ServerRotate(float Direction);
+
+	void ServerRotate_Implementation(float Direction);
+
+	bool ServerRotate_Validate(float Direction);
+
+	UFUNCTION(Reliable, NetMulticast)
+	void OnRotateMulticast(float Direction);
+
+	void OnRotateMulticast_Implementation(float Direction);
 };

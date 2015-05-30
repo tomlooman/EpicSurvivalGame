@@ -19,26 +19,23 @@ USCarryObjectComponent::USCarryObjectComponent(const FObjectInitializer& ObjectI
 
 void USCarryObjectComponent::TickComponent(float DeltaSeconds, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction)
 {
-
-	if (IsCarryingActor())
-	{
-		// perform an overlap check of the actor vs. environment. must have 0 overlaps from Static and Dynamic and Pawn channels.
-
-		// Use param NAME to update the color between red and green
-	}
+	//if (GetIsCarryingActor())
+	//{
+	// perform an overlap check of the actor vs. environment. must have 0 overlaps from Static and Dynamic and Pawn channels.
+	// Use param NAME to update the color between red and green
+	//}
 
 	if (APawn* OwningPawn = Cast<APawn>(GetOwner()))
 	{
 		if (OwningPawn->IsLocallyControlled())
 		{
 			Super::TickComponent(DeltaSeconds, TickType, ThisTickFunction);
-
 		}
 		else
 		{
+			/* NOTE: Slightly changed code from base implementation to use RemoteViewPitch instead of non-replicated ControlRotation */
 			if (bUsePawnControlRotation)
 			{
-
 				{
 					/* Re-map uint8 to 360 degrees */
 					const float PawnViewPitch = (OwningPawn->RemoteViewPitch / 255.f)*360.f;
@@ -60,7 +57,7 @@ void USCarryObjectComponent::TickComponent(float DeltaSeconds, enum ELevelTick T
 void USCarryObjectComponent::Pickup()
 {
 	/* Drop if we are already carrying an Actor */
-	if (IsCarryingActor())
+	if (GetIsCarryingActor())
 	{
 		Drop();
 		return;
@@ -74,18 +71,6 @@ void USCarryObjectComponent::Pickup()
 
 	AActor* FocusActor = GetActorInView();
 	OnPickupMulticast(FocusActor);
-}
-
-
-void USCarryObjectComponent::ServerPickup_Implementation()
-{
-	Pickup();
-}
-
-
-bool USCarryObjectComponent::ServerPickup_Validate()
-{
-	return true;
 }
 
 
@@ -161,40 +146,39 @@ UStaticMeshComponent* USCarryObjectComponent::GetCarriedMeshComp()
 
 void USCarryObjectComponent::Throw()
 {
-	if (!IsCarryingActor())
+	if (!GetIsCarryingActor())
 		return;
 
 	if (GetOwner()->Role < ROLE_Authority)
 	{
-		/* Detach and re-enable collision */
-		Drop();
-
 		ServerThrow();
+		return;
 	}
 
+	/* Grab a reference to the MeshComp before dropping the object */
 	UStaticMeshComponent* MeshComp = GetCarriedMeshComp();
 	if (MeshComp)
 	{
-		Drop();
+		/* Detach and re-enable collision */
+		OnDropMulticast();
 
-		APawn* PawnOwner = Cast<APawn>(GetOwner());
-		AController* Controller = PawnOwner->Controller;
-		if (Controller == nullptr)
+		APawn* OwningPawn = Cast<APawn>(GetOwner());
+		if (OwningPawn)
 		{
-			return;
+			/* Re-map uint8 to 360 degrees */
+			const float PawnViewPitch = (OwningPawn->RemoteViewPitch / 255.f)*360.f;
+
+			FRotator NewRotation = GetComponentRotation();
+			NewRotation.Pitch = PawnViewPitch;
+
+			/* Apply physics impulse, ignores mass */
+			MeshComp->AddImpulse(NewRotation.Vector() * 1000, NAME_None, true);
 		}
-
-		FVector CamLoc;
-		FRotator CamRot;
-		Controller->GetPlayerViewPoint(CamLoc, CamRot);
-
-		/* Apply physics impulse, ignores mass */
-		MeshComp->AddImpulse(CamRot.Vector() * 1000, NAME_None, true);
 	}
 }
 
 
-bool USCarryObjectComponent::IsCarryingActor()
+bool USCarryObjectComponent::GetIsCarryingActor()
 {
 	return GetChildComponent(0) != nullptr;
 }
@@ -202,28 +186,17 @@ bool USCarryObjectComponent::IsCarryingActor()
 
 void USCarryObjectComponent::Rotate(float Direction)
 {
-	AActor* CarriedActor = GetCarriedActor();
-	if (CarriedActor)
+	if (GetOwner()->Role < ROLE_Authority)
 	{
-		CarriedActor->AddActorWorldRotation(FRotator(Direction * RotateSpeed, 0, 0));
+		ServerRotate(Direction);
 	}
+
+	OnRotateMulticast(Direction);
 }
 
 
 void USCarryObjectComponent::OnPickupMulticast_Implementation(AActor* FocusActor)
 {
-// 	if (GEngine)
-// 	{
-// 		if (FocusActor == nullptr)
-// 		{
-// 			GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Red, "No object traced");
-// 		}
-// 		else
-// 		{
-// 			GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Red, "Object traced");
-// 		}
-// 	}
-
 	if (FocusActor && FocusActor->IsRootComponentMovable())
 	{
 		/* Find the static mesh (if any) to disable physics simulation while carried
@@ -258,6 +231,16 @@ void USCarryObjectComponent::OnDropMulticast_Implementation()
 }
 
 
+void USCarryObjectComponent::OnRotateMulticast_Implementation(float Direction)
+{
+	AActor* CarriedActor = GetCarriedActor();
+	if (CarriedActor)
+	{
+		CarriedActor->AddActorWorldRotation(FRotator(Direction * RotateSpeed, 0, 0));
+	}
+}
+
+
 void USCarryObjectComponent::ServerDrop_Implementation()
 {
 	Drop();
@@ -277,6 +260,30 @@ void USCarryObjectComponent::ServerThrow_Implementation()
 
 
 bool USCarryObjectComponent::ServerThrow_Validate()
+{
+	return true;
+}
+
+
+void USCarryObjectComponent::ServerPickup_Implementation()
+{
+	Pickup();
+}
+
+
+bool USCarryObjectComponent::ServerPickup_Validate()
+{
+	return true;
+}
+
+
+void USCarryObjectComponent::ServerRotate_Implementation(float Direction)
+{
+	Rotate(Direction);
+}
+
+
+bool USCarryObjectComponent::ServerRotate_Validate(float Direction)
 {
 	return true;
 }
