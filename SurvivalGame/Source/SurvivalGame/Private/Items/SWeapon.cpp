@@ -33,6 +33,24 @@ ASWeapon::ASWeapon(const class FObjectInitializer& PCIP)
 
 	MuzzleAttachPoint = TEXT("MuzzleFlashSocket");
 	StorageSlot = EInventorySlot::Primary;
+
+	ShotsPerMinute = 700;
+	StartAmmo = 999;
+	MaxAmmo = 999;
+	MaxAmmoPerClip = 30;
+	NoAnimReloadDuration = 1.5f;
+	NoEquipAnimDuration = 0.5f;
+}
+
+
+void ASWeapon::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+
+	/* Setup configuration */
+	TimeBetweenShots = 60.0f / ShotsPerMinute;
+	CurrentAmmo = FMath::Min(StartAmmo, MaxAmmo);
+	CurrentAmmoInClip = FMath::Min(MaxAmmoPerClip, StartAmmo);
 }
 
 
@@ -118,8 +136,8 @@ void ASWeapon::OnEquip(bool bPlayAnimation)
 		float Duration = PlayWeaponAnimation(EquipAnim);
 		if (Duration <= 0.0f)
 		{
-			// Failsafe
-			Duration = 0.5f;
+			// Failsafe in case animation is missing
+			Duration = NoEquipAnimDuration;
 		}
 		EquipStartedTime = GetWorld()->TimeSeconds;
 		EquipDuration = Duration;
@@ -249,7 +267,7 @@ bool ASWeapon::CanFire() const
 {
 	bool bPawnCanFire = MyPawn && MyPawn->CanFire();
 	bool bStateOK = CurrentState == EWeaponState::Idle || CurrentState == EWeaponState::Firing;
-	return bPawnCanFire && bStateOK;
+	return bPawnCanFire && bStateOK && !bPendingReload;
 }
 
 
@@ -309,7 +327,7 @@ FHitResult ASWeapon::WeaponTrace(const FVector& TraceFrom, const FVector& TraceT
 
 void ASWeapon::HandleFiring()
 {
-	if (CanFire())
+	if (CurrentAmmoInClip > 0 && CanFire())
 	{
 		if (GetNetMode() != NM_DedicatedServer)
 		{
@@ -320,13 +338,35 @@ void ASWeapon::HandleFiring()
 		{
 			FireWeapon();
 
-			// TODO: Consume Ammo
+			UseAmmo();
 
 			// Update firing FX on remote clients if this is called on server
 			BurstCounter++;
 		}
 	}
-	// TODO: End repeat fire if ammo runs dry
+	else if (CanReload())
+	{
+		StartReload();
+	}
+	else if (MyPawn && MyPawn->IsLocallyControlled())
+	{
+		if (GetCurrentAmmo() == 0 && !bRefiring)
+		{
+			PlayWeaponSound(OutOfAmmoSound);
+		}
+
+		/* Reload after firing last round */
+		if (CurrentAmmoInClip <= 0 && CanReload())
+		{
+			StartReload();
+		}
+
+		/* Stop weapon fire FX, but stay in firing state */
+		if (BurstCounter > 0)
+		{
+			OnBurstFinished();
+		}
+	}
 
 	if (MyPawn && MyPawn->IsLocallyControlled())
 	{
@@ -402,12 +442,14 @@ bool ASWeapon::ServerHandleFiring_Validate()
 
 void ASWeapon::ServerHandleFiring_Implementation()
 {
-	const bool bShouldUpdateAmmo = CanFire();
+	const bool bShouldUpdateAmmo = (CurrentAmmoInClip > 0 && CanFire());
 
 	HandleFiring();
 
 	if (bShouldUpdateAmmo)
 	{
+		UseAmmo();
+
 		// Update firing FX on remote clients
 		BurstCounter++;
 	}
@@ -419,7 +461,11 @@ void ASWeapon::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetime
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	DOREPLIFETIME(ASWeapon, MyPawn);
+
+	DOREPLIFETIME_CONDITION(ASWeapon, CurrentAmmo, COND_OwnerOnly);
+	DOREPLIFETIME_CONDITION(ASWeapon, CurrentAmmoInClip, COND_OwnerOnly);
 	DOREPLIFETIME_CONDITION(ASWeapon, BurstCounter, COND_SkipOwner);
+	DOREPLIFETIME_CONDITION(ASWeapon, bPendingReload, COND_SkipOwner);
 }
 
 
@@ -507,7 +553,18 @@ void ASWeapon::DetermineWeaponState()
 
 	if (bIsEquipped)
 	{
-		if (bWantsToFire && CanFire())
+		if (bPendingReload)
+		{
+			if (CanReload())
+			{
+				NewState = EWeaponState::Reloading;
+			}
+			else
+			{
+				NewState = CurrentState;
+			}
+		}
+		else if (!bPendingReload && bWantsToFire && CanFire())
 		{
 			NewState = EWeaponState::Firing;
 		}
@@ -568,5 +625,181 @@ void ASWeapon::OnEquipFinished()
 	bPendingEquip = false;
 
 	DetermineWeaponState();
+
+	if (MyPawn)
+	{
+		// Try to reload empty clip
+		if (MyPawn->IsLocallyControlled() &&
+			CurrentAmmoInClip <= 0 &&
+			CanReload())
+		{
+			StartReload();
+		}
+	}
 }
 
+
+
+void ASWeapon::UseAmmo()
+{
+	CurrentAmmoInClip--;
+	CurrentAmmo--;
+}
+
+
+int32 ASWeapon::GiveAmmo(int32 AddAmount)
+{
+	const int32 MissingAmmo = FMath::Max(0, MaxAmmo - CurrentAmmo);
+	AddAmount = FMath::Min(AddAmount, MissingAmmo);
+	CurrentAmmo += AddAmount;
+
+	/* Push reload request to client */
+	if (GetCurrentAmmoInClip() <= 0 && CanReload() &&
+		MyPawn->GetCurrentWeapon() == this)
+	{
+		ClientStartReload();
+	}
+
+	/* Return the unused ammo when weapon is filled up */
+	return FMath::Max(0, AddAmount - MissingAmmo);
+}
+
+
+void ASWeapon::SetAmmoCount(int32 NewTotalAmount)
+{
+	CurrentAmmo = FMath::Min(MaxAmmo, NewTotalAmount);
+	CurrentAmmoInClip = FMath::Min(MaxAmmoPerClip, CurrentAmmo);
+}
+
+
+int32 ASWeapon::GetCurrentAmmo() const
+{
+	return CurrentAmmo;
+}
+
+
+int32 ASWeapon::GetCurrentAmmoInClip() const
+{
+	return CurrentAmmoInClip;
+}
+
+
+int32 ASWeapon::GetMaxAmmoPerClip() const
+{
+	return MaxAmmoPerClip;
+}
+
+
+int32 ASWeapon::GetMaxAmmo() const
+{
+	return MaxAmmo;
+}
+
+
+void ASWeapon::StartReload(bool bFromReplication)
+{
+	/* Push the request to server */
+	if (!bFromReplication && Role < ROLE_Authority)
+	{
+		ServerStartReload();
+	}
+
+	/* If local execute requested or we are running on the server */
+	if (bFromReplication || CanReload())
+	{
+		bPendingReload = true;
+		DetermineWeaponState();
+
+		float AnimDuration = PlayWeaponAnimation(ReloadAnim);
+		if (AnimDuration <= 0.0f)
+		{
+			AnimDuration = NoAnimReloadDuration;
+		}
+
+		GetWorldTimerManager().SetTimer(TimerHandle_StopReload, this, &ASWeapon::StopSimulateReload, AnimDuration, false);
+		if (Role == ROLE_Authority)
+		{
+			GetWorldTimerManager().SetTimer(TimerHandle_ReloadWeapon, this, &ASWeapon::ReloadWeapon, FMath::Max(0.1f, AnimDuration - 0.1f), false);
+		}
+
+		if (MyPawn && MyPawn->IsLocallyControlled())
+		{
+			PlayWeaponSound(ReloadSound);
+		}
+	}
+}
+
+
+void ASWeapon::StopSimulateReload()
+{
+	if (CurrentState == EWeaponState::Reloading)
+	{
+		bPendingReload = false;
+		DetermineWeaponState();
+		StopWeaponAnimation(ReloadAnim);
+	}
+}
+
+
+void ASWeapon::ReloadWeapon()
+{
+	int32 ClipDelta = FMath::Min(MaxAmmoPerClip - CurrentAmmoInClip, CurrentAmmo - CurrentAmmoInClip);
+
+	if (ClipDelta > 0)
+	{
+		CurrentAmmoInClip += ClipDelta;
+	}
+}
+
+
+bool ASWeapon::CanReload()
+{
+	bool bCanReload = (!MyPawn || MyPawn->CanReload());
+	bool bGotAmmo = (CurrentAmmoInClip < MaxAmmoPerClip) && ((CurrentAmmo - CurrentAmmoInClip) > 0);
+	bool bStateOKToReload = ((CurrentState == EWeaponState::Idle) || (CurrentState == EWeaponState::Firing));
+	return (bCanReload && bGotAmmo && bStateOKToReload);
+}
+
+
+void ASWeapon::OnRep_Reload()
+{
+	if (bPendingReload)
+	{
+		/* By passing true we do not push back to server and execute it locally */
+		StartReload(true);
+	}
+	else
+	{
+		StopSimulateReload();
+	}
+}
+
+
+void ASWeapon::ServerStartReload_Implementation()
+{
+	StartReload();
+}
+
+
+bool ASWeapon::ServerStartReload_Validate()
+{
+	return true;
+}
+
+
+void ASWeapon::ServerStopReload_Implementation()
+{
+	StopSimulateReload();
+}
+
+
+bool ASWeapon::ServerStopReload_Validate()
+{
+	return true;
+}
+
+
+void ASWeapon::ClientStartReload_Implementation()
+{
+	StartReload();
+}

@@ -156,6 +156,8 @@ void ASCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponen
 	InputComponent->BindAction("Fire", IE_Pressed, this, &ASCharacter::OnStartFire);
 	InputComponent->BindAction("Fire", IE_Released, this, &ASCharacter::OnStopFire);
 
+	InputComponent->BindAction("Reload", IE_Pressed, this, &ASCharacter::OnReload);
+
 	InputComponent->BindAction("NextWeapon", IE_Pressed, this, &ASCharacter::OnNextWeapon);
 	InputComponent->BindAction("PrevWeapon", IE_Pressed, this, &ASCharacter::OnPrevWeapon);
 
@@ -538,6 +540,12 @@ bool ASCharacter::CanFire() const
 }
 
 
+bool ASCharacter::CanReload() const
+{
+	return IsAlive();
+}
+
+
 bool ASCharacter::IsFiring() const
 {
 	return CurrentWeapon && CurrentWeapon->GetCurrentState() == EWeaponState::Firing;
@@ -645,6 +653,12 @@ void ASCharacter::OnRep_CurrentWeapon(ASWeapon* LastWeapon)
 }
 
 
+ASWeapon* ASCharacter::GetCurrentWeapon() const
+{
+	return CurrentWeapon;
+}
+
+
 void ASCharacter::EquipWeapon(ASWeapon* Weapon)
 {
 	if (Weapon)
@@ -722,6 +736,15 @@ void ASCharacter::PawnClientRestart()
 
 	/* Equip the weapon on the client side. */
 	SetCurrentWeapon(CurrentWeapon);
+}
+
+
+void ASCharacter::OnReload()
+{
+	if (CurrentWeapon)
+	{
+		CurrentWeapon->StartReload();
+	}
 }
 
 

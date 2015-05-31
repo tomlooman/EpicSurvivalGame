@@ -255,6 +255,8 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Inventory")
 	float DropItemDistance;
 
+	void OnReload();
+
 	/* Mapped to input */
 	void OnStartFire();
 
@@ -291,11 +293,16 @@ private:
 
 public:
 
+	UFUNCTION(BlueprintCallable, Category = "Weapon")
+	ASWeapon* GetCurrentWeapon() const;
+
 	/* Check if the specified slot is available, limited to one item per type (primary, secondary) */
 	bool WeaponSlotAvailable(EInventorySlot CheckSlot);
 
 	/* Check if pawn is allowed to fire weapon */
 	bool CanFire() const;
+
+	bool CanReload() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Weapon")
 	bool IsFiring() const;
