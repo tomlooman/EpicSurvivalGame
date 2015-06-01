@@ -36,3 +36,10 @@ Introduces a gameloop with enemies, items, scoring and a time of day.
 - [Documentation page](https://wiki.unrealengine.com/Survival_Sample_Game:_Section_4)
 - [Forum Thread](https://forums.unrealengine.com/showthread.php?69308-Announcing-Section-4-for-Survival-Game-Setting-up-the-survival-game-loop)
 - [Branch on Github](https://github.com/tomlooman/EpicSurvivalGameSeries/tree/Section-4)
+
+### Section 5
+Introduces the ability to carry around objects like barriers and discusses game networking.
+
+- [Documentation page](https://wiki.unrealengine.com/Survival_Sample_Game:_Section_5)
+- [Forum Thread](https://forums.unrealengine.com/showthread.php?71057-Announcing-Section-5-of-Survival-Game-Networking-your-game)
+- [Branch on Github](https://github.com/tomlooman/EpicSurvivalGameSeries/tree/Section-5)
