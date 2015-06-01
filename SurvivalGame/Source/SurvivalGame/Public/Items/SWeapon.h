@@ -41,7 +41,7 @@ class SURVIVALGAME_API ASWeapon : public AActor
 
 	bool bPendingEquip;
 
-	FTimerHandle HandleFiringTimerHandle;
+	FTimerHandle TimerHandle_HandleFiring;
 
 	FTimerHandle EquipFinishedTimerHandle;
 

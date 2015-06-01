@@ -52,6 +52,11 @@ private:
 
 public:
 
+	FORCEINLINE UCameraComponent* GetCameraComponent()
+	{
+		return CameraComp;
+	}
+
 	/* MakeNoise hook to trigger AI noise emitting (Loudness between 0.0-1.0)  */
 	UFUNCTION(BlueprintCallable, Category = "AI")
 	void MakePawnNoise(float Loudness);

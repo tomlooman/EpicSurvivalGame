@@ -355,29 +355,16 @@ void ASCharacter::OnLanded(const FHitResult& Hit)
 	SetIsJumping(false);
 }
 
+
 void ASCharacter::ServerSetIsJumping_Implementation(bool NewJumping)
 {
 	SetIsJumping(NewJumping);
 }
 
+
 bool ASCharacter::ServerSetIsJumping_Validate(bool NewJumping)
 {
 	return true;
-}
-
-void ASCharacter::SetSprinting(bool NewSprinting)
-{
-	bWantsToRun = NewSprinting;
-
-	if (bIsCrouched)
-		UnCrouch();
-
-	// TODO: Stop weapon fire
-
-	if (Role < ROLE_Authority)
-	{
-		ServerSetSprinting(NewSprinting);
-	}
 }
 
 
@@ -395,6 +382,27 @@ void ASCharacter::OnStartSprinting()
 void ASCharacter::OnStopSprinting()
 {
 	SetSprinting(false);
+}
+
+
+void ASCharacter::SetSprinting(bool NewSprinting)
+{
+	bWantsToRun = NewSprinting;
+
+	if (bIsCrouched)
+	{
+		UnCrouch();
+	}
+
+	if (bWantsToRun)
+	{
+		StopWeaponFire();
+	}
+
+	if (Role < ROLE_Authority)
+	{
+		ServerSetSprinting(NewSprinting);
+	}
 }
 
 
@@ -450,6 +458,11 @@ void ASCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifet
 
 void ASCharacter::OnCrouchToggle()
 {
+	if (IsSprinting())
+	{
+		SetSprinting(false);
+	}
+
 	// If we are crouching then CanCrouch will return false. If we cannot crouch then calling Crouch() wont do anything
 	if (CanCrouch())
 	{

@@ -17,6 +17,7 @@ class SURVIVALGAME_API ASPlayerController : public APlayerController
 	ASPlayerController(const FObjectInitializer& ObjectInitializer);
 
 	/* Flag to respawn or start spectating upon death */
+	UPROPERTY(EditDefaultsOnly, Category = "Spawning")
 	bool bRespawnImmediately;
 	
 	/* Respawn or start spectating after dying */

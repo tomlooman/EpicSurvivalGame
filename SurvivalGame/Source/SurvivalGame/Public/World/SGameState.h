@@ -13,7 +13,15 @@ class SURVIVALGAME_API ASGameState : public AGameState
 {
 	GENERATED_BODY()
 
+	/* Total accumulated score from all players  */
+	int32 TotalScore;
+
 public:
+
+	UFUNCTION(BlueprintCallable, Category = "Score")
+	int32 GetTotalScore();
+
+	void AddScore(int32 Score);
 
 	ASGameState(const class FObjectInitializer& ObjectInitializer);
 

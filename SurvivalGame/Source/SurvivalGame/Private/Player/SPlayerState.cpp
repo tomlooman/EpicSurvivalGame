@@ -1,6 +1,7 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
 #include "SurvivalGame.h"
+#include "SGameState.h"
 #include "SPlayerState.h"
 
 
@@ -35,6 +36,13 @@ void ASPlayerState::AddDeath()
 void ASPlayerState::ScorePoints(int32 Points)
 {
 	Score += Points;
+
+	/* Add the score to the global score count */
+	ASGameState* GS = Cast<ASGameState>(GetWorld()->GameState);
+	if (GS)
+	{
+		GS->AddScore(Points);
+	}
 }
 
 

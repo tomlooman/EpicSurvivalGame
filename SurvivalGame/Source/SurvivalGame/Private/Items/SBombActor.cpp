@@ -26,7 +26,7 @@ ASBombActor::ASBombActor(const class FObjectInitializer& ObjectInitializer)
 	MeshComp->SetSimulatePhysics(true);
 
 	MaxFuzeTime = 3.0f;
-	ExplosionDamage = 100;
+	ExplosionDamage = 200;
 	ExplosionRadius = 1024;
 
 	SetReplicates(true);
@@ -79,6 +79,8 @@ void ASBombActor::OnExplode()
 	// Apply damage to player, enemies and environmental objects
 	TArray<AActor*> IgnoreActors;
 	UGameplayStatics::ApplyRadialDamage(this, ExplosionDamage, GetActorLocation(), ExplosionRadius, DamageType, IgnoreActors, this, nullptr);
+
+	DrawDebugSphere(GetWorld(), GetActorLocation(), ExplosionRadius, 32, FColor::Red, false, 1.5f);
 }
 
 
@@ -105,7 +107,7 @@ void ASBombActor::SimulateExplosion_Implementation()
 
 	MeshComp->SetVisibility(false, false);
 
-	// Active all explosion effects
+	// Activate all explosion effects
 	if (ExplosionSound)
 	{
 		AudioComp->SetSound(ExplosionSound);
