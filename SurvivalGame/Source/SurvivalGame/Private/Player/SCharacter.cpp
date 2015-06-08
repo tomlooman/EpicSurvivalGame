@@ -51,7 +51,7 @@ ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
 
 	Health = 100;
 
-	IncrementHungerAmount = 1.0f;
+	IncrementHungerAmount = 0.5f;
 	IncrementHungerInterval = 5.0f;
 	CriticalHungerThreshold = 90;
 	HungerDamagePerInterval = 1.0f;

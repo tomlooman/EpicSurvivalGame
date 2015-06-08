@@ -27,12 +27,6 @@ class SURVIVALGAME_API ASCharacter : public ASBaseCharacter
 	/* Stop playing all montages */
 	void StopAllAnimMontages();
 
-	UFUNCTION(BlueprintCallable, Category = "AI")
-	float GetLastNoiseLoudness();
-
-	UFUNCTION(BlueprintCallable, Category = "AI")
-	float GetLastMakeNoiseTime();
-
 	float LastNoiseLoudness;
 
 	float LastMakeNoiseTime;
@@ -51,6 +45,12 @@ private:
 	class USCarryObjectComponent* CarriedObjectComp;
 
 public:
+
+	UFUNCTION(BlueprintCallable, Category = "AI")
+	float GetLastNoiseLoudness();
+
+	UFUNCTION(BlueprintCallable, Category = "AI")
+	float GetLastMakeNoiseTime();
 
 	FORCEINLINE UCameraComponent* GetCameraComponent()
 	{

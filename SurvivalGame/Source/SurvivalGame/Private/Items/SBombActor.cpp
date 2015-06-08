@@ -81,6 +81,9 @@ void ASBombActor::OnExplode()
 	UGameplayStatics::ApplyRadialDamage(this, ExplosionDamage, GetActorLocation(), ExplosionRadius, DamageType, IgnoreActors, this, nullptr);
 
 	DrawDebugSphere(GetWorld(), GetActorLocation(), ExplosionRadius, 32, FColor::Red, false, 1.5f);
+
+	/* Allow clients to show FX before deleting */
+	SetLifeSpan(2.0f);
 }
 
 

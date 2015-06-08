@@ -31,6 +31,8 @@ void ASTimeOfDayManager::BeginPlay()
 		OriginalSunBrightness = PrimarySunLight->GetBrightness();
 		TargetSunBrightness = OriginalSunBrightness;
 	}
+
+	PlayAmbientLoop();
 }
 
 
@@ -71,26 +73,21 @@ void ASTimeOfDayManager::Tick(float DeltaSeconds)
 		bool CurrentNightState = MyGameState->GetIsNight();
 		if (CurrentNightState != LastNightState)
 		{
-			AmbientAudioComp->Stop();
-
 			if (CurrentNightState)
 			{
 				// Play night started cue (position is irrelevant for non spatialized & attenuated sounds)
 				UGameplayStatics::PlaySoundAtLocation(this, SoundNightStarted, GetActorLocation());
-				AmbientAudioComp->SetSound(AmbientNight);
-
 				TargetSunBrightness = 0.01f;
 			}
 			else
 			{
 				// Play daytime started cue (position is irrelevant for non spatialized & attenuated sounds)
 				UGameplayStatics::PlaySoundAtLocation(this, SoundNightEnded, GetActorLocation());
-				AmbientAudioComp->SetSound(AmbientDaytime);
-
 				TargetSunBrightness = OriginalSunBrightness;
 			}
 
-			AmbientAudioComp->Play();
+			/* Change to a new ambient loop */
+			PlayAmbientLoop();
 		}
 
 		/* Update sun brightness to transition between day and night
@@ -120,4 +117,25 @@ void ASTimeOfDayManager::UpdateSkylight()
 			SkyLightActor->GetLightComponent()->Intensity = FMath::Lerp(0.1, 1.0, Alpha);
 		}
 	}
+}
+
+
+void ASTimeOfDayManager::PlayAmbientLoop()
+{
+	AmbientAudioComp->Stop();
+
+	ASGameState* MyGameState = Cast<ASGameState>(GetWorld()->GetGameState());
+	if (MyGameState)
+	{
+		if (MyGameState->GetIsNight())
+		{
+			AmbientAudioComp->SetSound(AmbientNight);
+		}
+		else
+		{
+			AmbientAudioComp->SetSound(AmbientDaytime);
+		}
+	}
+
+	AmbientAudioComp->Play();
 }

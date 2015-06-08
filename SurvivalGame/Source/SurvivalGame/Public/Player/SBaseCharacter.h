@@ -18,6 +18,12 @@ public:
 	// Sets default values for this character's properties
 	ASBaseCharacter(const class FObjectInitializer& ObjectInitializer);
 
+	UPROPERTY(EditDefaultsOnly, Category = "Sound")
+	USoundCue* SoundTakeHit;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Sound")
+	USoundCue* SoundDeath;
+
 	/************************************************************************/
 	/* Health                                                               */
 	/************************************************************************/

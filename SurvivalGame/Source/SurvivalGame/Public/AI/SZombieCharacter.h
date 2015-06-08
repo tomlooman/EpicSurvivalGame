@@ -50,6 +50,18 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Attacking")
 	float PunchDamage;
 
+	UAudioComponent* PlayCharacterSound(USoundCue* CueToPlay);
+
+	UPROPERTY(EditDefaultsOnly, Category = "Sound")
+	USoundCue* SoundPlayerNoticed;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Sound")
+	USoundCue* SoundHunting;
+
+	UAudioComponent* AudioCompHunting;
+
+	virtual void PlayHit(float DamageTaken, struct FDamageEvent const& DamageEvent, APawn* PawnInstigator, AActor* DamageCauser, bool bKilled) override;
+
 public:
 
 	ASZombieCharacter(const class FObjectInitializer& ObjectInitializer);

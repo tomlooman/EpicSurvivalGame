@@ -68,11 +68,28 @@ bool ASWeaponInstant::ShouldDealDamage(AActor* TestActor) const
 
 void ASWeaponInstant::DealDamage(const FHitResult& Impact, const FVector& ShootDir)
 {
+	float ActualHitDamage = HitDamage;
+
+	/* Handle special damage location on the zombie body (types are setup in the Physics Asset of the zombie */
+	USDamageType* DmgType = Cast<USDamageType>(DamageType->GetDefaultObject());
+	UPhysicalMaterial * PhysMat = Impact.PhysMaterial.Get();
+	if (PhysMat && DmgType)
+	{
+		if (PhysMat->SurfaceType == SURFACE_ZOMBIEHEAD)
+		{		
+			ActualHitDamage *= DmgType->GetHeadDamageModifier();	
+		}
+		else if (PhysMat->SurfaceType == SURFACE_ZOMBIELIMB)
+		{
+			ActualHitDamage *= DmgType->GetLimbDamageModifier();		
+		}
+	}
+
 	FPointDamageEvent PointDmg;
 	PointDmg.DamageTypeClass = DamageType;
 	PointDmg.HitInfo = Impact;
 	PointDmg.ShotDirection = ShootDir;
-	PointDmg.Damage = HitDamage;
+	PointDmg.Damage = ActualHitDamage;
 
 	Impact.GetActor()->TakeDamage(PointDmg.Damage, PointDmg, MyPawn->Controller, this);
 }

@@ -28,9 +28,6 @@ class SURVIVALGAME_API ASZombieAIController : public AAIController
 	FName TargetEnemyKeyName;
 
 	UPROPERTY(EditDefaultsOnly, Category = "AI")
-	FName TargetLocationKeyName;
-
-	UPROPERTY(EditDefaultsOnly, Category = "AI")
 	FName PatrolLocationKeyName;
 
 	UPROPERTY(EditDefaultsOnly, Category = "AI")
@@ -44,8 +41,6 @@ public:
 	ASBotWaypoint* GetWaypoint();
 
 	ASBaseCharacter* GetTargetEnemy();
-
-	void SetMoveToTarget(APawn* Pawn);
 
 	void SetWaypoint(ASBotWaypoint* NewWaypoint);
 

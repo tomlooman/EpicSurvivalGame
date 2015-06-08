@@ -57,7 +57,9 @@ UParticleSystem* ASImpactEffect::GetImpactFX(EPhysicalSurface SurfaceType) const
 		return DefaultFX;
 	case SURFACE_FLESH:
 		return PlayerFleshFX;
-	case SURFACE_ZOMBIE:
+	case SURFACE_ZOMBIEBODY:
+	case SURFACE_ZOMBIEHEAD:
+	case SURFACE_ZOMBIELIMB:
 		return ZombieFleshFX;
 	default:
 		return nullptr;
@@ -73,7 +75,9 @@ USoundCue* ASImpactEffect::GetImpactSound(EPhysicalSurface SurfaceType) const
 		return DefaultSound;
 	case SURFACE_FLESH:
 		return PlayerFleshSound;
-	case SURFACE_ZOMBIE:
+	case SURFACE_ZOMBIEBODY:
+	case SURFACE_ZOMBIEHEAD:
+	case SURFACE_ZOMBIELIMB:
 		return ZombieFleshSound;
 	default:
 		return nullptr;

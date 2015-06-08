@@ -32,6 +32,9 @@ public:
 
 	void UpdateSkylight();
 
+	/* Play the ambient loop for the current time state */
+	void PlayAmbientLoop();
+
 	/* Primary sun of the level. Assigned in Blueprint during BeginPlay (BlueprintReadWrite is required as tag instead of EditDefaultsOnly) */
 	UPROPERTY(BlueprintReadWrite, Category = "DayNight")
 	ADirectionalLight* PrimarySunLight;

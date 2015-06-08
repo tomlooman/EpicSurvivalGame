@@ -197,6 +197,18 @@ void ASBaseCharacter::PlayHit(float DamageTaken, struct FDamageEvent const& Dama
 		ReplicateHit(DamageTaken, DamageEvent, PawnInstigator, DamageCauser, bKilled);
 	}
 
+	if (GetNetMode() != NM_DedicatedServer)
+	{
+		if (bKilled && SoundDeath)
+		{
+			UGameplayStatics::PlaySoundAttached(SoundDeath, RootComponent, NAME_None, FVector::ZeroVector, EAttachLocation::SnapToTarget, true);
+		}
+		else if (SoundTakeHit)
+		{
+			UGameplayStatics::PlaySoundAttached(SoundTakeHit, RootComponent, NAME_None, FVector::ZeroVector, EAttachLocation::SnapToTarget, true);
+		}
+	}
+
 	/* Apply damage momentum specific to the DamageType */
 	if (DamageTaken > 0.f && DamageEvent.DamageTypeClass != nullptr)
 	{

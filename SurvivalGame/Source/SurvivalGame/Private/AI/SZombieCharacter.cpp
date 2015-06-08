@@ -35,7 +35,7 @@ ASZombieCharacter::ASZombieCharacter(const class FObjectInitializer& ObjectIniti
 	GetMovementComponent()->NavAgentProps.AgentRadius = 42;
 	GetMovementComponent()->NavAgentProps.AgentHeight = 192;
 
-	Health = 75;
+	Health = 100;
 	PunchDamage = 10.0f;
 
 	/* By default we will not let the AI patrol, we can override this value per-instance. */
@@ -81,6 +81,12 @@ void ASZombieCharacter::Tick(float DeltaSeconds)
 			bSensedTarget = false;
 			/* Reset */
 			AIController->SetTargetEnemy(nullptr);
+
+			/* Stop playing the hunting sound */
+			if (AudioCompHunting)
+			{
+				AudioCompHunting->FadeOut(0.5f, 0.0f);
+			}
 		}
 	}
 }
@@ -88,6 +94,18 @@ void ASZombieCharacter::Tick(float DeltaSeconds)
 
 void ASZombieCharacter::OnSeePlayer(APawn* Pawn)
 {
+	if (!IsAlive())
+	{
+		return;
+	}
+
+	if (!bSensedTarget)
+	{
+		PlayCharacterSound(SoundPlayerNoticed);
+
+		AudioCompHunting = PlayCharacterSound(SoundHunting);
+	}
+
 	/* Keep track of the time the player was last sensed in order to clear the target */
 	LastSeenTime = GetWorld()->GetTimeSeconds();
 	bSensedTarget = true;
@@ -96,20 +114,32 @@ void ASZombieCharacter::OnSeePlayer(APawn* Pawn)
 	ASBaseCharacter* SensedPawn = Cast<ASBaseCharacter>(Pawn);
 	if (AIController && SensedPawn->IsAlive())
 	{
-		AIController->SetMoveToTarget(SensedPawn);
+		AIController->SetTargetEnemy(SensedPawn);
 	}
 }
 
 
 void ASZombieCharacter::OnHearNoise(APawn* PawnInstigator, const FVector& Location, float Volume)
 {
+	if (!IsAlive())
+	{
+		return;
+	}
+
+	if (!bSensedTarget)
+	{
+		PlayCharacterSound(SoundPlayerNoticed);
+
+		AudioCompHunting = PlayCharacterSound(SoundHunting);
+	}
+
 	bSensedTarget = true;
 	LastHeardTime = GetWorld()->GetTimeSeconds();
 
 	ASZombieAIController* AIController = Cast<ASZombieAIController>(GetController());
 	if (AIController)
 	{
-		AIController->SetMoveToTarget(PawnInstigator);
+		AIController->SetTargetEnemy(PawnInstigator);
 	}
 }
 
@@ -120,8 +150,6 @@ void ASZombieCharacter::PunchHit(AActor* HitActor)
 	{
 		FPointDamageEvent PointDmg;
 		PointDmg.DamageTypeClass = PunchDamageType;
-		//PointDmg.HitInfo = Impact;
-		//PointDmg.ShotDirection = ShootDir;
 		PointDmg.Damage = PunchDamage;
 
 		HitActor->TakeDamage(PointDmg.Damage, PointDmg, GetController(), this);
@@ -137,5 +165,23 @@ void ASZombieCharacter::SetBotType(EBotBehaviorType NewType)
 	if (AIController)
 	{
 		AIController->SetBlackboardBotType(NewType);
+	}
+}
+
+
+UAudioComponent* ASZombieCharacter::PlayCharacterSound(USoundCue* CueToPlay)
+{
+	return UGameplayStatics::PlaySoundAttached(CueToPlay, RootComponent, NAME_None, FVector::ZeroVector, EAttachLocation::SnapToTarget, true);
+}
+
+
+void ASZombieCharacter::PlayHit(float DamageTaken, struct FDamageEvent const& DamageEvent, APawn* PawnInstigator, AActor* DamageCauser, bool bKilled)
+{
+	Super::PlayHit(DamageTaken, DamageEvent, PawnInstigator, DamageCauser, bKilled);
+
+	/* Stop playing the hunting sound */
+	if (AudioCompHunting && bKilled)
+	{
+		AudioCompHunting->Stop();
 	}
 }

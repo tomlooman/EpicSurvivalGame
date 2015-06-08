@@ -129,4 +129,5 @@ void ASGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifet
 
 	DOREPLIFETIME(ASGameState, ElapsedGameMinutes);
 	DOREPLIFETIME(ASGameState, bIsNight);
+	DOREPLIFETIME(ASGameState, TotalScore);
 }
