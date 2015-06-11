@@ -44,7 +44,7 @@ ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
 	CarriedObjectComp->AttachParent = GetRootComponent();
 
 	MaxUseDistance = 500;
-	DropItemDistance = 100;
+	DropWeaponMaxDistance = 100;
 	bHasNewFocus = true;
 	TargetingSpeedModifier = 0.5f;
 	SprintingSpeedModifier = 2.5f;
@@ -445,7 +445,6 @@ void ASCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifet
 	DOREPLIFETIME_CONDITION(ASCharacter, bIsJumping, COND_SkipOwner);
 
 	// Replicate to every client, no special condition required
-	DOREPLIFETIME(ASCharacter, Health);
 	DOREPLIFETIME(ASCharacter, Hunger);
 
 	DOREPLIFETIME(ASCharacter, LastTakeHitInfo);
@@ -497,22 +496,18 @@ float ASCharacter::GetMaxHunger() const
 }
 
 
-void ASCharacter::ConsumeFood(float AmountRestored)
+void ASCharacter::RestoreCondition(float HealthRestored, float HungerRestored)
 {
 	// Reduce Hunger, ensure we do not go outside of our bounds
-	Hunger = FMath::Clamp(Hunger - AmountRestored, 0.0f, GetMaxHunger());
+	Hunger = FMath::Clamp(Hunger - HungerRestored, 0.0f, GetMaxHunger());
 
 	// Restore Hitpoints
-	Health = FMath::Clamp(Health + AmountRestored, 0.0f, GetMaxHealth());
+	Health = FMath::Clamp(Health + HealthRestored, 0.0f, GetMaxHealth());
 
-	APlayerController* PC = Cast<APlayerController>(Controller);
+	ASPlayerController* PC = Cast<ASPlayerController>(Controller);
 	if (PC)
 	{
-		ASHUD* MyHUD = Cast<ASHUD>(PC->GetHUD());
-		if (MyHUD)
-		{
-			MyHUD->MessageReceived("Food consumed!");
-		}
+		PC->ClientMessageReceived("Energy Restored");
 	}
 }
 
@@ -616,8 +611,7 @@ void ASCharacter::DestroyInventory()
 		ASWeapon* Weapon = Inventory[i];
 		if (Weapon)
 		{
-			RemoveWeapon(Weapon);
-			Weapon->Destroy();
+			RemoveWeapon(Weapon, true);
 		}
 	}
 }
@@ -720,7 +714,7 @@ void ASCharacter::AddWeapon(class ASWeapon* Weapon)
 }
 
 
-void ASCharacter::RemoveWeapon(class ASWeapon* Weapon)
+void ASCharacter::RemoveWeapon(class ASWeapon* Weapon, bool bDestroy)
 {
 	if (Weapon && Role == ROLE_Authority)
 	{
@@ -738,7 +732,14 @@ void ASCharacter::RemoveWeapon(class ASWeapon* Weapon)
 
 		/* Clear reference to weapon if we have no items left in inventory */
 		if (Inventory.Num() == 0)
+		{
 			SetCurrentWeapon(nullptr);
+		}
+
+		if (bDestroy)
+		{
+			Weapon->Destroy();
+		}
 	}
 }
 
@@ -860,13 +861,41 @@ void ASCharacter::DropWeapon()
 		FRotator CamRot;
 
 		if (Controller == nullptr)
+		{
 			return;
-
-		/* Find a location to drop the item, slightly in front of the player. */
+		}		
+		
+		/* Find a location to drop the item, slightly in front of the player.
+			Perform ray trace to check for blocking objects or walls and to make sure we don't drop any item through the level mesh */
 		Controller->GetPlayerViewPoint(CamLoc, CamRot);
-		const FVector Direction = CamRot.Vector();
-		const FVector SpawnLocation = GetActorLocation() + (Direction * DropItemDistance);
+		FVector SpawnLocation;
+		FRotator SpawnRotation = CamRot;
 
+		const FVector Direction = CamRot.Vector();
+		const FVector TraceStart = GetActorLocation();
+		const FVector TraceEnd = GetActorLocation() + (Direction * DropWeaponMaxDistance);
+
+		/* Setup the trace params, we are only interested in finding a valid drop position */
+		FCollisionQueryParams TraceParams;
+		TraceParams.bTraceComplex = false;
+		TraceParams.bReturnPhysicalMaterial = false;
+		TraceParams.AddIgnoredActor(this);
+
+		FHitResult Hit;
+		GetWorld()->LineTraceSingle(Hit, TraceStart, TraceEnd, ECC_WorldDynamic, TraceParams);
+
+		/* Find farthest valid spawn location */
+		if (Hit.bBlockingHit)
+		{
+			/* Slightly move away from impacted object */
+			SpawnLocation = Hit.ImpactPoint + (Hit.ImpactNormal * 20);
+		}
+		else
+		{
+			SpawnLocation = TraceEnd;
+		}
+
+		/* Spawn the "dropped" weapon */
 		FActorSpawnParameters SpawnInfo;
 		SpawnInfo.bNoCollisionFail = true;
 		ASWeaponPickup* NewWeaponPickup = GetWorld()->SpawnActor<ASWeaponPickup>(CurrentWeapon->WeaponPickupClass, SpawnLocation, FRotator::ZeroRotator, SpawnInfo);
@@ -882,7 +911,7 @@ void ASCharacter::DropWeapon()
 			}
 		}
 
-		RemoveWeapon(CurrentWeapon);
+		RemoveWeapon(CurrentWeapon, true);
 	}
 }
 

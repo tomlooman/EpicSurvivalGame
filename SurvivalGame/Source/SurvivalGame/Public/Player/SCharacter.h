@@ -197,7 +197,7 @@ public:
 	float GetMaxHunger() const;
 
 	UFUNCTION(BlueprintCallable, Category = "PlayerCondition")
-	void ConsumeFood(float AmountRestored);
+	void RestoreCondition(float HealthRestored, float HungerRestored);
 
 	/* Increments hunger, used by timer. */
 	void IncrementHunger();
@@ -258,7 +258,7 @@ private:
 
 	/* Distance away from character when dropping inventory items. */
 	UPROPERTY(EditDefaultsOnly, Category = "Inventory")
-	float DropItemDistance;
+	float DropWeaponMaxDistance;
 
 	void OnReload();
 
@@ -338,7 +338,7 @@ public:
 
 	void AddWeapon(class ASWeapon* Weapon);
 
-	void RemoveWeapon(class ASWeapon* Weapon);
+	void RemoveWeapon(class ASWeapon* Weapon, bool bDestroy);
 
 	UPROPERTY(Transient, ReplicatedUsing = OnRep_CurrentWeapon)
 	class ASWeapon* CurrentWeapon;

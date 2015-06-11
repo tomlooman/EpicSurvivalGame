@@ -13,6 +13,8 @@ class SURVIVALGAME_API ASGameMode : public AGameMode
 {
 	GENERATED_BODY()
 
+protected:
+
 	ASGameMode(const FObjectInitializer& ObjectInitializer);
 
 	virtual void InitGameState();
@@ -21,23 +23,17 @@ class SURVIVALGAME_API ASGameMode : public AGameMode
 	
 	virtual void StartMatch();
 
-	/* End the match when all players are dead */
-	void CheckMatchEnd();
-
-	/* End the match, with a delay before returning to the main menu */
-	void FinishMatch();
+	virtual void OnNightEnded();
 
 	/* Can we deal damage to players in the same team */
 	UPROPERTY(EditDefaultsOnly, Category = "Rules")
 	bool bAllowFriendlyFireDamage;
 
-	/* Spawn at team player if any are alive */
-	UPROPERTY(EditDefaultsOnly, Category = "Rules")
-	bool bSpawnAtTeamPlayer;
-
 	/* Allow zombie spawns to be disabled (for debugging) */
 	UPROPERTY(EditDefaultsOnly, Category = "Debug")
 	bool bSpawnZombiesAtNight;
+
+	float BotSpawnInterval;
 
 	/* Called once on every new player that enters the gamemode */
 	virtual FString InitNewPlayer(class APlayerController* NewPlayerController, const TSharedPtr<FUniqueNetId>& UniqueId, const FString& Options, const FString& Portal /* = TEXT("") */);
@@ -61,17 +57,12 @@ class SURVIVALGAME_API ASGameMode : public AGameMode
 	/* Handles bot spawning (during nighttime) */
 	void SpawnBotHandler();
 
-	/* Spawn the player next to his living coop buddy instead of a PlayerStart */
-	virtual void RestartPlayer(class AController* NewPlayer) override;
-
 	/************************************************************************/
 	/* Player Spawning                                                      */
 	/************************************************************************/
 
-protected:
-
 	/* Don't allow spectating of bots */
-	virtual bool CanSpectate(APlayerController* Viewer, APlayerState* ViewTarget);
+	virtual bool CanSpectate(APlayerController* Viewer, APlayerState* ViewTarget) override;
 
 	virtual AActor* ChoosePlayerStart(AController* Player) override;
 
@@ -117,13 +108,4 @@ public:
 	/* Primary sun of the level. Assigned in Blueprint during BeginPlay (BlueprintReadWrite is required as tag instead of EditDefaultsOnly) */
 	UPROPERTY(BlueprintReadWrite, Category = "DayNight")
 	ADirectionalLight* PrimarySunLight;
-
-	/************************************************************************/
-	/* Scoring                                                              */
-	/************************************************************************/
-
-	/* Points awarded for surviving a night */
-	UPROPERTY(EditDefaultsOnly, Category = "Scoring")
-	int32 NightSurvivedScore;
-
 };

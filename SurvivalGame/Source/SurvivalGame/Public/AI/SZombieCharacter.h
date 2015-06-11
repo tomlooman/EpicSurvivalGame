@@ -58,6 +58,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Sound")
 	USoundCue* SoundHunting;
 
+	/* Plays the idle or hunting sound */
 	UAudioComponent* AudioCompHunting;
 
 	virtual void PlayHit(float DamageTaken, struct FDamageEvent const& DamageEvent, APawn* PawnInstigator, AActor* DamageCauser, bool bKilled) override;

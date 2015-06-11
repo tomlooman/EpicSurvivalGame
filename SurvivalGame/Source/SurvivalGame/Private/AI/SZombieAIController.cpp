@@ -47,6 +47,15 @@ void ASZombieAIController::Possess(class APawn* InPawn)
 }
 
 
+void ASZombieAIController::UnPossess()
+{
+	Super::UnPossess();
+
+	/* Stop any behavior running as we no longer have a pawn to control */
+	BehaviorComp->StopTree();
+}
+
+
 void ASZombieAIController::SetWaypoint(ASBotWaypoint* NewWaypoint)
 {
 	if (BlackboardComp)
@@ -94,4 +103,3 @@ void ASZombieAIController::SetBlackboardBotType(EBotBehaviorType NewType)
 		BlackboardComp->SetValueAsEnum(BotTypeKeyName, (uint8)NewType);
 	}
 }
-

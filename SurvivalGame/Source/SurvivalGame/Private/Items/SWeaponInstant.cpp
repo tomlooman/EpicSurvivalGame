@@ -4,6 +4,7 @@
 #include "SWeaponInstant.h"
 #include "SImpactEffect.h"
 #include "SPlayerController.h"
+#include "SDamageType.h"
 
 
 ASWeaponInstant::ASWeaponInstant(const class FObjectInitializer& PCIP)

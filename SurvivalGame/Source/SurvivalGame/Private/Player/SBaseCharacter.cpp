@@ -56,7 +56,24 @@ float ASBaseCharacter::TakeDamage(float Damage, struct FDamageEvent const& Damag
 		Health -= ActualDamage;
 		if (Health <= 0)
 		{
-			Die(ActualDamage, DamageEvent, EventInstigator, DamageCauser);
+			bool bCanDie = true;
+
+			/* Check the damagetype, always allow dying if the cast fails, otherwise check the property if player can die from damagetype */
+			if (DamageEvent.DamageTypeClass)
+			{
+				USDamageType* DmgType = Cast<USDamageType>(DamageEvent.DamageTypeClass->GetDefaultObject());
+				bCanDie = (DmgType == nullptr || (DmgType && DmgType->GetCanDieFrom()));
+			}
+
+			if (bCanDie)
+			{
+				Die(ActualDamage, DamageEvent, EventInstigator, DamageCauser);
+			}
+			else
+			{
+				/* Player cannot die from this damage type, set hitpoints to 1.0 */
+				Health = 1.0f;
+			}
 		}
 		else
 		{

@@ -10,6 +10,12 @@ class SURVIVALGAME_API ASTimeOfDayManager : public AActor
 {
 	GENERATED_BODY()
 
+protected:
+
+	UAudioComponent* AmbientAudioComp;
+
+	ASTimeOfDayManager();
+
 	/* Cached bool of bIsNight to determine when we entered/left the night */
 	bool LastNightState;
 
@@ -19,12 +25,7 @@ class SURVIVALGAME_API ASTimeOfDayManager : public AActor
 	/* Target brightness to lerp towards */
 	float TargetSunBrightness;
 
-protected:
-
-	UAudioComponent* AmbientAudioComp;
-
 public:	
-	ASTimeOfDayManager();
 
 	virtual void BeginPlay() override;
 
