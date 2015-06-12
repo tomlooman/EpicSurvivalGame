@@ -11,7 +11,6 @@
 #include "SSpectatorPawn.h"
 #include "SZombieAIController.h"
 #include "SZombieCharacter.h"
-#include "SCharacter.h"
 #include "SPlayerStart.h"
 
 
@@ -48,6 +47,15 @@ void ASGameMode::InitGameState()
 }
 
 
+void ASGameMode::PreInitializeComponents()
+{
+	Super::PreInitializeComponents();
+
+	/* Set timer to run every second */
+	GetWorldTimerManager().SetTimer(TimerHandle_DefaultTimer, this, &ASGameMode::DefaultTimer, GetWorldSettings()->GetEffectiveTimeDilation(), true);
+}
+
+
 void ASGameMode::StartMatch()
 {
 	if (!HasMatchStarted())
@@ -62,9 +70,6 @@ void ASGameMode::StartMatch()
 
 void ASGameMode::DefaultTimer()
 {
-	/* This function is called every 1 second. */
-	Super::DefaultTimer();
-
 	/* Immediately start the match while playing in editor */
 	//if (GetWorld()->IsPlayInEditor())
 	{
@@ -177,15 +182,21 @@ bool ASGameMode::ShouldSpawnAtStartSpot(AController* Player)
 }
 
 
-AActor* ASGameMode::ChoosePlayerStart(AController* Player)
+AActor* ASGameMode::ChoosePlayerStart_Implementation(AController* Player)
 {
 	TArray<APlayerStart*> PreferredSpawns;
 	TArray<APlayerStart*> FallbackSpawns;
 
+	/* Get all playerstart objects in level */
+	TArray<AActor*> PlayerStarts;
+	UGameplayStatics::GetAllActorsOfClass(this, APlayerStart::StaticClass(), PlayerStarts);
+
+	/* Split the player starts into two arrays for preferred and fallback spawns */
 	for (int32 i = 0; i < PlayerStarts.Num(); i++)
 	{
-		APlayerStart* TestStart = PlayerStarts[i];
-		if (IsSpawnpointAllowed(TestStart, Player))
+		APlayerStart* TestStart = Cast<APlayerStart>(PlayerStarts[i]);
+
+		if (TestStart && IsSpawnpointAllowed(TestStart, Player))
 		{
 			if (IsSpawnpointPreferred(TestStart, Player))
 			{
@@ -196,8 +207,10 @@ AActor* ASGameMode::ChoosePlayerStart(AController* Player)
 				FallbackSpawns.Add(TestStart);
 			}
 		}
+
 	}
 
+	/* Pick a random spawnpoint from the filtered spawn points */
 	APlayerStart* BestStart = nullptr;
 	if (PreferredSpawns.Num() > 0)
 	{
@@ -208,6 +221,7 @@ AActor* ASGameMode::ChoosePlayerStart(AController* Player)
 		BestStart = FallbackSpawns[FMath::RandHelper(FallbackSpawns.Num())];
 	}
 
+	/* If we failed to find any (so BestStart is nullptr) fall back to the base code */
 	return BestStart ? BestStart : Super::ChoosePlayerStart(Player);
 }
 
@@ -274,18 +288,18 @@ void ASGameMode::SpawnNewBot()
 }
 
 /* Used by RestartPlayer() to determine the pawn to create and possess when a bot or player spawns */
-UClass* ASGameMode::GetDefaultPawnClassForController(AController* InController)
+UClass* ASGameMode::GetDefaultPawnClassForController_Implementation(AController* InController)
 {
 	if (Cast<ASZombieAIController>(InController))
 	{
 		return BotPawnClass;
 	}
 
-	return Super::GetDefaultPawnClassForController(InController);
+	return Super::GetDefaultPawnClassForController_Implementation(InController);
 }
 
 
-bool ASGameMode::CanSpectate(APlayerController* Viewer, APlayerState* ViewTarget)
+bool ASGameMode::CanSpectate_Implementation(APlayerController* Viewer, APlayerState* ViewTarget)
 {
 	/* Don't allow spectating of other non-player bots */
 	return (ViewTarget && !ViewTarget->bIsABot);

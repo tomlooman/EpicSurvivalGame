@@ -17,13 +17,18 @@ protected:
 
 	ASGameMode(const FObjectInitializer& ObjectInitializer);
 
+	virtual void PreInitializeComponents() override;
+
 	virtual void InitGameState();
 
-	virtual void DefaultTimer() override;
+	virtual void DefaultTimer();
 	
 	virtual void StartMatch();
 
 	virtual void OnNightEnded();
+
+	/* Handle for efficient management of DefaultTimer timer */
+	FTimerHandle TimerHandle_DefaultTimer;
 
 	/* Can we deal damage to players in the same team */
 	UPROPERTY(EditDefaultsOnly, Category = "Rules")
@@ -62,9 +67,9 @@ protected:
 	/************************************************************************/
 
 	/* Don't allow spectating of bots */
-	virtual bool CanSpectate(APlayerController* Viewer, APlayerState* ViewTarget) override;
+	virtual bool CanSpectate_Implementation(APlayerController* Viewer, APlayerState* ViewTarget) override;
 
-	virtual AActor* ChoosePlayerStart(AController* Player) override;
+	virtual AActor* ChoosePlayerStart_Implementation(AController* Player) override;
 
 	/* Always pick a random location */
 	virtual bool ShouldSpawnAtStartSpot(AController* Player) override;
@@ -74,7 +79,7 @@ protected:
 	virtual bool IsSpawnpointPreferred(APlayerStart* SpawnPoint, AController* Controller);
 
 	/** returns default pawn class for given controller */
-	virtual UClass* GetDefaultPawnClassForController(AController* InController) override;
+	virtual UClass* GetDefaultPawnClassForController_Implementation(AController* InController) override;
 
 	/************************************************************************/
 	/* Damage & Killing                                                     */

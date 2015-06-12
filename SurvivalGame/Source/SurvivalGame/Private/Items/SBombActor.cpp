@@ -27,7 +27,7 @@ ASBombActor::ASBombActor(const class FObjectInitializer& ObjectInitializer)
 
 	MaxFuzeTime = 3.0f;
 	ExplosionDamage = 200;
-	ExplosionRadius = 1024;
+	ExplosionRadius = 600;
 
 	SetReplicates(true);
 	bReplicateMovement = true;
@@ -80,7 +80,7 @@ void ASBombActor::OnExplode()
 	TArray<AActor*> IgnoreActors;
 	UGameplayStatics::ApplyRadialDamage(this, ExplosionDamage, GetActorLocation(), ExplosionRadius, DamageType, IgnoreActors, this, nullptr);
 
-	DrawDebugSphere(GetWorld(), GetActorLocation(), ExplosionRadius, 32, FColor::Red, false, 1.5f);
+	//DrawDebugSphere(GetWorld(), GetActorLocation(), ExplosionRadius, 32, FColor::Red, false, 1.5f);
 
 	/* Allow clients to show FX before deleting */
 	SetLifeSpan(2.0f);

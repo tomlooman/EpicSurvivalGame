@@ -27,7 +27,7 @@ EBTNodeResult::Type UBTTask_FindPatrolLocation::ExecuteTask(UBehaviorTreeCompone
 		/* Find a position that is close to the waypoint. We add a small random to this position to give build predictable patrol patterns  */
 		const float SearchRadius = 200.0f;
 		const FVector SearchOrigin = MyWaypoint->GetActorLocation();
-		const FVector Loc = UNavigationSystem::GetRandomPointInRadius(MyController, SearchOrigin, SearchRadius);
+		const FVector Loc = UNavigationSystem::GetRandomPointInNavigableRadius(MyController, SearchOrigin, SearchRadius);
 		if (Loc != FVector::ZeroVector)
 		{
 			/* The selected key should be "PatrolLocation" in the BehaviorTree setup */

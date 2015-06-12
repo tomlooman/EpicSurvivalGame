@@ -318,7 +318,7 @@ FHitResult ASWeapon::WeaponTrace(const FVector& TraceFrom, const FVector& TraceT
 	TraceParams.bReturnPhysicalMaterial = true;
 
 	FHitResult Hit(ForceInit);
-	GetWorld()->LineTraceSingle(Hit, TraceFrom, TraceTo, COLLISION_WEAPON, TraceParams);
+	GetWorld()->LineTraceSingleByChannel(Hit, TraceFrom, TraceTo, COLLISION_WEAPON, TraceParams);
 
 	return Hit;
 }

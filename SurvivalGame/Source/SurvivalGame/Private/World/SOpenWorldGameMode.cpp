@@ -15,7 +15,7 @@ ASOpenWorldGameMode::ASOpenWorldGameMode(const FObjectInitializer& ObjectInitial
 }
 
 
-bool ASOpenWorldGameMode::CanSpectate(APlayerController* Viewer, APlayerState* ViewTarget)
+bool ASOpenWorldGameMode::CanSpectate_Implementation(APlayerController* Viewer, APlayerState* ViewTarget)
 {
 	return false;
 }

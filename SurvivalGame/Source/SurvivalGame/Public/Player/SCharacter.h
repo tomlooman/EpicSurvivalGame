@@ -104,7 +104,7 @@ public:
 
 	bool ServerSetIsJumping_Validate(bool NewJumping);
 
-	void OnLanded(const FHitResult& Hit) override;
+	virtual void OnMovementModeChanged(EMovementMode PrevMovementMode, uint8 PreviousCustomMode = 0) override;
 
 	/* Client/local call to update sprint state  */
 	void SetSprinting(bool NewSprinting);

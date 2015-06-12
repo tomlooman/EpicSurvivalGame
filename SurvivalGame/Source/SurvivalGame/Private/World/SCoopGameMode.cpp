@@ -56,7 +56,7 @@ void ASCoopGameMode::RestartPlayer(class AController* NewPlayer)
 	}
 
 	/* Get a point on the nav mesh near the other player */
-	FVector StartLocation = UNavigationSystem::GetRandomPointInRadius(NewPlayer, SpawnOrigin, 250.0f);
+	FVector StartLocation = UNavigationSystem::GetRandomPointInNavigableRadius(NewPlayer, SpawnOrigin, 250.0f);
 
 	// Try to create a pawn to use of the default class for this player
 	if (NewPlayer->GetPawn() == nullptr && GetDefaultPawnClassForController(NewPlayer) != nullptr)
