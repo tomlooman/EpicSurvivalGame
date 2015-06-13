@@ -159,6 +159,16 @@ void ASBaseCharacter::OnDeath(float KillingDamage, FDamageEvent const& DamageEve
 	SetActorEnableCollision(true);
 
 	SetRagdollPhysics();
+
+	/* Apply physics impulse on the bone of the enemy skeleton mesh we hit (ray-trace damage only) */
+	if (DamageEvent.IsOfType(FPointDamageEvent::ClassID))
+	{
+		FPointDamageEvent PointDmg = *((FPointDamageEvent*)(&DamageEvent));
+		{
+			// TODO: Use DamageTypeClass->DamageImpulse
+			Mesh3P->AddImpulseAtLocation(PointDmg.ShotDirection * 15000, PointDmg.HitInfo.ImpactPoint, PointDmg.HitInfo.BoneName);
+		}
+	}
 }
 
 

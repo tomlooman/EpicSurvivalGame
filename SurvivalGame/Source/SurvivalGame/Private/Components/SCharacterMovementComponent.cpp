@@ -14,7 +14,7 @@ float USCharacterMovementComponent::GetMaxSpeed() const
 	if (CharOwner)
 	{
 		// Slow down during targeting, but don't further reduce movement speed while also crouching
-		if (CharOwner->IsTargeting() && !CharOwner->GetMovementComponent()->IsCrouching())
+		if (CharOwner->IsTargeting() && !IsCrouching())
 		{
 			MaxSpeed *= CharOwner->GetTargetingSpeedModifier();
 		}
