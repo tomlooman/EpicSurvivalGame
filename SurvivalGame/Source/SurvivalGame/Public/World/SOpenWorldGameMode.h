@@ -8,7 +8,7 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(ABSTRACT)
 class SURVIVALGAME_API ASOpenWorldGameMode : public ASGameMode
 {
 	GENERATED_BODY()

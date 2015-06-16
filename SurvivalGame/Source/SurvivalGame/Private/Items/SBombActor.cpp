@@ -60,12 +60,12 @@ void ASBombActor::OnUsed(APawn* InstigatorPawn)
 	SimulateFuzeFX();
 
 	// Activate the fuze to explode the bomb after several seconds
-	GetWorldTimerManager().SetTimer(FuzeTimerHandle, this, &ASBombActor::OnExplode, MaxFuzeTime, false);
+	GetWorldTimerManager().SetTimer(FuzeTimerHandle, this, &ASBombActor::Explode, MaxFuzeTime, false);
 
 }
 
 
-void ASBombActor::OnExplode()
+void ASBombActor::Explode()
 {
 	if (bExploded)
 	{
@@ -121,4 +121,11 @@ void ASBombActor::SimulateExplosion_Implementation()
 		ExplosionPCS->SetTemplate(ExplosionFX);
 		ExplosionPCS->ActivateSystem();
 	}
+}
+
+float ASBombActor::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser)
+{
+	Explode();
+
+	return Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
 }

@@ -276,7 +276,9 @@ void ASWeaponInstant::SpawnTrailEffects(const FVector& EndPoint)
 
 	// Only spawn if a minimum distance is satisfied.
 	if (ShootDir.Size() < MinimumProjectileSpawnDistance)
+	{
 		return;
+	}
 
 	if (BulletsShotCount % TracerRoundInterval == 0)
 	{
@@ -288,10 +290,12 @@ void ASWeaponInstant::SpawnTrailEffects(const FVector& EndPoint)
 	}
 	else 
 	{
-		// Ignore trails for self created trails.
+		// Only create trails FX by other players.
 		ASCharacter* OwningPawn = GetPawnOwner();
 		if (OwningPawn && OwningPawn->IsLocallyControlled())
+		{
 			return;
+		}
 
 		if (TrailFX)
 		{

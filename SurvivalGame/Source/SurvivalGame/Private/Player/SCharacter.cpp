@@ -51,7 +51,7 @@ ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
 
 	Health = 100;
 
-	IncrementHungerAmount = 0.5f;
+	IncrementHungerAmount = 5.0f;
 	IncrementHungerInterval = 5.0f;
 	CriticalHungerThreshold = 90;
 	HungerDamagePerInterval = 1.0f;
@@ -734,7 +734,9 @@ void ASCharacter::RemoveWeapon(class ASWeapon* Weapon, bool bDestroy)
 
 		/* Replace weapon if we removed our current weapon */
 		if (bIsCurrent && Inventory.Num() > 0)
+		{
 			SetCurrentWeapon(Inventory[0]);
+		}			
 
 		/* Clear reference to weapon if we have no items left in inventory */
 		if (Inventory.Num() == 0)

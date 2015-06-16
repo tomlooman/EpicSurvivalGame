@@ -36,7 +36,7 @@ ASZombieCharacter::ASZombieCharacter(const class FObjectInitializer& ObjectIniti
 	GetMovementComponent()->NavAgentProps.AgentHeight = 192;
 
 	Health = 100;
-	PunchDamage = 10.0f;
+	PunchDamage = 24.0f;
 
 	/* By default we will not let the AI patrol, we can override this value per-instance. */
 	BotType = EBotBehaviorType::Passive;
@@ -146,14 +146,25 @@ void ASZombieCharacter::OnHearNoise(APawn* PawnInstigator, const FVector& Locati
 
 void ASZombieCharacter::PunchHit(AActor* HitActor)
 {
-	if (HitActor && HitActor != this && IsAlive())
+	if (LastMeleeAttackTime > GetWorld()->GetTimeSeconds() - 1.0f)
 	{
-		FPointDamageEvent PointDmg;
-		PointDmg.DamageTypeClass = PunchDamageType;
-		PointDmg.Damage = PunchDamage;
-
-		HitActor->TakeDamage(PointDmg.Damage, PointDmg, GetController(), this);
+		/* Attacked before cooldown expired */
+		return;
 	}
+
+ 	if (HitActor && HitActor != this && IsAlive())
+ 	{
+ 		/* Set to prevent a zombie to attack multiple times in a very short time */
+ 		LastMeleeAttackTime = GetWorld()->GetTimeSeconds();
+
+		FPointDamageEvent DmgEvent;
+		DmgEvent.DamageTypeClass = PunchDamageType;
+		DmgEvent.Damage = PunchDamage;
+
+		HitActor->TakeDamage(DmgEvent.Damage, DmgEvent, GetController(), this);
+
+		SimulateMeleeStrike();
+ 	}
 }
 
 
@@ -171,7 +182,12 @@ void ASZombieCharacter::SetBotType(EBotBehaviorType NewType)
 
 UAudioComponent* ASZombieCharacter::PlayCharacterSound(USoundCue* CueToPlay)
 {
-	return UGameplayStatics::PlaySoundAttached(CueToPlay, RootComponent, NAME_None, FVector::ZeroVector, EAttachLocation::SnapToTarget, true);
+	if (CueToPlay)
+	{
+		return UGameplayStatics::PlaySoundAttached(CueToPlay, RootComponent, NAME_None, FVector::ZeroVector, EAttachLocation::SnapToTarget, true);
+	}
+
+	return nullptr;
 }
 
 
@@ -184,4 +200,11 @@ void ASZombieCharacter::PlayHit(float DamageTaken, struct FDamageEvent const& Da
 	{
 		AudioCompHunting->Stop();
 	}
+}
+
+
+void ASZombieCharacter::SimulateMeleeStrike_Implementation()
+{
+	PlayAnimMontage(MeleeAnimMontage);
+	PlayCharacterSound(SoundAttackMelee);
 }

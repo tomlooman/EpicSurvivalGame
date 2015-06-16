@@ -16,6 +16,9 @@ class SURVIVALGAME_API ASZombieCharacter : public ASBaseCharacter
 	/* Last time the player was heard */
 	float LastHeardTime;
 
+	/* Last time we attacked something */
+	float LastMeleeAttackTime;
+
 	/* Time-out value to clear the sensed position of the player. Should be higher than Sense interval in the PawnSense component not never miss sense ticks. */
 	UPROPERTY(EditDefaultsOnly, Category = "AI")
 	float SenseTimeOut;
@@ -44,11 +47,19 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = "Attacking")
 	void PunchHit(AActor* HitActor);
 
+	UFUNCTION(Reliable, NetMulticast)
+	void SimulateMeleeStrike();
+
+	void SimulateMeleeStrike_Implementation();
+
 	UPROPERTY(EditDefaultsOnly, Category = "Attacking")
 	TSubclassOf<UDamageType> PunchDamageType;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Attacking")
 	float PunchDamage;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Attacking")
+	UAnimMontage* MeleeAnimMontage;
 
 	UAudioComponent* PlayCharacterSound(USoundCue* CueToPlay);
 
@@ -57,6 +68,9 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Sound")
 	USoundCue* SoundHunting;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Sound")
+	USoundCue* SoundAttackMelee;
 
 	/* Plays the idle or hunting sound */
 	UAudioComponent* AudioCompHunting;
