@@ -13,7 +13,7 @@
 
 // Sets default values
 ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
-	: Super(ObjectInitializer.SetDefaultSubobjectClass<USCharacterMovementComponent>(ACharacter::CharacterMovementComponentName))
+	: Super(ObjectInitializer)
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -273,42 +273,6 @@ void ASCharacter::OnEndTargeting()
 }
 
 
-void ASCharacter::SetTargeting(bool NewTargeting)
-{
-	bIsTargeting = NewTargeting;
-
-	if (Role < ROLE_Authority)
-	{
-		ServerSetTargeting(NewTargeting);
-	}
-}
-
-
-void ASCharacter::ServerSetTargeting_Implementation(bool NewTargeting)
-{
-	SetTargeting(NewTargeting);
-}
-
-
-bool ASCharacter::ServerSetTargeting_Validate(bool NewTargeting)
-{
-	return true;
-}
-
-
-
-bool ASCharacter::IsTargeting() const
-{
-	return bIsTargeting;
-}
-
-
-float ASCharacter::GetTargetingSpeedModifier() const
-{
-	return TargetingSpeedModifier;
-}
-
-
 void ASCharacter::OnStartJump()
 {
 	bPressedJump = true;
@@ -391,63 +355,11 @@ void ASCharacter::OnStopSprinting()
 }
 
 
-void ASCharacter::SetSprinting(bool NewSprinting)
-{
-	bWantsToRun = NewSprinting;
-
-	if (bIsCrouched)
-	{
-		UnCrouch();
-	}
-
-	if (bWantsToRun)
-	{
-		StopWeaponFire();
-	}
-
-	if (Role < ROLE_Authority)
-	{
-		ServerSetSprinting(NewSprinting);
-	}
-}
-
-
-void ASCharacter::ServerSetSprinting_Implementation(bool NewSprinting)
-{
-	SetSprinting(NewSprinting);
-}
-
-
-bool ASCharacter::ServerSetSprinting_Validate(bool NewSprinting)
-{
-	return true;
-}
-
-
-bool ASCharacter::IsSprinting() const
-{
-	if (!GetCharacterMovement())
-		return false;
-
-	return bWantsToRun && !IsTargeting() && !GetVelocity().IsZero() 
-		// Don't allow sprint while strafing sideways or standing still (1.0 is straight forward, -1.0 is backward while near 0 is sideways or standing still)
-		&& (FVector::DotProduct(GetVelocity().GetSafeNormal2D(), GetActorRotation().Vector()) > 0.8); // Changing this value to 0.1 allows for diagonal sprinting. (holding W+A or W+D keys)
-}
-
-
-float ASCharacter::GetSprintingSpeedModifier() const
-{
-	return SprintingSpeedModifier;
-}
-
-
 void ASCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	// Value is already updated locally, skip in replication step
-	DOREPLIFETIME_CONDITION(ASCharacter, bWantsToRun, COND_SkipOwner);
-	DOREPLIFETIME_CONDITION(ASCharacter, bIsTargeting, COND_SkipOwner);
 	DOREPLIFETIME_CONDITION(ASCharacter, bIsJumping, COND_SkipOwner);
 
 	// Replicate to every client, no special condition required
@@ -477,16 +389,6 @@ void ASCharacter::OnCrouchToggle()
 	{
 		UnCrouch();
 	}
-}
-
-
-FRotator ASCharacter::GetAimOffsets() const
-{
-	const FVector AimDirWS = GetBaseAimRotation().Vector();
-	const FVector AimDirLS = ActorToWorld().InverseTransformVectorNoScale(AimDirWS);
-	const FRotator AimRotLS = AimDirLS.Rotation();
-
-	return AimRotLS;
 }
 
 
@@ -1064,4 +966,15 @@ void ASCharacter::SwapToNewWeaponMesh()
 	{
 		CurrentWeapon->AttachMeshToPawn(EInventorySlot::Hands);
 	}
+}
+
+
+void ASCharacter::SetSprinting(bool NewSprinting)
+{
+	if (bWantsToRun)
+	{
+		StopWeaponFire();
+	}
+
+	Super::SetSprinting(NewSprinting);
 }

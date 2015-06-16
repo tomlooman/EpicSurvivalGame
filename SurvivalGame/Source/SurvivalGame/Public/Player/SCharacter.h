@@ -84,9 +84,7 @@ public:
 	/* Client mapped to Input */
 	void OnStopSprinting();
 
-	/* Character wants to run, checked during Tick to see if allowed */
-	UPROPERTY(Transient, Replicated)
-	bool bWantsToRun;
+	virtual void SetSprinting(bool NewSprinting) override;
 
 	/* Is character currently performing a jump action. Resets on landed.  */
 	UPROPERTY(Transient, Replicated)
@@ -105,25 +103,6 @@ public:
 	bool ServerSetIsJumping_Validate(bool NewJumping);
 
 	virtual void OnMovementModeChanged(EMovementMode PrevMovementMode, uint8 PreviousCustomMode = 0) override;
-
-	/* Client/local call to update sprint state  */
-	void SetSprinting(bool NewSprinting);
-
-	/* Server side call to update actual sprint state */
-	UFUNCTION(Server, Reliable, WithValidation)
-	void ServerSetSprinting(bool NewSprinting);
-
-	void ServerSetSprinting_Implementation(bool NewSprinting);
-
-	bool ServerSetSprinting_Validate(bool NewSprinting);
-
-	UFUNCTION(BlueprintCallable, Category = Movement)
-	bool IsSprinting() const;
-
-	float GetSprintingSpeedModifier() const;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Movement")
-	float SprintingSpeedModifier;
 
 	/************************************************************************/
 	/* Object Interaction                                                   */
@@ -160,31 +139,6 @@ public:
 	void OnStartTargeting();
 
 	void OnEndTargeting();
-
-	void SetTargeting(bool NewTargeting);
-
-	UFUNCTION(Server, Reliable, WithValidation)
-	void ServerSetTargeting(bool NewTargeting);
-
-	void ServerSetTargeting_Implementation(bool NewTargeting);
-
-	bool ServerSetTargeting_Validate(bool NewTargeting);
-	
-	/* Is player aiming down sights */
-	UFUNCTION(BlueprintCallable, Category = "Targeting")
-	bool IsTargeting() const;
-
-	float GetTargetingSpeedModifier() const;
-
-	/* Retrieve Pitch/Yaw from current camera */
-	UFUNCTION(BlueprintCallable, Category = "Targeting")
-	FRotator GetAimOffsets() const;
-
-	UPROPERTY(Transient, Replicated)
-	bool bIsTargeting;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Targeting")
-	float TargetingSpeedModifier;
 
 	/************************************************************************/
 	/* Hunger                                                               */
