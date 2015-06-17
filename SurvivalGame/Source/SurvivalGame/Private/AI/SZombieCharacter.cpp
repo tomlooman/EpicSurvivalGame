@@ -43,6 +43,11 @@ ASZombieCharacter::ASZombieCharacter(const class FObjectInitializer& ObjectIniti
 	MeleeCollisionComp->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
 	MeleeCollisionComp->AttachParent = GetCapsuleComponent();
 
+	AudioLoopComp = CreateDefaultSubobject<UAudioComponent>(TEXT("ZombieLoopedSoundComp"));
+	AudioLoopComp->bAutoActivate = false;
+	AudioLoopComp->bAutoDestroy = false;
+	AudioLoopComp->AttachParent = RootComponent;
+
 	Health = 100;
 	MeleeDamage = 24.0f;
 	MeleeStrikeCooldown = 1.0f;
@@ -71,6 +76,7 @@ void ASZombieCharacter::BeginPlay()
 		MeleeCollisionComp->OnComponentBeginOverlap.AddDynamic(this, &ASZombieCharacter::OnMeleeCompBeginOverlap);
 	}
 
+	BroadcastUpdateAudioLoop(bSensedTarget);
 
 	/* Assign a basic name to identify the bots in the HUD. */
 	ASPlayerState* PS = Cast<ASPlayerState>(PlayerState);
@@ -98,10 +104,7 @@ void ASZombieCharacter::Tick(float DeltaSeconds)
 			AIController->SetTargetEnemy(nullptr);
 
 			/* Stop playing the hunting sound */
-			if (AudioCompHunting)
-			{
-				AudioCompHunting->FadeOut(0.5f, 0.0f);
-			}
+			BroadcastUpdateAudioLoop(false);
 		}
 	}
 }
@@ -116,9 +119,7 @@ void ASZombieCharacter::OnSeePlayer(APawn* Pawn)
 
 	if (!bSensedTarget)
 	{
-		PlayCharacterSound(SoundPlayerNoticed);
-
-		AudioCompHunting = PlayCharacterSound(SoundHunting);
+		BroadcastUpdateAudioLoop(true);
 	}
 
 	/* Keep track of the time the player was last sensed in order to clear the target */
@@ -143,9 +144,7 @@ void ASZombieCharacter::OnHearNoise(APawn* PawnInstigator, const FVector& Locati
 
 	if (!bSensedTarget)
 	{
-		PlayCharacterSound(SoundPlayerNoticed);
-
-		AudioCompHunting = PlayCharacterSound(SoundHunting);
+		BroadcastUpdateAudioLoop(true);
 	}
 
 	bSensedTarget = true;
@@ -214,6 +213,8 @@ void ASZombieCharacter::SetBotType(EBotBehaviorType NewType)
 	{
 		AIController->SetBlackboardBotType(NewType);
 	}
+
+	BroadcastUpdateAudioLoop(bSensedTarget);
 }
 
 
@@ -233,9 +234,9 @@ void ASZombieCharacter::PlayHit(float DamageTaken, struct FDamageEvent const& Da
 	Super::PlayHit(DamageTaken, DamageEvent, PawnInstigator, DamageCauser, bKilled);
 
 	/* Stop playing the hunting sound */
-	if (AudioCompHunting && bKilled)
+	if (AudioLoopComp && bKilled)
 	{
-		AudioCompHunting->Stop();
+		AudioLoopComp->Stop();
 	}
 }
 
@@ -286,4 +287,30 @@ bool ASZombieCharacter::IsSprinting() const
 {
 	/* Allow a zombie to sprint when he has seen a player */
 	return bSensedTarget && !GetVelocity().IsZero();
+}
+
+
+void ASZombieCharacter::BroadcastUpdateAudioLoop_Implementation(bool bNewSensedTarget)
+{
+	/* Start playing the hunting sound and the "noticed player" sound if the state is about to change */
+	if (bNewSensedTarget && !bSensedTarget)
+	{
+		PlayCharacterSound(SoundPlayerNoticed);
+
+		AudioLoopComp->SetSound(SoundHunting);
+		AudioLoopComp->Play();
+	}
+	else
+	{
+		if (BotType == EBotBehaviorType::Patrolling)
+		{
+			AudioLoopComp->SetSound(SoundWandering);
+			AudioLoopComp->Play();
+		}
+		else
+		{
+			AudioLoopComp->SetSound(SoundIdle);
+			AudioLoopComp->Play();
+		}
+	}
 }
