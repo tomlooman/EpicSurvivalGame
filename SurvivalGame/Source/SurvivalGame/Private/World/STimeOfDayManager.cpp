@@ -92,7 +92,7 @@ void ASTimeOfDayManager::Tick(float DeltaSeconds)
 
 		/* Update sun brightness to transition between day and night
 			(Note: We cannot disable the sunlight because BP_SkySphere depends on an enabled light to update the skydome) */
-		const float LerpSpeed = 0.4f * GetWorldSettings()->GetEffectiveTimeDilation();
+		const float LerpSpeed = 0.1f * GetWorldSettings()->GetEffectiveTimeDilation();
 		float CurrentSunBrightness = PrimarySunLight->GetBrightness();
 		float NewSunBrightness = FMath::Lerp(CurrentSunBrightness, TargetSunBrightness, LerpSpeed);
 		PrimarySunLight->SetBrightness(NewSunBrightness);
