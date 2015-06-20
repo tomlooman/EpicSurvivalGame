@@ -25,6 +25,12 @@ protected:
 	/* Target brightness to lerp towards */
 	float TargetSunBrightness;
 
+	/* Required difference in Sky intensity before we re-capture the sky */
+	float RequiredCaptureDelta;
+
+	/* Last skylight intensity that was captured */
+	float LastCapturedIntensity;
+
 public:	
 
 	virtual void BeginPlay() override;

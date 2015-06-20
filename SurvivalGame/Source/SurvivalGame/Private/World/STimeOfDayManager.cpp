@@ -10,6 +10,9 @@ ASTimeOfDayManager::ASTimeOfDayManager()
 	AmbientAudioComp = CreateDefaultSubobject<UAudioComponent>(TEXT("AmbientAudioComp"));
 	AmbientAudioComp->bAutoActivate = false;
 
+	/* Treshold to recapture the skylight */
+	RequiredCaptureDelta = 0.01f;
+
 	SetReplicates(true);
 
 	/*
@@ -116,11 +119,21 @@ void ASTimeOfDayManager::UpdateSkylight()
 			const float Alpha = FMath::Sin((MyGameState->GetElapsedMinutesCurrentDay() / MinutesInDay) * 3.14);
 
 			/* Update Intensity */
-			SkyLightActor->GetLightComponent()->SetIntensity(FMath::Lerp(0.1, 1.0, Alpha));
+			const float NewIntensity = FMath::Lerp(0.1, 1.0, Alpha);
+			SkyLightActor->GetLightComponent()->SetIntensity(NewIntensity);
 
-			/* Force re-capture of the sky w/ new intensity */
-			// TODO: Only recapture when the light intensity had changed significantly since last capture.
-			SkyLightActor->GetLightComponent()->RecaptureSky();
+			if (RequiredCaptureDelta < FMath::Abs(NewIntensity - LastCapturedIntensity))
+			{
+				if (GEngine)
+				{
+					GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Red, "Sky Recaptured at " + FString::SanitizeFloat(NewIntensity));
+				}
+
+				/* Force re-capture of the sky w/ new intensity */
+				/* Hacky and costly solution to recapturing the sky, official support NYI */
+				SkyLightActor->GetLightComponent()->RecaptureSky();
+				LastCapturedIntensity = NewIntensity;
+			}
 		}
 	}
 }
