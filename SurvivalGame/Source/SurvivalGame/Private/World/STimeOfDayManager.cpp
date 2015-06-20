@@ -91,8 +91,8 @@ void ASTimeOfDayManager::Tick(float DeltaSeconds)
 		}
 
 		/* Update sun brightness to transition between day and night
-			(Note: We cannot simply disable the sunlight because BP_SkySphere depends on an enabled light to update the skydome) */
-		const float LerpSpeed = 0.05f;
+			(Note: We cannot disable the sunlight because BP_SkySphere depends on an enabled light to update the skydome) */
+		const float LerpSpeed = 0.4f * GetWorldSettings()->GetEffectiveTimeDilation();
 		float CurrentSunBrightness = PrimarySunLight->GetBrightness();
 		float NewSunBrightness = FMath::Lerp(CurrentSunBrightness, TargetSunBrightness, LerpSpeed);
 		PrimarySunLight->SetBrightness(NewSunBrightness);
@@ -112,9 +112,15 @@ void ASTimeOfDayManager::UpdateSkylight()
 		if (MyGameState)
 		{
 			const float MinutesInDay = 24 * 60;
-			const float Alpha = 1 - (MyGameState->GetElapsedMinutesCurrentDay() / MinutesInDay);
+			/* Map the intensity from 0 - 12 - 24 hours into 0 - 1 - 0 alpha */
+			const float Alpha = FMath::Sin((MyGameState->GetElapsedMinutesCurrentDay() / MinutesInDay) * 3.14);
 
-			SkyLightActor->GetLightComponent()->Intensity = FMath::Lerp(0.1, 1.0, Alpha);
+			/* Update Intensity */
+			SkyLightActor->GetLightComponent()->SetIntensity(FMath::Lerp(0.1, 1.0, Alpha));
+
+			/* Force re-capture of the sky w/ new intensity */
+			// TODO: Only recapture when the light intensity had changed significantly since last capture.
+			SkyLightActor->GetLightComponent()->RecaptureSky();
 		}
 	}
 }
