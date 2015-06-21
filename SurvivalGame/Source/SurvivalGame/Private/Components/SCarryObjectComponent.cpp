@@ -254,9 +254,9 @@ void USCarryObjectComponent::OnRotateMulticast_Implementation(float Direction)
 	{
 		/* Retrieve the object center */
 		FVector RootOrigin = GetCarriedActor()->GetRootComponent()->Bounds.Origin;
-		FRotator AddRot = FRotator(Direction * RotateSpeed, 0, 0);
+		FRotator DeltaRot = FRotator(0, Direction * RotateSpeed, 0);
 
-		RotateActorAroundPoint(CarriedActor, RootOrigin, AddRot);
+		RotateActorAroundPoint(CarriedActor, RootOrigin, DeltaRot);
 	}
 }
 
