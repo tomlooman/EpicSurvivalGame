@@ -82,18 +82,18 @@ public:
 	/* Is currently holding an Actor */
 	bool GetIsCarryingActor();
 
-	/* Rotate the Actor around the Up-axis.  */
-	void Rotate(float Direction);
+	/* Rotate the carried Actor */
+	void Rotate(float DirectionYaw, float DirectionRoll);
 
 	UFUNCTION(Server, Reliable, WithValidation)
-	void ServerRotate(float Direction);
+	void ServerRotate(float DirectionYaw, float DirectionRoll);
 
-	void ServerRotate_Implementation(float Direction);
+	void ServerRotate_Implementation(float DirectionYaw, float DirectionRoll);
 
-	bool ServerRotate_Validate(float Direction);
+	bool ServerRotate_Validate(float DirectionYaw, float DirectionRoll);
 
 	UFUNCTION(Reliable, NetMulticast)
-	void OnRotateMulticast(float Direction);
+	void OnRotateMulticast(float DirectionYaw, float DirectionRoll);
 
-	void OnRotateMulticast_Implementation(float Direction);
+	void OnRotateMulticast_Implementation(float DirectionYaw, float DirectionRoll);
 };

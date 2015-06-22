@@ -727,7 +727,7 @@ void ASCharacter::OnNextWeapon()
 {
 	if (CarriedObjectComp->GetIsCarryingActor())
 	{
-		CarriedObjectComp->Rotate(1.0f);
+		CarriedObjectComp->Rotate(0.0f, 1.0f);
 		return;
 	}
 
@@ -744,7 +744,7 @@ void ASCharacter::OnPrevWeapon()
 {
 	if (CarriedObjectComp->GetIsCarryingActor())
 	{
-		CarriedObjectComp->Rotate(-1.0f);
+		CarriedObjectComp->Rotate(0.0f, -1.0f);
 		return;
 	}
 
@@ -840,6 +840,12 @@ bool ASCharacter::ServerDropWeapon_Validate()
 
 void ASCharacter::OnEquipPrimaryWeapon()
 {
+	if (CarriedObjectComp->GetIsCarryingActor())
+	{
+		CarriedObjectComp->Rotate(1.0f, 0.0f);
+		return;
+	}
+
 	if (Inventory.Num() >= 1)
 	{
 		/* Find first weapon that uses primary slot. */
@@ -857,6 +863,12 @@ void ASCharacter::OnEquipPrimaryWeapon()
 
 void ASCharacter::OnEquipSecondaryWeapon()
 {
+	if (CarriedObjectComp->GetIsCarryingActor())
+	{
+		CarriedObjectComp->Rotate(-1.0f, 0.0f);
+		return;
+	}
+
 	if (Inventory.Num() >= 2)
 	{
 		/* Find first weapon that uses secondary slot. */

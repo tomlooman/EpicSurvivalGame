@@ -18,12 +18,6 @@ USCarryObjectComponent::USCarryObjectComponent(const FObjectInitializer& ObjectI
 
 void USCarryObjectComponent::TickComponent(float DeltaSeconds, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction)
 {
-	//if (GetIsCarryingActor())
-	//{
-	// perform an overlap check of the actor vs. environment. must have 0 overlaps from Static and Dynamic and Pawn channels.
-	// Use param NAME to update the color between red and green
-	//}
-
 	if (APawn* OwningPawn = Cast<APawn>(GetOwner()))
 	{
 		if (OwningPawn->IsLocallyControlled())
@@ -183,14 +177,14 @@ bool USCarryObjectComponent::GetIsCarryingActor()
 }
 
 
-void USCarryObjectComponent::Rotate(float Direction)
+void USCarryObjectComponent::Rotate(float DirectionYaw, float DirectionRoll)
 {
 	if (GetOwner()->Role < ROLE_Authority)
 	{
-		ServerRotate(Direction);
+		ServerRotate(DirectionYaw, DirectionRoll);
 	}
 
-	OnRotateMulticast(Direction);
+	OnRotateMulticast(DirectionYaw, DirectionRoll);
 }
 
 
@@ -247,14 +241,14 @@ void USCarryObjectComponent::OnDropMulticast_Implementation()
 }
 
 
-void USCarryObjectComponent::OnRotateMulticast_Implementation(float Direction)
+void USCarryObjectComponent::OnRotateMulticast_Implementation(float DirectionYaw, float DirectionRoll)
 {
 	AActor* CarriedActor = GetCarriedActor();
 	if (CarriedActor)
 	{
 		/* Retrieve the object center */
 		FVector RootOrigin = GetCarriedActor()->GetRootComponent()->Bounds.Origin;
-		FRotator DeltaRot = FRotator(0, Direction * RotateSpeed, 0);
+		FRotator DeltaRot = FRotator(0, DirectionYaw * RotateSpeed, DirectionRoll * RotateSpeed);
 
 		RotateActorAroundPoint(CarriedActor, RootOrigin, DeltaRot);
 	}
@@ -297,13 +291,13 @@ bool USCarryObjectComponent::ServerPickup_Validate()
 }
 
 
-void USCarryObjectComponent::ServerRotate_Implementation(float Direction)
+void USCarryObjectComponent::ServerRotate_Implementation(float DirectionYaw, float DirectionRoll)
 {
-	Rotate(Direction);
+	Rotate(DirectionYaw, DirectionRoll);
 }
 
 
-bool USCarryObjectComponent::ServerRotate_Validate(float Direction)
+bool USCarryObjectComponent::ServerRotate_Validate(float DirectionYaw, float DirectionRoll)
 {
 	return true;
 }

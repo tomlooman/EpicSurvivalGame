@@ -122,13 +122,11 @@ void ASTimeOfDayManager::UpdateSkylight()
 			const float NewIntensity = FMath::Lerp(0.1, 1.0, Alpha);
 			SkyLightActor->GetLightComponent()->SetIntensity(NewIntensity);
 
+			//float ColorChannel = 1.0f * NewIntensity;
+			//SkyLightActor->GetLightComponent()->SetLightColor(FLinearColor(ColorChannel, ColorChannel, ColorChannel, 1.0f));
+
 			if (RequiredCaptureDelta < FMath::Abs(NewIntensity - LastCapturedIntensity))
 			{
-				if (GEngine)
-				{
-					GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Red, "Sky Recaptured at " + FString::SanitizeFloat(NewIntensity));
-				}
-
 				/* Force re-capture of the sky w/ new intensity */
 				/* Hacky and costly solution to recapturing the sky, official support NYI */
 				SkyLightActor->GetLightComponent()->RecaptureSky();

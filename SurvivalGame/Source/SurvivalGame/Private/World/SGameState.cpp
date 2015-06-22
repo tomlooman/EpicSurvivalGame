@@ -9,8 +9,8 @@
 ASGameState::ASGameState(const class FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-	/* 1 minute real time is 10 minutes game time */
-	TimeScale = 4.0f;
+	/* 1 SECOND real time is 1*TimeScale MINUTES game time */
+	TimeScale = 8.0f;
 	bIsNight = false;
 
 	SunriseTimeMark = 6.0f;

@@ -10,3 +10,4 @@ Saved
 SurvivalGame/Binaries/Win64/SurvivalGame.exp
 SurvivalGame/Binaries/Win64/SurvivalGame.lib
 *.log
+*.target.xml
