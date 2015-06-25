@@ -163,7 +163,7 @@ public:
 	float IncrementHungerAmount;
 
 	/* Limit when player suffers Hitpoints from extreme hunger */
-	UPROPERTY(EditDefaultsOnly, Category = "PlayerCondition")
+	UPROPERTY(BlueprintReadOnly, Category = "PlayerCondition")
 	float CriticalHungerThreshold;
 
 	UPROPERTY(EditDefaultsOnly, Category = "PlayerCondition", Replicated)
