@@ -43,3 +43,11 @@ Introduces the ability to carry around objects like barriers and discusses game 
 - [Documentation page](https://wiki.unrealengine.com/Survival_Sample_Game:_Section_5)
 - [Forum Thread](https://forums.unrealengine.com/showthread.php?71057-Announcing-Section-5-of-Survival-Game-Networking-your-game)
 - [Branch on Github](https://github.com/tomlooman/EpicSurvivalGameSeries/tree/Section-5)
+
+### Section 6
+The final section in the series focuses on bug fixing and a bit of polish to the existing features. This section is compatible with the 4.8 release.
+
+- [Documentation page](https://wiki.unrealengine.com/Survival_Sample_Game:_Section_6)
+- [Forum Thread](https://forums.unrealengine.com/showthread.php?72313-Announcing-Section-6-of-Survival-Game-Adding-some-polish)
+- [Branch on Github](https://github.com/tomlooman/EpicSurvivalGameSeries/tree/Section-6)
+
