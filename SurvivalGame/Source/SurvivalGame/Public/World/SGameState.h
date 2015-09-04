@@ -14,6 +14,7 @@ class SURVIVALGAME_API ASGameState : public AGameState
 	GENERATED_BODY()
 
 	/* Total accumulated score from all players  */
+	UPROPERTY(Replicated)
 	int32 TotalScore;
 
 public:

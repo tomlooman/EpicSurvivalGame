@@ -10,6 +10,12 @@ class SURVIVALGAME_API ASTimeOfDayManager : public AActor
 {
 	GENERATED_BODY()
 
+protected:
+
+	UAudioComponent* AmbientAudioComp;
+
+	ASTimeOfDayManager();
+
 	/* Cached bool of bIsNight to determine when we entered/left the night */
 	bool LastNightState;
 
@@ -19,18 +25,22 @@ class SURVIVALGAME_API ASTimeOfDayManager : public AActor
 	/* Target brightness to lerp towards */
 	float TargetSunBrightness;
 
-protected:
+	/* Required difference in Sky intensity before we re-capture the sky */
+	float RequiredCaptureDelta;
 
-	UAudioComponent* AmbientAudioComp;
+	/* Last skylight intensity that was captured */
+	float LastCapturedIntensity;
 
 public:	
-	ASTimeOfDayManager();
 
 	virtual void BeginPlay() override;
 
 	virtual void Tick(float DeltaSeconds) override;	
 
 	void UpdateSkylight();
+
+	/* Play the ambient loop for the current time state */
+	void PlayAmbientLoop();
 
 	/* Primary sun of the level. Assigned in Blueprint during BeginPlay (BlueprintReadWrite is required as tag instead of EditDefaultsOnly) */
 	UPROPERTY(BlueprintReadWrite, Category = "DayNight")

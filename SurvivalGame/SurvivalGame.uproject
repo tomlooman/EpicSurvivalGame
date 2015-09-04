@@ -1,13 +1,16 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "4.7",
+	"EngineAssociation": "4.9",
 	"Category": "",
 	"Description": "",
 	"Modules": [
 		{
 			"Name": "SurvivalGame",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
 		}
 	]
 }

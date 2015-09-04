@@ -27,7 +27,7 @@ ASBombActor::ASBombActor(const class FObjectInitializer& ObjectInitializer)
 
 	MaxFuzeTime = 3.0f;
 	ExplosionDamage = 200;
-	ExplosionRadius = 1024;
+	ExplosionRadius = 600;
 
 	SetReplicates(true);
 	bReplicateMovement = true;
@@ -60,12 +60,12 @@ void ASBombActor::OnUsed(APawn* InstigatorPawn)
 	SimulateFuzeFX();
 
 	// Activate the fuze to explode the bomb after several seconds
-	GetWorldTimerManager().SetTimer(FuzeTimerHandle, this, &ASBombActor::OnExplode, MaxFuzeTime, false);
+	GetWorldTimerManager().SetTimer(FuzeTimerHandle, this, &ASBombActor::Explode, MaxFuzeTime, false);
 
 }
 
 
-void ASBombActor::OnExplode()
+void ASBombActor::Explode()
 {
 	if (bExploded)
 	{
@@ -80,7 +80,10 @@ void ASBombActor::OnExplode()
 	TArray<AActor*> IgnoreActors;
 	UGameplayStatics::ApplyRadialDamage(this, ExplosionDamage, GetActorLocation(), ExplosionRadius, DamageType, IgnoreActors, this, nullptr);
 
-	DrawDebugSphere(GetWorld(), GetActorLocation(), ExplosionRadius, 32, FColor::Red, false, 1.5f);
+	//DrawDebugSphere(GetWorld(), GetActorLocation(), ExplosionRadius, 32, FColor::Red, false, 1.5f);
+
+	/* Allow clients to show FX before deleting */
+	SetLifeSpan(2.0f);
 }
 
 
@@ -118,4 +121,11 @@ void ASBombActor::SimulateExplosion_Implementation()
 		ExplosionPCS->SetTemplate(ExplosionFX);
 		ExplosionPCS->ActivateSystem();
 	}
+}
+
+float ASBombActor::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser)
+{
+	Explode();
+
+	return Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
 }

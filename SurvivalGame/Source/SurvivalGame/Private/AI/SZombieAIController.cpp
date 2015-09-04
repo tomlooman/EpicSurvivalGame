@@ -17,7 +17,6 @@ ASZombieAIController::ASZombieAIController(const class FObjectInitializer& Objec
 	BlackboardComp = ObjectInitializer.CreateDefaultSubobject<UBlackboardComponent>(this, TEXT("BlackboardComp"));
 
 	/* Match with the AI/ZombieBlackboard */
-	TargetLocationKeyName = "TargetLocation";
 	PatrolLocationKeyName = "PatrolLocation";
 	CurrentWaypointKeyName = "CurrentWaypoint";
 	BotTypeKeyName = "BotType";
@@ -48,17 +47,12 @@ void ASZombieAIController::Possess(class APawn* InPawn)
 }
 
 
-void ASZombieAIController::SetMoveToTarget(APawn* Pawn)
+void ASZombieAIController::UnPossess()
 {
-	if (BlackboardComp)
-	{
-		SetTargetEnemy(Pawn);
+	Super::UnPossess();
 
-		if (Pawn)
-		{
-			BlackboardComp->SetValueAsVector(TargetLocationKeyName, Pawn->GetActorLocation());
-		}
-	}
+	/* Stop any behavior running as we no longer have a pawn to control */
+	BehaviorComp->StopTree();
 }
 
 
@@ -109,4 +103,3 @@ void ASZombieAIController::SetBlackboardBotType(EBotBehaviorType NewType)
 		BlackboardComp->SetValueAsEnum(BotTypeKeyName, (uint8)NewType);
 	}
 }
-

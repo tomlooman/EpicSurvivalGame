@@ -20,15 +20,14 @@ class SURVIVALGAME_API ASZombieAIController : public AAIController
 	/* Called whenever the controller possesses a character bot */
 	virtual void Possess(class APawn* InPawn) override;
 
+	virtual void UnPossess() override;
+
 	UBehaviorTreeComponent* BehaviorComp;
 
 	UBlackboardComponent* BlackboardComp;
 
 	UPROPERTY(EditDefaultsOnly, Category = "AI")
 	FName TargetEnemyKeyName;
-
-	UPROPERTY(EditDefaultsOnly, Category = "AI")
-	FName TargetLocationKeyName;
 
 	UPROPERTY(EditDefaultsOnly, Category = "AI")
 	FName PatrolLocationKeyName;
@@ -44,8 +43,6 @@ public:
 	ASBotWaypoint* GetWaypoint();
 
 	ASBaseCharacter* GetTargetEnemy();
-
-	void SetMoveToTarget(APawn* Pawn);
 
 	void SetWaypoint(ASBotWaypoint* NewWaypoint);
 

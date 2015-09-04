@@ -25,7 +25,7 @@ class SURVIVALGAME_API USoundNodeLocalPlayer : public USoundNode
 
 #if WITH_EDITOR
 
-	virtual FString GetInputPinName(int32 PinIndex) const override;
+	virtual FText GetInputPinName(int32 PinIndex) const override;
 
 #endif
 

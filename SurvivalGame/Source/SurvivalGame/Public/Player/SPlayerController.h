@@ -23,7 +23,7 @@ class SURVIVALGAME_API ASPlayerController : public APlayerController
 	/* Respawn or start spectating after dying */
 	virtual void UnFreeze() override;
 
-	UFUNCTION(reliable, server, WithValidation)
+	UFUNCTION(Reliable, Server, WithValidation)
 	void ServerSuicide();
 
 	void ServerSuicide_Implementation();
@@ -32,10 +32,15 @@ class SURVIVALGAME_API ASPlayerController : public APlayerController
 
 public:
 
-	UFUNCTION(reliable, client)
+	UFUNCTION(Reliable, Client)
 	void ClientHUDStateChanged(EHUDState NewState);
 
 	void ClientHUDStateChanged_Implementation(EHUDState NewState);
+
+	UFUNCTION(Reliable, Client)
+	void ClientMessageReceived(const FString& TextMessage);
+
+	void ClientMessageReceived_Implementation(const FString& TextMessage);
 
 	/* Kill the current pawn */
 	UFUNCTION(exec)

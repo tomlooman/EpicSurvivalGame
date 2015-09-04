@@ -16,11 +16,14 @@ class SURVIVALGAME_API ASZombieCharacter : public ASBaseCharacter
 	/* Last time the player was heard */
 	float LastHeardTime;
 
+	/* Last time we attacked something */
+	float LastMeleeAttackTime;
+
 	/* Time-out value to clear the sensed position of the player. Should be higher than Sense interval in the PawnSense component not never miss sense ticks. */
 	UPROPERTY(EditDefaultsOnly, Category = "AI")
 	float SenseTimeOut;
 
-	/* Resets after sense time-out to avoid unneccessary clearing of target each tick */
+	/* Resets after sense time-out to avoid unnecessary clearing of target each tick */
 	bool bSensedTarget;
 
 	UPROPERTY(VisibleAnywhere, Category = "AI")
@@ -32,6 +35,8 @@ class SURVIVALGAME_API ASZombieCharacter : public ASBaseCharacter
 
 protected:
 
+	virtual bool IsSprinting() const override;
+
 	/* Triggered by pawn sensing component when a pawn is spotted */
 	/* When using functions as delegates they need to be marked with UFUNCTION(). We assign this function to FSeePawnDelegate */
 	UFUNCTION()
@@ -40,15 +45,67 @@ protected:
 	UFUNCTION()
 	void OnHearNoise(APawn* PawnInstigator, const FVector& Location, float Volume);
 
+	UPROPERTY(VisibleAnywhere, Category = "Attacking")
+	UCapsuleComponent* MeleeCollisionComp;
+
+	/* A pawn is in melee range */
+	UFUNCTION()
+	void OnMeleeCompBeginOverlap(class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
+
+	void OnRetriggerMeleeStrike();
+
 	/* Deal damage to the Actor that was hit by the punch animation */
 	UFUNCTION(BlueprintCallable, Category = "Attacking")
-	void PunchHit(AActor* HitActor);
+	void PerformMeleeStrike(AActor* HitActor);
+
+	UFUNCTION(Reliable, NetMulticast)
+	void SimulateMeleeStrike();
+
+	void SimulateMeleeStrike_Implementation();
 
 	UPROPERTY(EditDefaultsOnly, Category = "Attacking")
 	TSubclassOf<UDamageType> PunchDamageType;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Attacking")
-	float PunchDamage;
+	float MeleeDamage;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Attacking")
+	UAnimMontage* MeleeAnimMontage;
+
+	/* Update the vocal loop of the zombie (idle, wandering, hunting) */
+	UFUNCTION(Reliable, NetMulticast)
+	void BroadcastUpdateAudioLoop(bool bNewSensedTarget);
+
+	void BroadcastUpdateAudioLoop_Implementation(bool bNewSensedTarget);
+
+	UAudioComponent* PlayCharacterSound(USoundCue* CueToPlay);
+
+	UPROPERTY(EditDefaultsOnly, Category = "Sound")
+	USoundCue* SoundPlayerNoticed;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Sound")
+	USoundCue* SoundHunting;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Sound")
+	USoundCue* SoundIdle;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Sound")
+	USoundCue* SoundWandering;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Sound") 
+	USoundCue* SoundAttackMelee;
+
+	/* Timer handle to manage continous melee attacks while in range of a player */
+	FTimerHandle TimerHandle_MeleeAttack;
+
+	/* Minimum time between melee attacks */
+	float MeleeStrikeCooldown;
+
+	/* Plays the idle, wandering or hunting sound */
+	UPROPERTY(VisibleAnywhere, Category = "Sound")
+	UAudioComponent* AudioLoopComp;
+
+	virtual void PlayHit(float DamageTaken, struct FDamageEvent const& DamageEvent, APawn* PawnInstigator, AActor* DamageCauser, bool bKilled) override;
 
 public:
 

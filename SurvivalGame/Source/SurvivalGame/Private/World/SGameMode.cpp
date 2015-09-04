@@ -11,11 +11,8 @@
 #include "SSpectatorPawn.h"
 #include "SZombieAIController.h"
 #include "SZombieCharacter.h"
-#include "SCharacter.h"
 #include "SPlayerStart.h"
-
-/* Define a log category for error messages */
-DEFINE_LOG_CATEGORY_STATIC(LogGameMode, Log, All);
+#include "SMutator.h"
 
 
 ASGameMode::ASGameMode(const FObjectInitializer& ObjectInitializer)
@@ -28,12 +25,11 @@ ASGameMode::ASGameMode(const FObjectInitializer& ObjectInitializer)
 	SpectatorClass = ASSpectatorPawn::StaticClass();
 
 	bAllowFriendlyFireDamage = false;
-	bSpawnAtTeamPlayer = true;
 	bSpawnZombiesAtNight = true;
 
 	/* Start the game at 16:00 */
 	TimeOfDayStart = 16 * 60;
-	NightSurvivedScore = 100;
+	BotSpawnInterval = 5.0f;
 
 	/* Default team is 1 for players and 0 for enemies */
 	PlayerTeamNum = 1;
@@ -52,24 +48,29 @@ void ASGameMode::InitGameState()
 }
 
 
+void ASGameMode::PreInitializeComponents()
+{
+	Super::PreInitializeComponents();
+
+	/* Set timer to run every second */
+	GetWorldTimerManager().SetTimer(TimerHandle_DefaultTimer, this, &ASGameMode::DefaultTimer, GetWorldSettings()->GetEffectiveTimeDilation(), true);
+}
+
 
 void ASGameMode::StartMatch()
 {
 	if (!HasMatchStarted())
 	{
-		GetWorldTimerManager().SetTimer(TimerHandle_BotSpawns, this, &ASGameMode::SpawnBotHandler, 5.0f, true);
+		/* Spawn a new bot every 5 seconds (bothandler will opt-out based on his own rules for example to only spawn during night time) */
+		GetWorldTimerManager().SetTimer(TimerHandle_BotSpawns, this, &ASGameMode::SpawnBotHandler, BotSpawnInterval, true);
 	}
 
 	Super::StartMatch();
 }
 
 
-
 void ASGameMode::DefaultTimer()
 {
-	/* This function is called every 1 second. */
-	Super::DefaultTimer();
-
 	/* Immediately start the match while playing in editor */
 	//if (GetWorld()->IsPlayInEditor())
 	{
@@ -106,33 +107,7 @@ void ASGameMode::DefaultTimer()
 				/* The night just ended, respawn all dead players */
 				if (!CurrentIsNight)
 				{
-					/* Respawn spectating players that died during the night */
-					for (FConstPlayerControllerIterator It = GetWorld()->GetPlayerControllerIterator(); It; It++)
-					{
-						/* Look for all players that are spectating */
-						ASPlayerController* MyController = Cast<ASPlayerController>(*It);
-						if (MyController)
-						{
-							if (MyController->PlayerState->bIsSpectator)
-							{
-								RestartPlayer(MyController);
-								MyController->ClientHUDStateChanged(EHUDState::Playing);
-							}
-							else
-							{
-								/* Player still alive, award him some points */
-								ASCharacter* MyPawn = Cast<ASCharacter>(MyController->GetPawn());
-								if (MyPawn && MyPawn->IsAlive())
-								{
-									ASPlayerState* PS = Cast<ASPlayerState>(MyController->PlayerState);
-									if (PS)
-									{
-										PS->ScorePoints(NightSurvivedScore);
-									}
-								}
-							}
-						}
-					}
+					OnNightEnded();
 				}
 
 				/* Update bot states */
@@ -166,7 +141,7 @@ bool ASGameMode::CanDealDamage(class ASPlayerState* DamageCauser, class ASPlayer
 }
 
 
-FString ASGameMode::InitNewPlayer(class APlayerController* NewPlayerController, const TSharedPtr<FUniqueNetId>& UniqueId, const FString& Options, const FString& Portal)
+FString ASGameMode::InitNewPlayer(class APlayerController* NewPlayerController, const TSharedPtr<const FUniqueNetId>& UniqueId, const FString& Options, const FString& Portal)
 {
 	FString Result = Super::InitNewPlayer(NewPlayerController, UniqueId, Options, Portal);
 
@@ -201,77 +176,6 @@ float ASGameMode::ModifyDamage(float Damage, AActor* DamagedActor, struct FDamag
 }
 
 
-void ASGameMode::CheckMatchEnd()
-{
-	bool bHasAlivePlayer = false;
-	for (FConstPawnIterator It = GetWorld()->GetPawnIterator(); It; It++)
-	{
-		ASCharacter* MyPawn = Cast<ASCharacter>(*It);
-		if (MyPawn && MyPawn->IsAlive())
-		{
-			ASPlayerState* PS = Cast<ASPlayerState>(MyPawn->PlayerState);
-			if (PS)
-			{
-				if (!PS->bIsABot)
-				{
-					/* Found one player that is still alive, game will continue */
-					bHasAlivePlayer = true;
-					break;
-				}
-			}
-		}
-	}
-
-	/* End game is all players died */
-	if (!bHasAlivePlayer)
-	{
-		FinishMatch();
-	}
-}
-
-
-void ASGameMode::FinishMatch()
-{
-	ASGameState* const MyGameState = Cast<ASGameState>(GameState);
-	if (IsMatchInProgress())
-	{
-		EndMatch();
-
-		/* Stop spawning bots */
-		GetWorldTimerManager().ClearTimer(TimerHandle_BotSpawns);
-
-		for (FConstPlayerControllerIterator It = GetWorld()->GetPlayerControllerIterator(); It; It++)
-		{
-			ASPlayerController* MyController = Cast<ASPlayerController>(*It);
-			if (MyController)
-			{
-				MyController->ClientHUDStateChanged(EHUDState::MatchEnd);
-			}
-		}
-	}
-}
-
-void ASGameMode::Killed(AController* Killer, AController* VictimPlayer, APawn* VictimPawn, const UDamageType* DamageType)
-{
-	ASPlayerState* KillerPS = Killer ? Cast<ASPlayerState>(Killer->PlayerState) : NULL;
-	ASPlayerState* VictimPS = VictimPlayer ? Cast<ASPlayerState>(VictimPlayer->PlayerState) : NULL;
-
-	if (KillerPS && KillerPS != VictimPS && !KillerPS->bIsABot)
-	{
-		KillerPS->AddKill();
-		KillerPS->ScorePoints(10);
-	}
-
-	if (VictimPS && !VictimPS->bIsABot)
-	{
-		VictimPS->AddDeath();
-	}
-
-	/* End match is all players died */
-	CheckMatchEnd();
-}
-
-
 bool ASGameMode::ShouldSpawnAtStartSpot(AController* Player)
 {
 	/* Always pick a random location */
@@ -279,15 +183,21 @@ bool ASGameMode::ShouldSpawnAtStartSpot(AController* Player)
 }
 
 
-AActor* ASGameMode::ChoosePlayerStart(AController* Player)
+AActor* ASGameMode::ChoosePlayerStart_Implementation(AController* Player)
 {
 	TArray<APlayerStart*> PreferredSpawns;
 	TArray<APlayerStart*> FallbackSpawns;
 
+	/* Get all playerstart objects in level */
+	TArray<AActor*> PlayerStarts;
+	UGameplayStatics::GetAllActorsOfClass(this, APlayerStart::StaticClass(), PlayerStarts);
+
+	/* Split the player starts into two arrays for preferred and fallback spawns */
 	for (int32 i = 0; i < PlayerStarts.Num(); i++)
 	{
-		APlayerStart* TestStart = PlayerStarts[i];
-		if (IsSpawnpointAllowed(TestStart, Player))
+		APlayerStart* TestStart = Cast<APlayerStart>(PlayerStarts[i]);
+
+		if (TestStart && IsSpawnpointAllowed(TestStart, Player))
 		{
 			if (IsSpawnpointPreferred(TestStart, Player))
 			{
@@ -298,8 +208,10 @@ AActor* ASGameMode::ChoosePlayerStart(AController* Player)
 				FallbackSpawns.Add(TestStart);
 			}
 		}
+
 	}
 
+	/* Pick a random spawnpoint from the filtered spawn points */
 	APlayerStart* BestStart = nullptr;
 	if (PreferredSpawns.Num() > 0)
 	{
@@ -310,6 +222,7 @@ AActor* ASGameMode::ChoosePlayerStart(AController* Player)
 		BestStart = FallbackSpawns[FMath::RandHelper(FallbackSpawns.Num())];
 	}
 
+	/* If we failed to find any (so BestStart is nullptr) fall back to the base code */
 	return BestStart ? BestStart : Super::ChoosePlayerStart(Player);
 }
 
@@ -369,25 +282,25 @@ bool ASGameMode::IsSpawnpointPreferred(APlayerStart* SpawnPoint, AController* Co
 void ASGameMode::SpawnNewBot()
 {
 	FActorSpawnParameters SpawnInfo;
-	SpawnInfo.bNoCollisionFail = true;
+	SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
 
 	ASZombieAIController* AIC = GetWorld()->SpawnActor<ASZombieAIController>(SpawnInfo);
 	RestartPlayer(AIC);
 }
 
 /* Used by RestartPlayer() to determine the pawn to create and possess when a bot or player spawns */
-UClass* ASGameMode::GetDefaultPawnClassForController(AController* InController)
+UClass* ASGameMode::GetDefaultPawnClassForController_Implementation(AController* InController)
 {
 	if (Cast<ASZombieAIController>(InController))
 	{
 		return BotPawnClass;
 	}
 
-	return Super::GetDefaultPawnClassForController(InController);
+	return Super::GetDefaultPawnClassForController_Implementation(InController);
 }
 
 
-bool ASGameMode::CanSpectate(APlayerController* Viewer, APlayerState* ViewTarget)
+bool ASGameMode::CanSpectate_Implementation(APlayerController* Viewer, APlayerState* ViewTarget)
 {
 	/* Don't allow spectating of other non-player bots */
 	return (ViewTarget && !ViewTarget->bIsABot);
@@ -444,76 +357,116 @@ void ASGameMode::SpawnBotHandler()
 }
 
 
-void ASGameMode::RestartPlayer(class AController* NewPlayer)
+void ASGameMode::OnNightEnded()
 {
-	/* Fallback to PlayerStart picking if team spawning is disabled or we're trying to spawn a bot. */
-	if (!bSpawnAtTeamPlayer || (NewPlayer->PlayerState && NewPlayer->PlayerState->bIsABot))
-	{
-		Super::RestartPlayer(NewPlayer);
-		return;
-	}
+	// Do nothing (can be used to apply score or trigger other time of day events)
+}
 
-	/* Look for a live player to spawn next to */
-	FVector SpawnOrigin = FVector::ZeroVector;
-	FRotator StartRotation = FRotator::ZeroRotator;
-	for (FConstPawnIterator It = GetWorld()->GetPawnIterator(); It; It++)
+void ASGameMode::Killed(AController* Killer, AController* VictimPlayer, APawn* VictimPawn, const UDamageType* DamageType)
+{
+	// Do nothing (can we used to apply score or keep track of kill count)
+}
+
+
+void ASGameMode::SetPlayerDefaults(APawn* PlayerPawn)
+{
+	Super::SetPlayerDefaults(PlayerPawn);
+
+	SpawnDefaultInventory(PlayerPawn);
+}
+
+
+void ASGameMode::SpawnDefaultInventory(APawn* PlayerPawn)
+{
+	ASCharacter* MyPawn = Cast<ASCharacter>(PlayerPawn);
+	if (MyPawn)
 	{
-		ASCharacter* MyCharacter = Cast<ASCharacter>(*It);
-		if (MyCharacter && MyCharacter->IsAlive())
+		for (int32 i = 0; i < DefaultInventoryClasses.Num(); i++)
 		{
-			/* Get the origin of the first player we can find */
-			SpawnOrigin = MyCharacter->GetActorLocation();
-			StartRotation = MyCharacter->GetActorRotation();
-			break;
+			if (DefaultInventoryClasses[i])
+			{
+				FActorSpawnParameters SpawnInfo;
+				SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+				ASWeapon* NewWeapon = GetWorld()->SpawnActor<ASWeapon>(DefaultInventoryClasses[i], SpawnInfo);
+
+				MyPawn->AddWeapon(NewWeapon);
+			}
 		}
 	}
+}
 
-	/* No player is alive (yet) - spawn using one of the PlayerStarts */
-	if (SpawnOrigin == FVector::ZeroVector)
+
+/************************************************************************/
+/* Modding & Mutators                                                   */
+/************************************************************************/
+
+
+void ASGameMode::InitGame(const FString& MapName, const FString& Options, FString& ErrorMessage)
+{
+	// HACK: workaround to inject CheckRelevance() into the BeginPlay sequence
+	UFunction* Func = AActor::GetClass()->FindFunctionByName(FName(TEXT("ReceiveBeginPlay")));
+	Func->FunctionFlags |= FUNC_Native;
+	Func->SetNativeFunc((Native)&ASGameMode::BeginPlayMutatorHack);
+
+	/* Spawn all mutators. */
+	for (int32 i = 0; i < MutatorClasses.Num(); i++)
 	{
-		Super::RestartPlayer(NewPlayer);
-		return;
+		AddMutator(MutatorClasses[i]);
 	}
 
-	/* Get a point on the nav mesh near the other player */
-	FVector StartLocation = UNavigationSystem::GetRandomPointInRadius(NewPlayer, SpawnOrigin, 250.0f);
-
-	// Try to create a pawn to use of the default class for this player
-	if (NewPlayer->GetPawn() == nullptr && GetDefaultPawnClassForController(NewPlayer) != nullptr)
+	if (BaseMutator)
 	{
-		FActorSpawnParameters SpawnInfo;
-		SpawnInfo.Instigator = Instigator;
-		APawn* ResultPawn = GetWorld()->SpawnActor<APawn>(GetDefaultPawnClassForController(NewPlayer), StartLocation, StartRotation, SpawnInfo);
-		if (ResultPawn == nullptr)
+		BaseMutator->InitGame(MapName, Options, ErrorMessage);
+	}
+
+	Super::InitGame(MapName, Options, ErrorMessage);
+}
+
+
+bool ASGameMode::CheckRelevance_Implementation(AActor* Other)
+{
+	/* Execute the first in the mutator chain */
+	if (BaseMutator)
+	{
+		return BaseMutator->CheckRelevance(Other);
+	}
+
+	return true;
+}
+
+
+void ASGameMode::BeginPlayMutatorHack(FFrame& Stack, RESULT_DECL)
+{
+	P_FINISH;
+
+	// WARNING: This function is called by every Actor in the level during his BeginPlay sequence. Meaning:  'this' is actually an AActor! Only do AActor things!
+	if (!IsA(ALevelScriptActor::StaticClass()) && !IsA(ASMutator::StaticClass()) &&
+		(RootComponent == NULL || RootComponent->Mobility != EComponentMobility::Static || (!IsA(AStaticMeshActor::StaticClass()) && !IsA(ALight::StaticClass()))))
+	{
+		ASGameMode* Game = GetWorld()->GetAuthGameMode<ASGameMode>();
+		// a few type checks being AFTER the CheckRelevance() call is intentional; want mutators to be able to modify, but not outright destroy
+		if (Game != NULL && Game != this && !Game->CheckRelevance((AActor*)this) && !IsA(APlayerController::StaticClass()))
 		{
-			UE_LOG(LogGameMode, Warning, TEXT("Couldn't spawn Pawn of type %s at %s"), *GetNameSafe(DefaultPawnClass), &StartLocation);
+			/* Actors are destroyed if they fail the relevance checks (which moves through the gamemode specific check AND the chain of mutators) */
+			Destroy();
 		}
-		NewPlayer->SetPawn(ResultPawn);
 	}
+}
 
-	if (NewPlayer->GetPawn() == nullptr)
-	{
-		NewPlayer->FailedToSpawnPawn();
-	}
-	else
-	{
-		NewPlayer->Possess(NewPlayer->GetPawn());
 
-		// If the Pawn is destroyed as part of possession we have to abort
-		if (NewPlayer->GetPawn() == nullptr)
+void ASGameMode::AddMutator(TSubclassOf<ASMutator> MutClass)
+{
+	ASMutator* NewMut = GetWorld()->SpawnActor<ASMutator>(MutClass);
+	if (NewMut)
+	{
+		if (BaseMutator == nullptr)
 		{
-			NewPlayer->FailedToSpawnPawn();
+			BaseMutator = NewMut;
 		}
 		else
 		{
-			// Set initial control rotation to player start's rotation
-			NewPlayer->ClientSetRotation(NewPlayer->GetPawn()->GetActorRotation(), true);
-
-			FRotator NewControllerRot = StartRotation;
-			NewControllerRot.Roll = 0.f;
-			NewPlayer->SetControlRotation(NewControllerRot);
-
-			SetPlayerDefaults(NewPlayer->GetPawn());
+			// Add as child in chain
+			BaseMutator->NextMutator = NewMut;
 		}
 	}
 }

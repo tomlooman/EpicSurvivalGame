@@ -4,11 +4,15 @@
 #include "SBaseCharacter.h"
 #include "SGameMode.h"
 
-// Sets default values
+
 ASBaseCharacter::ASBaseCharacter(const class FObjectInitializer& ObjectInitializer)
-	: Super(ObjectInitializer)
+	/* Override the movement class from the base class to our own to support multiple speeds (eg. sprinting) */
+	: Super(ObjectInitializer.SetDefaultSubobjectClass<USCharacterMovementComponent>(ACharacter::CharacterMovementComponentName))
 {
 	Health = 100;
+
+	TargetingSpeedModifier = 0.5f;
+	SprintingSpeedModifier = 2.0f;
 
 	/* Noise emitter for both players and enemies. This keeps track of MakeNoise data and is used by the pawnsensing component in our SZombieCharacter class */
 	NoiseEmitterComp = CreateDefaultSubobject<UPawnNoiseEmitterComponent>(TEXT("NoiseEmitterComp"));
@@ -56,7 +60,24 @@ float ASBaseCharacter::TakeDamage(float Damage, struct FDamageEvent const& Damag
 		Health -= ActualDamage;
 		if (Health <= 0)
 		{
-			Die(ActualDamage, DamageEvent, EventInstigator, DamageCauser);
+			bool bCanDie = true;
+
+			/* Check the damagetype, always allow dying if the cast fails, otherwise check the property if player can die from damagetype */
+			if (DamageEvent.DamageTypeClass)
+			{
+				USDamageType* DmgType = Cast<USDamageType>(DamageEvent.DamageTypeClass->GetDefaultObject());
+				bCanDie = (DmgType == nullptr || (DmgType && DmgType->GetCanDieFrom()));
+			}
+
+			if (bCanDie)
+			{
+				Die(ActualDamage, DamageEvent, EventInstigator, DamageCauser);
+			}
+			else
+			{
+				/* Player cannot die from this damage type, set hitpoints to 1.0 */
+				Health = 1.0f;
+			}
 		}
 		else
 		{
@@ -142,6 +163,23 @@ void ASBaseCharacter::OnDeath(float KillingDamage, FDamageEvent const& DamageEve
 	SetActorEnableCollision(true);
 
 	SetRagdollPhysics();
+
+	/* Apply physics impulse on the bone of the enemy skeleton mesh we hit (ray-trace damage only) */
+	if (DamageEvent.IsOfType(FPointDamageEvent::ClassID))
+	{
+		FPointDamageEvent PointDmg = *((FPointDamageEvent*)(&DamageEvent));
+		{
+			// TODO: Use DamageTypeClass->DamageImpulse
+			Mesh3P->AddImpulseAtLocation(PointDmg.ShotDirection * 12000, PointDmg.HitInfo.ImpactPoint, PointDmg.HitInfo.BoneName);
+		}
+	}
+	if (DamageEvent.IsOfType(FRadialDamageEvent::ClassID))
+	{
+		FRadialDamageEvent RadialDmg = *((FRadialDamageEvent const*)(&DamageEvent));
+		{
+			Mesh3P->AddRadialImpulse(RadialDmg.Origin, RadialDmg.Params.GetMaxRadius(), 100000 /*RadialDmg.DamageTypeClass->DamageImpulse*/, ERadialImpulseFalloff::RIF_Linear);
+		}
+	}
 }
 
 
@@ -197,10 +235,16 @@ void ASBaseCharacter::PlayHit(float DamageTaken, struct FDamageEvent const& Dama
 		ReplicateHit(DamageTaken, DamageEvent, PawnInstigator, DamageCauser, bKilled);
 	}
 
-	/* Apply damage momentum specific to the DamageType */
-	if (DamageTaken > 0.f && DamageEvent.DamageTypeClass != nullptr)
+	if (GetNetMode() != NM_DedicatedServer)
 	{
-		ApplyDamageMomentum(DamageTaken, DamageEvent, PawnInstigator, DamageCauser);
+		if (bKilled && SoundDeath)
+		{
+			UGameplayStatics::SpawnSoundAttached(SoundDeath, RootComponent, NAME_None, FVector::ZeroVector, EAttachLocation::SnapToTarget, true);
+		}
+		else if (SoundTakeHit)
+		{
+			UGameplayStatics::SpawnSoundAttached(SoundTakeHit, RootComponent, NAME_None, FVector::ZeroVector, EAttachLocation::SnapToTarget, true);
+		}
 	}
 }
 
@@ -244,9 +288,106 @@ void ASBaseCharacter::OnRep_LastTakeHitInfo()
 }
 
 
+void ASBaseCharacter::SetSprinting(bool NewSprinting)
+{
+	bWantsToRun = NewSprinting;
+
+	if (bIsCrouched)
+	{
+		UnCrouch();
+	}
+
+	if (Role < ROLE_Authority)
+	{
+		ServerSetSprinting(NewSprinting);
+	}
+}
+
+
+void ASBaseCharacter::ServerSetSprinting_Implementation(bool NewSprinting)
+{
+	SetSprinting(NewSprinting);
+}
+
+
+bool ASBaseCharacter::ServerSetSprinting_Validate(bool NewSprinting)
+{
+	return true;
+}
+
+
+bool ASBaseCharacter::IsSprinting() const
+{
+	if (!GetCharacterMovement())
+	{
+		return false;
+	}
+
+	return bWantsToRun && !IsTargeting() && !GetVelocity().IsZero()
+		// Don't allow sprint while strafing sideways or standing still (1.0 is straight forward, -1.0 is backward while near 0 is sideways or standing still)
+		&& (FVector::DotProduct(GetVelocity().GetSafeNormal2D(), GetActorRotation().Vector()) > 0.8); // Changing this value to 0.1 allows for diagonal sprinting. (holding W+A or W+D keys)
+}
+
+
+float ASBaseCharacter::GetSprintingSpeedModifier() const
+{
+	return SprintingSpeedModifier;
+}
+
+
+
+void ASBaseCharacter::SetTargeting(bool NewTargeting)
+{
+	bIsTargeting = NewTargeting;
+
+	if (Role < ROLE_Authority)
+	{
+		ServerSetTargeting(NewTargeting);
+	}
+}
+
+
+void ASBaseCharacter::ServerSetTargeting_Implementation(bool NewTargeting)
+{
+	SetTargeting(NewTargeting);
+}
+
+
+bool ASBaseCharacter::ServerSetTargeting_Validate(bool NewTargeting)
+{
+	return true;
+}
+
+
+
+bool ASBaseCharacter::IsTargeting() const
+{
+	return bIsTargeting;
+}
+
+
+float ASBaseCharacter::GetTargetingSpeedModifier() const
+{
+	return TargetingSpeedModifier;
+}
+
+
+FRotator ASBaseCharacter::GetAimOffsets() const
+{
+	const FVector AimDirWS = GetBaseAimRotation().Vector();
+	const FVector AimDirLS = ActorToWorld().InverseTransformVectorNoScale(AimDirWS);
+	const FRotator AimRotLS = AimDirLS.Rotation();
+
+	return AimRotLS;
+}
+
 void ASBaseCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	// Value is already updated locally, skip in replication step
+	DOREPLIFETIME_CONDITION(ASBaseCharacter, bWantsToRun, COND_SkipOwner);
+	DOREPLIFETIME_CONDITION(ASBaseCharacter, bIsTargeting, COND_SkipOwner);
 
 	// Replicate to every client, no special condition required
 	DOREPLIFETIME(ASBaseCharacter, Health);

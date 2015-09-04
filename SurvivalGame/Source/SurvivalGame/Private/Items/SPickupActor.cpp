@@ -34,6 +34,8 @@ void ASPickupActor::BeginPlay()
 
 void ASPickupActor::OnUsed(APawn* InstigatorPawn)
 {
+	Super::OnUsed(InstigatorPawn);
+
 	UGameplayStatics::PlaySoundAtLocation(this, PickupSound, GetActorLocation());
 
 	bIsActive = false;
@@ -44,8 +46,11 @@ void ASPickupActor::OnUsed(APawn* InstigatorPawn)
 		FTimerHandle RespawnTimerHandle;
 		GetWorld()->GetTimerManager().SetTimer(RespawnTimerHandle, this, &ASPickupActor::RespawnPickup, RespawnDelay + FMath::RandHelper(RespawnDelayRange), false);
 	}
-
-	Super::OnUsed(InstigatorPawn);
+	else
+	{
+		/* Delete from level if respawn is not allowed */
+		Destroy();
+	}
 }
 
 
@@ -54,6 +59,8 @@ void ASPickupActor::OnPickedUp()
 	if (MeshComp)
 	{
 		MeshComp->SetVisibility(false);
+		MeshComp->SetSimulatePhysics(false);
+		MeshComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	}
 }
 
@@ -70,6 +77,7 @@ void ASPickupActor::OnRespawned()
 	if (MeshComp)
 	{
 		MeshComp->SetVisibility(true);
+		MeshComp->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 	}
 }
 

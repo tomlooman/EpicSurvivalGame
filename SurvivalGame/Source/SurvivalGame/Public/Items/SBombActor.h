@@ -19,6 +19,9 @@ protected:
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
+	/* Explode when taking damage*/
+	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser) override;
+
 	UPROPERTY(VisibleDefaultsOnly)
 	UParticleSystemComponent* ExplosionPCS;
 
@@ -65,7 +68,7 @@ protected:
 	virtual void OnUsed(APawn* InstigatorPawn) override;
 	
 	/* Explode the bomb */
-	void OnExplode();
+	void Explode();
 
 	UFUNCTION(Reliable, NetMulticast)
 	void SimulateFuzeFX();

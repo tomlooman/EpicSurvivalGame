@@ -18,12 +18,6 @@ USCarryObjectComponent::USCarryObjectComponent(const FObjectInitializer& ObjectI
 
 void USCarryObjectComponent::TickComponent(float DeltaSeconds, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction)
 {
-	//if (GetIsCarryingActor())
-	//{
-	// perform an overlap check of the actor vs. environment. must have 0 overlaps from Static and Dynamic and Pawn channels.
-	// Use param NAME to update the color between red and green
-	//}
-
 	if (APawn* OwningPawn = Cast<APawn>(GetOwner()))
 	{
 		if (OwningPawn->IsLocallyControlled())
@@ -32,7 +26,7 @@ void USCarryObjectComponent::TickComponent(float DeltaSeconds, enum ELevelTick T
 		}
 		else
 		{
-			/* NOTE: Slightly changed code from base implementation to use RemoteViewPitch instead of non-replicated ControlRotation */
+			/* NOTE: Slightly changed code from base implementation (USpringArmComponent) to use RemoteViewPitch instead of non-replicated ControlRotation */
 			if (bUsePawnControlRotation)
 			{
 				{
@@ -107,7 +101,7 @@ AActor* USCarryObjectComponent::GetActorInView()
 	TraceParams.bTraceComplex = false;
 
 	FHitResult Hit(ForceInit);
-	GetWorld()->LineTraceSingle(Hit, TraceStart, TraceEnd, ECC_Visibility, TraceParams);
+	GetWorld()->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, ECC_Visibility, TraceParams);
 
 	//DrawDebugLine(GetWorld(), TraceStart, TraceEnd, FColor::Red, false, 1.0f);
 
@@ -183,14 +177,31 @@ bool USCarryObjectComponent::GetIsCarryingActor()
 }
 
 
-void USCarryObjectComponent::Rotate(float Direction)
+void USCarryObjectComponent::Rotate(float DirectionYaw, float DirectionRoll)
 {
 	if (GetOwner()->Role < ROLE_Authority)
 	{
-		ServerRotate(Direction);
+		ServerRotate(DirectionYaw, DirectionRoll);
 	}
 
-	OnRotateMulticast(Direction);
+	OnRotateMulticast(DirectionYaw, DirectionRoll);
+}
+
+
+void USCarryObjectComponent::RotateActorAroundPoint(AActor* RotateActor, FVector RotationPoint, FRotator AddRotation)
+{
+	FVector Loc = RotateActor->GetActorLocation() - RotationPoint;
+	FVector RotatedLoc = AddRotation.RotateVector(Loc);
+
+	FVector NewLoc = RotationPoint + RotatedLoc;
+	
+	/* Compose the rotators, use Quats to avoid gimbal lock */
+	FQuat AQuat = FQuat(RotateActor->GetActorRotation());
+	FQuat BQuat = FQuat(AddRotation);
+
+	FRotator NewRot = FRotator(BQuat*AQuat);
+
+	RotateActor->SetActorLocationAndRotation(NewLoc, NewRot);
 }
 
 
@@ -230,12 +241,16 @@ void USCarryObjectComponent::OnDropMulticast_Implementation()
 }
 
 
-void USCarryObjectComponent::OnRotateMulticast_Implementation(float Direction)
+void USCarryObjectComponent::OnRotateMulticast_Implementation(float DirectionYaw, float DirectionRoll)
 {
 	AActor* CarriedActor = GetCarriedActor();
 	if (CarriedActor)
 	{
-		CarriedActor->AddActorWorldRotation(FRotator(Direction * RotateSpeed, 0, 0));
+		/* Retrieve the object center */
+		FVector RootOrigin = GetCarriedActor()->GetRootComponent()->Bounds.Origin;
+		FRotator DeltaRot = FRotator(0, DirectionYaw * RotateSpeed, DirectionRoll * RotateSpeed);
+
+		RotateActorAroundPoint(CarriedActor, RootOrigin, DeltaRot);
 	}
 }
 
@@ -276,13 +291,13 @@ bool USCarryObjectComponent::ServerPickup_Validate()
 }
 
 
-void USCarryObjectComponent::ServerRotate_Implementation(float Direction)
+void USCarryObjectComponent::ServerRotate_Implementation(float DirectionYaw, float DirectionRoll)
 {
-	Rotate(Direction);
+	Rotate(DirectionYaw, DirectionRoll);
 }
 
 
-bool USCarryObjectComponent::ServerRotate_Validate(float Direction)
+bool USCarryObjectComponent::ServerRotate_Validate(float DirectionYaw, float DirectionRoll)
 {
 	return true;
 }

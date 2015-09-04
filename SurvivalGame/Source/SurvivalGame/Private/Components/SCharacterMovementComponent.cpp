@@ -2,7 +2,7 @@
 
 #include "SurvivalGame.h"
 #include "SCharacterMovementComponent.h"
-#include "SCharacter.h"
+#include "SBaseCharacter.h"
 
 
 
@@ -10,11 +10,11 @@ float USCharacterMovementComponent::GetMaxSpeed() const
 {
 	float MaxSpeed = Super::GetMaxSpeed();
 
-	const ASCharacter* CharOwner = Cast<ASCharacter>(PawnOwner);
+	const ASBaseCharacter* CharOwner = Cast<ASBaseCharacter>(PawnOwner);
 	if (CharOwner)
 	{
-		// Slow down during targeting, but don't further reduce movement speed while also crouching
-		if (CharOwner->IsTargeting() && !CharOwner->GetMovementComponent()->IsCrouching())
+		// Slow down during targeting or crouching
+		if (CharOwner->IsTargeting() && !IsCrouching())
 		{
 			MaxSpeed *= CharOwner->GetTargetingSpeedModifier();
 		}

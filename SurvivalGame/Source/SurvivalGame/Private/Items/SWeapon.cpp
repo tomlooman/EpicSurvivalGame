@@ -318,7 +318,7 @@ FHitResult ASWeapon::WeaponTrace(const FVector& TraceFrom, const FVector& TraceT
 	TraceParams.bReturnPhysicalMaterial = true;
 
 	FHitResult Hit(ForceInit);
-	GetWorld()->LineTraceSingle(Hit, TraceFrom, TraceTo, COLLISION_WEAPON, TraceParams);
+	GetWorld()->LineTraceSingleByChannel(Hit, TraceFrom, TraceTo, COLLISION_WEAPON, TraceParams);
 
 	return Hit;
 }
@@ -487,7 +487,7 @@ UAudioComponent* ASWeapon::PlayWeaponSound(USoundCue* SoundToPlay)
 	UAudioComponent* AC = nullptr;
 	if (SoundToPlay && MyPawn)
 	{
-		AC = UGameplayStatics::PlaySoundAttached(SoundToPlay, MyPawn->GetRootComponent());
+		AC = UGameplayStatics::SpawnSoundAttached(SoundToPlay, MyPawn->GetRootComponent());
 	}
 
 	return AC;

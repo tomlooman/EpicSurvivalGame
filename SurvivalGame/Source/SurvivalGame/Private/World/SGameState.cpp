@@ -9,8 +9,8 @@
 ASGameState::ASGameState(const class FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-	/* 1 minute real time is 10 minutes game time */
-	TimeScale = 10.0f;
+	/* 1 SECOND real time is 1*TimeScale MINUTES game time */
+	TimeScale = 8.0f;
 	bIsNight = false;
 
 	SunriseTimeMark = 6.0f;
@@ -129,4 +129,5 @@ void ASGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifet
 
 	DOREPLIFETIME(ASGameState, ElapsedGameMinutes);
 	DOREPLIFETIME(ASGameState, bIsNight);
+	DOREPLIFETIME(ASGameState, TotalScore);
 }
