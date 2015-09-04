@@ -9,5 +9,6 @@ Saved
 *-DebugGame.dll
 SurvivalGame/Binaries/Win64/SurvivalGame.exp
 SurvivalGame/Binaries/Win64/SurvivalGame.lib
+SurvivalGame/Releases
 *.log
 *.target.xml
