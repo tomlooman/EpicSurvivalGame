@@ -1,0 +1,19 @@
+{
+	"FileVersion" : 3,
+	
+	"FriendlyName" : "ExtendedRifleMod",
+	"Version" : 1,
+	"VersionName" : "1.0",
+	"CreatedBy" : "Tom Looman",
+	"CreatedByURL" : "http://www.tomlooman.com",
+	"EngineVersion" : "4.9.0",
+	"Description" : "My Extend Rifle Mod",
+	"Category" : "User Mod",
+	"EnabledByDefault" : true,
+
+	"Modules" :
+	[
+	],
+
+	"CanContainContent" : true
+}

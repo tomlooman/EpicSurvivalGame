@@ -3,6 +3,7 @@
 #pragma once
 
 #include "GameFramework/GameMode.h"
+#include "SMutator.h"
 #include "SGameMode.generated.h"
 
 /**
@@ -27,6 +28,14 @@ protected:
 
 	virtual void OnNightEnded();
 
+	virtual void SpawnDefaultInventory(APawn* PlayerPawn);
+	
+	/**
+	* Make sure pawn properties are back to default
+	* Also a good place to modify them on spawn
+	*/
+	virtual void SetPlayerDefaults(APawn* PlayerPawn) override;
+
 	/* Handle for efficient management of DefaultTimer timer */
 	FTimerHandle TimerHandle_DefaultTimer;
 
@@ -41,7 +50,7 @@ protected:
 	float BotSpawnInterval;
 
 	/* Called once on every new player that enters the gamemode */
-	virtual FString InitNewPlayer(class APlayerController* NewPlayerController, const TSharedPtr<FUniqueNetId>& UniqueId, const FString& Options, const FString& Portal /* = TEXT("") */);
+	virtual FString InitNewPlayer(class APlayerController* NewPlayerController, const TSharedPtr<const FUniqueNetId>& UniqueId, const FString& Options, const FString& Portal = TEXT(""));
 
 	/* The teamnumber assigned to Players */
 	int32 PlayerTeamNum;
@@ -113,4 +122,39 @@ public:
 	/* Primary sun of the level. Assigned in Blueprint during BeginPlay (BlueprintReadWrite is required as tag instead of EditDefaultsOnly) */
 	UPROPERTY(BlueprintReadWrite, Category = "DayNight")
 	ADirectionalLight* PrimarySunLight;
+
+	/* The default weapons to spawn with */
+	UPROPERTY(EditDefaultsOnly, Category = "Player")
+	TArray<TSubclassOf<class ASWeapon>> DefaultInventoryClasses;
+
+	/************************************************************************/
+	/* Modding & Mutators                                                   */
+	/************************************************************************/
+
+protected:
+
+	/* Mutators to create when game starts */
+ 	UPROPERTY(EditAnywhere, Category = "Mutators")
+ 	TArray<TSubclassOf<class ASMutator>> MutatorClasses;
+
+	/* First mutator in the execution chain */
+	ASMutator* BaseMutator;
+
+	void AddMutator(TSubclassOf<ASMutator> MutClass);
+
+	virtual void InitGame(const FString& MapName, const FString& Options, FString& ErrorMessage) override;
+
+	/** From UT Source: Used to modify, remove, and replace Actors. Return false to destroy the passed in Actor. Default implementation queries mutators.
+	* note that certain critical Actors such as PlayerControllers can't be destroyed, but we'll still call this code path to allow mutators
+	* to change properties on them
+	*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintAuthorityOnly)
+	bool CheckRelevance(AActor* Other);
+
+	/* Note: Functions flagged with BlueprintNativeEvent like above require _Implementation for a C++ implementation */
+	virtual bool CheckRelevance_Implementation(AActor* Other);
+
+	/* Hacked into ReceiveBeginPlay() so we can do mutator replacement of Actors and such */
+	void BeginPlayMutatorHack(FFrame& Stack, RESULT_DECL);
+
 };

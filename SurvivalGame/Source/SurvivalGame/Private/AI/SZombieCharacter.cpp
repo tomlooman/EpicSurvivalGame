@@ -222,7 +222,7 @@ UAudioComponent* ASZombieCharacter::PlayCharacterSound(USoundCue* CueToPlay)
 {
 	if (CueToPlay)
 	{
-		return UGameplayStatics::PlaySoundAttached(CueToPlay, RootComponent, NAME_None, FVector::ZeroVector, EAttachLocation::SnapToTarget, true);
+		return UGameplayStatics::SpawnSoundAttached(CueToPlay, RootComponent, NAME_None, FVector::ZeroVector, EAttachLocation::SnapToTarget, true);
 	}
 
 	return nullptr;

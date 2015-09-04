@@ -15,13 +15,11 @@ class SURVIVALGAME_API ASWeaponPickup : public ASPickupActor
 
 	ASWeaponPickup(const FObjectInitializer& ObjectInitializer);
 
-protected:
+public:
 
 	/* Class to add to inventory when picked up */
-	UPROPERTY(EditDefaultsOnly)
+	UPROPERTY(EditDefaultsOnly, Category = "WeaponClass")
 	TSubclassOf<ASWeapon> WeaponClass;
-
-public:
 
 	virtual void OnUsed(APawn* InstigatorPawn) override;
 };

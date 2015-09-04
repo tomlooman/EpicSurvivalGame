@@ -74,8 +74,6 @@ void ASCharacter::BeginPlay()
 		// Set a timer to increment hunger every interval
 		FTimerHandle Handle;
 		GetWorldTimerManager().SetTimer(Handle, this, &ASCharacter::IncrementHunger, IncrementHungerInterval, true);
-
-		SpawnDefaultInventory();
 	}
 }
 
@@ -486,27 +484,6 @@ FName ASCharacter::GetInventoryAttachPoint(EInventorySlot Slot) const
 }
 
 
-void ASCharacter::SpawnDefaultInventory()
-{
-	if (Role < ROLE_Authority)
-	{	
-		return;
-	}
-
-	for (int32 i = 0; i < DefaultInventoryClasses.Num(); i++)
-	{
-		if (DefaultInventoryClasses[i])
-		{
-			FActorSpawnParameters SpawnInfo;
-			SpawnInfo.bNoCollisionFail = true;
-			ASWeapon* NewWeapon = GetWorld()->SpawnActor<ASWeapon>(DefaultInventoryClasses[i], SpawnInfo);
-
-			AddWeapon(NewWeapon);
-		}
-	}
-}
-
-
 void ASCharacter::DestroyInventory()
 {
 	if (Role < ROLE_Authority)
@@ -807,7 +784,7 @@ void ASCharacter::DropWeapon()
 
 		/* Spawn the "dropped" weapon */
 		FActorSpawnParameters SpawnInfo;
-		SpawnInfo.bNoCollisionFail = true;
+		SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 		ASWeaponPickup* NewWeaponPickup = GetWorld()->SpawnActor<ASWeaponPickup>(CurrentWeapon->WeaponPickupClass, SpawnLocation, FRotator::ZeroRotator, SpawnInfo);
 
 		if (NewWeaponPickup)
