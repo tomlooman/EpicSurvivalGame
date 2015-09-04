@@ -239,11 +239,11 @@ void ASBaseCharacter::PlayHit(float DamageTaken, struct FDamageEvent const& Dama
 	{
 		if (bKilled && SoundDeath)
 		{
-			UGameplayStatics::PlaySoundAttached(SoundDeath, RootComponent, NAME_None, FVector::ZeroVector, EAttachLocation::SnapToTarget, true);
+			UGameplayStatics::SpawnSoundAttached(SoundDeath, RootComponent, NAME_None, FVector::ZeroVector, EAttachLocation::SnapToTarget, true);
 		}
 		else if (SoundTakeHit)
 		{
-			UGameplayStatics::PlaySoundAttached(SoundTakeHit, RootComponent, NAME_None, FVector::ZeroVector, EAttachLocation::SnapToTarget, true);
+			UGameplayStatics::SpawnSoundAttached(SoundTakeHit, RootComponent, NAME_None, FVector::ZeroVector, EAttachLocation::SnapToTarget, true);
 		}
 	}
 }
