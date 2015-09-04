@@ -9,6 +9,13 @@ See [the main documentation page on the unreal engine Wiki](https://wiki.unreale
 
 For questions & feedback visit [the official thread on the unreal engine forums](https://forums.unrealengine.com/showthread.php?63678-Upcoming-C-Gameplay-Example-Series-Making-a-Survival-Game)
 
+NEW: Modding samples added. Pink Rifle extension + Flashlight replacement mod. [Check out the Modding Sample Project for guidelines & cooker profile setup](https://wiki.unrealengine.com/Modding:_Adding_mod-support_to_your_Unreal_Engine_4_project)
+
+Example commandline arg to load the Mod gamemode with the built-in level "CoopLandscape" in a cooked game build:
+SurvivalGame.exe /Game/Maps/CoopLandscape_Map?game=/ExtendedRifleMod/SurvivalGameMode_PinkRifle.SurvivalGameMode_PinkRifle_C
+
+There is currently no supporting UI to load up specific mod content, please note that the modding pipeline is a experimental and intended for early adopters only!
+
 ### Section 1
 This section sets up the third person character movement with animation, object interaction, simple hunger system, all with networking support.
 
