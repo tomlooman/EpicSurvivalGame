@@ -223,7 +223,7 @@ AActor* ASGameMode::ChoosePlayerStart_Implementation(AController* Player)
 	}
 
 	/* If we failed to find any (so BestStart is nullptr) fall back to the base code */
-	return BestStart ? BestStart : Super::ChoosePlayerStart(Player);
+	return BestStart ? BestStart : Super::ChoosePlayerStart_Implementation(Player);
 }
 
 

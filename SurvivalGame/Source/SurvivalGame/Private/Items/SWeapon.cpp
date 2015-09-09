@@ -169,6 +169,13 @@ void ASWeapon::OnUnEquip()
 
 		GetWorldTimerManager().ClearTimer(EquipFinishedTimerHandle);
 	}
+	if (bPendingReload)
+	{
+		StopWeaponAnimation(ReloadAnim);
+		bPendingReload = false;
+
+		GetWorldTimerManager().ClearTimer(TimerHandle_ReloadWeapon);
+	}
 
 	DetermineWeaponState();
 }
