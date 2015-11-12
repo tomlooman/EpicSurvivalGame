@@ -6,6 +6,23 @@
 #include "SHUD.h"
 #include "SPlayerController.generated.h"
 
+UENUM()
+enum class EHUDMessage : uint8
+{
+	/* Weapons */
+	Weapon_SlotTaken,
+
+	/* Character */
+	Character_EnergyRestored,
+
+	/* Gamemode */
+	Game_SurviveStart,
+	Game_SurviveEnded,
+
+	/* No category specified */
+	None,
+};
+
 /**
  * 
  */
@@ -37,10 +54,13 @@ public:
 
 	void ClientHUDStateChanged_Implementation(EHUDState NewState);
 
+	/* Enum is remapped to localized text before sending it to the HUD */
 	UFUNCTION(Reliable, Client)
-	void ClientMessageReceived(const FString& TextMessage);
+	void ClientHUDMessage(EHUDMessage MessageID);
 
-	void ClientMessageReceived_Implementation(const FString& TextMessage);
+	void ClientHUDMessage_Implementation(EHUDMessage MessageID);
+
+	FText GetText(EHUDMessage MsgID);
 
 	/* Kill the current pawn */
 	UFUNCTION(exec)

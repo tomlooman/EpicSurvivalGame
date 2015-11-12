@@ -96,12 +96,11 @@ void ASGameMode::DefaultTimer()
 			bool CurrentIsNight = MyGameState->GetIsNight();
 			if (CurrentIsNight != LastIsNight)
 			{
-				FString MessageText = CurrentIsNight ? "SURVIVE!" : "You Survived! Now prepare for the coming night!";
-
 				ASGameState* MyGameState = Cast<ASGameState>(GameState);
 				if (MyGameState)
 				{
-					MyGameState->BroadcastGameMessage(MessageText);
+					EHUDMessage MessageID = CurrentIsNight ? EHUDMessage::Game_SurviveStart : EHUDMessage::Game_SurviveEnded;
+					MyGameState->BroadcastGameMessage(MessageID);
 				}
 
 				/* The night just ended, respawn all dead players */

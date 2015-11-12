@@ -3,7 +3,6 @@
 #include "SurvivalGame.h"
 #include "SCharacter.h"
 #include "SUsableActor.h"
-#include "SHUD.h"
 #include "SWeapon.h"
 #include "SWeaponPickup.h"
 #include "SCharacterMovementComponent.h"
@@ -413,7 +412,7 @@ void ASCharacter::RestoreCondition(float HealthRestored, float HungerRestored)
 	ASPlayerController* PC = Cast<ASPlayerController>(Controller);
 	if (PC)
 	{
-		PC->ClientMessageReceived("Energy Restored");
+		PC->ClientHUDMessage(EHUDMessage::Character_EnergyRestored);
 	}
 }
 

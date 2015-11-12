@@ -2,7 +2,6 @@
 
 #include "SurvivalGame.h"
 #include "SPlayerController.h"
-#include "SHUD.h"
 #include "SGameState.h"
 
 
@@ -94,18 +93,14 @@ int32 ASGameState::GetElapsedMinutesCurrentDay()
 
 
 /* As with Server side functions, NetMulticast functions have a _Implementation body */
-void ASGameState::BroadcastGameMessage_Implementation(const FString& NewMessage)
+void ASGameState::BroadcastGameMessage_Implementation(EHUDMessage MessageID)
 {
 	for (FConstPlayerControllerIterator It = GetWorld()->GetPlayerControllerIterator(); It; It++)
 	{
 		ASPlayerController* MyController = Cast<ASPlayerController>(*It);
 		if (MyController && MyController->IsLocalController())
 		{
-			ASHUD* MyHUD = Cast<ASHUD>(MyController->GetHUD());
-			if (MyHUD)
-			{
-				MyHUD->MessageReceived(NewMessage);
-			}
+			MyController->ClientHUDMessage(MessageID);
 		}
 	}
 }

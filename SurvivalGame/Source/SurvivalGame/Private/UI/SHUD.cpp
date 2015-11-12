@@ -28,25 +28,22 @@ void ASHUD::DrawCenterDot()
 {
 	float CenterX = Canvas->ClipX / 2;
 	float CenterY = Canvas->ClipY / 2;
-
 	float CenterDotScale = 0.07f;
 
-	ASPlayerController* PCOwner = Cast<ASPlayerController>(PlayerOwner);
-	if (PCOwner)
+	ASCharacter* Pawn = Cast<ASCharacter>(GetOwningPawn());
+	if (Pawn && Pawn->IsAlive())
 	{
-		ASCharacter* Pawn = Cast<ASCharacter>(PCOwner->GetPawn());
-		if (Pawn && Pawn->IsAlive())
+		// Boost size when hovering over a usable object.
+		ASUsableActor* Usable = Pawn->GetUsableInView();
+		if (Usable)
 		{
-			// Boost size when hovering over a switchable object.
-			ASUsableActor* usable = Pawn->GetUsableInView();
-			if (usable)
-				CenterDotScale *= 1.5f;
-
-			Canvas->SetDrawColor(255, 255, 255, 255);
-			Canvas->DrawIcon(CenterDotIcon,
-				CenterX - CenterDotIcon.UL*CenterDotScale / 2.0f,
-				CenterY - CenterDotIcon.VL*CenterDotScale / 2.0f, CenterDotScale);
+			CenterDotScale *= 1.5f;
 		}
+
+		Canvas->SetDrawColor(255, 255, 255, 255);
+		Canvas->DrawIcon(CenterDotIcon,
+			CenterX - CenterDotIcon.UL*CenterDotScale / 2.0f,
+			CenterY - CenterDotIcon.VL*CenterDotScale / 2.0f, CenterDotScale);
 	}
 }
 

@@ -5,7 +5,6 @@
 #include "SWeapon.h"
 #include "SWeaponPickup.h"
 #include "SPlayerController.h"
-#include "SHUD.h"
 
 
 ASWeaponPickup::ASWeaponPickup(const FObjectInitializer& ObjectInitializer)
@@ -39,7 +38,7 @@ void ASWeaponPickup::OnUsed(APawn* InstigatorPawn)
 			ASPlayerController* PC = Cast<ASPlayerController>(MyPawn->GetController());
 			if (PC)
 			{
-				PC->ClientMessageReceived("Weapon slot already taken.");
+				PC->ClientHUDMessage(EHUDMessage::Weapon_SlotTaken);
 			}
 		}
 	}
