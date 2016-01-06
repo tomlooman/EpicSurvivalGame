@@ -45,7 +45,7 @@ class SURVIVALGAME_API ASWeapon : public AActor
 
 	FTimerHandle EquipFinishedTimerHandle;
 
-	UPROPERTY(EditDefaultsOnly)
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
 	float ShotsPerMinute;
 
 protected:
@@ -53,6 +53,7 @@ protected:
 	ASWeapon(const FObjectInitializer& ObjectInitializer);
 
 	/* The character socket to store this item at. */
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
 	EInventorySlot StorageSlot;
 
 	/** pawn owner */
@@ -78,7 +79,7 @@ protected:
 public:
 
 	/** get weapon mesh (needs pawn owner to determine variant) */
-	UFUNCTION(BlueprintCallable, Category = "Game|Weapon")
+	UFUNCTION(BlueprintCallable, Category = "Weapon")
 	USkeletalMeshComponent* GetWeaponMesh() const;
 
 	virtual void OnUnEquip();
@@ -89,7 +90,7 @@ public:
 	void SetOwningPawn(ASCharacter* NewOwner);
 
 	/* Get pawn owner */
-	UFUNCTION(BlueprintCallable, Category = "Game|Weapon")
+	UFUNCTION(BlueprintCallable, Category = "Weapon")
 	class ASCharacter* GetPawnOwner() const;
 
 	virtual void OnEnterInventory(ASCharacter* NewOwner);
@@ -102,7 +103,7 @@ public:
 	}
 
 	/* The class to spawn in the level when dropped */
-	UPROPERTY(EditDefaultsOnly, Category = "Game|Weapon")
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
 	TSubclassOf<class ASWeaponPickup> WeaponPickupClass;
 
 	/************************************************************************/

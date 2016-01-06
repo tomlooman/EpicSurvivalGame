@@ -273,8 +273,6 @@ public:
 	UPROPERTY(Transient, Replicated)
 	TArray<ASWeapon*> Inventory;
 
-	void SpawnDefaultInventory();
-
 	void SetCurrentWeapon(class ASWeapon* newWeapon, class ASWeapon* LastWeapon = nullptr);
 
 	void EquipWeapon(ASWeapon* Weapon);
@@ -298,11 +296,6 @@ public:
 	class ASWeapon* CurrentWeapon;
 
 	class ASWeapon* PreviousWeapon;
-
-	/* The default weapons to spawn with */
-	UPROPERTY(EditDefaultsOnly, Category = Inventory)
-	TArray<TSubclassOf<class ASWeapon>> DefaultInventoryClasses;
-
 
 	/* Update the weapon mesh to the newly equipped weapon, this is triggered during an anim montage.
 		NOTE: Requires an AnimNotify created in the Equip animation to tell us when to swap the meshes. */
