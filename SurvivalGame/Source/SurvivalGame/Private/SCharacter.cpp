@@ -176,7 +176,7 @@ ASUsableActor* ASCharacter::GetUsableInView()
 	TraceParams.bTraceComplex = true;
 
 	FHitResult Hit(ForceInit);
-	GetWorld()->LineTraceSingle(Hit, TraceStart, TraceEnd, ECC_Visibility, TraceParams);
+	GetWorld()->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, ECC_Visibility, TraceParams);
 
 	//DrawDebugLine(GetWorld(), TraceStart, TraceEnd, FColor::Red, false, 1.0f);
 
@@ -301,9 +301,9 @@ void ASCharacter::SetIsJumping(bool NewJumping)
 }
 
 
-void ASCharacter::OnLanded(const FHitResult& Hit)
+void ASCharacter::Landed(const FHitResult& Hit)
 {
-	Super::OnLanded(Hit);
+	Super::Landed(Hit);
 
 	SetIsJumping(false);
 }

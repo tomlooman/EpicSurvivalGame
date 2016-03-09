@@ -69,7 +69,7 @@ public:
 	UFUNCTION(Reliable, Server, WithValidation)
 	void ServerSetIsJumping(bool NewJumping);
 
-	void OnLanded(const FHitResult& Hit) override;
+	void Landed(const FHitResult& Hit) override;
 
 	/* Client/local call to update sprint state  */
 	void SetSprinting(bool NewSprinting);
