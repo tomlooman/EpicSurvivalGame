@@ -113,15 +113,15 @@ void ASWeapon::AttachMeshToPawn(EInventorySlot Slot)
 		USkeletalMeshComponent* PawnMesh = MyPawn->GetMesh();
 		FName AttachPoint = MyPawn->GetInventoryAttachPoint(Slot);
 		Mesh->SetHiddenInGame(false);
-		Mesh->AttachTo(PawnMesh, AttachPoint, EAttachLocation::SnapToTarget);
+		Mesh->AttachToComponent(PawnMesh, FAttachmentTransformRules::SnapToTargetNotIncludingScale, AttachPoint);
 	}
 }
 
 
 void ASWeapon::DetachMeshFromPawn()
 {
-	Mesh->DetachFromParent();
-	Mesh->SetHiddenInGame(true);	
+	Mesh->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
+	Mesh->SetHiddenInGame(true);
 }
 
 

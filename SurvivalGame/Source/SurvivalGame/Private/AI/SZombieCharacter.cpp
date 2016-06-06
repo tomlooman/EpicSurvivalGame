@@ -41,12 +41,12 @@ ASZombieCharacter::ASZombieCharacter(const class FObjectInitializer& ObjectIniti
 	MeleeCollisionComp->SetCapsuleRadius(35, false);
 	MeleeCollisionComp->SetCollisionResponseToAllChannels(ECR_Ignore);
 	MeleeCollisionComp->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
-	MeleeCollisionComp->AttachParent = GetCapsuleComponent();
+	MeleeCollisionComp->SetupAttachment(GetCapsuleComponent());
 
 	AudioLoopComp = CreateDefaultSubobject<UAudioComponent>(TEXT("ZombieLoopedSoundComp"));
 	AudioLoopComp->bAutoActivate = false;
 	AudioLoopComp->bAutoDestroy = false;
-	AudioLoopComp->AttachParent = RootComponent;
+	AudioLoopComp->SetupAttachment(RootComponent);
 
 	Health = 100;
 	MeleeDamage = 24.0f;
@@ -248,7 +248,7 @@ void ASZombieCharacter::SimulateMeleeStrike_Implementation()
 }
 
 
-void ASZombieCharacter::OnMeleeCompBeginOverlap(class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
+void ASZombieCharacter::OnMeleeCompBeginOverlap(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
 {
 	/* Stop any running attack timers */
 	TimerHandle_MeleeAttack.Invalidate();

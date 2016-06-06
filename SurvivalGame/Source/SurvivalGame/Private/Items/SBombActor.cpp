@@ -10,17 +10,17 @@ ASBombActor::ASBombActor(const class FObjectInitializer& ObjectInitializer)
 	FuzePCS = ObjectInitializer.CreateDefaultSubobject<UParticleSystemComponent>(this, TEXT("Fuze"));
 	FuzePCS->bAutoActivate = false;
 	FuzePCS->bAutoDestroy = false;
-	FuzePCS->AttachParent = RootComponent;
+	FuzePCS->SetupAttachment(RootComponent);
 
 	ExplosionPCS = ObjectInitializer.CreateDefaultSubobject<UParticleSystemComponent>(this, TEXT("Explosion"));
 	ExplosionPCS->bAutoActivate = false;
 	ExplosionPCS->bAutoDestroy = false;
-	ExplosionPCS->AttachParent = RootComponent;
+	ExplosionPCS->SetupAttachment(RootComponent);
 
 	AudioComp = ObjectInitializer.CreateDefaultSubobject<UAudioComponent>(this, TEXT("AudioComp"));
 	AudioComp->bAutoActivate = false;
 	AudioComp->bAutoDestroy = false;
-	AudioComp->AttachParent = RootComponent;
+	AudioComp->SetupAttachment(RootComponent);
 
 	// Let the bomb be thrown and roll around
 	MeshComp->SetSimulatePhysics(true);

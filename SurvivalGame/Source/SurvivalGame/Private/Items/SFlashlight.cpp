@@ -15,10 +15,10 @@ ASFlashlight::ASFlashlight(const FObjectInitializer& ObjectInitializer)
 
 	LightConeComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("LightConeComp"));
 	LightConeComp->SetCollisionResponseToAllChannels(ECR_Ignore);
-	LightConeComp->AttachTo(GetWeaponMesh(), LightAttachPoint, EAttachLocation::SnapToTarget);
+	LightConeComp->SetupAttachment(GetWeaponMesh(), LightAttachPoint);
 
 	SpotLightComp = CreateDefaultSubobject<USpotLightComponent>(TEXT("SpotLightComp"));
-	SpotLightComp->AttachTo(GetWeaponMesh(), LightAttachPoint, EAttachLocation::SnapToTarget);
+	SpotLightComp->SetupAttachment(GetWeaponMesh(), LightAttachPoint);
 	/*SpotLightComp->SetCastShadows(false);*/
 	SpotLightComp->AddLocalRotation(FRotator(0, -90, 0));
 

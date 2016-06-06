@@ -12,8 +12,6 @@ class SURVIVALGAME_API ASTimeOfDayManager : public AActor
 
 protected:
 
-	UAudioComponent* AmbientAudioComp;
-
 	ASTimeOfDayManager();
 
 	/* Cached bool of bIsNight to determine when we entered/left the night */
@@ -41,6 +39,9 @@ public:
 
 	/* Play the ambient loop for the current time state */
 	void PlayAmbientLoop();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	UAudioComponent* AmbientAudioComp;
 
 	/* Primary sun of the level. Assigned in Blueprint during BeginPlay (BlueprintReadWrite is required as tag instead of EditDefaultsOnly) */
 	UPROPERTY(BlueprintReadWrite, Category = "DayNight")

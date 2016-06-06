@@ -223,7 +223,7 @@ void USCarryObjectComponent::OnPickupMulticast_Implementation(AActor* FocusActor
 			MeshComp->SetSimulatePhysics(false);
 		}
 
-		FocusActor->AttachRootComponentTo(this, NAME_None, EAttachLocation::KeepWorldPosition);
+		FocusActor->AttachToComponent(this, FAttachmentTransformRules::KeepWorldTransform);
 	}
 }
 
@@ -241,7 +241,7 @@ void USCarryObjectComponent::OnDropMulticast_Implementation()
 			MeshComp->SetSimulatePhysics(true);
 		}
 
-		CarriedActor->GetRootComponent()->DetachFromParent(true);
+		CarriedActor->GetRootComponent()->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
 	}
 }
 

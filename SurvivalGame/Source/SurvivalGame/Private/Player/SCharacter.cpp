@@ -34,13 +34,13 @@ ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
 	CameraBoomComp->SocketOffset = FVector(0, 35, 0);
 	CameraBoomComp->TargetOffset = FVector(0, 0, 55);
 	CameraBoomComp->bUsePawnControlRotation = true;
-	CameraBoomComp->AttachParent = GetRootComponent();
+	CameraBoomComp->SetupAttachment(GetRootComponent());
 
 	CameraComp = ObjectInitializer.CreateDefaultSubobject<UCameraComponent>(this, TEXT("Camera"));
-	CameraComp->AttachParent = CameraBoomComp;
+	CameraComp->SetupAttachment(CameraBoomComp);
 
 	CarriedObjectComp = ObjectInitializer.CreateDefaultSubobject<USCarryObjectComponent>(this, TEXT("CarriedObjectComp"));
-	CarriedObjectComp->AttachParent = GetRootComponent();
+	CarriedObjectComp->SetupAttachment(GetRootComponent());
 
 	MaxUseDistance = 500;
 	DropWeaponMaxDistance = 100;
