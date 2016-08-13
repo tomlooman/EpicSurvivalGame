@@ -1,0 +1,5493 @@
+{
+	"TargetName" : "SurvivalGameEditor",
+	"Platform" : "Win64",
+	"Configuration" : "DebugGame",
+	"BuildId" : "7205599a-7d2b-4cf5-b0f0-b939953c3dd8",
+	"Version" : 
+	{
+		"MajorVersion" : 4,
+		"MinorVersion" : 12,
+		"PatchVersion" : 5,
+		"Changelist" : 0,
+		"IsLicenseeVersion" : 0,
+		"BranchName" : ""
+	},
+	"BuildProducts" :
+	[
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor.exe",
+			"Type" : "Executable"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Cmd.exe",
+			"Type" : "Executable"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Cmd.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/2D/Paper2D/Binaries/Win64/UE4Editor-Paper2D.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/2D/Paper2D/Binaries/Win64/UE4Editor-Paper2D.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/2D/Paper2D/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Paper2D.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/2D/Paper2D/Binaries/Win64/UE4Editor-Paper2DEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/2D/Paper2D/Binaries/Win64/UE4Editor-Paper2DEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/2D/Paper2D/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Paper2DEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/2D/Paper2D/Binaries/Win64/UE4Editor-PaperSpriteSheetImporter.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/2D/Paper2D/Binaries/Win64/UE4Editor-PaperSpriteSheetImporter.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/2D/Paper2D/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-PaperSpriteSheetImporter.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/2D/Paper2D/Binaries/Win64/UE4Editor-PaperTiledImporter.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/2D/Paper2D/Binaries/Win64/UE4Editor-PaperTiledImporter.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/2D/Paper2D/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-PaperTiledImporter.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/2D/Paper2D/Binaries/Win64/UE4Editor-SmartSnapping.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/2D/Paper2D/Binaries/Win64/UE4Editor-SmartSnapping.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/2D/Paper2D/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SmartSnapping.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Blendables/LightPropagationVolume/Binaries/Win64/UE4Editor-LightPropagationVolumeRuntime.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Blendables/LightPropagationVolume/Binaries/Win64/UE4Editor-LightPropagationVolumeRuntime.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Blendables/LightPropagationVolume/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-LightPropagationVolumeRuntime.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Blendables/LightPropagationVolume/Binaries/Win64/UE4Editor-LightPropagationVolumeEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Blendables/LightPropagationVolume/Binaries/Win64/UE4Editor-LightPropagationVolumeEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Blendables/LightPropagationVolume/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-LightPropagationVolumeEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Developer/GitSourceControl/Binaries/Win64/UE4Editor-GitSourceControl.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Developer/GitSourceControl/Binaries/Win64/UE4Editor-GitSourceControl.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Developer/GitSourceControl/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-GitSourceControl.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Developer/PerforceSourceControl/Binaries/Win64/UE4Editor-PerforceSourceControl.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Developer/PerforceSourceControl/Binaries/Win64/UE4Editor-PerforceSourceControl.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Developer/PerforceSourceControl/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-PerforceSourceControl.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Developer/SubversionSourceControl/Binaries/Win64/UE4Editor-SubversionSourceControl.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Developer/SubversionSourceControl/Binaries/Win64/UE4Editor-SubversionSourceControl.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Developer/SubversionSourceControl/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SubversionSourceControl.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Developer/UObjectPlugin/Binaries/Win64/UE4Editor-UObjectPlugin.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Developer/UObjectPlugin/Binaries/Win64/UE4Editor-UObjectPlugin.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Developer/UObjectPlugin/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-UObjectPlugin.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Developer/VisualStudioSourceCodeAccess/Binaries/Win64/UE4Editor-VisualStudioSourceCodeAccess.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Developer/VisualStudioSourceCodeAccess/Binaries/Win64/UE4Editor-VisualStudioSourceCodeAccess.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Developer/VisualStudioSourceCodeAccess/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-VisualStudioSourceCodeAccess.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Editor/EpicSurvey/Binaries/Win64/UE4Editor-EpicSurvey.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Editor/EpicSurvey/Binaries/Win64/UE4Editor-EpicSurvey.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Editor/EpicSurvey/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-EpicSurvey.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Editor/PluginBrowser/Binaries/Win64/UE4Editor-PluginBrowser.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Editor/PluginBrowser/Binaries/Win64/UE4Editor-PluginBrowser.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Editor/PluginBrowser/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-PluginBrowser.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Editor/SpeedTreeImporter/Binaries/Win64/UE4Editor-SpeedTreeImporter.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Editor/SpeedTreeImporter/Binaries/Win64/UE4Editor-SpeedTreeImporter.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Editor/SpeedTreeImporter/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SpeedTreeImporter.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Editor/SuperSearchEditor/Binaries/Win64/UE4Editor-SuperSearchEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Editor/SuperSearchEditor/Binaries/Win64/UE4Editor-SuperSearchEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Editor/SuperSearchEditor/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SuperSearchEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Experimental/CharacterAI/Binaries/Win64/UE4Editor-CharacterAI.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Experimental/CharacterAI/Binaries/Win64/UE4Editor-CharacterAI.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Experimental/CharacterAI/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-CharacterAI.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Experimental/HTML5Networking/Binaries/Win64/UE4Editor-HTML5Networking.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Experimental/HTML5Networking/Binaries/Win64/UE4Editor-HTML5Networking.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Experimental/HTML5Networking/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-HTML5Networking.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Media/MediaPlayerEditor/Binaries/Win64/UE4Editor-MediaPlayerEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Media/MediaPlayerEditor/Binaries/Win64/UE4Editor-MediaPlayerEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Media/MediaPlayerEditor/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-MediaPlayerEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Media/WmfMedia/Binaries/Win64/UE4Editor-WmfMedia.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Media/WmfMedia/Binaries/Win64/UE4Editor-WmfMedia.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Media/WmfMedia/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-WmfMedia.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Messaging/UdpMessaging/Binaries/Win64/UE4Editor-UdpMessaging.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Messaging/UdpMessaging/Binaries/Win64/UE4Editor-UdpMessaging.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Messaging/UdpMessaging/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-UdpMessaging.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/MovieScene/LevelSequenceEditor/Binaries/Win64/UE4Editor-LevelSequenceEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/MovieScene/LevelSequenceEditor/Binaries/Win64/UE4Editor-LevelSequenceEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/MovieScene/LevelSequenceEditor/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-LevelSequenceEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/MovieScene/MatineeToLevelSequence/Binaries/Win64/UE4Editor-MatineeToLevelSequence.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/MovieScene/MatineeToLevelSequence/Binaries/Win64/UE4Editor-MatineeToLevelSequence.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/MovieScene/MatineeToLevelSequence/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-MatineeToLevelSequence.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ArchVisCharacter/Binaries/Win64/UE4Editor-ArchVisCharacter.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ArchVisCharacter/Binaries/Win64/UE4Editor-ArchVisCharacter.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ArchVisCharacter/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ArchVisCharacter.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/CableComponent/Binaries/Win64/UE4Editor-CableComponent.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/CableComponent/Binaries/Win64/UE4Editor-CableComponent.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/CableComponent/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-CableComponent.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/CustomMeshComponent/Binaries/Win64/UE4Editor-CustomMeshComponent.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/CustomMeshComponent/Binaries/Win64/UE4Editor-CustomMeshComponent.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/CustomMeshComponent/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-CustomMeshComponent.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ExampleDeviceProfileSelector/Binaries/Win64/UE4Editor-ExampleDeviceProfileSelector.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ExampleDeviceProfileSelector/Binaries/Win64/UE4Editor-ExampleDeviceProfileSelector.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ExampleDeviceProfileSelector/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ExampleDeviceProfileSelector.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/OculusInput/Binaries/Win64/UE4Editor-OculusInput.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/OculusInput/Binaries/Win64/UE4Editor-OculusInput.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/OculusInput/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-OculusInput.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/OculusLibrary/Binaries/Win64/UE4Editor-OculusLibrary.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/OculusLibrary/Binaries/Win64/UE4Editor-OculusLibrary.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/OculusLibrary/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-OculusLibrary.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/OculusRift/Binaries/Win64/UE4Editor-OculusRift.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/OculusRift/Binaries/Win64/UE4Editor-OculusRift.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/OculusRift/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-OculusRift.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ProceduralMeshComponent/Binaries/Win64/UE4Editor-ProceduralMeshComponent.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ProceduralMeshComponent/Binaries/Win64/UE4Editor-ProceduralMeshComponent.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ProceduralMeshComponent/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ProceduralMeshComponent.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/Steam/SteamVR/Binaries/Win64/UE4Editor-SteamVR.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/Steam/SteamVR/Binaries/Win64/UE4Editor-SteamVR.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/Steam/SteamVR/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SteamVR.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/Steam/SteamVR/Binaries/Win64/UE4Editor-SteamVRController.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/Steam/SteamVR/Binaries/Win64/UE4Editor-SteamVRController.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/Steam/SteamVR/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SteamVRController.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/WindowsMoviePlayer/Binaries/Win64/UE4Editor-WindowsMoviePlayer.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/WindowsMoviePlayer/Binaries/Win64/UE4Editor-WindowsMoviePlayer.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/WindowsMoviePlayer/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-WindowsMoviePlayer.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Slate/SlateRemote/Binaries/Win64/UE4Editor-SlateRemote.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Slate/SlateRemote/Binaries/Win64/UE4Editor-SlateRemote.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Slate/SlateRemote/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SlateRemote.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-SurvivalGame-Win64-DebugGame.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-SurvivalGame-Win64-DebugGame.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(ProjectDir)/Intermediate/Build/Win64/UE4Editor/DebugGame/UE4Editor-SurvivalGame-Win64-DebugGame.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Json.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Json.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Json.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Projects.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Projects.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Projects.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-CoreUObject.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-CoreUObject.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-CoreUObject.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-InputCore.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-InputCore.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-InputCore.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SlateCore.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SlateCore.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SlateCore.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Slate.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Slate.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Slate.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Settings.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Settings.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Settings.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SourceCodeAccess.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SourceCodeAccess.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SourceCodeAccess.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DerivedDataCache.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DerivedDataCache.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-DerivedDataCache.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Core.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Core.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Core.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DesktopPlatform.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DesktopPlatform.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-DesktopPlatform.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Messaging.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Messaging.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Messaging.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-EngineMessages.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-EngineMessages.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-EngineMessages.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SessionMessages.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SessionMessages.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SessionMessages.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SessionServices.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SessionServices.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SessionServices.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SlateReflector.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SlateReflector.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SlateReflector.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AppFramework.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AppFramework.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-AppFramework.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SandboxFile.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SandboxFile.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SandboxFile.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Sockets.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Sockets.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Sockets.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Networking.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Networking.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Networking.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-NullDrv.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-NullDrv.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-NullDrv.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ShaderCore.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ShaderCore.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ShaderCore.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-UtilityShaders.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-UtilityShaders.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-UtilityShaders.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-D3D11RHI.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-D3D11RHI.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-D3D11RHI.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-D3D12RHI.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-D3D12RHI.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-D3D12RHI.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-VulkanRHI.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-VulkanRHI.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-VulkanRHI.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ImageWrapper.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ImageWrapper.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ImageWrapper.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-OpenGLDrv.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-OpenGLDrv.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-OpenGLDrv.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-RHI.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-RHI.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-RHI.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-RenderCore.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-RenderCore.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-RenderCore.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-EditorStyle.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-EditorStyle.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-EditorStyle.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MovieScene.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MovieScene.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-MovieScene.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MovieSceneTracks.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MovieSceneTracks.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-MovieSceneTracks.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-LevelSequence.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-LevelSequence.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-LevelSequence.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DirectoryWatcher.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DirectoryWatcher.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-DirectoryWatcher.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AssetRegistry.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AssetRegistry.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-AssetRegistry.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-WorkspaceMenuStructure.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-WorkspaceMenuStructure.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-WorkspaceMenuStructure.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-CurveAssetEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-CurveAssetEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-CurveAssetEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MessageLog.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MessageLog.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-MessageLog.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SourceControl.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SourceControl.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SourceControl.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-CrashTracker.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-CrashTracker.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-CrashTracker.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-EngineSettings.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-EngineSettings.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-EngineSettings.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SourceControlWindows.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SourceControlWindows.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SourceControlWindows.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ShaderPreprocessor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ShaderPreprocessor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ShaderPreprocessor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ShaderCompilerCommon.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ShaderCompilerCommon.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ShaderCompilerCommon.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ShaderFormatOpenGL.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ShaderFormatOpenGL.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ShaderFormatOpenGL.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ImageCore.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ImageCore.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ImageCore.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TextureFormatIntelISPCTexComp.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TextureFormatIntelISPCTexComp.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-TextureFormatIntelISPCTexComp.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ShaderFormatD3D.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ShaderFormatD3D.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ShaderFormatD3D.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TextureFormatDXT.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TextureFormatDXT.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-TextureFormatDXT.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TextureFormatPVR.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TextureFormatPVR.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-TextureFormatPVR.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TextureFormatASTC.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TextureFormatASTC.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-TextureFormatASTC.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TextureFormatUncompressed.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TextureFormatUncompressed.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-TextureFormatUncompressed.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AudioFormatADPCM.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AudioFormatADPCM.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-AudioFormatADPCM.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AudioFormatOgg.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AudioFormatOgg.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-AudioFormatOgg.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AudioFormatOpus.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AudioFormatOpus.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-AudioFormatOpus.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/Android/UE4Editor-AndroidDeviceDetection.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/Android/UE4Editor-AndroidDeviceDetection.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/Android/UE4Editor-AndroidDeviceDetection.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/Android/UE4Editor-AndroidTargetPlatform.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/Android/UE4Editor-AndroidTargetPlatform.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/Android/UE4Editor-AndroidTargetPlatform.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/Android/UE4Editor-Android_PVRTCTargetPlatform.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/Android/UE4Editor-Android_PVRTCTargetPlatform.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/Android/UE4Editor-Android_PVRTCTargetPlatform.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/Android/UE4Editor-Android_ATCTargetPlatform.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/Android/UE4Editor-Android_ATCTargetPlatform.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/Android/UE4Editor-Android_ATCTargetPlatform.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/Android/UE4Editor-Android_DXTTargetPlatform.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/Android/UE4Editor-Android_DXTTargetPlatform.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/Android/UE4Editor-Android_DXTTargetPlatform.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/Android/UE4Editor-Android_ETC1TargetPlatform.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/Android/UE4Editor-Android_ETC1TargetPlatform.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/Android/UE4Editor-Android_ETC1TargetPlatform.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/Android/UE4Editor-Android_ETC2TargetPlatform.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/Android/UE4Editor-Android_ETC2TargetPlatform.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/Android/UE4Editor-Android_ETC2TargetPlatform.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/Android/UE4Editor-Android_ASTCTargetPlatform.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/Android/UE4Editor-Android_ASTCTargetPlatform.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/Android/UE4Editor-Android_ASTCTargetPlatform.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/Android/UE4Editor-Android_MultiTargetPlatform.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/Android/UE4Editor-Android_MultiTargetPlatform.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/Android/UE4Editor-Android_MultiTargetPlatform.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-LaunchDaemonMessages.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-LaunchDaemonMessages.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-LaunchDaemonMessages.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/IOS/UE4Editor-IOSTargetPlatform.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/IOS/UE4Editor-IOSTargetPlatform.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/IOS/UE4Editor-IOSTargetPlatform.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/IOS/UE4Editor-TVOSTargetPlatform.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/IOS/UE4Editor-TVOSTargetPlatform.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/IOS/UE4Editor-TVOSTargetPlatform.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/HTML5/UE4Editor-HTML5TargetPlatform.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/HTML5/UE4Editor-HTML5TargetPlatform.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/HTML5/UE4Editor-HTML5TargetPlatform.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PhysXFormats.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PhysXFormats.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-PhysXFormats.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-VulkanShaderFormat.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-VulkanShaderFormat.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-VulkanShaderFormat.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MetalShaderFormat.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MetalShaderFormat.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-MetalShaderFormat.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TargetPlatform.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TargetPlatform.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-TargetPlatform.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Internationalization.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Internationalization.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Internationalization.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Analytics.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Analytics.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Analytics.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PakFile.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PakFile.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-PakFile.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-WidgetCarousel.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-WidgetCarousel.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-WidgetCarousel.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-HTTP.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-HTTP.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-HTTP.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Merge.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Merge.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Merge.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ActorPickerMode.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ActorPickerMode.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ActorPickerMode.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-JsonUtilities.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-JsonUtilities.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-JsonUtilities.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-OnlineSubsystem.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-OnlineSubsystem.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-OnlineSubsystem.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-NewsFeed.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-NewsFeed.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-NewsFeed.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-StatsViewer.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-StatsViewer.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-StatsViewer.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DeviceProfileServices.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DeviceProfileServices.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-DeviceProfileServices.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SceneOutliner.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SceneOutliner.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SceneOutliner.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Serialization.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Serialization.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Serialization.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-CEF3Utils.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-CEF3Utils.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-CEF3Utils.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-WebBrowser.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-WebBrowser.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-WebBrowser.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Persona.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Persona.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Persona.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-CinematicCamera.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-CinematicCamera.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-CinematicCamera.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MovieSceneCapture.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MovieSceneCapture.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-MovieSceneCapture.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MovieSceneCaptureDialog.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MovieSceneCaptureDialog.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-MovieSceneCaptureDialog.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SequencerWidgets.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SequencerWidgets.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SequencerWidgets.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SequenceRecorderSections.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SequenceRecorderSections.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SequenceRecorderSections.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Sequencer.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Sequencer.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Sequencer.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Foliage.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Foliage.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Foliage.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-RawMesh.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-RawMesh.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-RawMesh.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MaterialUtilities.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MaterialUtilities.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-MaterialUtilities.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MeshBoneReduction.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MeshBoneReduction.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-MeshBoneReduction.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MeshSimplifier.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MeshSimplifier.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-MeshSimplifier.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MeshUtilities.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MeshUtilities.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-MeshUtilities.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-HierarchicalLODUtilities.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-HierarchicalLODUtilities.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-HierarchicalLODUtilities.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-HierarchicalLODOutliner.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-HierarchicalLODOutliner.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-HierarchicalLODOutliner.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PixelInspectorModule.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PixelInspectorModule.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-PixelInspectorModule.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DeviceManager.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DeviceManager.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-DeviceManager.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ExternalImagePicker.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ExternalImagePicker.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ExternalImagePicker.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SharedSettingsWidgets.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SharedSettingsWidgets.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SharedSettingsWidgets.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SettingsEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SettingsEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SettingsEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AutomationMessages.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AutomationMessages.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-AutomationMessages.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-UnrealEdMessages.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-UnrealEdMessages.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-UnrealEdMessages.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AutomationController.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AutomationController.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-AutomationController.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AutomationWindow.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AutomationWindow.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-AutomationWindow.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ScreenShotComparisonTools.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ScreenShotComparisonTools.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ScreenShotComparisonTools.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ScreenShotComparison.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ScreenShotComparison.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ScreenShotComparison.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ProfilerMessages.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ProfilerMessages.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ProfilerMessages.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ProfilerClient.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ProfilerClient.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ProfilerClient.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Profiler.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Profiler.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Profiler.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SessionFrontend.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SessionFrontend.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SessionFrontend.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Layers.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Layers.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Layers.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-LandscapeEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-LandscapeEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-LandscapeEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-WorldBrowser.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-WorldBrowser.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-WorldBrowser.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-NewLevelDialog.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-NewLevelDialog.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-NewLevelDialog.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DeviceProfileEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DeviceProfileEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-DeviceProfileEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-CollectionManager.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-CollectionManager.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-CollectionManager.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PlacementMode.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PlacementMode.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-PlacementMode.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-UserFeedback.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-UserFeedback.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-UserFeedback.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-XmlParser.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-XmlParser.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-XmlParser.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TreeMap.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TreeMap.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-TreeMap.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SizeMap.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SizeMap.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SizeMap.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ReferenceViewer.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ReferenceViewer.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ReferenceViewer.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-HeadMountedDisplay.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-HeadMountedDisplay.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-HeadMountedDisplay.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SlateRHIRenderer.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SlateRHIRenderer.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SlateRHIRenderer.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-UMG.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-UMG.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-UMG.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-VREditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-VREditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-VREditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-LevelEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-LevelEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-LevelEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-NetworkReplayStreaming.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-NetworkReplayStreaming.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-NetworkReplayStreaming.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SequenceRecorder.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SequenceRecorder.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SequenceRecorder.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MovieSceneTools.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MovieSceneTools.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-MovieSceneTools.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GameplayTasks.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GameplayTasks.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-GameplayTasks.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AITestSuite.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AITestSuite.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-AITestSuite.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Navmesh.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Navmesh.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Navmesh.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GameplayTags.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GameplayTags.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-GameplayTags.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GameplayTagsEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GameplayTagsEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-GameplayTagsEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GameplayAbilities.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GameplayAbilities.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-GameplayAbilities.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GameplayDebugger.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GameplayDebugger.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-GameplayDebugger.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AIModule.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AIModule.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-AIModule.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-FunctionalTesting.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-FunctionalTesting.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-FunctionalTesting.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-KismetCompiler.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-KismetCompiler.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-KismetCompiler.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-BlueprintGraph.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-BlueprintGraph.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-BlueprintGraph.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-KismetWidgets.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-KismetWidgets.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-KismetWidgets.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-HotReload.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-HotReload.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-HotReload.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-BlueprintCompilerCppBackend.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-BlueprintCompilerCppBackend.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-BlueprintCompilerCppBackend.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-HardwareTargeting.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-HardwareTargeting.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-HardwareTargeting.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GameProjectGeneration.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GameProjectGeneration.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-GameProjectGeneration.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-BlueprintNativeCodeGen.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-BlueprintNativeCodeGen.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-BlueprintNativeCodeGen.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-BlueprintProfiler.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-BlueprintProfiler.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-BlueprintProfiler.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Kismet.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Kismet.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Kismet.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-LauncherServices.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-LauncherServices.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-LauncherServices.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-IntroTutorials.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-IntroTutorials.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-IntroTutorials.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SuperSearch.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SuperSearch.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SuperSearch.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AddContentDialog.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AddContentDialog.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-AddContentDialog.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ContentBrowser.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ContentBrowser.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ContentBrowser.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Documentation.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Documentation.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Documentation.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Localization.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Localization.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Localization.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-LocalizationService.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-LocalizationService.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-LocalizationService.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TranslationEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TranslationEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-TranslationEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-UndoHistory.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-UndoHistory.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-UndoHistory.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ProjectTargetPlatformEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ProjectTargetPlatformEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ProjectTargetPlatformEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-OutputLog.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-OutputLog.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-OutputLog.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Voice.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Voice.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Voice.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ReliabilityHandlerComponent.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ReliabilityHandlerComponent.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ReliabilityHandlerComponent.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PacketHandler.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PacketHandler.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-PacketHandler.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-OnlineSubsystemUtils.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-OnlineSubsystemUtils.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-OnlineSubsystemUtils.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GameLiveStreaming.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GameLiveStreaming.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-GameLiveStreaming.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-EditorLiveStreaming.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-EditorLiveStreaming.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-EditorLiveStreaming.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-LocalizationDashboard.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-LocalizationDashboard.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-LocalizationDashboard.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MainFrame.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MainFrame.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-MainFrame.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TextureEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TextureEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-TextureEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-VectorVM.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-VectorVM.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-VectorVM.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Niagara.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Niagara.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Niagara.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-CurveTableEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-CurveTableEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-CurveTableEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DataTableEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DataTableEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-DataTableEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DestructibleMeshEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DestructibleMeshEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-DestructibleMeshEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MaterialEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MaterialEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-MaterialEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DesktopWidgets.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DesktopWidgets.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-DesktopWidgets.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-FontEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-FontEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-FontEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SoundCueEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SoundCueEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SoundCueEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SoundClassEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SoundClassEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SoundClassEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AssetTools.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AssetTools.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-AssetTools.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ClassViewer.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ClassViewer.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ClassViewer.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GraphEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GraphEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-GraphEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AnimGraphRuntime.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AnimGraphRuntime.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-AnimGraphRuntime.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AnimGraph.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AnimGraph.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-AnimGraph.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-OnlineBlueprintSupport.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-OnlineBlueprintSupport.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-OnlineBlueprintSupport.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-InputBindingEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-InputBindingEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-InputBindingEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-NetworkFileSystem.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-NetworkFileSystem.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-NetworkFileSystem.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SwarmInterface.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SwarmInterface.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SwarmInterface.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TargetDeviceServices.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TargetDeviceServices.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-TargetDeviceServices.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-InternationalizationSettings.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-InternationalizationSettings.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-InternationalizationSettings.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MeshPaint.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MeshPaint.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-MeshPaint.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AnalyticsET.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AnalyticsET.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-AnalyticsET.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PortalServices.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PortalServices.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-PortalServices.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PluginWarden.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PluginWarden.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-PluginWarden.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-BspMode.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-BspMode.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-BspMode.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-UnrealAudio.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-UnrealAudio.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-UnrealAudio.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-XAudio2.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-XAudio2.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-XAudio2.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-UnrealAudioXAudio2.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-UnrealAudioXAudio2.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-UnrealAudioXAudio2.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-StaticMeshEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-StaticMeshEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-StaticMeshEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DistCurveEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DistCurveEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-DistCurveEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Cascade.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Cascade.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Cascade.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MoviePlayer.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MoviePlayer.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-MoviePlayer.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ConfigEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ConfigEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ConfigEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DetailCustomizations.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DetailCustomizations.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-DetailCustomizations.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-UMGEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-UMGEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-UMGEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Matinee.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Matinee.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Matinee.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-EditorSettingsViewer.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-EditorSettingsViewer.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-EditorSettingsViewer.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ComponentVisualizers.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ComponentVisualizers.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ComponentVisualizers.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PackagesDialog.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PackagesDialog.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-PackagesDialog.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PhAT.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PhAT.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-PhAT.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ProjectLauncher.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ProjectLauncher.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ProjectLauncher.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GeometryMode.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GeometryMode.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-GeometryMode.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TextureAlignMode.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TextureAlignMode.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-TextureAlignMode.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-FoliageEdit.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-FoliageEdit.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-FoliageEdit.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PackageDependencyInfo.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PackageDependencyInfo.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-PackageDependencyInfo.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Blutility.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Blutility.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Blutility.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-NiagaraEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-NiagaraEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-NiagaraEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MergeActors.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MergeActors.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-MergeActors.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ProjectSettingsViewer.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ProjectSettingsViewer.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ProjectSettingsViewer.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PListEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PListEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-PListEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AIGraph.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AIGraph.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-AIGraph.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-BehaviorTreeEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-BehaviorTreeEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-BehaviorTreeEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-EnvironmentQueryEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-EnvironmentQueryEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-EnvironmentQueryEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ViewportSnapping.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ViewportSnapping.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ViewportSnapping.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GameplayTasksEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GameplayTasksEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-GameplayTasksEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GameplayAbilitiesEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GameplayAbilitiesEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-GameplayAbilitiesEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/IOS/UE4Editor-IOSRuntimeSettings.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/IOS/UE4Editor-IOSRuntimeSettings.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/IOS/UE4Editor-IOSRuntimeSettings.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/IOS/UE4Editor-IOSPlatformEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/IOS/UE4Editor-IOSPlatformEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/IOS/UE4Editor-IOSPlatformEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/HTML5/UE4Editor-HTML5PlatformEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/HTML5/UE4Editor-HTML5PlatformEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/HTML5/UE4Editor-HTML5PlatformEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MessagingRpc.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MessagingRpc.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-MessagingRpc.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PortalMessages.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PortalMessages.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-PortalMessages.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PortalProxies.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PortalProxies.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-PortalProxies.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GeometryCache.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GeometryCache.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-GeometryCache.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GeometryCacheEd.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GeometryCacheEd.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-GeometryCacheEd.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/Android/UE4Editor-AndroidRuntimeSettings.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/Android/UE4Editor-AndroidRuntimeSettings.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/Android/UE4Editor-AndroidRuntimeSettings.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/Android/UE4Editor-AndroidPlatformEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/Android/UE4Editor-AndroidPlatformEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/Android/UE4Editor-AndroidPlatformEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-UnrealEd.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-UnrealEd.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-UnrealEd.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-EditorWidgets.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-EditorWidgets.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-EditorWidgets.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SceneDepthPickerMode.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SceneDepthPickerMode.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SceneDepthPickerMode.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PropertyEditor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PropertyEditor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-PropertyEditor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MaterialShaderQualitySettings.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MaterialShaderQualitySettings.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-MaterialShaderQualitySettings.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Renderer.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Renderer.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Renderer.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Landscape.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Landscape.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Landscape.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PortalRpc.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PortalRpc.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-PortalRpc.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PerfCounters.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-PerfCounters.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-PerfCounters.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-CollisionAnalyzer.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-CollisionAnalyzer.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-CollisionAnalyzer.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-LogVisualizer.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-LogVisualizer.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-LogVisualizer.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SynthBenchmark.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SynthBenchmark.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SynthBenchmark.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DatabaseSupport.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-DatabaseSupport.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-DatabaseSupport.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-HardwareSurvey.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-HardwareSurvey.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-HardwareSurvey.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-StreamingPauseRendering.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-StreamingPauseRendering.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-StreamingPauseRendering.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SlateNullRenderer.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-SlateNullRenderer.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SlateNullRenderer.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-BlankModule.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-BlankModule.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-BlankModule.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-WindowsTargetPlatform.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-WindowsTargetPlatform.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-WindowsTargetPlatform.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-WindowsNoEditorTargetPlatform.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-WindowsNoEditorTargetPlatform.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-WindowsNoEditorTargetPlatform.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-WindowsServerTargetPlatform.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-WindowsServerTargetPlatform.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-WindowsServerTargetPlatform.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-WindowsClientTargetPlatform.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-WindowsClientTargetPlatform.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-WindowsClientTargetPlatform.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AllDesktopTargetPlatform.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AllDesktopTargetPlatform.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-AllDesktopTargetPlatform.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-NullNetworkReplayStreaming.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-NullNetworkReplayStreaming.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-NullNetworkReplayStreaming.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-HttpNetworkReplayStreaming.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-HttpNetworkReplayStreaming.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-HttpNetworkReplayStreaming.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Advertising.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Advertising.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Advertising.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Engine.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Engine.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Engine.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Media.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Media.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Media.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MediaAssets.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-MediaAssets.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-MediaAssets.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-NetworkFile.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-NetworkFile.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-NetworkFile.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-StreamingFile.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-StreamingFile.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-StreamingFile.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AutomationWorker.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-AutomationWorker.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-AutomationWorker.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TaskGraph.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TaskGraph.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-TaskGraph.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-RealtimeProfiler.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-RealtimeProfiler.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-RealtimeProfiler.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ProfilerService.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ProfilerService.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ProfilerService.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GammaUI.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-GammaUI.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-GammaUI.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ModuleUI.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-ModuleUI.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ModuleUI.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Toolbox.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-Toolbox.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Toolbox.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TextureCompressor.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-TextureCompressor.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-TextureCompressor.lib",
+			"Type" : "ImportLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-InputDevice.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4Editor-InputDevice.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-InputDevice.lib",
+			"Type" : "ImportLibrary"
+		}
+	],
+	"RuntimeDependencies" :
+	[
+		{
+			"Path" : "$(ProjectDir)/SurvivalGame.uproject",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/2D/Paper2D/Paper2D.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Blendables/LightPropagationVolume/LightPropagationVolume.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Developer/GitSourceControl/GitSourceControl.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Developer/PerforceSourceControl/PerforceSourceControl.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Developer/SubversionSourceControl/SubversionSourceControl.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Developer/UObjectPlugin/UObjectPlugin.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Developer/VisualStudioSourceCodeAccess/VisualStudioSourceCodeAccess.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Editor/EpicSurvey/EpicSurvey.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Editor/PluginBrowser/PluginBrowser.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Editor/SpeedTreeImporter/SpeedTreeImporter.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Editor/SuperSearchEditor/SuperSearchEditor.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Experimental/CharacterAI/CharacterAI.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Experimental/HTML5Networking/HTML5Networking.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Media/MediaPlayerEditor/MediaPlayerEditor.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Media/WmfMedia/WmfMedia.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Messaging/UdpMessaging/UdpMessaging.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/MovieScene/LevelSequenceEditor/LevelSequenceEditor.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/MovieScene/MatineeToLevelSequence/MatineeToLevelSequence.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ArchVisCharacter/ArchVisCharacter.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/CableComponent/CableComponent.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/CustomMeshComponent/CustomMeshComponent.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ExampleDeviceProfileSelector/ExampleDeviceProfileSelector.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/OculusInput/OculusInput.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/OculusLibrary/OculusLibrary.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/OculusRift/OculusRift.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ProceduralMeshComponent/ProceduralMeshComponent.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/Steam/SteamVR/SteamVR.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/WindowsMoviePlayer/WindowsMoviePlayer.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Slate/SlateRemote/SlateRemote.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/...",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(ProjectDir)/Content/Slate/...",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/Perforce/p4api.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/Perforce/p4api.xml",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/OpenSSL/Win64/VS2012/libeay32.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/OpenSSL/Win64/VS2012/ssleay32.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/OpenSSL/Win64/VS2013/libeay32.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/OpenSSL/Win64/VS2013/ssleay32.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/OpenSSL/Win64/VS2015/libeay32.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/OpenSSL/Win64/VS2015/ssleay32.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/apr_ldap-1.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/changelog.txt",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/diff.exe",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/diff3.exe",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/diff4.exe",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/libapr-1.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/libapriconv-1.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/libaprutil-1.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/libeay32.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/libsasl.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/libsvnjavahl-1.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/libsvn_client-1.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/libsvn_delta-1.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/libsvn_diff-1.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/libsvn_fs-1.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/libsvn_ra-1.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/libsvn_repos-1.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/libsvn_subr-1.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/libsvn_wc-1.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/MSVCP100.DLL",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/MSVCR100.DLL",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/saslANONYMOUS.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/saslCRAMMD5.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/saslDIGESTMD5.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/saslLOGIN.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/saslNTLM.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/saslPLAIN.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/ssleay32.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/svn-populate-node-origins-index.exe",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/svn-rep-sharing-stats.exe",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/svn.exe",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/svnadmin.exe",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/svnauthz-validate.exe",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/svnauthz.exe",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/svndumpfilter.exe",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/svnlook.exe",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/svnmucc.exe",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/svnraisetreeconflict.exe",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/svnrdump.exe",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/svnserve.exe",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/svnsync.exe",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/svnversion.exe",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/uninst.exe",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/zlib1.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/adobe-stdenc.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/adobe-symbol.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/adobe-zdingbats.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/big5.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cns11643-plane1.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cns11643-plane14.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cns11643-plane2.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp037.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp038.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp10000.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp10006.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp10007.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp10029.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp1006.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp10079.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp10081.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp1026.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp273.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp274.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp275.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp277.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp278.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp280.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp281.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp284.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp285.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp290.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp297.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp420.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp423.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp424.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp437.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp500.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp737.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp775.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp850.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp851.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp852.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp855.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp856.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp857.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp860.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp861.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp862.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp863.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp864.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp865.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp866.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp868.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp869.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp870.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp871.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp874.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp875.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp880.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp891.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp903.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp904.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp905.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp918.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp932.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp936.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp949.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/cp950.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/dec-mcs.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/ebcdic-at-de-a.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/ebcdic-at-de.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/ebcdic-ca-fr.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/ebcdic-dk-no-a.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/ebcdic-dk-no.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/ebcdic-es-a.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/ebcdic-es-s.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/ebcdic-es.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/ebcdic-fi-se-a.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/ebcdic-fi-se.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/ebcdic-fr.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/ebcdic-it.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/ebcdic-pt.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/ebcdic-uk.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/ebcdic-us.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/euc-jp.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/euc-kr.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/euc-tw.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/gb12345.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/gb2312.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/gb_2312-80.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/hp-roman8.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-10646-ucs-2.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-10646-ucs-4.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-2022-cn.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-2022-jp-2.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-2022-jp.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-2022-kr.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-8859-1.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-8859-10.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-8859-13.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-8859-14.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-8859-15.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-8859-2.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-8859-3.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-8859-4.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-8859-5.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-8859-6.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-8859-7.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-8859-8.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-8859-9.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-10.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-102.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-103.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-11.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-111.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-121.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-122.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-123.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-128.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-13.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-139.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-14.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-141.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-142.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-143.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-146.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-147.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-15.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-150.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-151.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-152.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-153.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-154.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-155.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-158.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-16.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-17.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-18.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-19.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-2.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-21.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-25.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-27.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-37.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-4.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-47.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-49.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-50.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-51.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-54.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-55.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-57.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-60.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-61.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-69.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-70.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-8-1.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-8-2.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-84.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-85.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-86.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-88.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-89.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-9-1.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-9-2.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-90.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-91.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-92.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-93.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-94.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-95.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-96.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-98.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso-ir-99.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso646-dk.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/iso646-kr.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/jis_x0201.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/jis_x0208-1983.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/jis_x0212-1990.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/johab.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/koi8-r.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/koi8-ru.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/koi8-u.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/ksx1001.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/mac-ce.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/mac-croatian.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/mac-cyrillic.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/mac-dingbats.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/mac-greek.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/mac-iceland.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/mac-japan.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/mac-roman.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/mac-romania.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/mac-thai.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/mac-turkish.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/mac-ukraine.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/macintosh.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/osd_ebcdic_df04_1.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/osd_ebcdic_df04_15.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/shift_jis.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/svn-book.pdf",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/ucs2-internal.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/ucs4-internal.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/unicode-1-1-utf-7.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/us-ascii.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/utf-16.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/utf-8.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/windows-1250.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/windows-1251.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/windows-1252.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/windows-1253.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/windows-1254.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/windows-1255.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/windows-1256.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/windows-1257.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/windows-1258.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/iconv/_tbl_simple.so",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/license/APR_and_Serf.license",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/license/CyrusSASL.license",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/license/Neon.license",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/license/OpenSSL.license",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/svn/Win64/license/Subversion.license",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/OpenVR/OpenVRv0_9_12/Win64/openvr_api.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/ICU/icu4c-53_1/Win64/VS2015/icudt53.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/ICU/icu4c-53_1/Win64/VS2015/icuuc53.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/ICU/icu4c-53_1/Win64/VS2015/icuin53.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/ICU/icu4c-53_1/Win64/VS2015/icule53.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/ICU/icu4c-53_1/Win64/VS2015/iculx53.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/ICU/icu4c-53_1/Win64/VS2015/icuio53.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/IntelISPCTexComp/Win64-Release/ispc_texcomp.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/nvTextureTools/Win64/nvtt_64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/ImgTec/PVRTexToolCLI.exe",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/ARM/Win32/astcenc.exe",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/Ogg/Win64/VS2015/libogg_64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/Vorbis/Win64/VS2015/libvorbis_64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/Vorbis/Win64/VS2015/libvorbisfile_64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/PhysX-3.3/Win64/VS2015/PhysX3PROFILE_x64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/PhysX-3.3/Win64/VS2015/PhysX3PROFILE_x64.pdb",
+			"Type" : "DebugNonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/PhysX-3.3/Win64/VS2015/PhysX3CommonPROFILE_x64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/PhysX-3.3/Win64/VS2015/PhysX3CommonPROFILE_x64.pdb",
+			"Type" : "DebugNonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/PhysX-3.3/Win64/VS2015/PhysX3CookingPROFILE_x64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/PhysX-3.3/Win64/VS2015/PhysX3CookingPROFILE_x64.pdb",
+			"Type" : "DebugNonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/PhysX-3.3/Win64/VS2015/nvToolsExt64_1.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/APEX-1.3/Win64/VS2015/APEX_ClothingPROFILE_x64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/APEX-1.3/Win64/VS2015/APEX_ClothingPROFILE_x64.dll.pdb",
+			"Type" : "DebugNonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/APEX-1.3/Win64/VS2015/APEX_DestructiblePROFILE_x64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/APEX-1.3/Win64/VS2015/APEX_DestructiblePROFILE_x64.dll.pdb",
+			"Type" : "DebugNonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/APEX-1.3/Win64/VS2015/APEX_LegacyPROFILE_x64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/APEX-1.3/Win64/VS2015/APEX_LegacyPROFILE_x64.dll.pdb",
+			"Type" : "DebugNonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/APEX-1.3/Win64/VS2015/ApexFrameworkPROFILE_x64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/APEX-1.3/Win64/VS2015/ApexFrameworkPROFILE_x64.dll.pdb",
+			"Type" : "DebugNonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/d3dcompiler_43.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/d3dcompiler_47.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/ffmpegsumo.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/libcef.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/libEGL.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/libGLESv2.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/icudtl.dat",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/natives_blob.bin",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/snapshot_blob.bin",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/cef.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/cef_100_percent.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/cef_200_percent.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/devtools_resources.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/icudtl.dat",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/am.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/ar.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/bg.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/bn.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/ca.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/cs.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/da.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/de.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/el.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/en-GB.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/en-US.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/es-419.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/es.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/et.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/fa.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/fi.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/fil.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/fr.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/gu.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/he.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/hi.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/hr.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/hu.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/id.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/it.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/ja.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/kn.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/ko.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/lt.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/lv.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/ml.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/mr.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/ms.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/nb.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/nl.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/pl.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/pt-BR.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/pt-PT.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/ro.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/ru.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/sk.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/sl.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/sr.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/sv.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/sw.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/ta.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/te.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/th.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/tr.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/uk.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/vi.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/zh-CN.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/CEF3/Win64/Resources/locales/zh-TW.pak",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UnrealCEFSubProcess.exe",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/libfbxsdk.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Stats/...",
+			"Type" : "UFS"
+		}
+	]
+}

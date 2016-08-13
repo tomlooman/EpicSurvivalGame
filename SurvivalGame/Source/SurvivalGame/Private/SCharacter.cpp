@@ -176,7 +176,8 @@ ASUsableActor* ASCharacter::GetUsableInView()
 	TraceParams.bTraceComplex = true;
 
 	FHitResult Hit(ForceInit);
-	GetWorld()->LineTraceSingle(Hit, TraceStart, TraceEnd, ECC_Visibility, TraceParams);
+	// Change to GetWorld()->LineTraceSingleByChannel
+	GetWorld()->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, ECC_Visibility, TraceParams);
 
 	//DrawDebugLine(GetWorld(), TraceStart, TraceEnd, FColor::Red, false, 1.0f);
 
@@ -300,12 +301,26 @@ void ASCharacter::SetIsJumping(bool NewJumping)
 	}
 }
 
+/*
+Does not work with UE 4.12 or newer
+*/
+//void ASCharacter::OnLanded(const FHitResult& Hit)
+//{
+//	Super::OnLanded(Hit);
+//
+//	SetIsJumping(false);
+//}
 
-void ASCharacter::OnLanded(const FHitResult& Hit)
+void ASCharacter::OnMovementModeChanged(EMovementMode PrevMovementMode, uint8 PreviousCustomMode)
 {
-	Super::OnLanded(Hit);
+	Super::OnMovementModeChanged(PrevMovementMode, PreviousCustomMode);
 
-	SetIsJumping(false);
+	/* Check if we are no longer falling/jumping */
+	if (PrevMovementMode == EMovementMode::MOVE_Falling &&
+		GetCharacterMovement()->MovementMode != EMovementMode::MOVE_Falling)
+	{
+		SetIsJumping(false);
+	}
 }
 
 void ASCharacter::ServerSetIsJumping_Implementation(bool NewJumping)

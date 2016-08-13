@@ -69,7 +69,10 @@ public:
 	UFUNCTION(Reliable, Server, WithValidation)
 	void ServerSetIsJumping(bool NewJumping);
 
-	void OnLanded(const FHitResult& Hit) override;
+	// Does not work with UE 4.12 or newer 
+	/*void OnLanded(const FHitResult& Hit) override;*/
+
+	virtual void OnMovementModeChanged(EMovementMode PrevMovementMode, uint8 PreviousCustomMode = 0) override;
 
 	/* Client/local call to update sprint state  */
 	void SetSprinting(bool NewSprinting);

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{31408ACC-990D-4C78-BA00-0FC48BC38BDB}"
 EndProject
@@ -30,17 +30,22 @@ Global
 		{4DBCF9CA-67B0-48D4-832A-CDD27B003E1D}.Development|Windows.Build.0 = Development_Game|x64
 		{4DBCF9CA-67B0-48D4-832A-CDD27B003E1D}.Shipping|Windows.ActiveCfg = Shipping_Game|Win32
 		{4DBCF9CA-67B0-48D4-832A-CDD27B003E1D}.Shipping|Windows.Build.0 = Shipping_Game|Win32
-		{067A7E43-7C25-42BF-AF90-62729A85794A}.DebugGame Editor|Windows.ActiveCfg = BuiltWithUnrealBuildTool|Win32
-		{067A7E43-7C25-42BF-AF90-62729A85794A}.DebugGame|Windows.ActiveCfg = BuiltWithUnrealBuildTool|Win32
-		{067A7E43-7C25-42BF-AF90-62729A85794A}.Development Editor|Windows.ActiveCfg = BuiltWithUnrealBuildTool|Win32
-		{067A7E43-7C25-42BF-AF90-62729A85794A}.Development|Windows.ActiveCfg = BuiltWithUnrealBuildTool|Win32
-		{067A7E43-7C25-42BF-AF90-62729A85794A}.Shipping|Windows.ActiveCfg = BuiltWithUnrealBuildTool|Win32
+		{067A7E43-7C25-42BF-AF90-62729A85794A}.DebugGame Editor|Windows.ActiveCfg = HTML5_Test_Client|x64
+		{067A7E43-7C25-42BF-AF90-62729A85794A}.DebugGame Editor|Windows.Build.0 = HTML5_Test_Client|x64
+		{067A7E43-7C25-42BF-AF90-62729A85794A}.DebugGame|Windows.ActiveCfg = HTML5_Test_Client|x64
+		{067A7E43-7C25-42BF-AF90-62729A85794A}.DebugGame|Windows.Build.0 = HTML5_Test_Client|x64
+		{067A7E43-7C25-42BF-AF90-62729A85794A}.Development Editor|Windows.ActiveCfg = HTML5_Test_Client|x64
+		{067A7E43-7C25-42BF-AF90-62729A85794A}.Development Editor|Windows.Build.0 = HTML5_Test_Client|x64
+		{067A7E43-7C25-42BF-AF90-62729A85794A}.Development|Windows.ActiveCfg = HTML5_Test_Client|x64
+		{067A7E43-7C25-42BF-AF90-62729A85794A}.Development|Windows.Build.0 = HTML5_Test_Client|x64
+		{067A7E43-7C25-42BF-AF90-62729A85794A}.Shipping|Windows.ActiveCfg = HTML5_Test_Client|x64
+		{067A7E43-7C25-42BF-AF90-62729A85794A}.Shipping|Windows.Build.0 = HTML5_Test_Client|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{067A7E43-7C25-42BF-AF90-62729A85794A} = {31408ACC-990D-4C78-BA00-0FC48BC38BDB}
 		{4DBCF9CA-67B0-48D4-832A-CDD27B003E1D} = {132BE1EA-88C9-4A74-92FB-7A1A818EA9F1}
+		{067A7E43-7C25-42BF-AF90-62729A85794A} = {31408ACC-990D-4C78-BA00-0FC48BC38BDB}
 	EndGlobalSection
 EndGlobal
