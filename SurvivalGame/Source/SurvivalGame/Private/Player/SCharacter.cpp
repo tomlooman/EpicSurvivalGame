@@ -8,7 +8,7 @@
 #include "SCharacterMovementComponent.h"
 #include "SCarryObjectComponent.h"
 #include "SBaseCharacter.h"
-
+#include "Runtime/Engine/Classes/Animation/AnimInstance.h"
 
 // Sets default values
 ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
