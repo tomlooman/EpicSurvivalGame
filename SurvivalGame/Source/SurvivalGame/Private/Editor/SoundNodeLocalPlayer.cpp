@@ -12,6 +12,7 @@ void USoundNodeLocalPlayer::ParseNodes(FAudioDevice* AudioDevice, const UPTRINT 
 	check(IsInGameThread());
 
 	AActor* SoundOwner = ActiveSound.GetAudioComponentID() ? UAudioComponent::GetAudioComponentFromID(ActiveSound.GetAudioComponentID())->GetOwner() : nullptr;
+	
 	APlayerController* PCOwner = Cast<APlayerController>(SoundOwner);
 	APawn* PawnOwner = (PCOwner ? PCOwner->GetPawn() : Cast<APawn>(SoundOwner));
 
