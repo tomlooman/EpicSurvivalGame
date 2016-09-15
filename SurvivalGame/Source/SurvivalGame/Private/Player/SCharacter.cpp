@@ -11,7 +11,7 @@
 #include "Runtime/Engine/Classes/Animation/AnimInstance.h"
 
 
-// Sets the default values
+// Sets default values
 ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
