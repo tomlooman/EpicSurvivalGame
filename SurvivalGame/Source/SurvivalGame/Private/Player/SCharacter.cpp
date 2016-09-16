@@ -124,45 +124,45 @@ void ASCharacter::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 
 // Called to bind functionality to input
-void ASCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponent)
+void ASCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
-	Super::SetupPlayerInputComponent(InputComponent);
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 	// Movement
-	InputComponent->BindAxis("MoveForward", this, &ASCharacter::MoveForward);
-	InputComponent->BindAxis("MoveRight", this, &ASCharacter::MoveRight);
-	InputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
-	InputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
+	PlayerInputComponent->BindAxis("MoveForward", this, &ASCharacter::MoveForward);
+	PlayerInputComponent->BindAxis("MoveRight", this, &ASCharacter::MoveRight);
+	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
+	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 
-	InputComponent->BindAction("SprintHold", IE_Pressed, this, &ASCharacter::OnStartSprinting);
-	InputComponent->BindAction("SprintHold", IE_Released, this, &ASCharacter::OnStopSprinting);
+	PlayerInputComponent->BindAction("SprintHold", IE_Pressed, this, &ASCharacter::OnStartSprinting);
+	PlayerInputComponent->BindAction("SprintHold", IE_Released, this, &ASCharacter::OnStopSprinting);
 
-	InputComponent->BindAction("CrouchToggle", IE_Released, this, &ASCharacter::OnCrouchToggle);
+	PlayerInputComponent->BindAction("CrouchToggle", IE_Released, this, &ASCharacter::OnCrouchToggle);
 
-	InputComponent->BindAction("Jump", IE_Pressed, this, &ASCharacter::OnStartJump);
-	InputComponent->BindAction("Jump", IE_Released, this, &ASCharacter::OnStopJump);
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ASCharacter::OnStartJump);
+	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ASCharacter::OnStopJump);
 
 	// Interaction
-	InputComponent->BindAction("Use", IE_Pressed, this, &ASCharacter::Use);
-	InputComponent->BindAction("DropWeapon", IE_Pressed, this, &ASCharacter::DropWeapon);
+	PlayerInputComponent->BindAction("Use", IE_Pressed, this, &ASCharacter::Use);
+	PlayerInputComponent->BindAction("DropWeapon", IE_Pressed, this, &ASCharacter::DropWeapon);
 
 	// Weapons
-	InputComponent->BindAction("Targeting", IE_Pressed, this, &ASCharacter::OnStartTargeting);
-	InputComponent->BindAction("Targeting", IE_Released, this, &ASCharacter::OnEndTargeting);
+	PlayerInputComponent->BindAction("Targeting", IE_Pressed, this, &ASCharacter::OnStartTargeting);
+	PlayerInputComponent->BindAction("Targeting", IE_Released, this, &ASCharacter::OnEndTargeting);
 
-	InputComponent->BindAction("Fire", IE_Pressed, this, &ASCharacter::OnStartFire);
-	InputComponent->BindAction("Fire", IE_Released, this, &ASCharacter::OnStopFire);
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ASCharacter::OnStartFire);
+	PlayerInputComponent->BindAction("Fire", IE_Released, this, &ASCharacter::OnStopFire);
 
-	InputComponent->BindAction("Reload", IE_Pressed, this, &ASCharacter::OnReload);
+	PlayerInputComponent->BindAction("Reload", IE_Pressed, this, &ASCharacter::OnReload);
 
-	InputComponent->BindAction("NextWeapon", IE_Pressed, this, &ASCharacter::OnNextWeapon);
-	InputComponent->BindAction("PrevWeapon", IE_Pressed, this, &ASCharacter::OnPrevWeapon);
+	PlayerInputComponent->BindAction("NextWeapon", IE_Pressed, this, &ASCharacter::OnNextWeapon);
+	PlayerInputComponent->BindAction("PrevWeapon", IE_Pressed, this, &ASCharacter::OnPrevWeapon);
 
-	InputComponent->BindAction("EquipPrimaryWeapon", IE_Pressed, this, &ASCharacter::OnEquipPrimaryWeapon);
-	InputComponent->BindAction("EquipSecondaryWeapon", IE_Pressed, this, &ASCharacter::OnEquipSecondaryWeapon);
+	PlayerInputComponent->BindAction("EquipPrimaryWeapon", IE_Pressed, this, &ASCharacter::OnEquipPrimaryWeapon);
+	PlayerInputComponent->BindAction("EquipSecondaryWeapon", IE_Pressed, this, &ASCharacter::OnEquipSecondaryWeapon);
 
 	/* Input binding for the carry object component */
-	InputComponent->BindAction("PickupObject", IE_Pressed, this, &ASCharacter::OnToggleCarryActor);
+	PlayerInputComponent->BindAction("PickupObject", IE_Pressed, this, &ASCharacter::OnToggleCarryActor);
 }
 
 
