@@ -91,10 +91,10 @@ bool ASPlayerController::ServerSuicide_Validate()
 
 void ASPlayerController::ClientHUDStateChanged_Implementation(EHUDState NewState)
 {
-	ASHUD* MyHUD = Cast<ASHUD>(GetHUD());
-	if (MyHUD)
+	ASHUD* HUD = Cast<ASHUD>(GetHUD());
+	if (HUD)
 	{
-		MyHUD->OnStateChanged(NewState);
+		HUD->OnStateChanged(NewState);
 	}
 }
 
@@ -104,11 +104,11 @@ void ASPlayerController::ClientHUDMessage_Implementation(EHUDMessage MessageID)
 	/* Turn the ID into a message for the HUD to display */
 	FText TextMessage = GetText(MessageID);
 
-	ASHUD* MyHUD = Cast<ASHUD>(GetHUD());
-	if (MyHUD)
+	ASHUD* HUD = Cast<ASHUD>(GetHUD());
+	if (HUD)
 	{
 		/* Implemented in SurvivalHUD Blueprint */
-		MyHUD->MessageReceived(TextMessage);
+		HUD->MessageReceived(TextMessage);
 	}
 }
 
