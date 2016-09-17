@@ -50,7 +50,7 @@ protected:
 	float BotSpawnInterval;
 
 	/* Called once on every new player that enters the gamemode */
-	virtual FString InitNewPlayer(class APlayerController* NewPlayerController, const TSharedPtr<const FUniqueNetId>& UniqueId, const FString& Options, const FString& Portal = TEXT(""));
+	virtual FString InitNewPlayer(class APlayerController* NewPlayerController, const FUniqueNetIdRepl& UniqueId, const FString& Options, const FString& Portal = TEXT("")) override;
 
 	/* The teamnumber assigned to Players */
 	int32 PlayerTeamNum;

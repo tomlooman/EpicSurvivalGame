@@ -125,18 +125,22 @@ void ASGameMode::DefaultTimer()
 bool ASGameMode::CanDealDamage(class ASPlayerState* DamageCauser, class ASPlayerState* DamagedPlayer) const
 {
 	if (bAllowFriendlyFireDamage)
+	{
 		return true;
+	}
 
 	/* Allow damage to self */
 	if (DamagedPlayer == DamageCauser)
+	{
 		return true;
+	}
 
 	// Compare Team Numbers
 	return DamageCauser && DamagedPlayer && (DamageCauser->GetTeamNumber() != DamagedPlayer->GetTeamNumber());
 }
 
 
-FString ASGameMode::InitNewPlayer(class APlayerController* NewPlayerController, const TSharedPtr<const FUniqueNetId>& UniqueId, const FString& Options, const FString& Portal)
+FString ASGameMode::InitNewPlayer(class APlayerController* NewPlayerController, const FUniqueNetIdRepl& UniqueId, const FString& Options, const FString& Portal)
 {
 	FString Result = Super::InitNewPlayer(NewPlayerController, UniqueId, Options, Portal);
 
