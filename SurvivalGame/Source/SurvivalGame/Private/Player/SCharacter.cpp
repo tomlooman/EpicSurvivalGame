@@ -139,8 +139,7 @@ void ASCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputCo
 
 	PlayerInputComponent->BindAction("CrouchToggle", IE_Released, this, &ASCharacter::OnCrouchToggle);
 
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ASCharacter::OnStartJump);
-	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ASCharacter::OnStopJump);
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ASCharacter::OnJump);
 
 	// Interaction
 	PlayerInputComponent->BindAction("Use", IE_Pressed, this, &ASCharacter::Use);
@@ -270,17 +269,9 @@ void ASCharacter::OnEndTargeting()
 }
 
 
-void ASCharacter::OnStartJump()
+void ASCharacter::OnJump()
 {
-	bPressedJump = true;
-
 	SetIsJumping(true);
-}
-
-
-void ASCharacter::OnStopJump()
-{
-	bPressedJump = false;
 }
 
 
@@ -297,9 +288,15 @@ void ASCharacter::SetIsJumping(bool NewJumping)
 	{
 		UnCrouch();
 	}
-	else
+	else if (NewJumping != bIsJumping)
 	{
 		bIsJumping = NewJumping;
+
+		if (bIsJumping)
+		{
+			/* Perform the built-in Jump on the character */
+			Jump();
+		}
 	}
 
 	if (Role < ROLE_Authority)
