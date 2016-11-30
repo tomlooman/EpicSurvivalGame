@@ -97,8 +97,7 @@ bool ASBaseCharacter::CanDie(float KillingDamage, FDamageEvent const& DamageEven
 	if (bIsDying ||
 		IsPendingKill() ||
 		Role != ROLE_Authority ||
-		GetWorld()->GetAuthGameMode() == NULL ||
-		GetWorld()->GetAuthGameMode()->GetMatchState() == MatchState::LeavingMap)
+		GetWorld()->GetAuthGameMode() == NULL)
 	{
 		return false;
 	}

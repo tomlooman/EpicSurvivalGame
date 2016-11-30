@@ -5,11 +5,6 @@
 
 
 
-/* Define a log category for error messages */
-DEFINE_LOG_CATEGORY_STATIC(LogGameMode, Log, All);
-
-
-
 ASCoopGameMode::ASCoopGameMode(const FObjectInitializer& ObjectInitializer)
 : Super(ObjectInitializer)
 {

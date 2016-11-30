@@ -38,7 +38,7 @@ void ASPlayerState::ScorePoints(int32 Points)
 	Score += Points;
 
 	/* Add the score to the global score count */
-	ASGameState* GS = Cast<ASGameState>(GetWorld()->GameState);
+	ASGameState* GS = GetWorld()->GetGameState<ASGameState>();
 	if (GS)
 	{
 		GS->AddScore(Points);

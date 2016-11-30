@@ -28,7 +28,7 @@ void ASPlayerController::UnFreeze()
 	Super::UnFreeze();
 
 	// Check if match is ending or has ended.
-	ASGameState* MyGameState = Cast<ASGameState>(GetWorld()->GameState);
+	ASGameState* MyGameState = GetWorld()->GetGameState<ASGameState>();
 	if (MyGameState && MyGameState->HasMatchEnded())
 	{
 		/* Don't allow spectating or respawns */
