@@ -66,8 +66,8 @@ void ASPlayerCameraManager::UpdateCamera(float DeltaTime)
 		CurrentCrouchOffset = FMath::Lerp(CurrentCrouchOffset, 0.0f, FMath::Clamp(CrouchLerpVelocity * DeltaTime, 0.0f, 1.0f));
 
 		FVector CurrentCameraOffset = MyPawn->GetCameraComponent()->GetRelativeTransform().GetLocation();
-		FVector NewCameraOffset = FVector(CurrentCameraOffset.X, CurrentCameraOffset.Y, DefaultCameraOffsetZ + CurrentCrouchOffset);
-		MyPawn->GetCameraComponent()->SetRelativeLocation(NewCameraOffset);
+//		FVector NewCameraOffset = FVector(CurrentCameraOffset.X, CurrentCameraOffset.Y, DefaultCameraOffsetZ + CurrentCrouchOffset);
+//		MyPawn->GetCameraComponent()->SetRelativeLocation(NewCameraOffset);
 	}
 
 	Super::UpdateCamera(DeltaTime);

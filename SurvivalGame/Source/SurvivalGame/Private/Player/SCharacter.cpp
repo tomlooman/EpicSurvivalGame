@@ -32,9 +32,9 @@ ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
 	MoveComp->GetNavAgentPropertiesRef().bCanCrouch = true;
 
 	CameraComp = ObjectInitializer.CreateDefaultSubobject<UCameraComponent>(this, TEXT("Camera"));
-//	CameraComp->offset
+	CameraComp->RelativeLocation = FVector(9.f, 13.f, 4.f);
+	CameraComp->RelativeRotation = FRotator(0, 90.f, -90.f);
 	CameraComp->bUsePawnControlRotation = true;
-	CameraComp->SetupAttachment(CameraBoomComp);
 	CameraComp->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, TEXT("head"));
 
 	CarriedObjectComp = ObjectInitializer.CreateDefaultSubobject<USCarryObjectComponent>(this, TEXT("CarriedObjectComp"));
