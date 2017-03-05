@@ -9,6 +9,7 @@
 #include "SCarryObjectComponent.h"
 #include "SBaseCharacter.h"
 #include "Runtime/Engine/Classes/Animation/AnimInstance.h"
+#include "SPlayerController.h"
 
 // Sets default values
 ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
@@ -30,14 +31,11 @@ ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
 	// Enable crouching
 	MoveComp->GetNavAgentPropertiesRef().bCanCrouch = true;
 
-	CameraBoomComp = ObjectInitializer.CreateDefaultSubobject<USpringArmComponent>(this, TEXT("CameraBoom"));
-	CameraBoomComp->SocketOffset = FVector(0, 35, 0);
-	CameraBoomComp->TargetOffset = FVector(0, 0, 55);
-	CameraBoomComp->bUsePawnControlRotation = true;
-	CameraBoomComp->SetupAttachment(GetRootComponent());
-
 	CameraComp = ObjectInitializer.CreateDefaultSubobject<UCameraComponent>(this, TEXT("Camera"));
+//	CameraComp->offset
+	CameraComp->bUsePawnControlRotation = true;
 	CameraComp->SetupAttachment(CameraBoomComp);
+	CameraComp->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, TEXT("head"));
 
 	CarriedObjectComp = ObjectInitializer.CreateDefaultSubobject<USCarryObjectComponent>(this, TEXT("CarriedObjectComp"));
 	CarriedObjectComp->SetupAttachment(GetRootComponent());
@@ -62,7 +60,6 @@ ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
 	PelvisAttachPoint = TEXT("PelvisSocket");
 	SpineAttachPoint = TEXT("SpineSocket");
 }
-
 
 void ASCharacter::BeginPlay()
 {
@@ -129,6 +126,7 @@ void ASCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputCo
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 	// Movement
+//	BindMovement(PlayerInputComponent, this);
 	PlayerInputComponent->BindAxis("MoveForward", this, &ASCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ASCharacter::MoveRight);
 	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
@@ -164,6 +162,13 @@ void ASCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputCo
 	PlayerInputComponent->BindAction("PickupObject", IE_Pressed, this, &ASCharacter::OnToggleCarryActor);
 }
 
+//void BindMovement(class UInputComponent* PlayerInputComponent, class UClass* Character)
+//{
+//	PlayerInputComponent->BindAxis("MoveForward", Character, &ASCharacter::MoveForward);
+//	PlayerInputComponent->BindAxis("MoveRight", Character, &ASCharacter::MoveRight);
+//	PlayerInputComponent->BindAxis("Turn", Character, &APawn::AddControllerYawInput);
+//	PlayerInputComponent->BindAxis("LookUp", Character, &APawn::AddControllerPitchInput);
+//}
 
 void ASCharacter::MoveForward(float Val)
 {
