@@ -3,6 +3,8 @@
 #include "SurvivalGame.h"
 #include "SBaseCharacter.h"
 #include "SGameMode.h"
+#include "SDamageType.h"
+#include "SCharacterMovementComponent.h"
 
 
 ASBaseCharacter::ASBaseCharacter(const class FObjectInitializer& ObjectInitializer)
@@ -250,8 +252,6 @@ void ASBaseCharacter::PlayHit(float DamageTaken, struct FDamageEvent const& Dama
 
 void ASBaseCharacter::ReplicateHit(float DamageTaken, struct FDamageEvent const& DamageEvent, APawn* PawnInstigator, AActor* DamageCauser, bool bKilled)
 {
-	const float TimeoutTime = GetWorld()->GetTimeSeconds() + 0.5f;
-
 	FDamageEvent const& LastDamageEvent = LastTakeHitInfo.GetDamageEvent();
 	if (PawnInstigator == LastTakeHitInfo.PawnInstigator.Get() && LastDamageEvent.DamageTypeClass == LastTakeHitInfo.DamageTypeClass)
 	{
