@@ -8,6 +8,7 @@
 #include "SCharacterMovementComponent.h"
 #include "SCarryObjectComponent.h"
 #include "SBaseCharacter.h"
+#include "SPlayerController.h"
 #include "Runtime/Engine/Classes/Animation/AnimInstance.h"
 
 // Sets default values
@@ -790,7 +791,7 @@ void ASCharacter::DropWeapon()
 			if (MeshComp)
 			{
 				MeshComp->SetSimulatePhysics(true);
-				MeshComp->AddTorque(FVector(1, 1, 1) * 4000000);
+				MeshComp->AddTorqueInRadians(FVector(1, 1, 1) * 4000000);
 			}
 		}
 
