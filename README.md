@@ -9,6 +9,8 @@ For questions & feedback visit [the official thread on the unreal engine forums]
 
 **Looking for a step by step guide?** I released my **[Unreal Engine 4 Mastery: Create Multiplayer Games with C++](https://www.udemy.com/unrealengine-cpp/?couponCode=TLGH14)!** Which includes two games teaching you C++, Networking for multiplayer and multiple AI including advanced behavior trees for ranged shooter AI.
 
+Get the Udemy Course now and learn C++ for Unreal Engine 4: [DISCOUNT LINK](https://www.udemy.com/unrealengine-cpp/?couponCode=TLGH14)
+
 
 **Last updated for 4.18!**
 
