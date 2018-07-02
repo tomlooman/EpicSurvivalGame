@@ -5,6 +5,9 @@
 #include "SZombieCharacter.h"
 
 /* AI Specific includes */
+#include "Perception/AISenseConfig_Sight.h"
+#include "Perception/AISenseConfig_Hearing.h"
+#include "Perception/AIPerceptionComponent.h"
 #include "BehaviorTree/BehaviorTree.h"
 #include "BehaviorTree/BehaviorTreeComponent.h"
 #include "BehaviorTree/BlackboardComponent.h"
@@ -15,6 +18,30 @@ ASZombieAIController::ASZombieAIController(const class FObjectInitializer& Objec
 {
 	BehaviorComp = ObjectInitializer.CreateDefaultSubobject<UBehaviorTreeComponent>(this, TEXT("BehaviorComp"));
 	BlackboardComp = ObjectInitializer.CreateDefaultSubobject<UBlackboardComponent>(this, TEXT("BlackboardComp"));
+
+	/* Setup sight sense config */
+	UAISenseConfig_Sight* SightConfig = ObjectInitializer.CreateDefaultSubobject<UAISenseConfig_Sight>(this, TEXT("Sight Config"));
+	SightConfig->SightRadius = 2000;
+	SightConfig->LoseSightRadius = 2500;
+	SightConfig->PeripheralVisionAngleDegrees = 60.0f;
+	SightConfig->DetectionByAffiliation.bDetectEnemies = true;
+	SightConfig->SetMaxAge(2.5f);
+
+	/* Setup hearing sense config */
+	UAISenseConfig_Hearing* HearingConfig = ObjectInitializer.CreateDefaultSubobject<UAISenseConfig_Hearing>(this, TEXT("Hearing Config"));
+	HearingConfig->HearingRange = 600.0f;
+	HearingConfig->LoSHearingRange = 1200.0f;
+	HearingConfig->DetectionByAffiliation.bDetectEnemies = true;
+	HearingConfig->DetectionByAffiliation.bDetectFriendlies = true;
+	HearingConfig->SetMaxAge(2.5f);
+
+	/* Configure AI perception */
+	UAIPerceptionComponent* AIPerceptionComp = CreateDefaultSubobject<UAIPerceptionComponent>(TEXT("AIPerceptionComp"));
+	AIPerceptionComp->OnTargetPerceptionUpdated.AddDynamic(this, &ASZombieAIController::OnTargetPerceptionUpdated);
+	AIPerceptionComp->ConfigureSense(*SightConfig);
+	AIPerceptionComp->SetDominantSense(SightConfig->GetSenseImplementation());
+	AIPerceptionComp->ConfigureSense(*HearingConfig);
+	SetPerceptionComponent(*AIPerceptionComp);
 
 	/* Match with the AI/ZombieBlackboard */
 	PatrolLocationKeyName = "PatrolLocation";
@@ -53,6 +80,24 @@ void ASZombieAIController::UnPossess()
 
 	/* Stop any behavior running as we no longer have a pawn to control */
 	BehaviorComp->StopTree();
+}
+
+
+void ASZombieAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus)
+{
+	ASBaseCharacter* Target = Cast<ASBaseCharacter>(Actor);
+
+	if (Target && (!Target->IsAlive() || !Stimulus.IsActive()))
+	{
+		Target = nullptr;
+	}
+
+	SetTargetEnemy(Target);
+	ASZombieCharacter* ZombieBot = Cast<ASZombieCharacter>(GetPawn());
+	if (ZombieBot)
+	{
+		ZombieBot->SetSensedTarget(Target ? true : false);
+	}
 }
 
 
@@ -102,4 +147,10 @@ void ASZombieAIController::SetBlackboardBotType(EBotBehaviorType NewType)
 	{
 		BlackboardComp->SetValueAsEnum(BotTypeKeyName, (uint8)NewType);
 	}
+}
+
+
+ETeamAttitude::Type ASZombieAIController::GetTeamAttitudeTowards(const AActor & Other) const
+{
+	return Cast<ASCharacter>(&Other) ? ETeamAttitude::Type::Hostile : ETeamAttitude::Type::Friendly;
 }
