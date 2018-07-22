@@ -6,6 +6,8 @@
 #include "SMutator.h"
 #include "SGameMode.generated.h"
 
+class ASPlayerState;
+
 /**
  * 
  */
@@ -153,8 +155,4 @@ protected:
 
 	/* Note: Functions flagged with BlueprintNativeEvent like above require _Implementation for a C++ implementation */
 	virtual bool CheckRelevance_Implementation(AActor* Other);
-
-	/* Hacked into ReceiveBeginPlay() so we can do mutator replacement of Actors and such */
-	void BeginPlayMutatorHack(FFrame& Stack, RESULT_DECL);
-
 };

@@ -6,7 +6,7 @@
 	"VersionName" : "1.0",
 	"CreatedBy" : "Tom Looman",
 	"CreatedByURL" : "http://www.tomlooman.com",
-	"EngineVersion" : "4.18.0",
+	"EngineVersion" : "4.20.0",
 	"Description" : "My Extend Rifle Mod",
 	"Category" : "User Mod",
 	"EnabledByDefault" : true,

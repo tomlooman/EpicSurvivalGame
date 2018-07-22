@@ -2,6 +2,10 @@
 
 #include "SurvivalGame.h"
 #include "SCoopGameMode.h"
+#include "NavigationSystem.h"
+#include "SPlayerState.h"
+#include "SCharacter.h"
+#include "SGameState.h"
 
 
 
@@ -52,7 +56,7 @@ void ASCoopGameMode::RestartPlayer(class AController* NewPlayer)
 
 	/* Get a point on the nav mesh near the other player */
 	FNavLocation StartLocation;
-	UNavigationSystem* NavSystem = UNavigationSystem::GetNavigationSystem(this);
+	UNavigationSystemV1* NavSystem = UNavigationSystemV1::GetNavigationSystem(this);
 	if (NavSystem && NavSystem->GetRandomPointInNavigableRadius(SpawnOrigin, 250.0f, StartLocation))
 	{
 		// Try to create a pawn to use of the default class for this player

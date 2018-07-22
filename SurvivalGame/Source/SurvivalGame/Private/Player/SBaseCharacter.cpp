@@ -3,6 +3,8 @@
 #include "SurvivalGame.h"
 #include "SBaseCharacter.h"
 #include "SGameMode.h"
+#include "SCharacterMovementComponent.h"
+#include "SDamageType.h"
 
 
 ASBaseCharacter::ASBaseCharacter(const class FObjectInitializer& ObjectInitializer)
@@ -142,7 +144,7 @@ void ASBaseCharacter::OnDeath(float KillingDamage, FDamageEvent const& DamageEve
 	}
 
 	bReplicateMovement = false;
-	bTearOff = true;
+	TearOff();
 	bIsDying = true;
 
 	PlayHit(KillingDamage, DamageEvent, PawnInstigator, DamageCauser, true);

@@ -10,6 +10,7 @@
 #include "BehaviorTree/BlackboardComponent.h"
 /* This contains includes all key types like UBlackboardKeyType_Vector used below. */
 #include "BehaviorTree/Blackboard/BlackboardKeyAllTypes.h"
+#include "NavigationSystem.h"
 
 
 
@@ -29,7 +30,7 @@ EBTNodeResult::Type UBTTask_FindPatrolLocation::ExecuteTask(UBehaviorTreeCompone
 		const FVector SearchOrigin = MyWaypoint->GetActorLocation();
 
 		FNavLocation ResultLocation;
-		UNavigationSystem* NavSystem = UNavigationSystem::GetNavigationSystem(MyController);
+		UNavigationSystemV1* NavSystem = UNavigationSystemV1::GetNavigationSystem(MyController);
 		if (NavSystem && NavSystem->GetRandomPointInNavigableRadius(SearchOrigin, SearchRadius, ResultLocation))
 		{
 			/* The selected key should be "PatrolLocation" in the BehaviorTree setup */

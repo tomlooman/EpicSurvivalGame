@@ -13,6 +13,7 @@
 #include "SZombieCharacter.h"
 #include "SPlayerStart.h"
 #include "SMutator.h"
+#include "SWeapon.h"
 
 
 ASGameMode::ASGameMode(const FObjectInitializer& ObjectInitializer)
@@ -402,11 +403,6 @@ void ASGameMode::SpawnDefaultInventory(APawn* PlayerPawn)
 
 void ASGameMode::InitGame(const FString& MapName, const FString& Options, FString& ErrorMessage)
 {
-	// HACK: workaround to inject CheckRelevance() into the BeginPlay sequence
-	UFunction* Func = AActor::GetClass()->FindFunctionByName(FName(TEXT("ReceiveBeginPlay")));
-	Func->FunctionFlags |= FUNC_Native;
-	Func->SetNativeFunc((Native)&ASGameMode::BeginPlayMutatorHack);
-
 	/* Spawn all mutators. */
 	for (int32 i = 0; i < MutatorClasses.Num(); i++)
 	{
@@ -416,6 +412,24 @@ void ASGameMode::InitGame(const FString& MapName, const FString& Options, FStrin
 	if (BaseMutator)
 	{
 		BaseMutator->InitGame(MapName, Options, ErrorMessage);
+	}
+
+	for (TActorIterator<AActor> It(GetWorld(), AActor::StaticClass()); It; ++It)
+	{
+		AActor* Actor = *It;
+		if (!Actor->IsPendingKill())
+		{
+			if (!Actor->IsA(ALevelScriptActor::StaticClass()) && !Actor->IsA(ASMutator::StaticClass()) && Actor->GetRootComponent() != nullptr &&
+				Actor->GetRootComponent()->Mobility != EComponentMobility::Static || (!Actor->IsA(AStaticMeshActor::StaticClass()) && !Actor->IsA(ALight::StaticClass())))
+			{
+				// a few type checks being AFTER the CheckRelevance() call is intentional; want mutators to be able to modify, but not outright destroy
+				if (!CheckRelevance(Actor) && !Actor->IsA(APlayerController::StaticClass()))
+				{
+					/* Actors are destroyed if they fail the relevance checks */
+					Actor->Destroy();
+				}
+			}
+		}
 	}
 
 	Super::InitGame(MapName, Options, ErrorMessage);
@@ -431,25 +445,6 @@ bool ASGameMode::CheckRelevance_Implementation(AActor* Other)
 	}
 
 	return true;
-}
-
-
-void ASGameMode::BeginPlayMutatorHack(FFrame& Stack, RESULT_DECL)
-{
-	P_FINISH;
-
-	// WARNING: This function is called by every Actor in the level during his BeginPlay sequence. Meaning:  'this' is actually an AActor! Only do AActor things!
-	if (!IsA(ALevelScriptActor::StaticClass()) && !IsA(ASMutator::StaticClass()) &&
-		(RootComponent == NULL || RootComponent->Mobility != EComponentMobility::Static || (!IsA(AStaticMeshActor::StaticClass()) && !IsA(ALight::StaticClass()))))
-	{
-		ASGameMode* Game = GetWorld()->GetAuthGameMode<ASGameMode>();
-		// a few type checks being AFTER the CheckRelevance() call is intentional; want mutators to be able to modify, but not outright destroy
-		if (Game != NULL && Game != this && !Game->CheckRelevance((AActor*)this) && !IsA(APlayerController::StaticClass()))
-		{
-			/* Actors are destroyed if they fail the relevance checks (which moves through the gamemode specific check AND the chain of mutators) */
-			Destroy();
-		}
-	}
 }
 
 

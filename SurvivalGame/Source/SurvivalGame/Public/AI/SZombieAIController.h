@@ -7,6 +7,8 @@
 #include "SBotWaypoint.h"
 #include "SZombieAIController.generated.h"
 
+class UBehaviorTreeComponent;
+
 /**
  * 
  */

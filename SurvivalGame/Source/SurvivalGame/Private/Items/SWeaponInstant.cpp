@@ -57,7 +57,7 @@ bool ASWeaponInstant::ShouldDealDamage(AActor* TestActor) const
 	{
 		if (GetNetMode() != NM_Client ||
 			TestActor->Role == ROLE_Authority ||
-			TestActor->bTearOff)
+			TestActor->GetTearOff())
 		{
 			return true;
 		}
