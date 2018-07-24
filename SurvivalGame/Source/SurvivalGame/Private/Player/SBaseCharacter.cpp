@@ -6,7 +6,6 @@
 #include "SCharacterMovementComponent.h"
 #include "SDamageType.h"
 
-
 ASBaseCharacter::ASBaseCharacter(const class FObjectInitializer& ObjectInitializer)
 	/* Override the movement class from the base class to our own to support multiple speeds (eg. sprinting) */
 	: Super(ObjectInitializer.SetDefaultSubobjectClass<USCharacterMovementComponent>(ACharacter::CharacterMovementComponentName))
@@ -15,9 +14,6 @@ ASBaseCharacter::ASBaseCharacter(const class FObjectInitializer& ObjectInitializ
 
 	TargetingSpeedModifier = 0.5f;
 	SprintingSpeedModifier = 2.0f;
-
-	/* Noise emitter for both players and enemies. This keeps track of MakeNoise data and is used by the pawnsensing component in our SZombieCharacter class */
-	NoiseEmitterComp = CreateDefaultSubobject<UPawnNoiseEmitterComponent>(TEXT("NoiseEmitterComp"));
 
 	/* Don't collide with camera checks to keep 3rd person camera at position when zombies or other players are standing behind us */
 	GetMesh()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
