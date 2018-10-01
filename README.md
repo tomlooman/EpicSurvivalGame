@@ -64,3 +64,6 @@ The final section in the series focuses on bug fixing and a bit of polish to the
 - [Forum Thread](https://forums.unrealengine.com/showthread.php?72313-Announcing-Section-6-of-Survival-Game-Adding-some-polish)
 - [Branch on Github](https://github.com/tomlooman/EpicSurvivalGameSeries/tree/Section-6)
 
+
+
+Thanks For reading.
