@@ -12,7 +12,7 @@ ASWeapon::ASWeapon(const class FObjectInitializer& PCIP)
 : Super(PCIP)
 {
 	Mesh = PCIP.CreateDefaultSubobject<USkeletalMeshComponent>(this, TEXT("WeaponMesh3P"));
-	Mesh->MeshComponentUpdateFlag = EMeshComponentUpdateFlag::OnlyTickPoseWhenRendered;
+	Mesh->VisibilityBasedAnimTickOption = EVisibilityBasedAnimTickOption::OnlyTickPoseWhenRendered;
 	Mesh->bReceivesDecals = true;
 	Mesh->CastShadow = true;
 	Mesh->SetCollisionObjectType(ECC_WorldDynamic);
