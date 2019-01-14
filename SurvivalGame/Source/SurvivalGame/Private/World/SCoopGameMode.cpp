@@ -162,7 +162,7 @@ void ASCoopGameMode::CheckMatchEnd()
 		ASCharacter* MyPawn = Cast<ASCharacter>(*It);
 		if (MyPawn && MyPawn->IsAlive())
 		{
-			ASPlayerState* PS = Cast<ASPlayerState>(MyPawn->PlayerState);
+			ASPlayerState* PS = Cast<ASPlayerState>(MyPawn->GetPlayerState());
 			if (PS)
 			{
 				if (!PS->bIsABot)
