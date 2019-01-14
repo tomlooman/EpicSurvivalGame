@@ -1,6 +1,8 @@
 Intermediate
 Saved
 .vs
+.vscode
+.localhistory
 *.sdf
 *.opensdf
 *.sln
