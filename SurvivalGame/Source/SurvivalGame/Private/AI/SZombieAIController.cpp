@@ -27,9 +27,9 @@ ASZombieAIController::ASZombieAIController(const class FObjectInitializer& Objec
 }
 
 
-void ASZombieAIController::Possess(class APawn* InPawn)
+void ASZombieAIController::OnPossess(class APawn* InPawn)
 {
-	Super::Possess(InPawn);
+	Super::OnPossess(InPawn);
 
 	ASZombieCharacter* ZombieBot = Cast<ASZombieCharacter>(InPawn);
 	if (ZombieBot)
@@ -47,9 +47,9 @@ void ASZombieAIController::Possess(class APawn* InPawn)
 }
 
 
-void ASZombieAIController::UnPossess()
+void ASZombieAIController::OnUnPossess()
 {
-	Super::UnPossess();
+	Super::OnUnPossess();
 
 	/* Stop any behavior running as we no longer have a pawn to control */
 	BehaviorComp->StopTree();

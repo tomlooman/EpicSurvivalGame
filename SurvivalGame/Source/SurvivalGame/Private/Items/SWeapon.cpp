@@ -320,7 +320,6 @@ FVector ASWeapon::GetCameraDamageStartLocation(const FVector& AimDir) const
 FHitResult ASWeapon::WeaponTrace(const FVector& TraceFrom, const FVector& TraceTo) const
 {
 	FCollisionQueryParams TraceParams(TEXT("WeaponTrace"), true, Instigator);
-	TraceParams.bTraceAsyncScene = true;
 	TraceParams.bReturnPhysicalMaterial = true;
 
 	FHitResult Hit(ForceInit);

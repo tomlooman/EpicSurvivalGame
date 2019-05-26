@@ -20,9 +20,9 @@ class SURVIVALGAME_API ASZombieAIController : public AAIController
 	ASZombieAIController(const class FObjectInitializer& ObjectInitializer);
 
 	/* Called whenever the controller possesses a character bot */
-	virtual void Possess(class APawn* InPawn) override;
+	virtual void OnPossess(class APawn* InPawn) override;
 
-	virtual void UnPossess() override;
+	virtual void OnUnPossess() override;
 
 	UBehaviorTreeComponent* BehaviorComp;
 
