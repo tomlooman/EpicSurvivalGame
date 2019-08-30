@@ -150,7 +150,7 @@ protected:
 	* note that certain critical Actors such as PlayerControllers can't be destroyed, but we'll still call this code path to allow mutators
 	* to change properties on them
 	*/
-	UFUNCTION(BlueprintNativeEvent, BlueprintAuthorityOnly)
+	UFUNCTION(BlueprintNativeEvent)
 	bool CheckRelevance(AActor* Other);
 
 	/* Note: Functions flagged with BlueprintNativeEvent like above require _Implementation for a C++ implementation */
