@@ -17,6 +17,8 @@ SurvivalGame/Releases
 *.target
 *.modules
 *.opendb
+*.sym
+*.debug
 spatial/schema
 spatial/logs
 spatial/build
