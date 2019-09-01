@@ -1,0 +1,52 @@
+{
+  "build": {
+    "tasks": [
+      {
+        "name": "Codegen",
+        "steps": [{"name": "** Load Unity to generate code **", "command": "echo", "arguments": ["No-op."]}]
+      },
+      {
+        "name": "build",
+        "steps": [{"name": "** Run ci/build-client.sh instead **", "command": "echo", "arguments": ["No-op."]}]
+      },
+      {
+        "name": "clean",
+        "steps": [{"name": "No-op", "command": "echo", "arguments": ["No-op."]}]
+      }
+    ]
+  },
+  "bridge": {
+    "worker_attribute_set": {
+      "attributes": [
+        "DeploymentManager"
+      ]
+    },
+    "entity_interest": {
+      "range_entity_interest": {
+        "radius": 500
+      }
+    },
+    "component_delivery": {
+      "default": "RELIABLE_ORDERED",
+      "checkoutAllInitially": true
+    }
+  },
+  "external": {
+    "default": {
+      "run_type": "EXECUTABLE",
+      "windows": {
+        "command": "build/worker/DeploymentManager@Windows/DeploymentManager@Windows.exe",
+        "arguments": [
+          "+workerType",
+          "DeploymentManager",
+          "+infraServicesUrl",
+          "http://127.0.0.1:21000",
+          "+projectName",
+          "${IMPROBABLE_PROJECT_NAME}",
+          "-logfile",
+          "../../logs/external-default-unityclient.log"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "build": {
+    "tasks": [
+      {
+        "name": "codegen",
+        "description": "required by spatial worker build build-config.",
+        "steps": [{"name": "No-op", "command": "echo", "arguments": ["No-op."]}]
+      },
+      {
+        "name": "build",
+        "description": "required by spatial worker build build-config.",
+        "steps": [{"name": "No-op", "command": "echo", "arguments": ["No-op."]}]
+      },
+      {
+        "name": "clean",
+        "description": "required by spatial worker build build-config.",
+        "steps": [{"name": "No-op", "command": "echo", "arguments": ["No-op."]}]
+      }
+    ]
+  },
+  "bridge": {
+    "worker_attribute_set": {
+      "attributes": [
+        "SimulatedPlayerCoordinator"
+      ]
+    },
+    "entity_interest": {
+      "range_entity_interest": {
+        "radius": 50
+      }
+    },
+    "component_delivery": {
+      "default": "RELIABLE_ORDERED",
+      "checkout_all_initially": true
+    }
+  },
+  "managed": {
+    "linux": {
+      "artifact_name": "UnrealSimulatedPlayer@Linux.zip",
+      "command": "StartCoordinator.sh",
+      "arguments": [
+        "receptionist",
+        "${IMPROBABLE_RECEPTIONIST_HOST}",
+        "${IMPROBABLE_RECEPTIONIST_PORT}",
+        "${IMPROBABLE_WORKER_ID}",
+        "coordinator_start_delay_millis=10000",
+        
+        "+workerType",
+        "UnrealClient",
+        "+loginToken",
+        "<LOGIN_TOKEN>",
+        "+playerIdentityToken",
+        "<PLAYER_IDENTITY_TOKEN>",
+        "+workerId",
+        "<IMPROBABLE_SIM_PLAYER_WORKER_ID>",
+        "+useExternalIpForBridge",
+        "true",
+        "-abslog=${IMPROBABLE_LOG_FILE}",
+        "-NoVerifyGC",
+        "-nullRHI",
+        "-simulatedplayer"
+      ]
+    }
+  }
+}

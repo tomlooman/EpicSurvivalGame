@@ -1,0 +1,64 @@
+{
+  "template": "w4_r1000_e10",
+  "world": {
+    "chunkEdgeLengthMeters": 50,
+    "snapshots": {
+      "snapshotWritePeriodSeconds": 0
+    },
+    "legacy_flags": [
+      {
+        "name": "bridge_soft_handover_enabled",
+        "value": "false"
+      },
+      {
+        "name": "enable_chunk_interest",
+        "value": "false"
+      }
+    ],
+    "dimensions": {
+      "xMeters": 2000,
+      "zMeters": 2000
+    }
+  },
+  "load_balancing": {
+    "layer_configurations": [
+      {
+        "layer": "UnrealWorker",
+        "rectangle_grid": {
+          "cols": 1,
+          "rows": 1
+        }
+      },
+      {
+        "layer": "DeploymentManager",
+        "rectangle_grid": {
+          "cols": 1,
+          "rows": 1
+        },
+        "options": {
+          "manual_worker_connection_only": true
+        }
+      }
+    ]
+  },
+  "workers": [
+    {
+      "worker_type": "UnrealWorker",
+      "flags": [],
+      "permissions": [
+        {
+          "all": {}
+        }
+      ]
+    },
+    {
+      "worker_type": "UnrealClient",
+      "flags": [],
+      "permissions": [
+        {
+          "all": {}
+        }
+      ]
+    }
+  ]
+}

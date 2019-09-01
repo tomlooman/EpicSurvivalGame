@@ -1,0 +1,49 @@
+{
+  "build": {
+    "tasks": [
+      {
+        "name": "codegen",
+        "description": "required by spatial worker build build-config.",
+        "steps": [{"name": "No-op", "command": "echo", "arguments": ["No-op."]}]
+      },
+      {
+        "name": "build",
+        "description": "required by spatial worker build build-config.",
+        "steps": [{"name": "No-op", "command": "echo", "arguments": ["No-op."]}]
+      },
+      {
+        "name": "clean",
+        "description": "required by spatial worker build build-config.",
+        "steps": [{"name": "No-op", "command": "echo", "arguments": ["No-op."]}]
+      }
+    ]
+  },
+  "bridge": {
+    "worker_attribute_set": {
+      "attributes": [
+        "UnrealClient"
+      ]
+    },
+    "entity_interest": {
+      "range_entity_interest": {
+        "radius": 50
+      }
+    },
+    "streaming_query": [
+      {
+        "global_component_streaming_query": {
+          "component_name": "unreal.SingletonManager"
+        }
+      },
+      {
+        "global_component_streaming_query": {
+          "component_name": "unreal.Singleton"
+        }
+      }
+    ],
+    "component_delivery": {
+      "default": "RELIABLE_ORDERED",
+      "checkout_all_initially": true
+    }
+  }
+}
