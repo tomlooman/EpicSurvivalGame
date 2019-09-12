@@ -23,6 +23,9 @@ enum class EHUDMessage : uint8
 	None,
 };
 
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FChatMessageReceived, class APlayerState*, Sender, const FString&, Message);
+
 /**
  * 
  */
@@ -68,4 +71,18 @@ public:
 
 	/* Start spectating. Should be called only on server */
 	void StartSpectating();
+
+public:
+
+	// -- CHAT -- //
+
+	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation)
+	void ServerSendChatMessage(class APlayerState* Sender, const FString& Message);
+
+	UFUNCTION(Client, Reliable)
+	void ClientReceiveChatMessage(class APlayerState* Sender, const FString& Message);
+
+	UPROPERTY(BlueprintAssignable)
+	FChatMessageReceived OnChatMessageReceived;
+
 };
