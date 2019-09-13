@@ -45,20 +45,11 @@ protected:
 	UFUNCTION()
 	void OnHearNoise(APawn* PawnInstigator, const FVector& Location, float Volume);
 
-	UPROPERTY(VisibleAnywhere, Category = "Attacking")
-	UCapsuleComponent* MeleeCollisionComp;
-
-	/* A pawn is in melee range */
-	UFUNCTION()
-	void OnMeleeCompBeginOverlap(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
-
-	void OnRetriggerMeleeStrike();
-
 	/* Deal damage to the Actor that was hit by the punch animation */
 	UFUNCTION(BlueprintCallable, Category = "Attacking")
 	void PerformMeleeStrike(AActor* HitActor);
 
-	UFUNCTION(Reliable, NetMulticast)
+	UFUNCTION(BlueprintCallable, Reliable, NetMulticast)
 	void SimulateMeleeStrike();
 
 	void SimulateMeleeStrike_Implementation();
@@ -94,12 +85,6 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Sound") 
 	USoundCue* SoundAttackMelee;
-
-	/* Timer handle to manage continous melee attacks while in range of a player */
-	FTimerHandle TimerHandle_MeleeAttack;
-
-	/* Minimum time between melee attacks */
-	float MeleeStrikeCooldown;
 
 	/* Plays the idle, wandering or hunting sound */
 	UPROPERTY(VisibleAnywhere, Category = "Sound")
