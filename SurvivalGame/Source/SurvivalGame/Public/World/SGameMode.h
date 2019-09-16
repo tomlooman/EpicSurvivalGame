@@ -111,6 +111,7 @@ public:
 
 protected:
 
+	UFUNCTION(BlueprintCallable, Exec, Category = "GameMode")
 	void SpawnNewBot();
 
 	/* Set all bots back to idle mode */

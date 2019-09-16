@@ -34,15 +34,15 @@ void ASZombieAIController::OnPossess(class APawn* InPawn)
 	ASZombieCharacter* ZombieBot = Cast<ASZombieCharacter>(InPawn);
 	if (ZombieBot)
 	{
-		if (ZombieBot->BehaviorTree->BlackboardAsset)
+		if (ensure(ZombieBot->BehaviorTree->BlackboardAsset))
 		{
 			BlackboardComp->InitializeBlackboard(*ZombieBot->BehaviorTree->BlackboardAsset);
-
-			/* Make sure the Blackboard has the type of bot we possessed */
-			SetBlackboardBotType(ZombieBot->BotType);
 		}
 
 		BehaviorComp->StartTree(*ZombieBot->BehaviorTree);
+
+		/* Make sure the Blackboard has the type of bot we possessed */
+		SetBlackboardBotType(ZombieBot->BotType);
 	}
 }
 

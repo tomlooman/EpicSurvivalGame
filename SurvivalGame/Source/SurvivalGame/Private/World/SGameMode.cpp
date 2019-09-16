@@ -107,14 +107,14 @@ void ASGameMode::DefaultTimer()
 				}
 
 				/* Update bot states */
-				if (CurrentIsNight)
-				{
-					WakeAllBots();
-				}
-				else
-				{
-					PassifyAllBots();
-				}
+// 				if (CurrentIsNight)
+// 				{
+// 					WakeAllBots();
+// 				}
+// 				else
+// 				{
+// 					PassifyAllBots();
+// 				}
 			}
 
 			LastIsNight = MyGameState->bIsNight;
@@ -336,7 +336,10 @@ void ASGameMode::WakeAllBots()
 void ASGameMode::SpawnBotHandler()
 {
 	if (!bSpawnZombiesAtNight)
+	{
 		return;
+	}
+		
 
 	ASGameState* MyGameState = Cast<ASGameState>(GameState);
 	if (MyGameState)
