@@ -8,8 +8,6 @@
 #include "SHUD.h"
 #include "SGameState.h"
 
-/* Define a log category for error messages */
-DEFINE_LOG_CATEGORY_STATIC(LogGame, Log, All);
 
 
 ASPlayerController::ASPlayerController(const class FObjectInitializer& ObjectInitializer)

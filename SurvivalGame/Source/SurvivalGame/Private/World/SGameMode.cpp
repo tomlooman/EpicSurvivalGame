@@ -281,11 +281,12 @@ bool ASGameMode::IsSpawnpointPreferred(APlayerStart* SpawnPoint, AController* Co
 
 void ASGameMode::SpawnNewBot()
 {
-	FActorSpawnParameters SpawnInfo;
-	SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
-
-	ASZombieAIController* AIC = GetWorld()->SpawnActor<ASZombieAIController>(SpawnInfo);
-	RestartPlayer(AIC);
+	// Chance for Blueprint to pick a location
+	FTransform SpawnTransform;
+	if (FindBotSpawnTransform(SpawnTransform))
+	{
+		GetWorld()->SpawnActor<ASZombieCharacter>(ASZombieCharacter::StaticClass(), SpawnTransform);
+	}
 }
 
 /* Used by RestartPlayer() to determine the pawn to create and possess when a bot or player spawns */

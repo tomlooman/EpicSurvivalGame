@@ -111,8 +111,13 @@ public:
 
 protected:
 
+	/* (Exec only valid when testing in Singleplayer) */
 	UFUNCTION(BlueprintCallable, Exec, Category = "GameMode")
 	void SpawnNewBot();
+
+	/* Blueprint hook to find a good spawn location for BOTS (Eg. via EQS queries) */
+	UFUNCTION(BlueprintImplementableEvent, Category = "GameMode")
+	bool FindBotSpawnTransform(FTransform& Transform);
 
 	/* Set all bots back to idle mode */
 	void PassifyAllBots();
