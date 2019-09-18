@@ -299,7 +299,7 @@ void ASCharacter::SetIsJumping(bool NewJumping)
 		}
 	}
 
-	if (Role < ROLE_Authority)
+	if (Role < ROLE_Authority && GetNetMode() != NM_DedicatedServer)
 	{
 		ServerSetIsJumping(NewJumping);
 	}
@@ -317,7 +317,6 @@ void ASCharacter::OnMovementModeChanged(EMovementMode PrevMovementMode, uint8 Pr
 		SetIsJumping(false);
 	}
 }
-
 
 
 void ASCharacter::ServerSetIsJumping_Implementation(bool NewJumping)
@@ -482,7 +481,8 @@ FName ASCharacter::GetInventoryAttachPoint(EInventorySlot Slot) const
 
 void ASCharacter::DestroyInventory()
 {
-	if (Role < ROLE_Authority)
+	// SpatialOS workers need to check if we're on a worker (= dedicated) but not guaranteed to be authorative (multiple workers can exist with only 1 "owning" the actor)
+	if (Role < ROLE_Authority && GetNetMode() != NM_DedicatedServer)
 	{	
 		return;
 	}
@@ -553,15 +553,18 @@ void ASCharacter::EquipWeapon(ASWeapon* Weapon)
 	{
 		/* Ignore if trying to equip already equipped weapon */
 		if (Weapon == CurrentWeapon)
-			return;
-
-		if (Role == ROLE_Authority)
 		{
-			SetCurrentWeapon(Weapon, CurrentWeapon);
+			return;
+		}
+
+		// SpatialOS workers need to check if we're on a worker (= dedicated) but not guaranteed to be authorative (multiple workers can exist with only 1 "owning" the actor)
+		if (Role < ROLE_Authority && GetNetMode() != NM_DedicatedServer)
+		{
+			ServerEquipWeapon(Weapon);
 		}
 		else
 		{
-			ServerEquipWeapon(Weapon);
+			SetCurrentWeapon(Weapon, CurrentWeapon);
 		}
 	}
 }
@@ -732,7 +735,8 @@ void ASCharacter::OnPrevWeapon()
 
 void ASCharacter::DropWeapon()
 {
-	if (Role < ROLE_Authority)
+	// SpatialOS workers need to check if we're on a worker (= dedicated) but not guaranteed to be authorative (multiple workers can exist with only 1 "owning" the actor)
+	if (Role < ROLE_Authority && GetNetMode() != NM_DedicatedServer)
 	{
 		ServerDropWeapon();
 		return;

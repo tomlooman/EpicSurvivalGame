@@ -47,9 +47,17 @@ bool ASBaseCharacter::IsAlive() const
 
 float ASBaseCharacter::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser)
 {
+	TakeDamageCrossServer(Damage, DamageEvent, EventInstigator, DamageCauser);
+	return Damage;
+}
+
+
+// Cross-server call for SpatialOS
+void ASBaseCharacter::TakeDamageCrossServer_Implementation(float Damage, const struct FDamageEvent& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
 	if (Health <= 0.f)
 	{
-		return 0.f;
+		return;
 	}
 
 	/* Modify based based on gametype rules */
@@ -89,7 +97,7 @@ float ASBaseCharacter::TakeDamage(float Damage, struct FDamageEvent const& Damag
 		}
 	}
 
-	return ActualDamage;
+	UE_LOG(LogGame, Log, TEXT("Cross server damage received: %s Damage."), *FString::SanitizeFloat(ActualDamage));
 }
 
 
@@ -98,8 +106,7 @@ bool ASBaseCharacter::CanDie(float KillingDamage, FDamageEvent const& DamageEven
 	/* Check if character is already dying, destroyed or if we have authority */
 	if (bIsDying ||
 		IsPendingKill() ||
-		Role != ROLE_Authority ||
-		GetWorld()->GetAuthGameMode() == NULL)
+		GetWorld()->GetAuthGameMode() == nullptr)
 	{
 		return false;
 	}
@@ -110,7 +117,7 @@ bool ASBaseCharacter::CanDie(float KillingDamage, FDamageEvent const& DamageEven
 
 void ASBaseCharacter::FellOutOfWorld(const class UDamageType& DmgType)
 {
-	Die(Health, FDamageEvent(DmgType.GetClass()), NULL, NULL);
+	Die(Health, FDamageEvent(DmgType.GetClass()), nullptr, nullptr);
 }
 
 
@@ -298,8 +305,11 @@ void ASBaseCharacter::SetSprinting(bool NewSprinting)
 		UnCrouch();
 	}
 
-	if (Role < ROLE_Authority)
+	// Do not send if we are running on a Spatial Worker, or we hit an infinite loop (only 1 worker has authority at a time)
+	if (Role < ROLE_Authority && GetNetMode() != NM_DedicatedServer)
 	{
+		//UE_LOG(LogGame, Log, TEXT("About to run ServerSetSprinting."));
+
 		ServerSetSprinting(NewSprinting);
 	}
 }
@@ -341,7 +351,7 @@ void ASBaseCharacter::SetTargeting(bool NewTargeting)
 {
 	bIsTargeting = NewTargeting;
 
-	if (Role < ROLE_Authority)
+	if (Role < ROLE_Authority && GetNetMode() != NM_DedicatedServer)
 	{
 		ServerSetTargeting(NewTargeting);
 	}

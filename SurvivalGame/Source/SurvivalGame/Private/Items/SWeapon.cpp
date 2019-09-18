@@ -232,7 +232,8 @@ void ASWeapon::StartFire()
 
 void ASWeapon::StopFire()
 {
-	if (Role < ROLE_Authority)
+	// SpatialOS workers need to check if we're on a worker (= dedicated) but not guaranteed to be authorative (multiple workers can exist with only 1 "owning" the actor)
+	if (Role < ROLE_Authority && GetNetMode() != NM_DedicatedServer)
 	{
 		ServerStopFire();
 	}
