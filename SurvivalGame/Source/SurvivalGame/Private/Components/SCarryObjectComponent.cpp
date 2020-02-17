@@ -56,7 +56,7 @@ void USCarryObjectComponent::Pickup()
 		return;
 	} 
 
-	if (GetOwner()->Role < ROLE_Authority)
+	if (GetOwner()->GetLocalRole() < ROLE_Authority)
 	{
 		ServerPickup();
 		return;
@@ -69,7 +69,7 @@ void USCarryObjectComponent::Pickup()
 
 void USCarryObjectComponent::Drop()
 {
-	if (GetOwner()->Role < ROLE_Authority)
+	if (GetOwner()->GetLocalRole() < ROLE_Authority)
 	{
 		ServerDrop();
 	}
@@ -146,7 +146,7 @@ void USCarryObjectComponent::Throw()
 	if (!GetIsCarryingActor())
 		return;
 
-	if (GetOwner()->Role < ROLE_Authority)
+	if (GetOwner()->GetLocalRole() < ROLE_Authority)
 	{
 		ServerThrow();
 		return;
@@ -183,7 +183,7 @@ bool USCarryObjectComponent::GetIsCarryingActor()
 
 void USCarryObjectComponent::Rotate(float DirectionYaw, float DirectionRoll)
 {
-	if (GetOwner()->Role < ROLE_Authority)
+	if (GetOwner()->GetLocalRole() < ROLE_Authority)
 	{
 		ServerRotate(DirectionYaw, DirectionRoll);
 	}

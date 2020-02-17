@@ -48,7 +48,7 @@ void ASFlashlight::BeginPlay()
 
 void ASFlashlight::HandleFiring()
 {
-	if (Role == ROLE_Authority)
+	if (GetLocalRole() == ROLE_Authority)
 	{
 		/* Toggle light,cone and material when Fired */
 		bIsActive = !bIsActive;
@@ -60,7 +60,7 @@ void ASFlashlight::HandleFiring()
 
 void ASFlashlight::OnEnterInventory(ASCharacter* NewOwner)
 {
-	if (Role == ROLE_Authority)
+	if (GetLocalRole() == ROLE_Authority)
 	{
 		bIsActive = false;
 
@@ -77,7 +77,7 @@ void ASFlashlight::OnEquipFinished()
 {
 	Super::OnEquipFinished();
 
-	if (Role == ROLE_Authority)
+	if (GetLocalRole() == ROLE_Authority)
 	{
 		bIsActive = true;
 
@@ -91,7 +91,7 @@ void ASFlashlight::OnUnEquip()
 {
 	Super::OnUnEquip();
 
-	if (Role == ROLE_Authority)
+	if (GetLocalRole() == ROLE_Authority)
 	{
 		bIsActive = false;
 

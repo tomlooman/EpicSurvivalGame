@@ -81,7 +81,7 @@ void ASWeapon::SetOwningPawn(ASCharacter* NewOwner)
 {
 	if (MyPawn != NewOwner)
 	{
-		Instigator = NewOwner;
+		SetInstigator(NewOwner);
 		MyPawn = NewOwner;
 		// Net owner for RPC calls.
 		SetOwner(NewOwner);
@@ -189,7 +189,7 @@ void ASWeapon::OnEnterInventory(ASCharacter* NewOwner)
 
 void ASWeapon::OnLeaveInventory()
 {
-	if (Role == ROLE_Authority)
+	if (GetLocalRole() == ROLE_Authority)
 	{
 		SetOwningPawn(nullptr);
 	}
@@ -217,7 +217,7 @@ bool ASWeapon::IsAttachedToPawn() const // TODO: Review name to more accurately 
 
 void ASWeapon::StartFire()
 {
-	if (Role < ROLE_Authority)
+	if (GetLocalRole() < ROLE_Authority)
 	{
 		ServerStartFire();
 	}
@@ -232,7 +232,7 @@ void ASWeapon::StartFire()
 
 void ASWeapon::StopFire()
 {
-	if (Role < ROLE_Authority)
+	if (GetLocalRole() < ROLE_Authority)
 	{
 		ServerStopFire();
 	}
@@ -279,7 +279,7 @@ bool ASWeapon::CanFire() const
 
 FVector ASWeapon::GetAdjustedAim() const
 {
-	ASPlayerController* const PC = Instigator ? Cast<ASPlayerController>(Instigator->Controller) : nullptr;
+	ASPlayerController* const PC = GetInstigator() ? Cast<ASPlayerController>(GetInstigator()->Controller) : nullptr;
 	FVector FinalAim = FVector::ZeroVector;
 
 	if (PC)
@@ -290,9 +290,9 @@ FVector ASWeapon::GetAdjustedAim() const
 
 		FinalAim = CamRot.Vector();
 	}
-	else if (Instigator)
+	else if (GetInstigator())
 	{
-		FinalAim = Instigator->GetBaseAimRotation().Vector();
+		FinalAim = GetInstigator()->GetBaseAimRotation().Vector();
 	}
 
 	return FinalAim;
@@ -310,7 +310,7 @@ FVector ASWeapon::GetCameraDamageStartLocation(const FVector& AimDir) const
 		PC->GetPlayerViewPoint(OutStartTrace, DummyRot);
 
 		// Adjust trace so there is nothing blocking the ray between the camera and the pawn, and calculate distance from adjusted start
-		OutStartTrace = OutStartTrace + AimDir * (FVector::DotProduct((Instigator->GetActorLocation() - OutStartTrace), AimDir));
+		OutStartTrace = OutStartTrace + AimDir * (FVector::DotProduct((GetInstigator()->GetActorLocation() - OutStartTrace), AimDir));
 	}
 
 	return OutStartTrace;
@@ -319,7 +319,7 @@ FVector ASWeapon::GetCameraDamageStartLocation(const FVector& AimDir) const
 
 FHitResult ASWeapon::WeaponTrace(const FVector& TraceFrom, const FVector& TraceTo) const
 {
-	FCollisionQueryParams TraceParams(TEXT("WeaponTrace"), true, Instigator);
+	FCollisionQueryParams TraceParams(TEXT("WeaponTrace"), true, GetInstigator());
 	TraceParams.bReturnPhysicalMaterial = true;
 
 	FHitResult Hit(ForceInit);
@@ -375,7 +375,7 @@ void ASWeapon::HandleFiring()
 
 	if (MyPawn && MyPawn->IsLocallyControlled())
 	{
-		if (Role < ROLE_Authority)
+		if (GetLocalRole() < ROLE_Authority)
 		{
 			ServerHandleFiring();
 		}
@@ -705,7 +705,7 @@ int32 ASWeapon::GetMaxAmmo() const
 void ASWeapon::StartReload(bool bFromReplication)
 {
 	/* Push the request to server */
-	if (!bFromReplication && Role < ROLE_Authority)
+	if (!bFromReplication && GetLocalRole() < ROLE_Authority)
 	{
 		ServerStartReload();
 	}
@@ -723,7 +723,7 @@ void ASWeapon::StartReload(bool bFromReplication)
 		}
 
 		GetWorldTimerManager().SetTimer(TimerHandle_StopReload, this, &ASWeapon::StopSimulateReload, AnimDuration, false);
-		if (Role == ROLE_Authority)
+		if (GetLocalRole() == ROLE_Authority)
 		{
 			GetWorldTimerManager().SetTimer(TimerHandle_ReloadWeapon, this, &ASWeapon::ReloadWeapon, FMath::Max(0.1f, AnimDuration - 0.1f), false);
 		}

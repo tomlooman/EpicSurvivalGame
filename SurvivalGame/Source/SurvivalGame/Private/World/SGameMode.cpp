@@ -250,7 +250,7 @@ bool ASGameMode::IsSpawnpointPreferred(APlayerStart* SpawnPoint, AController* Co
 	{
 		/* Iterate all pawns to check for collision overlaps with the spawn point */
 		const FVector SpawnLocation = SpawnPoint->GetActorLocation();
-		for (FConstPawnIterator It = GetWorld()->GetPawnIterator(); It; It++)
+		for (TActorIterator<APawn> It(GetWorld()); It; ++It)
 		{
 			ACharacter* OtherPawn = Cast<ACharacter>(*It);
 			if (OtherPawn)
@@ -309,7 +309,7 @@ bool ASGameMode::CanSpectate_Implementation(APlayerController* Viewer, APlayerSt
 
 void ASGameMode::PassifyAllBots()
 {
-	for (FConstPawnIterator It = GetWorld()->GetPawnIterator(); It; It++)
+	for (TActorIterator<APawn> It(GetWorld()); It; ++It)
 	{
 		ASZombieCharacter* AIPawn = Cast<ASZombieCharacter>(*It);
 		if (AIPawn)
@@ -322,7 +322,7 @@ void ASGameMode::PassifyAllBots()
 
 void ASGameMode::WakeAllBots()
 {
-	for (FConstPawnIterator It = GetWorld()->GetPawnIterator(); It; It++)
+	for (TActorIterator<APawn> It(GetWorld()); It; ++It)
 	{
 		ASZombieCharacter* AIPawn = Cast<ASZombieCharacter>(*It);
 		if (AIPawn)
@@ -346,11 +346,16 @@ void ASGameMode::SpawnBotHandler()
 		{
 			/* This could be any dynamic number based on difficulty (eg. increasing after having survived a few nights) */
 			const int32 MaxPawns = 10;
+			int32 PawnsInWorld = 0;
+			for (TActorIterator<APawn> It(GetWorld()); It; ++It)
+			{
+				++PawnsInWorld;
+			}
 
-			/* Check number of available pawns (players included) */
-			if (GetWorld()->GetNumPawns() < MaxPawns)
+			while (PawnsInWorld < MaxPawns)
 			{
 				SpawnNewBot();
+				++PawnsInWorld;
 			}
 		}
 	}

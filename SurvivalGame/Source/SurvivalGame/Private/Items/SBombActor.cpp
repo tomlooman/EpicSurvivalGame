@@ -30,7 +30,7 @@ ASBombActor::ASBombActor(const class FObjectInitializer& ObjectInitializer)
 	ExplosionRadius = 600;
 
 	SetReplicates(true);
-	bReplicateMovement = true;
+	SetReplicatingMovement(true);
 }
 
 

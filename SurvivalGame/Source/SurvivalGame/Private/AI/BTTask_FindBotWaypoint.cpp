@@ -1,6 +1,6 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
+//#include "SurvivalGame.h"
 #include "BTTask_FindBotWaypoint.h"
 #include "SBotWaypoint.h"
 #include "SZombieAIController.h"

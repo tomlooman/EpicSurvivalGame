@@ -3,6 +3,7 @@
 #pragma once
 
 #include "SPickupActor.h"
+#include "SWeapon.h"
 #include "SWeaponPickup.generated.h"
 
 /**

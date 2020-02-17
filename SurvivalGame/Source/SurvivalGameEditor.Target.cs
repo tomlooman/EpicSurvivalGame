@@ -9,5 +9,6 @@ public class SurvivalGameEditorTarget : TargetRules
     {
 		Type = TargetType.Editor;
         ExtraModuleNames.AddRange(new string[] { "SurvivalGame" });
+        //DefaultBuildSettings = BuildSettingsVersion.V2;
     }
 }

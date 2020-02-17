@@ -35,7 +35,7 @@ void ASCoopGameMode::RestartPlayer(class AController* NewPlayer)
 	/* Look for a live player to spawn next to */
 	FVector SpawnOrigin = FVector::ZeroVector;
 	FRotator StartRotation = FRotator::ZeroRotator;
-	for (FConstPawnIterator It = GetWorld()->GetPawnIterator(); It; It++)
+	for (TActorIterator<APawn> It(GetWorld()); It; ++It)
 	{
 		ASCharacter* MyCharacter = Cast<ASCharacter>(*It);
 		if (MyCharacter && MyCharacter->IsAlive())
@@ -63,7 +63,7 @@ void ASCoopGameMode::RestartPlayer(class AController* NewPlayer)
 		if (NewPlayer->GetPawn() == nullptr && GetDefaultPawnClassForController(NewPlayer) != nullptr)
 		{
 			FActorSpawnParameters SpawnInfo;
-			SpawnInfo.Instigator = Instigator;
+			SpawnInfo.Instigator = GetInstigator();
 			APawn* ResultPawn = GetWorld()->SpawnActor<APawn>(GetDefaultPawnClassForController(NewPlayer), StartLocation.Location, StartRotation, SpawnInfo);
 			if (ResultPawn == nullptr)
 			{
@@ -157,7 +157,7 @@ void ASCoopGameMode::Killed(AController* Killer, AController* VictimPlayer, APaw
 void ASCoopGameMode::CheckMatchEnd()
 {
 	bool bHasAlivePlayer = false;
-	for (FConstPawnIterator It = GetWorld()->GetPawnIterator(); It; It++)
+	for (TActorIterator<APawn> It(GetWorld()); It; ++It)
 	{
 		ASCharacter* MyPawn = Cast<ASCharacter>(*It);
 		if (MyPawn && MyPawn->IsAlive())

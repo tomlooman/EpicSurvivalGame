@@ -69,7 +69,7 @@ void ASCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (Role == ROLE_Authority)
+	if (GetLocalRole() == ROLE_Authority)
 	{
 		// Set a timer to increment hunger every interval
 		FTimerHandle Handle;
@@ -225,7 +225,7 @@ ASUsableActor* ASCharacter::GetUsableInView()
 void ASCharacter::Use()
 {
 	// Only allow on server. If called on client push this request to the server
-	if (Role == ROLE_Authority)
+	if (GetLocalRole() == ROLE_Authority)
 	{
 		ASUsableActor* Usable = GetUsableInView();
 		if (Usable)
@@ -299,7 +299,7 @@ void ASCharacter::SetIsJumping(bool NewJumping)
 		}
 	}
 
-	if (Role < ROLE_Authority)
+	if (GetLocalRole() < ROLE_Authority)
 	{
 		ServerSetIsJumping(NewJumping);
 	}
@@ -482,7 +482,7 @@ FName ASCharacter::GetInventoryAttachPoint(EInventorySlot Slot) const
 
 void ASCharacter::DestroyInventory()
 {
-	if (Role < ROLE_Authority)
+	if (GetLocalRole() < ROLE_Authority)
 	{	
 		return;
 	}
@@ -555,7 +555,7 @@ void ASCharacter::EquipWeapon(ASWeapon* Weapon)
 		if (Weapon == CurrentWeapon)
 			return;
 
-		if (Role == ROLE_Authority)
+		if (GetLocalRole() == ROLE_Authority)
 		{
 			SetCurrentWeapon(Weapon, CurrentWeapon);
 		}
@@ -581,7 +581,7 @@ void ASCharacter::ServerEquipWeapon_Implementation(ASWeapon* Weapon)
 
 void ASCharacter::AddWeapon(class ASWeapon* Weapon)
 {
-	if (Weapon && Role == ROLE_Authority)
+	if (Weapon && GetLocalRole() == ROLE_Authority)
 	{
 		Weapon->OnEnterInventory(this);
 		Inventory.AddUnique(Weapon);
@@ -597,7 +597,7 @@ void ASCharacter::AddWeapon(class ASWeapon* Weapon)
 
 void ASCharacter::RemoveWeapon(class ASWeapon* Weapon, bool bDestroy)
 {
-	if (Weapon && Role == ROLE_Authority)
+	if (Weapon && GetLocalRole() == ROLE_Authority)
 	{
 		bool bIsCurrent = CurrentWeapon == Weapon;
 
@@ -732,7 +732,7 @@ void ASCharacter::OnPrevWeapon()
 
 void ASCharacter::DropWeapon()
 {
-	if (Role < ROLE_Authority)
+	if (GetLocalRole() < ROLE_Authority)
 	{
 		ServerDropWeapon();
 		return;
@@ -889,7 +889,7 @@ void ASCharacter::StopAllAnimMontages()
 
 void ASCharacter::MakePawnNoise(float Loudness)
 {
-	if (Role == ROLE_Authority)
+	if (GetLocalRole() == ROLE_Authority)
 	{
 		/* Make noise to be picked up by PawnSensingComponent by the enemy pawns */
 		MakeNoise(Loudness, this, GetActorLocation());
@@ -920,7 +920,7 @@ void ASCharacter::Suicide()
 
 void ASCharacter::KilledBy(class APawn* EventInstigator)
 {
-	if (Role == ROLE_Authority && !bIsDying)
+	if (GetLocalRole() == ROLE_Authority && !bIsDying)
 	{
 		AController* Killer = nullptr;
 		if (EventInstigator != nullptr)

@@ -98,7 +98,7 @@ bool ASBaseCharacter::CanDie(float KillingDamage, FDamageEvent const& DamageEven
 	/* Check if character is already dying, destroyed or if we have authority */
 	if (bIsDying ||
 		IsPendingKill() ||
-		Role != ROLE_Authority ||
+		GetLocalRole() != ROLE_Authority ||
 		GetWorld()->GetAuthGameMode() == NULL)
 	{
 		return false;
@@ -143,7 +143,7 @@ void ASBaseCharacter::OnDeath(float KillingDamage, FDamageEvent const& DamageEve
 		return;
 	}
 
-	bReplicateMovement = false;
+	SetReplicatingMovement(false);
 	TearOff();
 	bIsDying = true;
 
@@ -231,7 +231,7 @@ void ASBaseCharacter::SetRagdollPhysics()
 
 void ASBaseCharacter::PlayHit(float DamageTaken, struct FDamageEvent const& DamageEvent, APawn* PawnInstigator, AActor* DamageCauser, bool bKilled)
 {
-	if (Role == ROLE_Authority)
+	if (GetLocalRole() == ROLE_Authority)
 	{
 		ReplicateHit(DamageTaken, DamageEvent, PawnInstigator, DamageCauser, bKilled);
 	}
@@ -298,7 +298,7 @@ void ASBaseCharacter::SetSprinting(bool NewSprinting)
 		UnCrouch();
 	}
 
-	if (Role < ROLE_Authority)
+	if (GetLocalRole() < ROLE_Authority)
 	{
 		ServerSetSprinting(NewSprinting);
 	}
@@ -341,7 +341,7 @@ void ASBaseCharacter::SetTargeting(bool NewTargeting)
 {
 	bIsTargeting = NewTargeting;
 
-	if (Role < ROLE_Authority)
+	if (GetLocalRole() < ROLE_Authority)
 	{
 		ServerSetTargeting(NewTargeting);
 	}
