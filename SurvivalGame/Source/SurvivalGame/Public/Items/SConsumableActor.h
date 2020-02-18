@@ -2,7 +2,8 @@
 
 #pragma once
 
-#include "SPickupActor.h"
+#include "CoreMinimal.h"
+#include "Items/SPickupActor.h"
 #include "SConsumableActor.generated.h"
 
 /**

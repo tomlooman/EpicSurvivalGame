@@ -1,7 +1,6 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SCarryObjectComponent.h"
+#include "Components/SCarryObjectComponent.h"
 
 
 USCarryObjectComponent::USCarryObjectComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)

@@ -1,7 +1,10 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SBombActor.h"
+#include "Items/SBombActor.h"
+#include "Particles/ParticleSystemComponent.h"
+#include "Components/AudioComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "TimerManager.h"
 
 
 ASBombActor::ASBombActor(const class FObjectInitializer& ObjectInitializer)

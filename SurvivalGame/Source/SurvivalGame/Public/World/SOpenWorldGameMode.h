@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "World/SGameMode.h"
 #include "SOpenWorldGameMode.generated.h"
 

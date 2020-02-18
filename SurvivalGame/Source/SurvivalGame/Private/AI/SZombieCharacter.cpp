@@ -1,12 +1,16 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SZombieCharacter.h"
-#include "SZombieAIController.h"
-#include "SCharacter.h"
-#include "SBaseCharacter.h"
-#include "SBotWaypoint.h"
-#include "SPlayerState.h"
+#include "AI/SZombieCharacter.h"
+#include "AI/SZombieAIController.h"
+#include "Player/SCharacter.h"
+#include "Player/SBaseCharacter.h"
+#include "AI/SBotWaypoint.h"
+#include "Player/SPlayerState.h"
+#include "Components/CapsuleComponent.h"
+#include "GameFramework/PawnMovementComponent.h"
+#include "Components/AudioComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "TimerManager.h"
 
 /* AI Include */
 #include "Perception/PawnSensingComponent.h"

@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/PlayerStart.h"
 #include "SPlayerStart.generated.h"
 

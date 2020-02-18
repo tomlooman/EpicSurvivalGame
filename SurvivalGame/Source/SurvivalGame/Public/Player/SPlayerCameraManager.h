@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "Camera/PlayerCameraManager.h"
 #include "SPlayerCameraManager.generated.h"
 

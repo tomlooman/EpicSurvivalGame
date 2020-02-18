@@ -1,7 +1,8 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SPickupActor.h"
+#include "Items/SPickupActor.h"
+#include "Kismet/GameplayStatics.h"
+#include "TimerManager.h"
 
 
 

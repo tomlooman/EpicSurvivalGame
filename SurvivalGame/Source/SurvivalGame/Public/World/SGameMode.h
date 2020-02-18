@@ -2,8 +2,11 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/GameMode.h"
-#include "SMutator.h"
+#include "Mutators/SMutator.h"
+#include "GameFramework/PlayerStart.h"
+#include "Engine/DirectionalLight.h"
 #include "SGameMode.generated.h"
 
 class ASPlayerState;

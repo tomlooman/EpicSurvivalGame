@@ -1,10 +1,10 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SHUD.h"
-#include "SCharacter.h"
-#include "SUsableActor.h"
-#include "SPlayerController.h"
+#include "UI/SHUD.h"
+#include "Player/SCharacter.h"
+#include "Items/SUsableActor.h"
+#include "Player/SPlayerController.h"
+#include "UObject/ConstructorHelpers.h"
 
 
 ASHUD::ASHUD(const class FObjectInitializer& ObjectInitializer)

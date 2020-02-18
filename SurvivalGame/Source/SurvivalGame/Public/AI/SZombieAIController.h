@@ -2,9 +2,10 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "AIController.h"
-#include "SCharacter.h"
-#include "SBotWaypoint.h"
+#include "Player/SCharacter.h"
+#include "AI/SBotWaypoint.h"
 #include "SZombieAIController.generated.h"
 
 class UBehaviorTreeComponent;

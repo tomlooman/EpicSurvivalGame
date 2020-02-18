@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "Engine/LocalPlayer.h"
 #include "SLocalPlayer.generated.h"
 

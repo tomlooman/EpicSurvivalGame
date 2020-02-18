@@ -1,7 +1,11 @@
-
-#include "STypes.generated.h"
+//#include "CoreMinimal.h"
+//#include "STypes.generated.h"
 #pragma once
 
+#include "CoreMinimal.h"
+#include "GameFramework/DamageType.h"
+#include "Engine/EngineTypes.h"
+#include "STypes.generated.h"
 
 
 UENUM()

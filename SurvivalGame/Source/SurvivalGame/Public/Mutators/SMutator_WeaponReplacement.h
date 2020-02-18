@@ -2,7 +2,9 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "Mutators/SMutator.h"
+#include "Items/SWeapon.h"
 #include "SMutator_WeaponReplacement.generated.h"
 
 

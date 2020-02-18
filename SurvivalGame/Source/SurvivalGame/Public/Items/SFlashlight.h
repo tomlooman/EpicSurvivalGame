@@ -2,7 +2,9 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "SWeapon.h"
+#include "Components/SpotLightComponent.h"
 #include "SFlashlight.generated.h"
 
 /**

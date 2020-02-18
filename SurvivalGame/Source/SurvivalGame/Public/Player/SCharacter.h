@@ -2,8 +2,12 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "SBaseCharacter.h"
+#include "Camera/CameraComponent.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "SCharacter.generated.h"
+
 
 UCLASS()
 class SURVIVALGAME_API ASCharacter : public ASBaseCharacter

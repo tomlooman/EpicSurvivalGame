@@ -2,7 +2,9 @@
 
 #pragma once
 
-#include "Engine.h"
+#include "CoreMinimal.h"
+//#include "Engine.h"
+#include "STypes.h"
 
 // This is NOT included by default in an empty project! It's required for replication and setting of the GetLifetimeReplicatedProps
 #include "Net/UnrealNetwork.h"

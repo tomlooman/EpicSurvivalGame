@@ -1,10 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "SurvivalGame.h"
-#include "SWeaponInstant.h"
-#include "SImpactEffect.h"
-#include "SPlayerController.h"
-#include "SDamageType.h"
+#include "Items/SWeaponInstant.h"
+#include "Items/SImpactEffect.h"
+#include "Player/SPlayerController.h"
+#include "Items/SDamageType.h"
+#include "PhysicalMaterials/PhysicalMaterial.h"
+#include "Particles/ParticleSystemComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 
 ASWeaponInstant::ASWeaponInstant(const class FObjectInitializer& PCIP)

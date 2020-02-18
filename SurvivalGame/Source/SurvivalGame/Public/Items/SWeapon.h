@@ -2,8 +2,10 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "SCharacter.h"
+#include "Player/SCharacter.h"
+#include "Sound/SoundCue.h"
 #include "SWeapon.generated.h"
 
 UENUM()

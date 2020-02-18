@@ -2,7 +2,9 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "SUsableActor.h"
+#include "Sound/SoundCue.h"
 #include "SPickupActor.generated.h"
 
 /**

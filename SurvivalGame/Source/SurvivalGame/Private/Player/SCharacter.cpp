@@ -1,15 +1,16 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SCharacter.h"
-#include "SUsableActor.h"
-#include "SWeapon.h"
-#include "SWeaponPickup.h"
-#include "SCharacterMovementComponent.h"
-#include "SCarryObjectComponent.h"
-#include "SBaseCharacter.h"
-#include "SPlayerController.h"
+#include "Player/SCharacter.h"
+#include "Items/SUsableActor.h"
+#include "Items/SWeapon.h"
+#include "Items/SWeaponPickup.h"
+#include "Components/SCharacterMovementComponent.h"
+#include "Components/SCarryObjectComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "Player/SBaseCharacter.h"
+#include "Player/SPlayerController.h"
 #include "Runtime/Engine/Classes/Animation/AnimInstance.h"
+#include "TimerManager.h"
 
 // Sets default values
 ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)

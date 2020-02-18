@@ -1,12 +1,13 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SPlayerController.h"
-#include "SPlayerCameraManager.h"
-#include "SCharacter.h"
-#include "STypes.h"
-#include "SHUD.h"
-#include "SGameState.h"
+#include "Player/SPlayerController.h"
+#include "Player/SPlayerCameraManager.h"
+#include "Player/SCharacter.h"
+#include "../../STypes.h"
+#include "UI/SHUD.h"
+#include "World/SGameState.h"
+#include "GameFramework/PlayerState.h"
+#include "../../SurvivalGame.h"
 
 /* Define a log category for error messages */
 DEFINE_LOG_CATEGORY_STATIC(LogGame, Log, All);

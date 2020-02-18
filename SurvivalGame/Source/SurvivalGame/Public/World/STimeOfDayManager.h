@@ -2,7 +2,14 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/AudioComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "Engine/World.h"
+#include "Engine/DirectionalLight.h"
+#include "Engine/SkyLight.h"
+#include "Sound/SoundCue.h"
 #include "STimeOfDayManager.generated.h"
 
 UCLASS(ABSTRACT)

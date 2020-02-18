@@ -2,8 +2,9 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
-#include "SHUD.h"
+#include "UI/SHUD.h"
 #include "SPlayerController.generated.h"
 
 UENUM()

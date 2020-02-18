@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "SGameMode.h"
 #include "SCoopGameMode.generated.h"
 

@@ -2,7 +2,8 @@
 
 #pragma once
 
-#include "SBaseCharacter.h"
+#include "CoreMinimal.h"
+#include "PLayer/SBaseCharacter.h"
 #include "SZombieCharacter.generated.h"
 
 UCLASS(ABSTRACT)

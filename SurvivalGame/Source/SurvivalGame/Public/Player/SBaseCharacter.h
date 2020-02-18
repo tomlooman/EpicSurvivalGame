@@ -2,8 +2,11 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "STypes.h"
+#include "../../STypes.h"
+#include "Sound/SoundCue.h"
+#include "Components/PawnNoiseEmitterComponent.h"
 #include "SBaseCharacter.generated.h"
 
 UCLASS(ABSTRACT)

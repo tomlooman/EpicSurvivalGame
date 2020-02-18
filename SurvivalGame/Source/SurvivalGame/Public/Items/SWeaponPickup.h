@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "SPickupActor.h"
 #include "SWeapon.h"
 #include "SWeaponPickup.generated.h"

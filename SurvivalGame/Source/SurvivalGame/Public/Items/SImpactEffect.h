@@ -2,7 +2,11 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "../../SurvivalGame.h"
+#include "Sound/SoundCue.h"
+#include "Materials/MaterialInterface.h"
 #include "SImpactEffect.generated.h"
 
 UCLASS(ABSTRACT, Blueprintable)
@@ -41,8 +45,11 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	USoundCue* ZombieFleshSound;
 
+	//UPROPERTY(EditDefaultsOnly, Category = "Decal")
+	//UMaterial* DecalMaterial;
+
 	UPROPERTY(EditDefaultsOnly, Category = "Decal")
-	UMaterial* DecalMaterial;
+	UMaterialInterface* DecalMaterial;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Decal")
 	float DecalSize;

@@ -1,8 +1,7 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SPlayerCameraManager.h"
-#include "SCharacter.h"
+#include "Player/SPlayerCameraManager.h"
+#include "Player/SCharacter.h"
 
 
 ASPlayerCameraManager::ASPlayerCameraManager(const class FObjectInitializer& ObjectInitializer)

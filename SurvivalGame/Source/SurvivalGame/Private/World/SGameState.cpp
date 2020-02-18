@@ -1,8 +1,8 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SPlayerController.h"
-#include "SGameState.h"
+#include "World/SGameState.h"
+#include "Player/SPlayerController.h"
+#include "GameFramework/WorldSettings.h"
 
 
 ASGameState::ASGameState(const class FObjectInitializer& ObjectInitializer)

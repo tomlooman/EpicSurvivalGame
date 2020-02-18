@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "SCarryObjectComponent.generated.h"
 

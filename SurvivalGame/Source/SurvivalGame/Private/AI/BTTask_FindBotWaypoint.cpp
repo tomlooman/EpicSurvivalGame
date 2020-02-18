@@ -1,9 +1,9 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-//#include "SurvivalGame.h"
-#include "BTTask_FindBotWaypoint.h"
-#include "SBotWaypoint.h"
-#include "SZombieAIController.h"
+#include "AI/BTTask_FindBotWaypoint.h"
+#include "AI/SBotWaypoint.h"
+#include "AI/SZombieAIController.h"
+#include "Kismet/GameplayStatics.h"
 
 /* AI Module includes */
 #include "BehaviorTree/BehaviorTreeComponent.h"

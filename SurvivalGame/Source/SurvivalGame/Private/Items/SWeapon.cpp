@@ -1,11 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "SurvivalGame.h"
-#include "SWeapon.h"
-#include "SCharacter.h"
-#include "STypes.h"
-#include "SWeaponPickup.h"
-#include "SPlayerController.h"
+#include "Items/SWeapon.h"
+#include "Player/SCharacter.h"
+#include "../../STypes.h"
+#include "Items/SWeaponPickup.h"
+#include "Player/SPlayerController.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "TimerManager.h"
+#include "Kismet/GameplayStatics.h"
 
 
 ASWeapon::ASWeapon(const class FObjectInitializer& PCIP)
