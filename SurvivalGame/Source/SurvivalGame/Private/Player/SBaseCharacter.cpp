@@ -47,7 +47,7 @@ bool ASBaseCharacter::IsAlive() const
 
 float ASBaseCharacter::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser)
 {
-	TakeDamageCrossServer(Damage, DamageEvent, EventInstigator, DamageCauser);
+	TakeDamageCrossServer(Damage, DamageEvent, nullptr, DamageCauser);
 	return Damage;
 }
 
