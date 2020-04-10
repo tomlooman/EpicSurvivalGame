@@ -107,14 +107,14 @@ void ASGameMode::DefaultTimer()
 				}
 
 				/* Update bot states */
-				if (CurrentIsNight)
-				{
-					WakeAllBots();
-				}
-				else
-				{
-					PassifyAllBots();
-				}
+// 				if (CurrentIsNight)
+// 				{
+// 					WakeAllBots();
+// 				}
+// 				else
+// 				{
+// 					PassifyAllBots();
+// 				}
 			}
 
 			LastIsNight = MyGameState->bIsNight;
@@ -281,11 +281,12 @@ bool ASGameMode::IsSpawnpointPreferred(APlayerStart* SpawnPoint, AController* Co
 
 void ASGameMode::SpawnNewBot()
 {
-	FActorSpawnParameters SpawnInfo;
-	SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
-
-	ASZombieAIController* AIC = GetWorld()->SpawnActor<ASZombieAIController>(SpawnInfo);
-	RestartPlayer(AIC);
+	// Chance for Blueprint to pick a location
+	FTransform SpawnTransform;
+	if (FindBotSpawnTransform(SpawnTransform))
+	{
+		GetWorld()->SpawnActor<ASZombieCharacter>(ASZombieCharacter::StaticClass(), SpawnTransform);
+	}
 }
 
 /* Used by RestartPlayer() to determine the pawn to create and possess when a bot or player spawns */
@@ -336,7 +337,10 @@ void ASGameMode::WakeAllBots()
 void ASGameMode::SpawnBotHandler()
 {
 	if (!bSpawnZombiesAtNight)
+	{
 		return;
+	}
+		
 
 	ASGameState* MyGameState = Cast<ASGameState>(GameState);
 	if (MyGameState)
@@ -347,10 +351,17 @@ void ASGameMode::SpawnBotHandler()
 			/* This could be any dynamic number based on difficulty (eg. increasing after having survived a few nights) */
 			const int32 MaxPawns = 10;
 
+			int32 PawnsInWorld = 0;
+			for (TActorIterator<APawn> It(GetWorld()); It; ++It)
+			{
+				++PawnsInWorld;
+			}
+
 			/* Check number of available pawns (players included) */
-			if (GetWorld()->GetNumPawns() < MaxPawns)
+			while (PawnsInWorld < MaxPawns)
 			{
 				SpawnNewBot();
+				++PawnsInWorld;
 			}
 		}
 	}
@@ -414,13 +425,18 @@ void ASGameMode::InitGame(const FString& MapName, const FString& Options, FStrin
 		BaseMutator->InitGame(MapName, Options, ErrorMessage);
 	}
 
+
 	for (TActorIterator<AActor> It(GetWorld(), AActor::StaticClass()); It; ++It)
 	{
 		AActor* Actor = *It;
 		if (!Actor->IsPendingKill())
 		{
-			if (!Actor->IsA(ALevelScriptActor::StaticClass()) && !Actor->IsA(ASMutator::StaticClass()) && Actor->GetRootComponent() != nullptr &&
-				Actor->GetRootComponent()->Mobility != EComponentMobility::Static || (!Actor->IsA(AStaticMeshActor::StaticClass()) && !Actor->IsA(ALight::StaticClass())))
+			// Some classes can't be removed via mutators
+			bool bIsValidClass = !Actor->IsA(ALevelScriptActor::StaticClass()) && !Actor->IsA(ASMutator::StaticClass());
+			// Static actors can't be removed.
+			bool bIsRemovable = Actor->GetRootComponent() && Actor->GetRootComponent()->Mobility != EComponentMobility::Static;
+
+			if (bIsValidClass && bIsRemovable)
 			{
 				// a few type checks being AFTER the CheckRelevance() call is intentional; want mutators to be able to modify, but not outright destroy
 				if (!CheckRelevance(Actor) && !Actor->IsA(APlayerController::StaticClass()))

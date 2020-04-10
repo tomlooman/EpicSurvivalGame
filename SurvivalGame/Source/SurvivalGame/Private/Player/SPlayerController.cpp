@@ -8,8 +8,6 @@
 #include "SHUD.h"
 #include "SGameState.h"
 
-/* Define a log category for error messages */
-DEFINE_LOG_CATEGORY_STATIC(LogGame, Log, All);
 
 
 ASPlayerController::ASPlayerController(const class FObjectInitializer& ObjectInitializer)
@@ -111,6 +109,32 @@ void ASPlayerController::ClientHUDMessage_Implementation(EHUDMessage MessageID)
 		HUD->MessageReceived(TextMessage);
 	}
 }
+
+
+void ASPlayerController::ServerSendChatMessage_Implementation(class APlayerState* Sender, const FString& Message)
+{
+	for (FConstPlayerControllerIterator Iterator = GetWorld()->GetPlayerControllerIterator(); Iterator; ++Iterator)
+	{
+		ASPlayerController* PC = Cast<ASPlayerController>(Iterator->Get());
+		if (PC)
+		{
+			PC->ClientReceiveChatMessage(Sender, Message);
+		}
+	}
+}
+
+
+void ASPlayerController::ClientReceiveChatMessage_Implementation(class APlayerState* Sender, const FString& Message)
+{
+	OnChatMessageReceived.Broadcast(Sender, Message);
+}
+
+
+bool ASPlayerController::ServerSendChatMessage_Validate(class APlayerState* Sender, const FString& Message)
+{
+	return true;
+}
+
 
 /* Temporarily set the namespace. If this was omitted, we should call NSLOCTEXT(Namespace, x, y) instead */
 #define LOCTEXT_NAMESPACE "HUDMESSAGES"
