@@ -19,3 +19,4 @@ SurvivalGame/Releases
 *.target
 *.modules
 *.opendb
+*.VC.db
