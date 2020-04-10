@@ -10,11 +10,10 @@
 #include "BehaviorTree/BlackboardComponent.h"
 
 
-ASZombieAIController::ASZombieAIController(const class FObjectInitializer& ObjectInitializer)
-	: Super(ObjectInitializer)
+ASZombieAIController::ASZombieAIController()
 {
-	BehaviorComp = ObjectInitializer.CreateDefaultSubobject<UBehaviorTreeComponent>(this, TEXT("BehaviorComp"));
-	BlackboardComp = ObjectInitializer.CreateDefaultSubobject<UBlackboardComponent>(this, TEXT("BlackboardComp"));
+	BehaviorComp = CreateDefaultSubobject<UBehaviorTreeComponent>(TEXT("BehaviorComp"));
+	BlackboardComp = CreateDefaultSubobject<UBlackboardComponent>(TEXT("BlackboardComp"));
 
 	/* Match with the AI/ZombieBlackboard */
 	PatrolLocationKeyName = "PatrolLocation";

@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "SWeapon.h"
 #include "SWeaponInstant.generated.h"
 
@@ -50,7 +51,7 @@ private:
 
 protected:
 
-	ASWeaponInstant(const FObjectInitializer& ObjectInitializer);
+	ASWeaponInstant();
 
 	/************************************************************************/
 	/* Damage Processing                                                    */

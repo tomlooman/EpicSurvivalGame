@@ -16,8 +16,7 @@
 #include "SWeapon.h"
 
 
-ASGameMode::ASGameMode(const FObjectInitializer& ObjectInitializer)
-: Super(ObjectInitializer)
+ASGameMode::ASGameMode()
 {
 	/* Assign the class types used by this gamemode */
 	PlayerControllerClass = ASPlayerController::StaticClass();
@@ -250,7 +249,7 @@ bool ASGameMode::IsSpawnpointPreferred(APlayerStart* SpawnPoint, AController* Co
 	{
 		/* Iterate all pawns to check for collision overlaps with the spawn point */
 		const FVector SpawnLocation = SpawnPoint->GetActorLocation();
-		for (FConstPawnIterator It = GetWorld()->GetPawnIterator(); It; It++)
+		for (TActorIterator<APawn> It(GetWorld()); It; ++It)
 		{
 			ACharacter* OtherPawn = Cast<ACharacter>(*It);
 			if (OtherPawn)
@@ -310,7 +309,7 @@ bool ASGameMode::CanSpectate_Implementation(APlayerController* Viewer, APlayerSt
 
 void ASGameMode::PassifyAllBots()
 {
-	for (FConstPawnIterator It = GetWorld()->GetPawnIterator(); It; It++)
+	for (TActorIterator<APawn> It(GetWorld()); It; ++It)
 	{
 		ASZombieCharacter* AIPawn = Cast<ASZombieCharacter>(*It);
 		if (AIPawn)
@@ -323,7 +322,7 @@ void ASGameMode::PassifyAllBots()
 
 void ASGameMode::WakeAllBots()
 {
-	for (FConstPawnIterator It = GetWorld()->GetPawnIterator(); It; It++)
+	for (TActorIterator<APawn> It(GetWorld()); It; ++It)
 	{
 		ASZombieCharacter* AIPawn = Cast<ASZombieCharacter>(*It);
 		if (AIPawn)

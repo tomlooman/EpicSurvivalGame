@@ -10,8 +10,7 @@
 
 
 
-ASPlayerController::ASPlayerController(const class FObjectInitializer& ObjectInitializer)
-: Super(ObjectInitializer)
+ASPlayerController::ASPlayerController()
 {
 	/* Assign the class types we wish to use */
 	PlayerCameraManagerClass = ASPlayerCameraManager::StaticClass();

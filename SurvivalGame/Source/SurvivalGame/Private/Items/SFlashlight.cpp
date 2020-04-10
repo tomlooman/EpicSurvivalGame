@@ -5,8 +5,7 @@
 
 
 
-ASFlashlight::ASFlashlight(const FObjectInitializer& ObjectInitializer)
-	: Super(ObjectInitializer)
+ASFlashlight::ASFlashlight()
 {
 	StorageSlot = EInventorySlot::Secondary;
 	LightAttachPoint = TEXT("LightSocket");
@@ -48,7 +47,7 @@ void ASFlashlight::BeginPlay()
 
 void ASFlashlight::HandleFiring()
 {
-	if (Role == ROLE_Authority)
+	if (HasAuthority()) 
 	{
 		/* Toggle light,cone and material when Fired */
 		bIsActive = !bIsActive;
@@ -60,7 +59,7 @@ void ASFlashlight::HandleFiring()
 
 void ASFlashlight::OnEnterInventory(ASCharacter* NewOwner)
 {
-	if (Role == ROLE_Authority)
+	if (HasAuthority())
 	{
 		bIsActive = false;
 
@@ -77,7 +76,7 @@ void ASFlashlight::OnEquipFinished()
 {
 	Super::OnEquipFinished();
 
-	if (Role == ROLE_Authority)
+	if (HasAuthority())
 	{
 		bIsActive = true;
 
@@ -91,7 +90,7 @@ void ASFlashlight::OnUnEquip()
 {
 	Super::OnUnEquip();
 
-	if (Role == ROLE_Authority)
+	if (HasAuthority())
 	{
 		bIsActive = false;
 

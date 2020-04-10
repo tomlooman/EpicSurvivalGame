@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "SGameMode.h"
 #include "SCoopGameMode.generated.h"
 
@@ -13,7 +14,7 @@ class SURVIVALGAME_API ASCoopGameMode : public ASGameMode
 {
 	GENERATED_BODY()
 
-	ASCoopGameMode(const FObjectInitializer& ObjectInitializer);
+	ASCoopGameMode();
 
 	/* End the match when all players are dead */
 	void CheckMatchEnd();

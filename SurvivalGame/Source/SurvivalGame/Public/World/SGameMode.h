@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/GameMode.h"
 #include "SMutator.h"
 #include "SGameMode.generated.h"
@@ -18,7 +19,7 @@ class SURVIVALGAME_API ASGameMode : public AGameMode
 
 protected:
 
-	ASGameMode(const FObjectInitializer& ObjectInitializer);
+	ASGameMode();
 
 	virtual void PreInitializeComponents() override;
 

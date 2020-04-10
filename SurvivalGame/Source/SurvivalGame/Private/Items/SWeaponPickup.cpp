@@ -7,13 +7,12 @@
 #include "SPlayerController.h"
 
 
-ASWeaponPickup::ASWeaponPickup(const FObjectInitializer& ObjectInitializer)
-: Super(ObjectInitializer)
+ASWeaponPickup::ASWeaponPickup()
 {
 	bAllowRespawn = false;
 
 	/* Enabled to support simulated physics movement when weapons are dropped by a player */
-	bReplicateMovement = true;
+	SetReplicateMovement(true);
 }
 
 

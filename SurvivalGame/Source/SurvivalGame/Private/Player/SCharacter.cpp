@@ -31,16 +31,16 @@ ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
 	// Enable crouching
 	MoveComp->GetNavAgentPropertiesRef().bCanCrouch = true;
 
-	CameraBoomComp = ObjectInitializer.CreateDefaultSubobject<USpringArmComponent>(this, TEXT("CameraBoom"));
+	CameraBoomComp = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoomComp->SocketOffset = FVector(0, 35, 0);
 	CameraBoomComp->TargetOffset = FVector(0, 0, 55);
 	CameraBoomComp->bUsePawnControlRotation = true;
 	CameraBoomComp->SetupAttachment(GetRootComponent());
 
-	CameraComp = ObjectInitializer.CreateDefaultSubobject<UCameraComponent>(this, TEXT("Camera"));
+	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	CameraComp->SetupAttachment(CameraBoomComp);
 
-	CarriedObjectComp = ObjectInitializer.CreateDefaultSubobject<USCarryObjectComponent>(this, TEXT("CarriedObjectComp"));
+	CarriedObjectComp = CreateDefaultSubobject<USCarryObjectComponent>(TEXT("CarriedObjectComp"));
 	CarriedObjectComp->SetupAttachment(GetRootComponent());
 
 	MaxUseDistance = 500;
@@ -69,7 +69,7 @@ void ASCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (Role == ROLE_Authority)
+	if (HasAuthority())
 	{
 		// Set a timer to increment hunger every interval
 		FTimerHandle Handle;
@@ -225,7 +225,7 @@ ASUsableActor* ASCharacter::GetUsableInView()
 void ASCharacter::Use()
 {
 	// Only allow on server. If called on client push this request to the server
-	if (Role == ROLE_Authority)
+	if (HasAuthority())
 	{
 		ASUsableActor* Usable = GetUsableInView();
 		if (Usable)
@@ -555,7 +555,7 @@ void ASCharacter::EquipWeapon(ASWeapon* Weapon)
 		if (Weapon == CurrentWeapon)
 			return;
 
-		if (Role == ROLE_Authority)
+		if (HasAuthority())
 		{
 			SetCurrentWeapon(Weapon, CurrentWeapon);
 		}
@@ -581,7 +581,7 @@ void ASCharacter::ServerEquipWeapon_Implementation(ASWeapon* Weapon)
 
 void ASCharacter::AddWeapon(class ASWeapon* Weapon)
 {
-	if (Weapon && Role == ROLE_Authority)
+	if (Weapon && HasAuthority())
 	{
 		Weapon->OnEnterInventory(this);
 		Inventory.AddUnique(Weapon);
@@ -597,7 +597,7 @@ void ASCharacter::AddWeapon(class ASWeapon* Weapon)
 
 void ASCharacter::RemoveWeapon(class ASWeapon* Weapon, bool bDestroy)
 {
-	if (Weapon && Role == ROLE_Authority)
+	if (Weapon && HasAuthority())
 	{
 		bool bIsCurrent = CurrentWeapon == Weapon;
 
@@ -889,7 +889,7 @@ void ASCharacter::StopAllAnimMontages()
 
 void ASCharacter::MakePawnNoise(float Loudness)
 {
-	if (Role == ROLE_Authority)
+	if (HasAuthority())
 	{
 		/* Make noise to be picked up by PawnSensingComponent by the enemy pawns */
 		MakeNoise(Loudness, this, GetActorLocation());
@@ -920,7 +920,7 @@ void ASCharacter::Suicide()
 
 void ASCharacter::KilledBy(class APawn* EventInstigator)
 {
-	if (Role == ROLE_Authority && !bIsDying)
+	if (HasAuthority() && !bIsDying)
 	{
 		AController* Killer = nullptr;
 		if (EventInstigator != nullptr)

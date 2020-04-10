@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "SCharacterMovementComponent.generated.h"
 

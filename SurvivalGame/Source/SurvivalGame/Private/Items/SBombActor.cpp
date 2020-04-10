@@ -4,20 +4,19 @@
 #include "SBombActor.h"
 
 
-ASBombActor::ASBombActor(const class FObjectInitializer& ObjectInitializer)
-: Super(ObjectInitializer)
+ASBombActor::ASBombActor()
 {
-	FuzePCS = ObjectInitializer.CreateDefaultSubobject<UParticleSystemComponent>(this, TEXT("Fuze"));
+	FuzePCS = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Fuze"));
 	FuzePCS->bAutoActivate = false;
 	FuzePCS->bAutoDestroy = false;
 	FuzePCS->SetupAttachment(RootComponent);
 
-	ExplosionPCS = ObjectInitializer.CreateDefaultSubobject<UParticleSystemComponent>(this, TEXT("Explosion"));
+	ExplosionPCS = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Explosion"));
 	ExplosionPCS->bAutoActivate = false;
 	ExplosionPCS->bAutoDestroy = false;
 	ExplosionPCS->SetupAttachment(RootComponent);
 
-	AudioComp = ObjectInitializer.CreateDefaultSubobject<UAudioComponent>(this, TEXT("AudioComp"));
+	AudioComp = CreateDefaultSubobject<UAudioComponent>(TEXT("AudioComp"));
 	AudioComp->bAutoActivate = false;
 	AudioComp->bAutoDestroy = false;
 	AudioComp->SetupAttachment(RootComponent);
@@ -30,7 +29,7 @@ ASBombActor::ASBombActor(const class FObjectInitializer& ObjectInitializer)
 	ExplosionRadius = 600;
 
 	SetReplicates(true);
-	bReplicateMovement = true;
+	SetReplicatingMovement(true);
 }
 
 

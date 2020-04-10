@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "SCharacter.h"
 #include "SWeapon.generated.h"
@@ -50,7 +51,7 @@ class SURVIVALGAME_API ASWeapon : public AActor
 
 protected:
 
-	ASWeapon(const FObjectInitializer& ObjectInitializer);
+	ASWeapon();
 
 	/* The character socket to store this item at. */
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon")

@@ -7,8 +7,7 @@
 #include "SDamageType.h"
 
 
-ASWeaponInstant::ASWeaponInstant(const class FObjectInitializer& PCIP)
-	: Super(PCIP)
+ASWeaponInstant::ASWeaponInstant()
 {
 	HitDamage = 26;
 	WeaponRange = 15000;
@@ -56,7 +55,7 @@ bool ASWeaponInstant::ShouldDealDamage(AActor* TestActor) const
 	if (TestActor)
 	{
 		if (GetNetMode() != NM_Client ||
-			TestActor->Role == ROLE_Authority ||
+			TestActor->HasAuthority() ||
 			TestActor->GetTearOff())
 		{
 			return true;
@@ -133,7 +132,7 @@ void ASWeaponInstant::ProcessInstantHitConfirmed(const FHitResult& Impact, const
 	}
 
 	// Play FX on remote clients
-	if (Role == ROLE_Authority)
+	if (HasAuthority())
 	{
 		HitImpactNotify = Impact.ImpactPoint;
 	}

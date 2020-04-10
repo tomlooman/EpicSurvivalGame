@@ -8,10 +8,9 @@
 #include "SPlayerController.h"
 
 
-ASWeapon::ASWeapon(const class FObjectInitializer& PCIP)
-: Super(PCIP)
+ASWeapon::ASWeapon()
 {
-	Mesh = PCIP.CreateDefaultSubobject<USkeletalMeshComponent>(this, TEXT("WeaponMesh3P"));
+	Mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("WeaponMesh3P"));
 	Mesh->VisibilityBasedAnimTickOption = EVisibilityBasedAnimTickOption::OnlyTickPoseWhenRendered;
 	Mesh->bReceivesDecals = true;
 	Mesh->CastShadow = true;
@@ -81,7 +80,7 @@ void ASWeapon::SetOwningPawn(ASCharacter* NewOwner)
 {
 	if (MyPawn != NewOwner)
 	{
-		Instigator = NewOwner;
+		SetInstigator(NewOwner);
 		MyPawn = NewOwner;
 		// Net owner for RPC calls.
 		SetOwner(NewOwner);
@@ -189,7 +188,7 @@ void ASWeapon::OnEnterInventory(ASCharacter* NewOwner)
 
 void ASWeapon::OnLeaveInventory()
 {
-	if (Role == ROLE_Authority)
+	if (HasAuthority())
 	{
 		SetOwningPawn(nullptr);
 	}
@@ -723,7 +722,7 @@ void ASWeapon::StartReload(bool bFromReplication)
 		}
 
 		GetWorldTimerManager().SetTimer(TimerHandle_StopReload, this, &ASWeapon::StopSimulateReload, AnimDuration, false);
-		if (Role == ROLE_Authority)
+		if (HasAuthority())
 		{
 			GetWorldTimerManager().SetTimer(TimerHandle_ReloadWeapon, this, &ASWeapon::ReloadWeapon, FMath::Max(0.1f, AnimDuration - 0.1f), false);
 		}

@@ -6,8 +6,7 @@
 
 
 
-ASPlayerState::ASPlayerState(const FObjectInitializer& ObjectInitializer)
-: Super(ObjectInitializer)
+ASPlayerState::ASPlayerState()
 {
 	/* AI will remain in team 0, players are updated to team 1 through the GameMode::InitNewPlayer */
 	TeamNumber = 0;

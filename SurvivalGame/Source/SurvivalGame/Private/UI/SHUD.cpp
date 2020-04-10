@@ -7,8 +7,7 @@
 #include "SPlayerController.h"
 
 
-ASHUD::ASHUD(const class FObjectInitializer& ObjectInitializer)
-: Super(ObjectInitializer)
+ASHUD::ASHUD()
 {
 	/* You can use the FObjectFinder in C++ to reference content directly in code. Although it's advisable to avoid this and instead assign content through Blueprint child classes. */
 	static ConstructorHelpers::FObjectFinder<UTexture2D> HUDCenterDotObj(TEXT("/Game/UI/HUD/T_CenterDot_M.T_CenterDot_M"));

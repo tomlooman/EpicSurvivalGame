@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/DamageType.h"
 #include "SDamageType.generated.h"
 
@@ -13,7 +14,7 @@ class SURVIVALGAME_API USDamageType : public UDamageType
 {
 	GENERATED_BODY()
 
-	USDamageType(const FObjectInitializer& ObjectInitializer);
+	USDamageType();
 
 	/* Can player die from this damage type (eg. players don't die from hunger) */
 	UPROPERTY(EditDefaultsOnly)

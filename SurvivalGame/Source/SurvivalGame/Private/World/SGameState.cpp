@@ -6,8 +6,7 @@
 #include "SGameState.h"
 
 
-ASGameState::ASGameState(const class FObjectInitializer& ObjectInitializer)
-	: Super(ObjectInitializer)
+ASGameState::ASGameState()
 {
 	/* 1 SECOND real time is 1*TimeScale MINUTES game time */
 	TimeScale = 10.0f;

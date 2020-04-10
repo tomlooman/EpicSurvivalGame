@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "SUsableActor.h"
 #include "SPickupActor.generated.h"
 
@@ -23,7 +24,7 @@ class SURVIVALGAME_API ASPickupActor : public ASUsableActor
 
 protected:
 
-	ASPickupActor(const FObjectInitializer& ObjectInitializer);
+	ASPickupActor();
 
 	UPROPERTY(Transient, ReplicatedUsing = OnRep_IsActive)
 	bool bIsActive;

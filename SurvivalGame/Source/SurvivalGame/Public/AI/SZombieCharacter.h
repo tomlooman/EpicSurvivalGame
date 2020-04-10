@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "SBaseCharacter.h"
 #include "SZombieCharacter.generated.h"
 

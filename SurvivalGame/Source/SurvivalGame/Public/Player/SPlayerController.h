@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "SHUD.h"
 #include "SPlayerController.generated.h"
@@ -34,7 +35,7 @@ class SURVIVALGAME_API ASPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
-	ASPlayerController(const FObjectInitializer& ObjectInitializer);
+	ASPlayerController();
 
 	/* Flag to respawn or start spectating upon death */
 	UPROPERTY(EditDefaultsOnly, Category = "Spawning")

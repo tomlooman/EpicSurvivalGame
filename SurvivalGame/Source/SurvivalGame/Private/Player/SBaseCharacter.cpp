@@ -231,7 +231,7 @@ void ASBaseCharacter::SetRagdollPhysics()
 
 void ASBaseCharacter::PlayHit(float DamageTaken, struct FDamageEvent const& DamageEvent, APawn* PawnInstigator, AActor* DamageCauser, bool bKilled)
 {
-	if (Role == ROLE_Authority)
+	if (HasAuthority())
 	{
 		ReplicateHit(DamageTaken, DamageEvent, PawnInstigator, DamageCauser, bKilled);
 	}

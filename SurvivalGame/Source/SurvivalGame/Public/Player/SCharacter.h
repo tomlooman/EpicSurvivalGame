@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "SBaseCharacter.h"
 #include "SCharacter.generated.h"
 
@@ -10,7 +11,7 @@ class SURVIVALGAME_API ASCharacter : public ASBaseCharacter
 {
 	GENERATED_BODY()
 
-	ASCharacter(const FObjectInitializer& ObjectInitializer);
+	ASCharacter(const class FObjectInitializer& ObjectInitializer);
 
 	virtual void BeginPlay() override;
 

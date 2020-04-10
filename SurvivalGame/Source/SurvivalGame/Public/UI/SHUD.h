@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
 #include "SHUD.generated.h"
 
@@ -24,7 +25,7 @@ class SURVIVALGAME_API ASHUD : public AHUD
 {
 	GENERATED_BODY()
 
-	ASHUD(const FObjectInitializer& ObjectInitializer);
+	ASHUD();
 
 	FCanvasIcon CenterDotIcon;
 

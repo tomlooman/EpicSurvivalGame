@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/GameState.h"
 #include "SPlayerController.h"
 #include "SGameState.generated.h"
@@ -25,7 +26,7 @@ public:
 
 	void AddScore(int32 Score);
 
-	ASGameState(const class FObjectInitializer& ObjectInitializer);
+	ASGameState();
 
 	UPROPERTY(Replicated)
 	bool bIsNight;

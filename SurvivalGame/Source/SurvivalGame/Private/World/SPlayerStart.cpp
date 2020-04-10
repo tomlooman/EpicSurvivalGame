@@ -7,8 +7,8 @@
 
 
 
-ASPlayerStart::ASPlayerStart(const class FObjectInitializer& ObjectInitializer)
-: Super(ObjectInitializer)
+ASPlayerStart::ASPlayerStart(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
 {
 	bPlayerOnly = true;
 }

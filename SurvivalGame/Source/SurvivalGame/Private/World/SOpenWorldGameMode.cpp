@@ -7,8 +7,7 @@
 
 
 
-ASOpenWorldGameMode::ASOpenWorldGameMode(const FObjectInitializer& ObjectInitializer)
-: Super(ObjectInitializer)
+ASOpenWorldGameMode::ASOpenWorldGameMode()
 {
 	/* Open world content is free-for-all */
 	bAllowFriendlyFireDamage = true;

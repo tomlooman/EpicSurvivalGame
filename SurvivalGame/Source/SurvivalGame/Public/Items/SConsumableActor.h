@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "SPickupActor.h"
 #include "SConsumableActor.generated.h"
 
@@ -13,7 +14,7 @@ class SURVIVALGAME_API ASConsumableActor : public ASPickupActor
 {
 	GENERATED_BODY()
 
-	ASConsumableActor(const FObjectInitializer& ObjectInitializer);
+	ASConsumableActor();
 
 protected:
 

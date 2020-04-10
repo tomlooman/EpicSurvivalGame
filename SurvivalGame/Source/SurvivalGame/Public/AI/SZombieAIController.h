@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "AIController.h"
 #include "SCharacter.h"
 #include "SBotWaypoint.h"
@@ -17,7 +18,7 @@ class SURVIVALGAME_API ASZombieAIController : public AAIController
 {
 	GENERATED_BODY()
 
-	ASZombieAIController(const class FObjectInitializer& ObjectInitializer);
+	ASZombieAIController();
 
 	/* Called whenever the controller possesses a character bot */
 	virtual void OnPossess(class APawn* InPawn) override;
