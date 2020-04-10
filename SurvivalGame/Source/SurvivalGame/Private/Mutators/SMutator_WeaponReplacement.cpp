@@ -1,9 +1,8 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SGameMode.h"
-#include "SMutator_WeaponReplacement.h"
-#include "SWeaponPickup.h"
+#include "Mutators/SMutator_WeaponReplacement.h"
+#include "World/SGameMode.h"
+#include "Items/SWeaponPickup.h"
 
 
 

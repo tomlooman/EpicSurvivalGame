@@ -1,10 +1,10 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SCharacter.h"
-#include "SWeapon.h"
-#include "SWeaponPickup.h"
-#include "SPlayerController.h"
+
+#include "Items/SWeaponPickup.h"
+#include "Player/SCharacter.h"
+#include "Items/SWeapon.h"
+#include "Player/SPlayerController.h"
 
 
 ASWeaponPickup::ASWeaponPickup()

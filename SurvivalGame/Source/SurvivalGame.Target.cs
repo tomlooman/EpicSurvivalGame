@@ -7,7 +7,8 @@ public class SurvivalGameTarget : TargetRules
 {
 	public SurvivalGameTarget(TargetInfo Target) : base(Target)
     {
-		Type = TargetType.Game;
+        DefaultBuildSettings = BuildSettingsVersion.V2;
+        Type = TargetType.Game;
         ExtraModuleNames.AddRange(new string[] { "SurvivalGame" });
     }
 }

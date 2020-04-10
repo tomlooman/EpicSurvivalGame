@@ -1,9 +1,9 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SPlayerController.h"
-#include "SGameInstance.h"
-#include "SGameState.h"
+
+#include "World/SGameState.h"
+#include "Player/SPlayerController.h"
+#include "World/SGameInstance.h"
 
 
 ASGameState::ASGameState()

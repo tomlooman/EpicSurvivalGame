@@ -1,8 +1,10 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SGameState.h"
-#include "SPlayerState.h"
+
+#include "Player/SPlayerState.h"
+#include "World/SGameState.h"
+#include "Engine/Engine.h"
+#include "Net/UnrealNetwork.h"
 
 
 

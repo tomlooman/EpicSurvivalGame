@@ -1,19 +1,20 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SGameMode.h"
-#include "SPlayerController.h"
-#include "SPlayerState.h"
-#include "SGameState.h"
-#include "SCharacter.h"
-#include "SHUD.h"
-#include "STypes.h"
-#include "SSpectatorPawn.h"
-#include "SZombieAIController.h"
-#include "SZombieCharacter.h"
-#include "SPlayerStart.h"
-#include "SMutator.h"
-#include "SWeapon.h"
+
+#include "World/SGameMode.h"
+#include "Player/SPlayerController.h"
+#include "Player/SPlayerState.h"
+#include "World/SGameState.h"
+#include "Player/SCharacter.h"
+#include "UI/SHUD.h"
+#include "SurvivalGame/STypes.h"
+#include "Player/SSpectatorPawn.h"
+#include "AI/SZombieAIController.h"
+#include "AI/SZombieCharacter.h"
+#include "World/SPlayerStart.h"
+#include "Mutators/SMutator.h"
+#include "Items/SWeapon.h"
+#include "TimerManager.h"
 
 
 ASGameMode::ASGameMode()

@@ -4,10 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameMode.h"
-#include "SMutator.h"
+#include "Mutators/SMutator.h"
 #include "SGameMode.generated.h"
 
 class ASPlayerState;
+class APlayerStart;
 
 /**
  * 
@@ -123,14 +124,14 @@ protected:
 	/* Set all bots back to idle mode */
 	void PassifyAllBots();
 
-	/* Set all bots to active patroling state */
+	/* Set all bots to active patrolling state */
 	void WakeAllBots();
 
 public:
 
 	/* Primary sun of the level. Assigned in Blueprint during BeginPlay (BlueprintReadWrite is required as tag instead of EditDefaultsOnly) */
 	UPROPERTY(BlueprintReadWrite, Category = "DayNight")
-	ADirectionalLight* PrimarySunLight;
+	class ADirectionalLight* PrimarySunLight;
 
 	/* The default weapons to spawn with */
 	UPROPERTY(EditDefaultsOnly, Category = "Player")

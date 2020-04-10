@@ -1,7 +1,7 @@
 // Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SGameplayStatics.h"
+
+#include "Core/SGameplayStatics.h"
 #include "SceneView.h"
 #include "Engine/LocalPlayer.h"
 

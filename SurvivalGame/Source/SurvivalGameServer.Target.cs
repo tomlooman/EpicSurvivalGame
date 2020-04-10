@@ -7,7 +7,8 @@ public class SurvivalGameServerTarget : TargetRules
 {
 	public SurvivalGameServerTarget(TargetInfo Target) : base(Target)
     {
-		Type = TargetType.Server;
+        DefaultBuildSettings = BuildSettingsVersion.V2;
+        Type = TargetType.Server;
         ExtraModuleNames.AddRange(new string[] { "SurvivalGame" });
     }
 }

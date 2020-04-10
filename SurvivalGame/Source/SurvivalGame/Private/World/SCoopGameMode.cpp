@@ -1,11 +1,11 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SCoopGameMode.h"
+
+#include "World/SCoopGameMode.h"
 #include "NavigationSystem.h"
-#include "SPlayerState.h"
-#include "SCharacter.h"
-#include "SGameState.h"
+#include "Player/SPlayerState.h"
+#include "Player/SCharacter.h"
+#include "World/SGameState.h"
 
 
 

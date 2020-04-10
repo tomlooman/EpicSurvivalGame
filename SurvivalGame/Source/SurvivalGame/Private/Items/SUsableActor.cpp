@@ -1,7 +1,8 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SUsableActor.h"
+
+#include "Items/SUsableActor.h"
+#include "Components/StaticMeshComponent.h"
 
 
 ASUsableActor::ASUsableActor()

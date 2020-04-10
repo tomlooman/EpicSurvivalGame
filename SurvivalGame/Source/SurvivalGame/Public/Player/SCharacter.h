@@ -3,8 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "SBaseCharacter.h"
+#include "Player/SBaseCharacter.h"
 #include "SCharacter.generated.h"
+
+class UCameraComponent;
+class USpringArmComponent;
 
 UCLASS()
 class SURVIVALGAME_API ASCharacter : public ASBaseCharacter

@@ -1,8 +1,10 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SGameState.h"
-#include "STimeOfDayManager.h"
+
+#include "World/STimeOfDayManager.h"
+#include "World/SGameState.h"
+#include "Components/AudioComponent.h"
+#include "Engine/DirectionalLight.h"
 
 
 ASTimeOfDayManager::ASTimeOfDayManager()

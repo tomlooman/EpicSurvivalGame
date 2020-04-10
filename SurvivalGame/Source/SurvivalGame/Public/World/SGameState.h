@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameState.h"
-#include "SPlayerController.h"
 #include "SGameState.generated.h"
 
 /**

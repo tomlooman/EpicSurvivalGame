@@ -4,11 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "AIController.h"
-#include "SCharacter.h"
-#include "SBotWaypoint.h"
+#include "SurvivalGame/STypes.h"
 #include "SZombieAIController.generated.h"
 
 class UBehaviorTreeComponent;
+class ASBotWaypoint;
+class ASBaseCharacter;
 
 /**
  * 

@@ -1,10 +1,14 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SBaseCharacter.h"
-#include "SGameMode.h"
-#include "SCharacterMovementComponent.h"
-#include "SDamageType.h"
+
+#include "Player/SBaseCharacter.h"
+#include "World/SGameMode.h"
+#include "Components/SCharacterMovementComponent.h"
+#include "Items/SDamageType.h"
+#include "GameFramework/Character.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "Net/UnrealNetwork.h"
 
 
 ASBaseCharacter::ASBaseCharacter(const class FObjectInitializer& ObjectInitializer)

@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "SPickupActor.h"
+#include "Items/SPickupActor.h"
 #include "SConsumableActor.generated.h"
 
 /**

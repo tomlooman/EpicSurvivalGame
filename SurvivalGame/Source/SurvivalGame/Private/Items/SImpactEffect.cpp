@@ -1,7 +1,12 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SImpactEffect.h"
+
+#include "Items/SImpactEffect.h"
+#include "PhysicalMaterials/PhysicalMaterial.h"
+#include "Kismet/GameplayStatics.h"
+#include "Sound/SoundCue.h"
+#include "Components/DecalComponent.h"
+#include "SurvivalGame/SurvivalGame.h"
 
 
 

@@ -1,15 +1,20 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SZombieCharacter.h"
-#include "SZombieAIController.h"
-#include "SCharacter.h"
-#include "SBaseCharacter.h"
-#include "SBotWaypoint.h"
-#include "SPlayerState.h"
 
+#include "AI/SZombieCharacter.h"
+#include "AI/SZombieAIController.h"
+#include "Player/SCharacter.h"
+#include "Player/SBaseCharacter.h"
+#include "AI/SBotWaypoint.h"
+#include "Player/SPlayerState.h"
 /* AI Include */
 #include "Perception/PawnSensingComponent.h"
+#include "GameFramework/Character.h"
+#include "Components/CapsuleComponent.h"
+#include "GameFramework/NavMovementComponent.h"
+#include "Components/AudioComponent.h"
+#include "SurvivalGame/SurvivalGame.h"
+
 
 // Sets default values
 ASZombieCharacter::ASZombieCharacter(const class FObjectInitializer& ObjectInitializer)

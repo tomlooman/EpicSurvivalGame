@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Mutators/SMutator.h"
-#include "SWeapon.h"
+#include "Items/SWeapon.h"
 #include "SMutator_WeaponReplacement.generated.h"
 
 

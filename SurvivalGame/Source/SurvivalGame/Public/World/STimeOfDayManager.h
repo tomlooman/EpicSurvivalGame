@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "STimeOfDayManager.generated.h"
 
+class USoundCue;
+
 UCLASS(ABSTRACT)
 class SURVIVALGAME_API ASTimeOfDayManager : public AActor
 {
@@ -29,11 +31,11 @@ protected:
 
 	/* Maps intensity to time of day */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "DayNight")
-	UCurveFloat* SkylightIntensityCurve;
+	class UCurveFloat* SkylightIntensityCurve;
 
 	/* Maps skylight color to time of day */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "DayNight")
-	UCurveVector* SkylightColorCurve;
+	class UCurveVector* SkylightColorCurve;
 
 public:	
 
@@ -47,14 +49,14 @@ public:
 	void PlayAmbientLoop();
 
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
-	UAudioComponent* AmbientAudioComp;
+	class UAudioComponent* AmbientAudioComp;
 
 	/* Primary sun of the level. Assigned in Blueprint during BeginPlay (BlueprintReadWrite is required as tag instead of EditDefaultsOnly) */
 	UPROPERTY(BlueprintReadWrite, Category = "DayNight")
-	ADirectionalLight* PrimarySunLight;
+	class ADirectionalLight* PrimarySunLight;
 	
 	UPROPERTY(BlueprintReadWrite, Category = "DayNight")
-	ASkyLight* SkyLightActor;
+	class ASkyLight* SkyLightActor;
 
 	/* Last local time of day to apply sun movement prediction */
 	float LastTimeOfDay;

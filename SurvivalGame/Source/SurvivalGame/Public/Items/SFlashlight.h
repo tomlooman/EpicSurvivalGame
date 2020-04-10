@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "SWeapon.h"
+#include "Items/SWeapon.h"
 #include "SFlashlight.generated.h"
 
 /**
@@ -21,7 +21,7 @@ class SURVIVALGAME_API ASFlashlight : public ASWeapon
 private:
 
 	/* Material instance to manipulate emissive on the flashlight instance  */
-	UMaterialInstanceDynamic* MatDynamic;
+	class UMaterialInstanceDynamic* MatDynamic;
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Material")
 	FName EmissiveParamName;
@@ -41,10 +41,10 @@ public:
 	bool bIsActive;
 
 	UPROPERTY(VisibleDefaultsOnly)
-	UStaticMeshComponent* LightConeComp;
+	class UStaticMeshComponent* LightConeComp;
 
 	UPROPERTY(VisibleDefaultsOnly)
-	USpotLightComponent* SpotLightComp;
+	class USpotLightComponent* SpotLightComp;
 
 	virtual void HandleFiring() override;
 
