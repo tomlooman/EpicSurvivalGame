@@ -98,7 +98,7 @@ bool ASBaseCharacter::CanDie(float KillingDamage, FDamageEvent const& DamageEven
 	/* Check if character is already dying, destroyed or if we have authority */
 	if (bIsDying ||
 		IsPendingKill() ||
-		Role != ROLE_Authority ||
+		!HasAuthority() ||
 		GetWorld()->GetAuthGameMode() == NULL)
 	{
 		return false;
@@ -143,7 +143,7 @@ void ASBaseCharacter::OnDeath(float KillingDamage, FDamageEvent const& DamageEve
 		return;
 	}
 
-	bReplicateMovement = false;
+	SetReplicateMovement(true);
 	TearOff();
 	bIsDying = true;
 
@@ -298,7 +298,7 @@ void ASBaseCharacter::SetSprinting(bool NewSprinting)
 		UnCrouch();
 	}
 
-	if (Role < ROLE_Authority)
+	if (!HasAuthority())
 	{
 		ServerSetSprinting(NewSprinting);
 	}
@@ -341,7 +341,7 @@ void ASBaseCharacter::SetTargeting(bool NewTargeting)
 {
 	bIsTargeting = NewTargeting;
 
-	if (Role < ROLE_Authority)
+	if (!HasAuthority())
 	{
 		ServerSetTargeting(NewTargeting);
 	}

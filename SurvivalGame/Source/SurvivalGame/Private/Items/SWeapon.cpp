@@ -216,7 +216,7 @@ bool ASWeapon::IsAttachedToPawn() const // TODO: Review name to more accurately 
 
 void ASWeapon::StartFire()
 {
-	if (Role < ROLE_Authority)
+	if (!HasAuthority())
 	{
 		ServerStartFire();
 	}
@@ -231,7 +231,7 @@ void ASWeapon::StartFire()
 
 void ASWeapon::StopFire()
 {
-	if (Role < ROLE_Authority)
+	if (!HasAuthority())
 	{
 		ServerStopFire();
 	}
@@ -278,7 +278,9 @@ bool ASWeapon::CanFire() const
 
 FVector ASWeapon::GetAdjustedAim() const
 {
-	ASPlayerController* const PC = Instigator ? Cast<ASPlayerController>(Instigator->Controller) : nullptr;
+	APawn* MyInstigator = GetInstigator();
+
+	ASPlayerController* const PC = MyInstigator ? Cast<ASPlayerController>(MyInstigator->Controller) : nullptr;
 	FVector FinalAim = FVector::ZeroVector;
 
 	if (PC)
@@ -289,9 +291,9 @@ FVector ASWeapon::GetAdjustedAim() const
 
 		FinalAim = CamRot.Vector();
 	}
-	else if (Instigator)
+	else if (MyInstigator)
 	{
-		FinalAim = Instigator->GetBaseAimRotation().Vector();
+		FinalAim = MyInstigator->GetBaseAimRotation().Vector();
 	}
 
 	return FinalAim;
@@ -309,7 +311,7 @@ FVector ASWeapon::GetCameraDamageStartLocation(const FVector& AimDir) const
 		PC->GetPlayerViewPoint(OutStartTrace, DummyRot);
 
 		// Adjust trace so there is nothing blocking the ray between the camera and the pawn, and calculate distance from adjusted start
-		OutStartTrace = OutStartTrace + AimDir * (FVector::DotProduct((Instigator->GetActorLocation() - OutStartTrace), AimDir));
+		OutStartTrace = OutStartTrace + AimDir * (FVector::DotProduct((GetInstigator()->GetActorLocation() - OutStartTrace), AimDir));
 	}
 
 	return OutStartTrace;
@@ -318,7 +320,7 @@ FVector ASWeapon::GetCameraDamageStartLocation(const FVector& AimDir) const
 
 FHitResult ASWeapon::WeaponTrace(const FVector& TraceFrom, const FVector& TraceTo) const
 {
-	FCollisionQueryParams TraceParams(TEXT("WeaponTrace"), true, Instigator);
+	FCollisionQueryParams TraceParams(TEXT("WeaponTrace"), true, GetInstigator());
 	TraceParams.bReturnPhysicalMaterial = true;
 
 	FHitResult Hit(ForceInit);
@@ -374,7 +376,7 @@ void ASWeapon::HandleFiring()
 
 	if (MyPawn && MyPawn->IsLocallyControlled())
 	{
-		if (Role < ROLE_Authority)
+		if (!HasAuthority())
 		{
 			ServerHandleFiring();
 		}
@@ -704,7 +706,7 @@ int32 ASWeapon::GetMaxAmmo() const
 void ASWeapon::StartReload(bool bFromReplication)
 {
 	/* Push the request to server */
-	if (!bFromReplication && Role < ROLE_Authority)
+	if (!bFromReplication && !HasAuthority())
 	{
 		ServerStartReload();
 	}

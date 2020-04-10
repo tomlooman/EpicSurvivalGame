@@ -176,12 +176,12 @@ bool ASWeaponInstant::ServerNotifyHit_Validate(const FHitResult Impact, FVector_
 void ASWeaponInstant::ServerNotifyHit_Implementation(const FHitResult Impact, FVector_NetQuantizeNormal ShootDir)
 {
 	// If we have an instigator, calculate the dot between the view and the shot
-	if (Instigator && (Impact.GetActor() || Impact.bBlockingHit))
+	if (GetInstigator() && (Impact.GetActor() || Impact.bBlockingHit))
 	{
 		const FVector Origin = GetMuzzleLocation();
 		const FVector ViewDir = (Impact.Location - Origin).GetSafeNormal();
 
-		const float ViewDotHitDir = FVector::DotProduct(Instigator->GetViewRotation().Vector(), ViewDir);
+		const float ViewDotHitDir = FVector::DotProduct(GetInstigator()->GetViewRotation().Vector(), ViewDir);
 		if (ViewDotHitDir > AllowedViewDotHitDir)
 		{
 			// TODO: Check for weapon state

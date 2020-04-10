@@ -299,7 +299,7 @@ void ASCharacter::SetIsJumping(bool NewJumping)
 		}
 	}
 
-	if (Role < ROLE_Authority)
+	if (!HasAuthority())
 	{
 		ServerSetIsJumping(NewJumping);
 	}
@@ -482,7 +482,7 @@ FName ASCharacter::GetInventoryAttachPoint(EInventorySlot Slot) const
 
 void ASCharacter::DestroyInventory()
 {
-	if (Role < ROLE_Authority)
+	if (!HasAuthority())
 	{	
 		return;
 	}
@@ -732,7 +732,7 @@ void ASCharacter::OnPrevWeapon()
 
 void ASCharacter::DropWeapon()
 {
-	if (Role < ROLE_Authority)
+	if (!HasAuthority())
 	{
 		ServerDropWeapon();
 		return;
