@@ -8,6 +8,7 @@
 #include "SCharacterMovementComponent.h"
 #include "SCarryObjectComponent.h"
 #include "SBaseCharacter.h"
+#include "SPlayerController.h"
 #include "Runtime/Engine/Classes/Animation/AnimInstance.h"
 
 // Sets default values
@@ -207,7 +208,6 @@ ASUsableActor* ASCharacter::GetUsableInView()
 	const FVector TraceEnd = TraceStart + (Direction * MaxUseDistance);
 
 	FCollisionQueryParams TraceParams(TEXT("TraceUsableActor"), true, this);
-	TraceParams.bTraceAsyncScene = true;
 	TraceParams.bReturnPhysicalMaterial = false;
 
 	/* Not tracing complex uses the rough collision instead making tiny objects easier to select. */
@@ -790,7 +790,7 @@ void ASCharacter::DropWeapon()
 			if (MeshComp)
 			{
 				MeshComp->SetSimulatePhysics(true);
-				MeshComp->AddTorque(FVector(1, 1, 1) * 4000000);
+				MeshComp->AddTorqueInRadians(FVector(1, 1, 1) * 4000000);
 			}
 		}
 

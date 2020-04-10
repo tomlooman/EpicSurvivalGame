@@ -2,6 +2,7 @@
 
 #include "SurvivalGame.h"
 #include "SPlayerController.h"
+#include "SGameInstance.h"
 #include "SGameState.h"
 
 
@@ -9,7 +10,7 @@ ASGameState::ASGameState(const class FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
 	/* 1 SECOND real time is 1*TimeScale MINUTES game time */
-	TimeScale = 8.0f;
+	TimeScale = 10.0f;
 	bIsNight = false;
 
 	SunriseTimeMark = 6.0f;
@@ -17,9 +18,9 @@ ASGameState::ASGameState(const class FObjectInitializer& ObjectInitializer)
 }
 
 
-void ASGameState::SetTimeOfDay(float NewTimeOfDay)
+void ASGameState::SetTimeOfDay(float NewHourOfDay)
 {
-	ElapsedGameMinutes = NewTimeOfDay;
+	ElapsedGameMinutes = NewHourOfDay * 60;
 }
 
 
@@ -102,6 +103,30 @@ void ASGameState::BroadcastGameMessage_Implementation(EHUDMessage MessageID)
 		{
 			MyController->ClientHUDMessage(MessageID);
 		}
+	}
+}
+
+
+void ASGameState::AddPlayerState(APlayerState* PlayerState)
+{
+	Super::AddPlayerState(PlayerState);
+
+	USGameInstance* GI = GetWorld()->GetGameInstance<USGameInstance>();
+	if (ensure(GI))
+	{
+		GI->OnPlayerStateAdded.Broadcast(PlayerState);
+	}
+}
+
+
+void ASGameState::RemovePlayerState(APlayerState* PlayerState)
+{
+	Super::RemovePlayerState(PlayerState);
+
+	USGameInstance* GI = GetWorld()->GetGameInstance<USGameInstance>();
+	if (ensure(GI))
+	{
+		GI->OnPlayerStateRemoved.Broadcast(PlayerState);
 	}
 }
 

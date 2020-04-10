@@ -6,6 +6,8 @@
 #include "SMutator.h"
 #include "SGameMode.generated.h"
 
+class ASPlayerState;
+
 /**
  * 
  */
@@ -109,7 +111,13 @@ public:
 
 protected:
 
+	/* (Exec only valid when testing in Singleplayer) */
+	UFUNCTION(BlueprintCallable, Exec, Category = "GameMode")
 	void SpawnNewBot();
+
+	/* Blueprint hook to find a good spawn location for BOTS (Eg. via EQS queries) */
+	UFUNCTION(BlueprintImplementableEvent, Category = "GameMode")
+	bool FindBotSpawnTransform(FTransform& Transform);
 
 	/* Set all bots back to idle mode */
 	void PassifyAllBots();
@@ -148,13 +156,9 @@ protected:
 	* note that certain critical Actors such as PlayerControllers can't be destroyed, but we'll still call this code path to allow mutators
 	* to change properties on them
 	*/
-	UFUNCTION(BlueprintNativeEvent, BlueprintAuthorityOnly)
+	UFUNCTION(BlueprintNativeEvent)
 	bool CheckRelevance(AActor* Other);
 
 	/* Note: Functions flagged with BlueprintNativeEvent like above require _Implementation for a C++ implementation */
 	virtual bool CheckRelevance_Implementation(AActor* Other);
-
-	/* Hacked into ReceiveBeginPlay() so we can do mutator replacement of Actors and such */
-	void BeginPlayMutatorHack(FFrame& Stack, RESULT_DECL);
-
 };

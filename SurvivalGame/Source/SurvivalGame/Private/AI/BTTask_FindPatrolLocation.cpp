@@ -10,6 +10,7 @@
 #include "BehaviorTree/BlackboardComponent.h"
 /* This contains includes all key types like UBlackboardKeyType_Vector used below. */
 #include "BehaviorTree/Blackboard/BlackboardKeyAllTypes.h"
+#include "NavigationSystem.h"
 
 
 
@@ -27,11 +28,13 @@ EBTNodeResult::Type UBTTask_FindPatrolLocation::ExecuteTask(UBehaviorTreeCompone
 		/* Find a position that is close to the waypoint. We add a small random to this position to give build predictable patrol patterns  */
 		const float SearchRadius = 200.0f;
 		const FVector SearchOrigin = MyWaypoint->GetActorLocation();
-		const FVector Loc = UNavigationSystem::GetRandomPointInNavigableRadius(MyController, SearchOrigin, SearchRadius);
-		if (Loc != FVector::ZeroVector)
+
+		FNavLocation ResultLocation;
+		UNavigationSystemV1* NavSystem = UNavigationSystemV1::GetNavigationSystem(MyController);
+		if (NavSystem && NavSystem->GetRandomPointInNavigableRadius(SearchOrigin, SearchRadius, ResultLocation))
 		{
 			/* The selected key should be "PatrolLocation" in the BehaviorTree setup */
-			OwnerComp.GetBlackboardComponent()->SetValue<UBlackboardKeyType_Vector>(BlackboardKey.GetSelectedKeyID(), Loc);
+			OwnerComp.GetBlackboardComponent()->SetValue<UBlackboardKeyType_Vector>(BlackboardKey.GetSelectedKeyID(), ResultLocation.Location);
 			return EBTNodeResult::Succeeded;
 		}
 	}

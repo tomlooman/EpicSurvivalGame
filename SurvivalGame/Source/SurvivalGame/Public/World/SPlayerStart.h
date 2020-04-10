@@ -21,6 +21,7 @@ class SURVIVALGAME_API ASPlayerStart : public APlayerStart
 
 public:
 
-	bool GetIsPlayerOnly() { return bPlayerOnly; }
+	UFUNCTION(BlueprintCallable, Category = "PlayerStart")
+	bool GetIsPlayerOnly() const { return bPlayerOnly; }
 
 };

@@ -23,11 +23,16 @@ protected:
 	/* Target brightness to lerp towards */
 	float TargetSunBrightness;
 
-	/* Required difference in Sky intensity before we re-capture the sky */
-	float RequiredCaptureDelta;
-
 	/* Last skylight intensity that was captured */
 	float LastCapturedIntensity;
+
+	/* Maps intensity to time of day */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "DayNight")
+	UCurveFloat* SkylightIntensityCurve;
+
+	/* Maps skylight color to time of day */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "DayNight")
+	UCurveVector* SkylightColorCurve;
 
 public:	
 

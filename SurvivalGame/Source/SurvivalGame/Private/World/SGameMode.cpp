@@ -13,6 +13,7 @@
 #include "SZombieCharacter.h"
 #include "SPlayerStart.h"
 #include "SMutator.h"
+#include "SWeapon.h"
 
 
 ASGameMode::ASGameMode(const FObjectInitializer& ObjectInitializer)
@@ -106,14 +107,14 @@ void ASGameMode::DefaultTimer()
 				}
 
 				/* Update bot states */
-				if (CurrentIsNight)
-				{
-					WakeAllBots();
-				}
-				else
-				{
-					PassifyAllBots();
-				}
+// 				if (CurrentIsNight)
+// 				{
+// 					WakeAllBots();
+// 				}
+// 				else
+// 				{
+// 					PassifyAllBots();
+// 				}
 			}
 
 			LastIsNight = MyGameState->bIsNight;
@@ -161,7 +162,7 @@ float ASGameMode::ModifyDamage(float Damage, AActor* DamagedActor, struct FDamag
 	ASBaseCharacter* DamagedPawn = Cast<ASBaseCharacter>(DamagedActor);
 	if (DamagedPawn && EventInstigator)
 	{
-		ASPlayerState* DamagedPlayerState = Cast<ASPlayerState>(DamagedPawn->PlayerState);
+		ASPlayerState* DamagedPlayerState = Cast<ASPlayerState>(DamagedPawn->GetPlayerState());
 		ASPlayerState* InstigatorPlayerState = Cast<ASPlayerState>(EventInstigator->PlayerState);
 
 		// Check for friendly fire
@@ -280,11 +281,12 @@ bool ASGameMode::IsSpawnpointPreferred(APlayerStart* SpawnPoint, AController* Co
 
 void ASGameMode::SpawnNewBot()
 {
-	FActorSpawnParameters SpawnInfo;
-	SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
-
-	ASZombieAIController* AIC = GetWorld()->SpawnActor<ASZombieAIController>(SpawnInfo);
-	RestartPlayer(AIC);
+	// Chance for Blueprint to pick a location
+	FTransform SpawnTransform;
+	if (FindBotSpawnTransform(SpawnTransform))
+	{
+		GetWorld()->SpawnActor<ASZombieCharacter>(ASZombieCharacter::StaticClass(), SpawnTransform);
+	}
 }
 
 /* Used by RestartPlayer() to determine the pawn to create and possess when a bot or player spawns */
@@ -335,7 +337,10 @@ void ASGameMode::WakeAllBots()
 void ASGameMode::SpawnBotHandler()
 {
 	if (!bSpawnZombiesAtNight)
+	{
 		return;
+	}
+		
 
 	ASGameState* MyGameState = Cast<ASGameState>(GameState);
 	if (MyGameState)
@@ -346,10 +351,17 @@ void ASGameMode::SpawnBotHandler()
 			/* This could be any dynamic number based on difficulty (eg. increasing after having survived a few nights) */
 			const int32 MaxPawns = 10;
 
+			int32 PawnsInWorld = 0;
+			for (TActorIterator<APawn> It(GetWorld()); It; ++It)
+			{
+				++PawnsInWorld;
+			}
+
 			/* Check number of available pawns (players included) */
-			if (GetWorld()->GetNumPawns() < MaxPawns)
+			while (PawnsInWorld < MaxPawns)
 			{
 				SpawnNewBot();
+				++PawnsInWorld;
 			}
 		}
 	}
@@ -402,11 +414,6 @@ void ASGameMode::SpawnDefaultInventory(APawn* PlayerPawn)
 
 void ASGameMode::InitGame(const FString& MapName, const FString& Options, FString& ErrorMessage)
 {
-	// HACK: workaround to inject CheckRelevance() into the BeginPlay sequence
-	UFunction* Func = AActor::GetClass()->FindFunctionByName(FName(TEXT("ReceiveBeginPlay")));
-	Func->FunctionFlags |= FUNC_Native;
-	Func->SetNativeFunc((Native)&ASGameMode::BeginPlayMutatorHack);
-
 	/* Spawn all mutators. */
 	for (int32 i = 0; i < MutatorClasses.Num(); i++)
 	{
@@ -416,6 +423,29 @@ void ASGameMode::InitGame(const FString& MapName, const FString& Options, FStrin
 	if (BaseMutator)
 	{
 		BaseMutator->InitGame(MapName, Options, ErrorMessage);
+	}
+
+
+	for (TActorIterator<AActor> It(GetWorld(), AActor::StaticClass()); It; ++It)
+	{
+		AActor* Actor = *It;
+		if (!Actor->IsPendingKill())
+		{
+			// Some classes can't be removed via mutators
+			bool bIsValidClass = !Actor->IsA(ALevelScriptActor::StaticClass()) && !Actor->IsA(ASMutator::StaticClass());
+			// Static actors can't be removed.
+			bool bIsRemovable = Actor->GetRootComponent() && Actor->GetRootComponent()->Mobility != EComponentMobility::Static;
+
+			if (bIsValidClass && bIsRemovable)
+			{
+				// a few type checks being AFTER the CheckRelevance() call is intentional; want mutators to be able to modify, but not outright destroy
+				if (!CheckRelevance(Actor) && !Actor->IsA(APlayerController::StaticClass()))
+				{
+					/* Actors are destroyed if they fail the relevance checks */
+					Actor->Destroy();
+				}
+			}
+		}
 	}
 
 	Super::InitGame(MapName, Options, ErrorMessage);
@@ -431,25 +461,6 @@ bool ASGameMode::CheckRelevance_Implementation(AActor* Other)
 	}
 
 	return true;
-}
-
-
-void ASGameMode::BeginPlayMutatorHack(FFrame& Stack, RESULT_DECL)
-{
-	P_FINISH;
-
-	// WARNING: This function is called by every Actor in the level during his BeginPlay sequence. Meaning:  'this' is actually an AActor! Only do AActor things!
-	if (!IsA(ALevelScriptActor::StaticClass()) && !IsA(ASMutator::StaticClass()) &&
-		(RootComponent == NULL || RootComponent->Mobility != EComponentMobility::Static || (!IsA(AStaticMeshActor::StaticClass()) && !IsA(ALight::StaticClass()))))
-	{
-		ASGameMode* Game = GetWorld()->GetAuthGameMode<ASGameMode>();
-		// a few type checks being AFTER the CheckRelevance() call is intentional; want mutators to be able to modify, but not outright destroy
-		if (Game != NULL && Game != this && !Game->CheckRelevance((AActor*)this) && !IsA(APlayerController::StaticClass()))
-		{
-			/* Actors are destroyed if they fail the relevance checks (which moves through the gamemode specific check AND the chain of mutators) */
-			Destroy();
-		}
-	}
 }
 
 
