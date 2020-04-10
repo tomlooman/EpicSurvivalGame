@@ -12,7 +12,7 @@ USCarryObjectComponent::USCarryObjectComponent()
 	bUsePawnControlRotation = true;
 	bDoCollisionTest = false;
 
-	SetIsReplicated(true);
+	SetIsReplicatedByDefault(true);
 }
 
 
