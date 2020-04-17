@@ -6,6 +6,8 @@
 #include "Player/SPlayerState.h"
 #include "Player/SCharacter.h"
 #include "World/SGameState.h"
+#include "EngineUtils.h"
+#include "Player/SPlayerController.h"
 
 
 

@@ -15,6 +15,12 @@
 #include "Mutators/SMutator.h"
 #include "Items/SWeapon.h"
 #include "TimerManager.h"
+#include "Engine/Engine.h"
+#include "Kismet/GameplayStatics.h"
+#include "EngineUtils.h"
+#include "Components/CapsuleComponent.h"
+#include "Engine/LevelScriptActor.h"
+#include "SurvivalGame/SurvivalGame.h"
 
 
 ASGameMode::ASGameMode()
@@ -25,6 +31,8 @@ ASGameMode::ASGameMode()
 	GameStateClass = ASGameState::StaticClass();
 	SpectatorClass = ASSpectatorPawn::StaticClass();
 
+	BotPawnClass = ASZombieCharacter::StaticClass();
+
 	bAllowFriendlyFireDamage = false;
 	bSpawnZombiesAtNight = true;
 
@@ -34,6 +42,9 @@ ASGameMode::ASGameMode()
 
 	/* Default team is 1 for players and 0 for enemies */
 	PlayerTeamNum = 1;
+
+	// You may want to make this number dynamic as players survived multiple nights
+	MaxPawnsInZone = 20;
 }
 
 
@@ -281,12 +292,16 @@ bool ASGameMode::IsSpawnpointPreferred(APlayerStart* SpawnPoint, AController* Co
 
 void ASGameMode::SpawnNewBot()
 {
-	// Chance for Blueprint to pick a location
+	// Chance for Blueprint to pick a location (for example implementation see BP: SurvivalCoopGameMode asset)
 	FTransform SpawnTransform;
-	if (FindBotSpawnTransform(SpawnTransform))
+	if (!FindBotSpawnTransform(SpawnTransform))
 	{
-		GetWorld()->SpawnActor<ASZombieCharacter>(ASZombieCharacter::StaticClass(), SpawnTransform);
+		// This will fail unless blueprint has implemented this function to handle spawn locations
+		UE_LOG(LogGame, Warning, TEXT("Failed to find bot spawn transform for SpawnNewBot."));
+		return;
 	}
+
+	GetWorld()->SpawnActor<APawn>(BotPawnClass, SpawnTransform);
 }
 
 /* Used by RestartPlayer() to determine the pawn to create and possess when a bot or player spawns */
@@ -348,9 +363,6 @@ void ASGameMode::SpawnBotHandler()
 		/* Only spawn bots during night time */
 		if (MyGameState->GetIsNight())
 		{
-			/* This could be any dynamic number based on difficulty (eg. increasing after having survived a few nights) */
-			const int32 MaxPawns = 10;
-
 			int32 PawnsInWorld = 0;
 			for (TActorIterator<APawn> It(GetWorld()); It; ++It)
 			{
@@ -358,11 +370,11 @@ void ASGameMode::SpawnBotHandler()
 			}
 
 			/* Check number of available pawns (players included) */
-			while (PawnsInWorld < MaxPawns)
+			if (PawnsInWorld < MaxPawnsInZone)
 			{
 				SpawnNewBot();
-				++PawnsInWorld;
 			}
+
 		}
 	}
 }

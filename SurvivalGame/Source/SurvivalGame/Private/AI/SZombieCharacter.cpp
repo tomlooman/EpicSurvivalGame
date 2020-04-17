@@ -14,6 +14,10 @@
 #include "GameFramework/NavMovementComponent.h"
 #include "Components/AudioComponent.h"
 #include "SurvivalGame/SurvivalGame.h"
+#include "GameFramework/PawnMovementComponent.h"
+#include "Components/AudioComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "Sound/SoundCue.h"
 
 
 // Sets default values

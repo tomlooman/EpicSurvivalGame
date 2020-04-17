@@ -6,6 +6,11 @@
 #include "SUsableActor.h"
 #include "SBombActor.generated.h"
 
+class USoundCue;
+class UParticleSystem;
+class UAudioComponent;
+class UParticleSystemComponent;
+
 /**
  * 
  */

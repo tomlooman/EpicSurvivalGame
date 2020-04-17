@@ -13,6 +13,7 @@
 #include "Components/CapsuleComponent.h"
 #include "SurvivalGame/SurvivalGame.h"
 #include "GameFramework/DamageType.h"
+#include "Camera/CameraComponent.h"
 
 
 // Sets default values

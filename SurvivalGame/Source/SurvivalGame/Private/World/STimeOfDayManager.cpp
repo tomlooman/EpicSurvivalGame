@@ -5,6 +5,11 @@
 #include "World/SGameState.h"
 #include "Components/AudioComponent.h"
 #include "Engine/DirectionalLight.h"
+#include "Engine/SkyLight.h"
+#include "Kismet/GameplayStatics.h"
+#include "Sound/SoundCue.h"
+#include "Components/SkyLightComponent.h"
+#include "Curves/CurveVector.h"
 
 
 ASTimeOfDayManager::ASTimeOfDayManager()
