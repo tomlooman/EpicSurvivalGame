@@ -2,8 +2,8 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/GameState.h"
-#include "SPlayerController.h"
 #include "SGameState.generated.h"
 
 /**
@@ -25,7 +25,7 @@ public:
 
 	void AddScore(int32 Score);
 
-	ASGameState(const class FObjectInitializer& ObjectInitializer);
+	ASGameState();
 
 	UPROPERTY(Replicated)
 	bool bIsNight;
@@ -66,11 +66,18 @@ public:
 
 	/* By passing in "exec" we expose it as a command line (press ~ to open) */
 	UFUNCTION(exec)
-	void SetTimeOfDay(float NewTimeOfDay);
+	void SetTimeOfDay(float NewHourOfDay);
 
 	/* NetMulticast will send this event to all clients that know about this object, in the case of GameState that means every client. */
 	UFUNCTION(Reliable, NetMulticast)
 	void BroadcastGameMessage(EHUDMessage NewMessage);
 
 	void BroadcastGameMessage_Implementation(EHUDMessage MessageID);
+
+public:
+
+	virtual void AddPlayerState(APlayerState* PlayerState) override;
+
+	virtual void RemovePlayerState(APlayerState* PlayerState) override;
+
 };

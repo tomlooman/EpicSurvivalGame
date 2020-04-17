@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "SUsableActor.generated.h"
 
@@ -12,7 +13,7 @@ class SURVIVALGAME_API ASUsableActor : public AActor
 
 protected:
 
-	ASUsableActor(const FObjectInitializer& ObjectInitializer);
+	ASUsableActor();
 
 	UPROPERTY(VisibleAnywhere, Category = "Mesh")
 	UStaticMeshComponent* MeshComp;

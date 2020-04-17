@@ -1,12 +1,11 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SDamageType.h"
+
+#include "Items/SDamageType.h"
 
 
 
-USDamageType::USDamageType(const FObjectInitializer& ObjectInitializer)
-: Super(ObjectInitializer)
+USDamageType::USDamageType()
 {
 	/* We apply this modifier based on the physics material setup to the head of the enemy PhysAsset */
 	HeadDmgModifier = 2.0f;

@@ -1,12 +1,14 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SPlayerCameraManager.h"
-#include "SCharacter.h"
+
+#include "Player/SPlayerCameraManager.h"
+#include "Player/SCharacter.h"
+#include "GameFramework/PlayerController.h"
+#include "GameFramework/Pawn.h"
+#include "Camera/CameraComponent.h"
 
 
-ASPlayerCameraManager::ASPlayerCameraManager(const class FObjectInitializer& ObjectInitializer)
-	: Super(ObjectInitializer)
+ASPlayerCameraManager::ASPlayerCameraManager()
 {
 	NormalFOV = 90.0f;
 	TargetingFOV = 65.0f;

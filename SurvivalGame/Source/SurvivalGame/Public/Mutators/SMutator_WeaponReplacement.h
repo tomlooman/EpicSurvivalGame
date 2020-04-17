@@ -2,14 +2,19 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "Mutators/SMutator.h"
+#include "Items/SWeapon.h"
 #include "SMutator_WeaponReplacement.generated.h"
 
 
 USTRUCT(BlueprintType)
 struct FReplacementInfo
 {
-	GENERATED_USTRUCT_BODY()
+	GENERATED_BODY()
+
+public:
+
 	/** class name of the weapon we want to get rid of */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
 	TSubclassOf<ASWeapon> FromWeapon;

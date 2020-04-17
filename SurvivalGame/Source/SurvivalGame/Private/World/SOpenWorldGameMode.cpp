@@ -1,14 +1,13 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SOpenWorldGameMode.h"
+
+#include "World/SOpenWorldGameMode.h"
 
 
 
 
 
-ASOpenWorldGameMode::ASOpenWorldGameMode(const FObjectInitializer& ObjectInitializer)
-: Super(ObjectInitializer)
+ASOpenWorldGameMode::ASOpenWorldGameMode()
 {
 	/* Open world content is free-for-all */
 	bAllowFriendlyFireDamage = true;

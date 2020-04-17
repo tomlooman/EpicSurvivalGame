@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "World/SGameMode.h"
 #include "SOpenWorldGameMode.generated.h"
 
@@ -13,7 +14,7 @@ class SURVIVALGAME_API ASOpenWorldGameMode : public ASGameMode
 {
 	GENERATED_BODY()
 
-	ASOpenWorldGameMode(const FObjectInitializer& ObjectInitializer);
+	ASOpenWorldGameMode();
 	
 	/* Don't allow spectating of other players or bots */
 	virtual bool CanSpectate_Implementation(APlayerController* Viewer, APlayerState* ViewTarget) override;

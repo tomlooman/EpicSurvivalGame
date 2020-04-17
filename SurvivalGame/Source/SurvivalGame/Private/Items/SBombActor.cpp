@@ -1,23 +1,25 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SBombActor.h"
+
+#include "Items/SBombActor.h"
+#include "Particles/ParticleSystemComponent.h"
+#include "Components/AudioComponent.h"
+#include "GameFramework/Actor.h"
 
 
-ASBombActor::ASBombActor(const class FObjectInitializer& ObjectInitializer)
-: Super(ObjectInitializer)
+ASBombActor::ASBombActor()
 {
-	FuzePCS = ObjectInitializer.CreateDefaultSubobject<UParticleSystemComponent>(this, TEXT("Fuze"));
+	FuzePCS = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Fuze"));
 	FuzePCS->bAutoActivate = false;
 	FuzePCS->bAutoDestroy = false;
 	FuzePCS->SetupAttachment(RootComponent);
 
-	ExplosionPCS = ObjectInitializer.CreateDefaultSubobject<UParticleSystemComponent>(this, TEXT("Explosion"));
+	ExplosionPCS = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Explosion"));
 	ExplosionPCS->bAutoActivate = false;
 	ExplosionPCS->bAutoDestroy = false;
 	ExplosionPCS->SetupAttachment(RootComponent);
 
-	AudioComp = ObjectInitializer.CreateDefaultSubobject<UAudioComponent>(this, TEXT("AudioComp"));
+	AudioComp = CreateDefaultSubobject<UAudioComponent>(TEXT("AudioComp"));
 	AudioComp->bAutoActivate = false;
 	AudioComp->bAutoDestroy = false;
 	AudioComp->SetupAttachment(RootComponent);
@@ -30,7 +32,7 @@ ASBombActor::ASBombActor(const class FObjectInitializer& ObjectInitializer)
 	ExplosionRadius = 600;
 
 	SetReplicates(true);
-	bReplicateMovement = true;
+	SetReplicatingMovement(true);
 }
 
 

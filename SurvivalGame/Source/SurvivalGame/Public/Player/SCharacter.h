@@ -2,15 +2,19 @@
 
 #pragma once
 
-#include "SBaseCharacter.h"
+#include "CoreMinimal.h"
+#include "Player/SBaseCharacter.h"
 #include "SCharacter.generated.h"
+
+class UCameraComponent;
+class USpringArmComponent;
 
 UCLASS()
 class SURVIVALGAME_API ASCharacter : public ASBaseCharacter
 {
 	GENERATED_BODY()
 
-	ASCharacter(const FObjectInitializer& ObjectInitializer);
+	ASCharacter(const class FObjectInitializer& ObjectInitializer);
 
 	virtual void BeginPlay() override;
 

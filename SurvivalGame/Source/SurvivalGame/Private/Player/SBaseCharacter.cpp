@@ -1,10 +1,14 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SBaseCharacter.h"
-#include "SGameMode.h"
-#include "SCharacterMovementComponent.h"
-#include "SDamageType.h"
+
+#include "Player/SBaseCharacter.h"
+#include "World/SGameMode.h"
+#include "Components/SCharacterMovementComponent.h"
+#include "Items/SDamageType.h"
+#include "GameFramework/Character.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "Net/UnrealNetwork.h"
 
 
 ASBaseCharacter::ASBaseCharacter(const class FObjectInitializer& ObjectInitializer)
@@ -98,7 +102,7 @@ bool ASBaseCharacter::CanDie(float KillingDamage, FDamageEvent const& DamageEven
 	/* Check if character is already dying, destroyed or if we have authority */
 	if (bIsDying ||
 		IsPendingKill() ||
-		Role != ROLE_Authority ||
+		!HasAuthority() ||
 		GetWorld()->GetAuthGameMode() == NULL)
 	{
 		return false;
@@ -143,7 +147,7 @@ void ASBaseCharacter::OnDeath(float KillingDamage, FDamageEvent const& DamageEve
 		return;
 	}
 
-	bReplicateMovement = false;
+	SetReplicateMovement(true);
 	TearOff();
 	bIsDying = true;
 
@@ -231,7 +235,7 @@ void ASBaseCharacter::SetRagdollPhysics()
 
 void ASBaseCharacter::PlayHit(float DamageTaken, struct FDamageEvent const& DamageEvent, APawn* PawnInstigator, AActor* DamageCauser, bool bKilled)
 {
-	if (Role == ROLE_Authority)
+	if (HasAuthority())
 	{
 		ReplicateHit(DamageTaken, DamageEvent, PawnInstigator, DamageCauser, bKilled);
 	}
@@ -298,7 +302,7 @@ void ASBaseCharacter::SetSprinting(bool NewSprinting)
 		UnCrouch();
 	}
 
-	if (Role < ROLE_Authority)
+	if (!HasAuthority())
 	{
 		ServerSetSprinting(NewSprinting);
 	}
@@ -341,7 +345,7 @@ void ASBaseCharacter::SetTargeting(bool NewTargeting)
 {
 	bIsTargeting = NewTargeting;
 
-	if (Role < ROLE_Authority)
+	if (!HasAuthority())
 	{
 		ServerSetTargeting(NewTargeting);
 	}

@@ -1,7 +1,12 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SImpactEffect.h"
+
+#include "Items/SImpactEffect.h"
+#include "PhysicalMaterials/PhysicalMaterial.h"
+#include "Kismet/GameplayStatics.h"
+#include "Sound/SoundCue.h"
+#include "Components/DecalComponent.h"
+#include "SurvivalGame/SurvivalGame.h"
 
 
 
@@ -38,13 +43,23 @@ void ASImpactEffect::PostInitializeComponents()
 
 	if (DecalMaterial)
 	{
-		FRotator RandomDecalRotation = SurfaceHit.ImpactNormal.Rotation();
+		FVector ImpactNormal = SurfaceHit.ImpactNormal;
+		ImpactNormal.Normalize();
+		/* Inverse to point towards the wall. Invert to get the correct orientation of the decal (pointing into the surface instead of away, messing with the normals, and lighting) */
+		ImpactNormal = -ImpactNormal;
+
+		FRotator RandomDecalRotation = ImpactNormal.ToOrientationRotator();
 		RandomDecalRotation.Roll = FMath::FRandRange(-180.0f, 180.0f);
 
-		UGameplayStatics::SpawnDecalAttached(DecalMaterial, FVector(DecalSize, DecalSize, 1.0f),
+		UDecalComponent* DecalComp = UGameplayStatics::SpawnDecalAttached(DecalMaterial, FVector(DecalSize, DecalSize, DecalSize),
 			SurfaceHit.Component.Get(), SurfaceHit.BoneName,
 			SurfaceHit.ImpactPoint, RandomDecalRotation, EAttachLocation::KeepWorldPosition,
 			DecalLifeSpan);
+
+		if (DecalComp)
+		{
+			DecalComp->SetFadeOut(DecalLifeSpan, 0.5f, false);
+		}
 	}
 }
 

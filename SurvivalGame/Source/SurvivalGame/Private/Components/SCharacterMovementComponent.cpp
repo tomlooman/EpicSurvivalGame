@@ -1,8 +1,8 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SCharacterMovementComponent.h"
-#include "SBaseCharacter.h"
+
+#include "Components/SCharacterMovementComponent.h"
+#include "Player/SBaseCharacter.h"
 
 
 

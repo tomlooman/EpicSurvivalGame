@@ -1,12 +1,15 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SPickupActor.h"
+
+#include "Items/SPickupActor.h"
+#include "Components/StaticMeshComponent.h"
+#include "Net/UnrealNetwork.h"
+#include "Kismet/GameplayStatics.h"
+#include "Engine/Engine.h"
 
 
 
-ASPickupActor::ASPickupActor(const class FObjectInitializer& ObjectInitializer)
-	: Super(ObjectInitializer)
+ASPickupActor::ASPickupActor()
 {
 	/* Ignore Pawn - this is to prevent objects shooting through the level or pawns glitching on top of small items. */
 	MeshComp->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Ignore);

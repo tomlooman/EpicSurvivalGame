@@ -2,11 +2,13 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/GameMode.h"
-#include "SMutator.h"
+#include "Mutators/SMutator.h"
 #include "SGameMode.generated.h"
 
 class ASPlayerState;
+class APlayerStart;
 
 /**
  * 
@@ -18,7 +20,7 @@ class SURVIVALGAME_API ASGameMode : public AGameMode
 
 protected:
 
-	ASGameMode(const FObjectInitializer& ObjectInitializer);
+	ASGameMode();
 
 	virtual void PreInitializeComponents() override;
 
@@ -111,19 +113,25 @@ public:
 
 protected:
 
+	/* (Exec only valid when testing in Singleplayer) */
+	UFUNCTION(BlueprintCallable, Exec, Category = "GameMode")
 	void SpawnNewBot();
+
+	/* Blueprint hook to find a good spawn location for BOTS (Eg. via EQS queries) */
+	UFUNCTION(BlueprintImplementableEvent, Category = "GameMode")
+	bool FindBotSpawnTransform(FTransform& Transform);
 
 	/* Set all bots back to idle mode */
 	void PassifyAllBots();
 
-	/* Set all bots to active patroling state */
+	/* Set all bots to active patrolling state */
 	void WakeAllBots();
 
 public:
 
 	/* Primary sun of the level. Assigned in Blueprint during BeginPlay (BlueprintReadWrite is required as tag instead of EditDefaultsOnly) */
 	UPROPERTY(BlueprintReadWrite, Category = "DayNight")
-	ADirectionalLight* PrimarySunLight;
+	class ADirectionalLight* PrimarySunLight;
 
 	/* The default weapons to spawn with */
 	UPROPERTY(EditDefaultsOnly, Category = "Player")
@@ -150,7 +158,7 @@ protected:
 	* note that certain critical Actors such as PlayerControllers can't be destroyed, but we'll still call this code path to allow mutators
 	* to change properties on them
 	*/
-	UFUNCTION(BlueprintNativeEvent, BlueprintAuthorityOnly)
+	UFUNCTION(BlueprintNativeEvent)
 	bool CheckRelevance(AActor* Other);
 
 	/* Note: Functions flagged with BlueprintNativeEvent like above require _Implementation for a C++ implementation */

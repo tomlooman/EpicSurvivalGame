@@ -1,15 +1,14 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "BTTask_FindBotWaypoint.h"
-#include "SBotWaypoint.h"
-#include "SZombieAIController.h"
-
+#include "AI/BTTask_FindBotWaypoint.h"
+#include "AI/SBotWaypoint.h"
+#include "AI/SZombieAIController.h"
 /* AI Module includes */
 #include "BehaviorTree/BehaviorTreeComponent.h"
 #include "BehaviorTree/BlackboardComponent.h"
 /* This contains includes all key types like UBlackboardKeyType_Vector used below. */
 #include "BehaviorTree/Blackboard/BlackboardKeyAllTypes.h"
+#include "Kismet/GameplayStatics.h"
 
 
 EBTNodeResult::Type UBTTask_FindBotWaypoint::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)

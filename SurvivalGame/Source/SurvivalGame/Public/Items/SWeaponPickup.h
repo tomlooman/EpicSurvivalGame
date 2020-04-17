@@ -2,7 +2,8 @@
 
 #pragma once
 
-#include "SPickupActor.h"
+#include "CoreMinimal.h"
+#include "Items/SPickupActor.h"
 #include "SWeaponPickup.generated.h"
 
 /**
@@ -13,13 +14,13 @@ class SURVIVALGAME_API ASWeaponPickup : public ASPickupActor
 {
 	GENERATED_BODY()
 
-	ASWeaponPickup(const FObjectInitializer& ObjectInitializer);
+	ASWeaponPickup();
 
 public:
 
 	/* Class to add to inventory when picked up */
 	UPROPERTY(EditDefaultsOnly, Category = "WeaponClass")
-	TSubclassOf<ASWeapon> WeaponClass;
+	TSubclassOf<class ASWeapon> WeaponClass;
 
 	virtual void OnUsed(APawn* InstigatorPawn) override;
 };

@@ -2,8 +2,9 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
-#include "SHUD.h"
+#include "UI/SHUD.h"
 #include "SPlayerController.generated.h"
 
 UENUM()
@@ -23,6 +24,9 @@ enum class EHUDMessage : uint8
 	None,
 };
 
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FChatMessageReceived, class APlayerState*, Sender, const FString&, Message);
+
 /**
  * 
  */
@@ -31,7 +35,7 @@ class SURVIVALGAME_API ASPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
-	ASPlayerController(const FObjectInitializer& ObjectInitializer);
+	ASPlayerController();
 
 	/* Flag to respawn or start spectating upon death */
 	UPROPERTY(EditDefaultsOnly, Category = "Spawning")
@@ -68,4 +72,18 @@ public:
 
 	/* Start spectating. Should be called only on server */
 	void StartSpectating();
+
+public:
+
+	// -- CHAT -- //
+
+	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation)
+	void ServerSendChatMessage(class APlayerState* Sender, const FString& Message);
+
+	UFUNCTION(Client, Reliable)
+	void ClientReceiveChatMessage(class APlayerState* Sender, const FString& Message);
+
+	UPROPERTY(BlueprintAssignable)
+	FChatMessageReceived OnChatMessageReceived;
+
 };

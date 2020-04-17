@@ -7,7 +7,8 @@ public class SurvivalGameEditorTarget : TargetRules
 {
 	public SurvivalGameEditorTarget(TargetInfo Target) : base(Target)
     {
-		Type = TargetType.Editor;
+        DefaultBuildSettings = BuildSettingsVersion.V2;
+        Type = TargetType.Editor;
         ExtraModuleNames.AddRange(new string[] { "SurvivalGame" });
     }
 }

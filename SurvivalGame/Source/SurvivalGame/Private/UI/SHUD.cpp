@@ -1,14 +1,15 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SHUD.h"
-#include "SCharacter.h"
-#include "SUsableActor.h"
-#include "SPlayerController.h"
+
+#include "UI/SHUD.h"
+#include "Player/SCharacter.h"
+#include "Items/SUsableActor.h"
+#include "Player/SPlayerController.h"
+#include "UObject/ConstructorHelpers.h"
+#include "Engine/Texture2D.h"
 
 
-ASHUD::ASHUD(const class FObjectInitializer& ObjectInitializer)
-: Super(ObjectInitializer)
+ASHUD::ASHUD()
 {
 	/* You can use the FObjectFinder in C++ to reference content directly in code. Although it's advisable to avoid this and instead assign content through Blueprint child classes. */
 	static ConstructorHelpers::FObjectFinder<UTexture2D> HUDCenterDotObj(TEXT("/Game/UI/HUD/T_CenterDot_M.T_CenterDot_M"));

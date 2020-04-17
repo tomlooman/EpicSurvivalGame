@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "Sound/SoundNode.h"
 #include "SoundNodeLocalPlayer.generated.h"
 

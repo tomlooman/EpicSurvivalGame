@@ -1,15 +1,20 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SZombieCharacter.h"
-#include "SZombieAIController.h"
-#include "SCharacter.h"
-#include "SBaseCharacter.h"
-#include "SBotWaypoint.h"
-#include "SPlayerState.h"
 
+#include "AI/SZombieCharacter.h"
+#include "AI/SZombieAIController.h"
+#include "Player/SCharacter.h"
+#include "Player/SBaseCharacter.h"
+#include "AI/SBotWaypoint.h"
+#include "Player/SPlayerState.h"
 /* AI Include */
 #include "Perception/PawnSensingComponent.h"
+#include "GameFramework/Character.h"
+#include "Components/CapsuleComponent.h"
+#include "GameFramework/NavMovementComponent.h"
+#include "Components/AudioComponent.h"
+#include "SurvivalGame/SurvivalGame.h"
+
 
 // Sets default values
 ASZombieCharacter::ASZombieCharacter(const class FObjectInitializer& ObjectInitializer)
@@ -35,14 +40,6 @@ ASZombieCharacter::ASZombieCharacter(const class FObjectInitializer& ObjectIniti
 	GetMovementComponent()->NavAgentProps.AgentRadius = 42;
 	GetMovementComponent()->NavAgentProps.AgentHeight = 192;
 
-	MeleeCollisionComp = CreateDefaultSubobject<UCapsuleComponent>(TEXT("MeleeCollision"));
-	MeleeCollisionComp->SetRelativeLocation(FVector(45, 0, 25));
-	MeleeCollisionComp->SetCapsuleHalfHeight(60);
-	MeleeCollisionComp->SetCapsuleRadius(35, false);
-	MeleeCollisionComp->SetCollisionResponseToAllChannels(ECR_Ignore);
-	MeleeCollisionComp->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
-	MeleeCollisionComp->SetupAttachment(GetCapsuleComponent());
-
 	AudioLoopComp = CreateDefaultSubobject<UAudioComponent>(TEXT("ZombieLoopedSoundComp"));
 	AudioLoopComp->bAutoActivate = false;
 	AudioLoopComp->bAutoDestroy = false;
@@ -50,7 +47,6 @@ ASZombieCharacter::ASZombieCharacter(const class FObjectInitializer& ObjectIniti
 
 	Health = 100;
 	MeleeDamage = 24.0f;
-	MeleeStrikeCooldown = 1.0f;
 	SprintingSpeedModifier = 3.0f;
 
 	/* By default we will not let the AI patrol, we can override this value per-instance. */
@@ -70,10 +66,6 @@ void ASZombieCharacter::BeginPlay()
 	{
 		PawnSensingComp->OnSeePawn.AddDynamic(this, &ASZombieCharacter::OnSeePlayer);
 		PawnSensingComp->OnHearNoise.AddDynamic(this, &ASZombieCharacter::OnHearNoise);
-	}
-	if (MeleeCollisionComp)
-	{
-		MeleeCollisionComp->OnComponentBeginOverlap.AddDynamic(this, &ASZombieCharacter::OnMeleeCompBeginOverlap);
 	}
 
 	BroadcastUpdateAudioLoop(bSensedTarget);
@@ -160,18 +152,6 @@ void ASZombieCharacter::OnHearNoise(APawn* PawnInstigator, const FVector& Locati
 
 void ASZombieCharacter::PerformMeleeStrike(AActor* HitActor)
 {
-	if (LastMeleeAttackTime > GetWorld()->GetTimeSeconds() - MeleeStrikeCooldown)
-	{
-		/* Set timer to start attacking as soon as the cooldown elapses. */
-		if (!TimerHandle_MeleeAttack.IsValid())
-		{
-			// TODO: Set Timer
-		}
-
-		/* Attacked before cooldown expired */
-		return;
-	}
-
 	if (HitActor && HitActor != this && IsAlive())
 	{
 		ACharacter* OtherPawn = Cast<ACharacter>(HitActor);
@@ -196,8 +176,6 @@ void ASZombieCharacter::PerformMeleeStrike(AActor* HitActor)
 				DmgEvent.Damage = MeleeDamage;
 
 				HitActor->TakeDamage(DmgEvent.Damage, DmgEvent, GetController(), this);
-
-				SimulateMeleeStrike();
 			}
 		}
 	}
@@ -245,41 +223,6 @@ void ASZombieCharacter::SimulateMeleeStrike_Implementation()
 {
 	PlayAnimMontage(MeleeAnimMontage);
 	PlayCharacterSound(SoundAttackMelee);
-}
-
-
-void ASZombieCharacter::OnMeleeCompBeginOverlap(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
-{
-	/* Stop any running attack timers */
-	TimerHandle_MeleeAttack.Invalidate();
-
-	PerformMeleeStrike(OtherActor);
-	
-	/* Set re-trigger timer to re-check overlapping pawns at melee attack rate interval */
-	GetWorldTimerManager().SetTimer(TimerHandle_MeleeAttack, this, &ASZombieCharacter::OnRetriggerMeleeStrike, MeleeStrikeCooldown, true);
-}
-
-
-void ASZombieCharacter::OnRetriggerMeleeStrike()
-{
-	/* Apply damage to a single random pawn in range. */
-	TArray<AActor*> Overlaps;
-	MeleeCollisionComp->GetOverlappingActors(Overlaps, ASBaseCharacter::StaticClass());
-	for (int32 i = 0; i < Overlaps.Num(); i++)
-	{
-		ASBaseCharacter* OverlappingPawn = Cast<ASBaseCharacter>(Overlaps[i]);
-		if (OverlappingPawn)
-		{
-			PerformMeleeStrike(OverlappingPawn);
-			//break; /* Uncomment to only attack one pawn maximum */
-		}
-	}
-
-	/* No pawns in range, cancel the retrigger timer */
-	if (Overlaps.Num() == 0)
-	{
-		TimerHandle_MeleeAttack.Invalidate();
-	}
 }
 
 

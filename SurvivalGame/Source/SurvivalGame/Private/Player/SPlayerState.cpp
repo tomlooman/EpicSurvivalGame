@@ -1,13 +1,14 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SGameState.h"
-#include "SPlayerState.h"
+
+#include "Player/SPlayerState.h"
+#include "World/SGameState.h"
+#include "Engine/Engine.h"
+#include "Net/UnrealNetwork.h"
 
 
 
-ASPlayerState::ASPlayerState(const FObjectInitializer& ObjectInitializer)
-: Super(ObjectInitializer)
+ASPlayerState::ASPlayerState()
 {
 	/* AI will remain in team 0, players are updated to team 1 through the GameMode::InitNewPlayer */
 	TeamNumber = 0;

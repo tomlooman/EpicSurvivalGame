@@ -1,8 +1,8 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SZombieAIController.h"
-#include "SZombieCharacter.h"
+
+#include "AI/SZombieAIController.h"
+#include "AI/SZombieCharacter.h"
 
 /* AI Specific includes */
 #include "BehaviorTree/BehaviorTree.h"
@@ -10,11 +10,10 @@
 #include "BehaviorTree/BlackboardComponent.h"
 
 
-ASZombieAIController::ASZombieAIController(const class FObjectInitializer& ObjectInitializer)
-	: Super(ObjectInitializer)
+ASZombieAIController::ASZombieAIController()
 {
-	BehaviorComp = ObjectInitializer.CreateDefaultSubobject<UBehaviorTreeComponent>(this, TEXT("BehaviorComp"));
-	BlackboardComp = ObjectInitializer.CreateDefaultSubobject<UBlackboardComponent>(this, TEXT("BlackboardComp"));
+	BehaviorComp = CreateDefaultSubobject<UBehaviorTreeComponent>(TEXT("BehaviorComp"));
+	BlackboardComp = CreateDefaultSubobject<UBlackboardComponent>(TEXT("BlackboardComp"));
 
 	/* Match with the AI/ZombieBlackboard */
 	PatrolLocationKeyName = "PatrolLocation";
@@ -34,15 +33,15 @@ void ASZombieAIController::OnPossess(class APawn* InPawn)
 	ASZombieCharacter* ZombieBot = Cast<ASZombieCharacter>(InPawn);
 	if (ZombieBot)
 	{
-		if (ZombieBot->BehaviorTree->BlackboardAsset)
+		if (ensure(ZombieBot->BehaviorTree->BlackboardAsset))
 		{
 			BlackboardComp->InitializeBlackboard(*ZombieBot->BehaviorTree->BlackboardAsset);
-
-			/* Make sure the Blackboard has the type of bot we possessed */
-			SetBlackboardBotType(ZombieBot->BotType);
 		}
 
 		BehaviorComp->StartTree(*ZombieBot->BehaviorTree);
+
+		/* Make sure the Blackboard has the type of bot we possessed */
+		SetBlackboardBotType(ZombieBot->BotType);
 	}
 }
 

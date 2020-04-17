@@ -1,19 +1,16 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 
-#include "SurvivalGame.h"
-#include "SGameState.h"
-#include "STimeOfDayManager.h"
+
+#include "World/STimeOfDayManager.h"
+#include "World/SGameState.h"
+#include "Components/AudioComponent.h"
+#include "Engine/DirectionalLight.h"
 
 
 ASTimeOfDayManager::ASTimeOfDayManager()
 {
 	AmbientAudioComp = CreateDefaultSubobject<UAudioComponent>(TEXT("AmbientAudioComp"));
 	AmbientAudioComp->bAutoActivate = false;
-
-	/* Treshold to recapture the skylight */
-	RequiredCaptureDelta = 0.01f;
-
-	SetReplicates(true);
 
 	/*
 	
@@ -64,7 +61,7 @@ void ASTimeOfDayManager::Tick(float DeltaSeconds)
 
 			/* TimeOfDay is expressed in minutes, we need to convert this into a pitch rotation */
 			const float MinutesInDay = 24 * 60;
-			const float PitchOffset = 90; /* The offset to account for time of day 0 should equal midnight */
+			const float PitchOffset = 90; // The offset to account for time of day 0 should equal midnight
 			const float PitchRotation = 360 * ((MyGameState->ElapsedGameMinutes + PredictedIncrement) / MinutesInDay);
 
 			FRotator NewSunRotation = FRotator(PitchRotation + PitchOffset, 45.0f, 0);
@@ -78,14 +75,12 @@ void ASTimeOfDayManager::Tick(float DeltaSeconds)
 		{
 			if (CurrentNightState)
 			{
-				// Play night started cue (position is irrelevant for non spatialized & attenuated sounds)
-				UGameplayStatics::PlaySoundAtLocation(this, SoundNightStarted, GetActorLocation());
+				UGameplayStatics::PlaySound2D(this, SoundNightStarted);
 				TargetSunBrightness = 0.01f;
 			}
 			else
 			{
-				// Play daytime started cue (position is irrelevant for non spatialized & attenuated sounds)
-				UGameplayStatics::PlaySoundAtLocation(this, SoundNightEnded, GetActorLocation());
+				UGameplayStatics::PlaySound2D(this, SoundNightEnded);
 				TargetSunBrightness = OriginalSunBrightness;
 			}
 
@@ -115,23 +110,30 @@ void ASTimeOfDayManager::UpdateSkylight()
 		if (MyGameState)
 		{
 			const float MinutesInDay = 24 * 60;
+			const float PredictedIncrement = MyGameState->GetTimeOfDayIncrement() * TimeSinceLastIncrement;
+
+			float CurrentTime = MyGameState->GetElapsedMinutesCurrentDay() + PredictedIncrement;
+
 			/* Map the intensity from 0 - 12 - 24 hours into 0 - 1 - 0 alpha */
-			const float Alpha = FMath::Sin((MyGameState->GetElapsedMinutesCurrentDay() / MinutesInDay) * 3.14);
+			const float Alpha = FMath::Sin((CurrentTime / MinutesInDay) * 3.14);
 
 			/* Update Intensity */
-			const float NewIntensity = FMath::Lerp(0.1, 1.0, Alpha);
+			float NewIntensity = FMath::Lerp(0.1, 1.0, Alpha);
+			if (SkylightIntensityCurve)
+			{
+				// If curve is specified, override the basic interp from above
+				NewIntensity = SkylightIntensityCurve->GetFloatValue(Alpha);
+			}
 			SkyLightActor->GetLightComponent()->SetIntensity(NewIntensity);
 
-			//float ColorChannel = 1.0f * NewIntensity;
-			//SkyLightActor->GetLightComponent()->SetLightColor(FLinearColor(ColorChannel, ColorChannel, ColorChannel, 1.0f));
+			//UE_LOG(LogTemp, Warning, TEXT("Time of day alpha: %s"), *FString::SanitizeFloat(Alpha));
 
-			if (RequiredCaptureDelta < FMath::Abs(NewIntensity - LastCapturedIntensity))
+			FVector LightColor = SkyLightActor->GetLightComponent()->GetLightColor();
+			if (SkylightColorCurve)
 			{
-				/* Force re-capture of the sky w/ new intensity */
-				/* Hacky and costly solution to recapturing the sky, official support NYI */
-				SkyLightActor->GetLightComponent()->RecaptureSky();
-				LastCapturedIntensity = NewIntensity;
+				LightColor = SkylightColorCurve->GetVectorValue(Alpha);
 			}
+			SkyLightActor->GetLightComponent()->SetLightColor(LightColor);
 		}
 	}
 }

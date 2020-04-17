@@ -1,5 +1,6 @@
 Intermediate
 Saved
+DerivedDataCache
 .vs
 *.sdf
 *.opensdf
@@ -8,6 +9,8 @@ Saved
 *.pdb
 *.exe
 *-DebugGame.dll
+*.sym
+*.debug
 SurvivalGame/Binaries/Win64/SurvivalGame.exp
 SurvivalGame/Binaries/Win64/SurvivalGame.lib
 SurvivalGame/Releases
@@ -16,3 +19,4 @@ SurvivalGame/Releases
 *.target
 *.modules
 *.opendb
+*.VC.db

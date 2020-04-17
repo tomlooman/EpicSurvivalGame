@@ -2,9 +2,12 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "STypes.h"
+#include "SurvivalGame/STypes.h"
 #include "SBaseCharacter.generated.h"
+
+class USoundCue;
 
 UCLASS(ABSTRACT)
 class SURVIVALGAME_API ASBaseCharacter : public ACharacter
