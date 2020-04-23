@@ -15,18 +15,18 @@ USDamageType::USDamageType()
 }
 
 
-bool USDamageType::GetCanDieFrom()
+bool USDamageType::GetCanDieFrom() const
 {
 	return bCanDieFrom;
 }
 
 
-float USDamageType::GetHeadDamageModifier()
+float USDamageType::GetHeadDamageModifier() const
 {
 	return HeadDmgModifier;
 }
 
-float USDamageType::GetLimbDamageModifier()
+float USDamageType::GetLimbDamageModifier() const
 {
 	return LimbDmgModifier;
 }

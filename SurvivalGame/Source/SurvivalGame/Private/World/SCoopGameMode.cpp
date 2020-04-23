@@ -136,8 +136,8 @@ void ASCoopGameMode::OnNightEnded()
 
 void ASCoopGameMode::Killed(AController* Killer, AController* VictimPlayer, APawn* VictimPawn, const UDamageType* DamageType)
 {
-	ASPlayerState* KillerPS = Killer ? Cast<ASPlayerState>(Killer->PlayerState) : NULL;
-	ASPlayerState* VictimPS = VictimPlayer ? Cast<ASPlayerState>(VictimPlayer->PlayerState) : NULL;
+	ASPlayerState* KillerPS = Killer ? Cast<ASPlayerState>(Killer->PlayerState) : nullptr;
+	ASPlayerState* VictimPS = VictimPlayer ? Cast<ASPlayerState>(VictimPlayer->PlayerState) : nullptr;
 
 	if (KillerPS && KillerPS != VictimPS && !KillerPS->bIsABot)
 	{
@@ -186,7 +186,6 @@ void ASCoopGameMode::CheckMatchEnd()
 
 void ASCoopGameMode::FinishMatch()
 {
-	ASGameState* const MyGameState = Cast<ASGameState>(GameState);
 	if (IsMatchInProgress())
 	{
 		EndMatch();

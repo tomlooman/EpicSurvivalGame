@@ -29,9 +29,9 @@ class SURVIVALGAME_API USDamageType : public UDamageType
 
 public:
 
-	bool GetCanDieFrom();
+	bool GetCanDieFrom() const;
 
-	float GetHeadDamageModifier();
+	float GetHeadDamageModifier() const;
 
-	float GetLimbDamageModifier();
+	float GetLimbDamageModifier() const;
 };

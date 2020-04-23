@@ -4,7 +4,6 @@
 #include "UI/SHUD.h"
 #include "Player/SCharacter.h"
 #include "Items/SUsableActor.h"
-#include "Player/SPlayerController.h"
 #include "UObject/ConstructorHelpers.h"
 #include "Engine/Texture2D.h"
 
@@ -56,7 +55,7 @@ void ASHUD::OnStateChanged_Implementation(EHUDState NewState)
 }
 
 
-EHUDState ASHUD::GetCurrentState()
+EHUDState ASHUD::GetCurrentState() const
 {
 	return CurrentState;
 }

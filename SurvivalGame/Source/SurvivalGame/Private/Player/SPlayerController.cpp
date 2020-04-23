@@ -4,7 +4,6 @@
 #include "Player/SPlayerController.h"
 #include "Player/SPlayerCameraManager.h"
 #include "Player/SCharacter.h"
-#include "SurvivalGame/STypes.h"
 #include "UI/SHUD.h"
 #include "World/SGameState.h"
 #include "GameFramework/PlayerState.h"
@@ -101,7 +100,7 @@ void ASPlayerController::ClientHUDStateChanged_Implementation(EHUDState NewState
 void ASPlayerController::ClientHUDMessage_Implementation(EHUDMessage MessageID)
 {
 	/* Turn the ID into a message for the HUD to display */
-	FText TextMessage = GetText(MessageID);
+	const FText TextMessage = GetText(MessageID);
 
 	ASHUD* HUD = Cast<ASHUD>(GetHUD());
 	if (HUD)
@@ -140,7 +139,7 @@ bool ASPlayerController::ServerSendChatMessage_Validate(class APlayerState* Send
 /* Temporarily set the namespace. If this was omitted, we should call NSLOCTEXT(Namespace, x, y) instead */
 #define LOCTEXT_NAMESPACE "HUDMESSAGES"
 
-FText ASPlayerController::GetText(EHUDMessage MsgID)
+FText ASPlayerController::GetText(EHUDMessage MsgID) const
 {
 	switch (MsgID)
 	{
