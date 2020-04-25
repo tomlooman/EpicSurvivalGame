@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "SUsableActor.h"
 #include "SBombActor.generated.h"
 
@@ -13,7 +14,9 @@ class SURVIVALGAME_API ASBombActor : public ASUsableActor
 {
 	GENERATED_BODY()
 
-	ASBombActor(const FObjectInitializer& ObjectInitializer);
+public:
+
+	ASBombActor();
 
 protected:
 

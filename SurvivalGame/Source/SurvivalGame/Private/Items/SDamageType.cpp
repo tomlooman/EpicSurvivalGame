@@ -5,8 +5,7 @@
 
 
 
-USDamageType::USDamageType(const FObjectInitializer& ObjectInitializer)
-: Super(ObjectInitializer)
+USDamageType::USDamageType()
 {
 	/* We apply this modifier based on the physics material setup to the head of the enemy PhysAsset */
 	HeadDmgModifier = 2.0f;

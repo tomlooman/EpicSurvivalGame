@@ -4,10 +4,9 @@
 #include "SUsableActor.h"
 
 
-ASUsableActor::ASUsableActor(const class FObjectInitializer& ObjectInitializer)
-	: Super(ObjectInitializer)
+ASUsableActor::ASUsableActor()
 {
-	MeshComp = ObjectInitializer.CreateDefaultSubobject<UStaticMeshComponent>(this, TEXT("Mesh"));
+	MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	RootComponent = MeshComp;
 } 
 

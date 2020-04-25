@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "Camera/PlayerCameraManager.h"
 #include "SPlayerCameraManager.generated.h"
 
@@ -13,7 +14,7 @@ class SURVIVALGAME_API ASPlayerCameraManager : public APlayerCameraManager
 {
 	GENERATED_BODY()
 
-	ASPlayerCameraManager(const FObjectInitializer& ObjectInitializer);
+	ASPlayerCameraManager();
 
 	/* Update the FOV */
 	virtual void UpdateCamera(float DeltaTime) override;

@@ -2,16 +2,14 @@
 
 #include "SurvivalGame.h"
 #include "SCoopGameMode.h"
+#include "NavigationSystem.h"
+#include "SPlayerState.h"
+#include "SCharacter.h"
+#include "SGameState.h"
 
 
 
-/* Define a log category for error messages */
-DEFINE_LOG_CATEGORY_STATIC(LogGameMode, Log, All);
-
-
-
-ASCoopGameMode::ASCoopGameMode(const FObjectInitializer& ObjectInitializer)
-: Super(ObjectInitializer)
+ASCoopGameMode::ASCoopGameMode()
 {
 	/* Disable damage to coop buddies  */
 	bAllowFriendlyFireDamage = false;
@@ -36,7 +34,7 @@ void ASCoopGameMode::RestartPlayer(class AController* NewPlayer)
 	/* Look for a live player to spawn next to */
 	FVector SpawnOrigin = FVector::ZeroVector;
 	FRotator StartRotation = FRotator::ZeroRotator;
-	for (FConstPawnIterator It = GetWorld()->GetPawnIterator(); It; It++)
+	for (TActorIterator<APawn> It(GetWorld()); It; ++It)
 	{
 		ASCharacter* MyCharacter = Cast<ASCharacter>(*It);
 		if (MyCharacter && MyCharacter->IsAlive())
@@ -56,44 +54,47 @@ void ASCoopGameMode::RestartPlayer(class AController* NewPlayer)
 	}
 
 	/* Get a point on the nav mesh near the other player */
-	FVector StartLocation = UNavigationSystem::GetRandomPointInNavigableRadius(NewPlayer, SpawnOrigin, 250.0f);
-
-	// Try to create a pawn to use of the default class for this player
-	if (NewPlayer->GetPawn() == nullptr && GetDefaultPawnClassForController(NewPlayer) != nullptr)
+	FNavLocation StartLocation;
+	UNavigationSystemV1* NavSystem = UNavigationSystemV1::GetNavigationSystem(this);
+	if (NavSystem && NavSystem->GetRandomPointInNavigableRadius(SpawnOrigin, 250.0f, StartLocation))
 	{
-		FActorSpawnParameters SpawnInfo;
-		SpawnInfo.Instigator = Instigator;
-		APawn* ResultPawn = GetWorld()->SpawnActor<APawn>(GetDefaultPawnClassForController(NewPlayer), StartLocation, StartRotation, SpawnInfo);
-		if (ResultPawn == nullptr)
+		// Try to create a pawn to use of the default class for this player
+		if (NewPlayer->GetPawn() == nullptr && GetDefaultPawnClassForController(NewPlayer) != nullptr)
 		{
-			UE_LOG(LogGameMode, Warning, TEXT("Couldn't spawn Pawn of type %s at %s"), *GetNameSafe(DefaultPawnClass), &StartLocation);
+			FActorSpawnParameters SpawnInfo;
+			SpawnInfo.Instigator = GetInstigator();
+			APawn* ResultPawn = GetWorld()->SpawnActor<APawn>(GetDefaultPawnClassForController(NewPlayer), StartLocation.Location, StartRotation, SpawnInfo);
+			if (ResultPawn == nullptr)
+			{
+				UE_LOG(LogGameMode, Warning, TEXT("Couldn't spawn Pawn of type %s at %s"), *GetNameSafe(DefaultPawnClass), &StartLocation.Location);
+			}
+			NewPlayer->SetPawn(ResultPawn);
 		}
-		NewPlayer->SetPawn(ResultPawn);
-	}
 
-	if (NewPlayer->GetPawn() == nullptr)
-	{
-		NewPlayer->FailedToSpawnPawn();
-	}
-	else
-	{
-		NewPlayer->Possess(NewPlayer->GetPawn());
-
-		// If the Pawn is destroyed as part of possession we have to abort
 		if (NewPlayer->GetPawn() == nullptr)
 		{
 			NewPlayer->FailedToSpawnPawn();
 		}
 		else
 		{
-			// Set initial control rotation to player start's rotation
-			NewPlayer->ClientSetRotation(NewPlayer->GetPawn()->GetActorRotation(), true);
+			NewPlayer->Possess(NewPlayer->GetPawn());
 
-			FRotator NewControllerRot = StartRotation;
-			NewControllerRot.Roll = 0.f;
-			NewPlayer->SetControlRotation(NewControllerRot);
+			// If the Pawn is destroyed as part of possession we have to abort
+			if (NewPlayer->GetPawn() == nullptr)
+			{
+				NewPlayer->FailedToSpawnPawn();
+			}
+			else
+			{
+				// Set initial control rotation to player start's rotation
+				NewPlayer->ClientSetRotation(NewPlayer->GetPawn()->GetActorRotation(), true);
 
-			SetPlayerDefaults(NewPlayer->GetPawn());
+				FRotator NewControllerRot = StartRotation;
+				NewControllerRot.Roll = 0.f;
+				NewPlayer->SetControlRotation(NewControllerRot);
+
+				SetPlayerDefaults(NewPlayer->GetPawn());
+			}
 		}
 	}
 }
@@ -155,12 +156,12 @@ void ASCoopGameMode::Killed(AController* Killer, AController* VictimPlayer, APaw
 void ASCoopGameMode::CheckMatchEnd()
 {
 	bool bHasAlivePlayer = false;
-	for (FConstPawnIterator It = GetWorld()->GetPawnIterator(); It; It++)
+	for (TActorIterator<APawn> It(GetWorld()); It; ++It)
 	{
 		ASCharacter* MyPawn = Cast<ASCharacter>(*It);
 		if (MyPawn && MyPawn->IsAlive())
 		{
-			ASPlayerState* PS = Cast<ASPlayerState>(MyPawn->PlayerState);
+			ASPlayerState* PS = Cast<ASPlayerState>(MyPawn->GetPlayerState());
 			if (PS)
 			{
 				if (!PS->bIsABot)

@@ -4,7 +4,7 @@
 #include "SCarryObjectComponent.h"
 
 
-USCarryObjectComponent::USCarryObjectComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
+USCarryObjectComponent::USCarryObjectComponent()
 {
 	MaxPickupDistance = 600;
 	RotateSpeed = 10.0f;
@@ -12,7 +12,7 @@ USCarryObjectComponent::USCarryObjectComponent(const FObjectInitializer& ObjectI
 	bUsePawnControlRotation = true;
 	bDoCollisionTest = false;
 
-	SetIsReplicated(true);
+	SetIsReplicatedByDefault(true);
 }
 
 
@@ -56,7 +56,7 @@ void USCarryObjectComponent::Pickup()
 		return;
 	} 
 
-	if (GetOwner()->Role < ROLE_Authority)
+	if (!GetOwner()->HasAuthority())
 	{
 		ServerPickup();
 		return;
@@ -69,7 +69,7 @@ void USCarryObjectComponent::Pickup()
 
 void USCarryObjectComponent::Drop()
 {
-	if (GetOwner()->Role < ROLE_Authority)
+	if (!GetOwner()->HasAuthority())
 	{
 		ServerDrop();
 	}
@@ -96,7 +96,6 @@ AActor* USCarryObjectComponent::GetActorInView()
 	const FVector TraceEnd = TraceStart + (Direction * MaxPickupDistance);
 
 	FCollisionQueryParams TraceParams(TEXT("TraceActor"), true, PawnOwner);
-	TraceParams.bTraceAsyncScene = true;
 	TraceParams.bReturnPhysicalMaterial = false;
 	TraceParams.bTraceComplex = false;
 
@@ -147,7 +146,7 @@ void USCarryObjectComponent::Throw()
 	if (!GetIsCarryingActor())
 		return;
 
-	if (GetOwner()->Role < ROLE_Authority)
+	if (!GetOwner()->HasAuthority())
 	{
 		ServerThrow();
 		return;
@@ -184,7 +183,7 @@ bool USCarryObjectComponent::GetIsCarryingActor()
 
 void USCarryObjectComponent::Rotate(float DirectionYaw, float DirectionRoll)
 {
-	if (GetOwner()->Role < ROLE_Authority)
+	if (!GetOwner()->HasAuthority())
 	{
 		ServerRotate(DirectionYaw, DirectionRoll);
 	}

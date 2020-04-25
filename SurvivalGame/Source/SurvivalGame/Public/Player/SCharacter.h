@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "SBaseCharacter.h"
 #include "SCharacter.generated.h"
 
@@ -10,7 +11,7 @@ class SURVIVALGAME_API ASCharacter : public ASBaseCharacter
 {
 	GENERATED_BODY()
 
-	ASCharacter(const FObjectInitializer& ObjectInitializer);
+	ASCharacter(const class FObjectInitializer& ObjectInitializer);
 
 	virtual void BeginPlay() override;
 
@@ -18,7 +19,7 @@ class SURVIVALGAME_API ASCharacter : public ASBaseCharacter
 	virtual void Tick(float DeltaSeconds) override;
 
 	/* Called to bind functionality to input */
-	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
@@ -73,10 +74,7 @@ public:
 	void OnCrouchToggle();
 
 	/* Client mapped to Input */
-	void OnStartJump();
-
-	/* Client mapped to Input */
-	void OnStopJump();
+	void OnJump();
 
 	/* Client mapped to Input */
 	void OnStartSprinting();

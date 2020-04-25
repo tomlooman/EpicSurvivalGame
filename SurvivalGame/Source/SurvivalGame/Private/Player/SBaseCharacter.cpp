@@ -3,6 +3,8 @@
 #include "SurvivalGame.h"
 #include "SBaseCharacter.h"
 #include "SGameMode.h"
+#include "SCharacterMovementComponent.h"
+#include "SDamageType.h"
 
 
 ASBaseCharacter::ASBaseCharacter(const class FObjectInitializer& ObjectInitializer)
@@ -96,9 +98,8 @@ bool ASBaseCharacter::CanDie(float KillingDamage, FDamageEvent const& DamageEven
 	/* Check if character is already dying, destroyed or if we have authority */
 	if (bIsDying ||
 		IsPendingKill() ||
-		Role != ROLE_Authority ||
-		GetWorld()->GetAuthGameMode() == NULL ||
-		GetWorld()->GetAuthGameMode()->GetMatchState() == MatchState::LeavingMap)
+		!HasAuthority() ||
+		GetWorld()->GetAuthGameMode() == NULL)
 	{
 		return false;
 	}
@@ -142,8 +143,8 @@ void ASBaseCharacter::OnDeath(float KillingDamage, FDamageEvent const& DamageEve
 		return;
 	}
 
-	bReplicateMovement = false;
-	bTearOff = true;
+	SetReplicateMovement(true);
+	TearOff();
 	bIsDying = true;
 
 	PlayHit(KillingDamage, DamageEvent, PawnInstigator, DamageCauser, true);
@@ -230,7 +231,7 @@ void ASBaseCharacter::SetRagdollPhysics()
 
 void ASBaseCharacter::PlayHit(float DamageTaken, struct FDamageEvent const& DamageEvent, APawn* PawnInstigator, AActor* DamageCauser, bool bKilled)
 {
-	if (Role == ROLE_Authority)
+	if (HasAuthority())
 	{
 		ReplicateHit(DamageTaken, DamageEvent, PawnInstigator, DamageCauser, bKilled);
 	}
@@ -297,7 +298,7 @@ void ASBaseCharacter::SetSprinting(bool NewSprinting)
 		UnCrouch();
 	}
 
-	if (Role < ROLE_Authority)
+	if (!HasAuthority())
 	{
 		ServerSetSprinting(NewSprinting);
 	}
@@ -340,7 +341,7 @@ void ASBaseCharacter::SetTargeting(bool NewTargeting)
 {
 	bIsTargeting = NewTargeting;
 
-	if (Role < ROLE_Authority)
+	if (!HasAuthority())
 	{
 		ServerSetTargeting(NewTargeting);
 	}

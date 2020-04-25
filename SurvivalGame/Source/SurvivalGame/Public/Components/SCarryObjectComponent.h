@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "SCarryObjectComponent.generated.h"
 
@@ -13,7 +14,7 @@ class SURVIVALGAME_API USCarryObjectComponent : public USpringArmComponent
 {
 	GENERATED_BODY()
 
-	USCarryObjectComponent(const FObjectInitializer& ObjectInitializer);
+	USCarryObjectComponent();
 
 private:
 

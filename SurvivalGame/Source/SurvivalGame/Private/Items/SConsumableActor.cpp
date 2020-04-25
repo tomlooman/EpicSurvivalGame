@@ -5,8 +5,7 @@
 #include "SCharacter.h"
 
 
-ASConsumableActor::ASConsumableActor(const class FObjectInitializer& ObjectInitializer)
-	: Super(ObjectInitializer)
+ASConsumableActor::ASConsumableActor()
 {
 	/* A default to tweak per food variation in Blueprint */
 	Nutrition = 20;

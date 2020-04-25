@@ -6,8 +6,7 @@
 
 
 
-ASPlayerState::ASPlayerState(const FObjectInitializer& ObjectInitializer)
-: Super(ObjectInitializer)
+ASPlayerState::ASPlayerState()
 {
 	/* AI will remain in team 0, players are updated to team 1 through the GameMode::InitNewPlayer */
 	TeamNumber = 0;
@@ -38,7 +37,7 @@ void ASPlayerState::ScorePoints(int32 Points)
 	Score += Points;
 
 	/* Add the score to the global score count */
-	ASGameState* GS = Cast<ASGameState>(GetWorld()->GameState);
+	ASGameState* GS = GetWorld()->GetGameState<ASGameState>();
 	if (GS)
 	{
 		GS->AddScore(Points);

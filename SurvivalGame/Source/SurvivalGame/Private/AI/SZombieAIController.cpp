@@ -10,11 +10,10 @@
 #include "BehaviorTree/BlackboardComponent.h"
 
 
-ASZombieAIController::ASZombieAIController(const class FObjectInitializer& ObjectInitializer)
-	: Super(ObjectInitializer)
+ASZombieAIController::ASZombieAIController()
 {
-	BehaviorComp = ObjectInitializer.CreateDefaultSubobject<UBehaviorTreeComponent>(this, TEXT("BehaviorComp"));
-	BlackboardComp = ObjectInitializer.CreateDefaultSubobject<UBlackboardComponent>(this, TEXT("BlackboardComp"));
+	BehaviorComp = CreateDefaultSubobject<UBehaviorTreeComponent>(TEXT("BehaviorComp"));
+	BlackboardComp = CreateDefaultSubobject<UBlackboardComponent>(TEXT("BlackboardComp"));
 
 	/* Match with the AI/ZombieBlackboard */
 	PatrolLocationKeyName = "PatrolLocation";
@@ -27,29 +26,29 @@ ASZombieAIController::ASZombieAIController(const class FObjectInitializer& Objec
 }
 
 
-void ASZombieAIController::Possess(class APawn* InPawn)
+void ASZombieAIController::OnPossess(class APawn* InPawn)
 {
-	Super::Possess(InPawn);
+	Super::OnPossess(InPawn);
 
 	ASZombieCharacter* ZombieBot = Cast<ASZombieCharacter>(InPawn);
 	if (ZombieBot)
 	{
-		if (ZombieBot->BehaviorTree->BlackboardAsset)
+		if (ensure(ZombieBot->BehaviorTree->BlackboardAsset))
 		{
 			BlackboardComp->InitializeBlackboard(*ZombieBot->BehaviorTree->BlackboardAsset);
-
-			/* Make sure the Blackboard has the type of bot we possessed */
-			SetBlackboardBotType(ZombieBot->BotType);
 		}
 
 		BehaviorComp->StartTree(*ZombieBot->BehaviorTree);
+
+		/* Make sure the Blackboard has the type of bot we possessed */
+		SetBlackboardBotType(ZombieBot->BotType);
 	}
 }
 
 
-void ASZombieAIController::UnPossess()
+void ASZombieAIController::OnUnPossess()
 {
-	Super::UnPossess();
+	Super::OnUnPossess();
 
 	/* Stop any behavior running as we no longer have a pawn to control */
 	BehaviorComp->StopTree();

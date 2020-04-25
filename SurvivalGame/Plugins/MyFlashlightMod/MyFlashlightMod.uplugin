@@ -6,8 +6,8 @@
 	"VersionName" : "1.0",
 	"CreatedBy" : "Tom Looman",
 	"CreatedByURL" : "http://www.tomlooman.com",
-	"EngineVersion" : "4.9.0",
 	"Description" : "My Flashlight Mod",
+	"EngineVersion" : "4.24.0",
 	"Category" : "User Mod",
 	"EnabledByDefault" : true,
 

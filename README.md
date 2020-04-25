@@ -1,13 +1,17 @@
 Epic Survival Game Series
 -------------------------
 
+**Last updated for 4.23!**
+
 Third-person survival game for Unreal Engine 4 made entirely in C++. Originally built as a 6 section tutorial series, now available as open-source C++ sample project.
 
 See [the main documentation page on the unreal engine Wiki](https://wiki.unrealengine.com/Survival_sample_game).
 
 For questions & feedback visit [the official thread on the unreal engine forums](https://forums.unrealengine.com/showthread.php?63678-Upcoming-C-Gameplay-Example-Series-Making-a-Survival-Game)
 
-**Last updated for 4.12!**
+**Looking for a step by step guide?** I released my **[Unreal Engine 4 Mastery: Create Multiplayer Games with C++](https://www.udemy.com/unrealengine-cpp/?couponCode=TLGH14)!** Which includes two games teaching you C++, Networking for multiplayer and multiple AI including advanced behavior trees for ranged shooter AI.
+
+Get the Udemy Course now and learn C++ for Unreal Engine 4: [DISCOUNT LINK](https://www.udemy.com/unrealengine-cpp/?couponCode=TLGH14)
 
 ### NEW: Mod Support
 Includes two small mod examples including a Pink Rifle extension and Flashlight replacement mod. [Check out the Modding Sample Project for guidelines & cooker profile setup](https://wiki.unrealengine.com/Modding:_Adding_mod-support_to_your_Unreal_Engine_4_project)

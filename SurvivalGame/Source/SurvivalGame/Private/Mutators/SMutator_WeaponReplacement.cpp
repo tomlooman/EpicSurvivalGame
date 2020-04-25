@@ -3,6 +3,7 @@
 #include "SurvivalGame.h"
 #include "SGameMode.h"
 #include "SMutator_WeaponReplacement.h"
+#include "SWeaponPickup.h"
 
 
 

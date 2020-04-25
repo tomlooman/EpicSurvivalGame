@@ -5,8 +5,7 @@
 #include "SCharacter.h"
 
 
-ASPlayerCameraManager::ASPlayerCameraManager(const class FObjectInitializer& ObjectInitializer)
-	: Super(ObjectInitializer)
+ASPlayerCameraManager::ASPlayerCameraManager()
 {
 	NormalFOV = 90.0f;
 	TargetingFOV = 65.0f;

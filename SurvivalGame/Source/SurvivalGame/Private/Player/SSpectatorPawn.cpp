@@ -6,8 +6,7 @@
 
 
 
-ASSpectatorPawn::ASSpectatorPawn(const class FObjectInitializer& ObjectInitializer)
-	: Super(ObjectInitializer)
+ASSpectatorPawn::ASSpectatorPawn()
 {
 	bAddDefaultMovementBindings = true;
 }

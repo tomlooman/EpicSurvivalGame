@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "SWeapon.h"
 #include "SFlashlight.generated.h"
 
@@ -13,7 +14,7 @@ class SURVIVALGAME_API ASFlashlight : public ASWeapon
 {
 	GENERATED_BODY()
 
-	ASFlashlight(const FObjectInitializer& ObjectInitializer);
+	ASFlashlight();
 
 	virtual void BeginPlay() override;
 

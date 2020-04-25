@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "Engine/TargetPoint.h"
 #include "SBotWaypoint.generated.h"
 

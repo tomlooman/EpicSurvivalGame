@@ -8,12 +8,9 @@
 #include "SHUD.h"
 #include "SGameState.h"
 
-/* Define a log category for error messages */
-DEFINE_LOG_CATEGORY_STATIC(LogGame, Log, All);
 
 
-ASPlayerController::ASPlayerController(const class FObjectInitializer& ObjectInitializer)
-: Super(ObjectInitializer)
+ASPlayerController::ASPlayerController()
 {
 	/* Assign the class types we wish to use */
 	PlayerCameraManagerClass = ASPlayerCameraManager::StaticClass();
@@ -28,7 +25,7 @@ void ASPlayerController::UnFreeze()
 	Super::UnFreeze();
 
 	// Check if match is ending or has ended.
-	ASGameState* MyGameState = Cast<ASGameState>(GetWorld()->GameState);
+	ASGameState* MyGameState = GetWorld()->GetGameState<ASGameState>();
 	if (MyGameState && MyGameState->HasMatchEnded())
 	{
 		/* Don't allow spectating or respawns */
@@ -91,10 +88,10 @@ bool ASPlayerController::ServerSuicide_Validate()
 
 void ASPlayerController::ClientHUDStateChanged_Implementation(EHUDState NewState)
 {
-	ASHUD* MyHUD = Cast<ASHUD>(GetHUD());
-	if (MyHUD)
+	ASHUD* HUD = Cast<ASHUD>(GetHUD());
+	if (HUD)
 	{
-		MyHUD->OnStateChanged(NewState);
+		HUD->OnStateChanged(NewState);
 	}
 }
 
@@ -104,13 +101,39 @@ void ASPlayerController::ClientHUDMessage_Implementation(EHUDMessage MessageID)
 	/* Turn the ID into a message for the HUD to display */
 	FText TextMessage = GetText(MessageID);
 
-	ASHUD* MyHUD = Cast<ASHUD>(GetHUD());
-	if (MyHUD)
+	ASHUD* HUD = Cast<ASHUD>(GetHUD());
+	if (HUD)
 	{
 		/* Implemented in SurvivalHUD Blueprint */
-		MyHUD->MessageReceived(TextMessage);
+		HUD->MessageReceived(TextMessage);
 	}
 }
+
+
+void ASPlayerController::ServerSendChatMessage_Implementation(class APlayerState* Sender, const FString& Message)
+{
+	for (FConstPlayerControllerIterator Iterator = GetWorld()->GetPlayerControllerIterator(); Iterator; ++Iterator)
+	{
+		ASPlayerController* PC = Cast<ASPlayerController>(Iterator->Get());
+		if (PC)
+		{
+			PC->ClientReceiveChatMessage(Sender, Message);
+		}
+	}
+}
+
+
+void ASPlayerController::ClientReceiveChatMessage_Implementation(class APlayerState* Sender, const FString& Message)
+{
+	OnChatMessageReceived.Broadcast(Sender, Message);
+}
+
+
+bool ASPlayerController::ServerSendChatMessage_Validate(class APlayerState* Sender, const FString& Message)
+{
+	return true;
+}
+
 
 /* Temporarily set the namespace. If this was omitted, we should call NSLOCTEXT(Namespace, x, y) instead */
 #define LOCTEXT_NAMESPACE "HUDMESSAGES"
