@@ -79,7 +79,7 @@ void ASZombieCharacter::BeginPlay()
 	if (PS)
 	{
 		PS->SetPlayerName("Bot");
-		PS->bIsABot = true;
+		PS->SetIsABot(true);
 	}
 }
 

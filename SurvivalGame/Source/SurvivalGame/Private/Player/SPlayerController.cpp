@@ -48,7 +48,7 @@ void ASPlayerController::UnFreeze()
 void ASPlayerController::StartSpectating()
 {
 	/* Update the state on server */
-	PlayerState->bIsSpectator = true;
+	PlayerState->SetIsSpectator(true);
 	/* Waiting to respawn */
 	bPlayerIsWaiting = true;
 	ChangeState(NAME_Spectating);

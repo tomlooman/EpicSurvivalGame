@@ -12,7 +12,7 @@
 
 ASImpactEffect::ASImpactEffect()
 {
-	bAutoDestroyWhenFinished = true;
+	SetAutoDestroyWhenFinished(true);
 	/* Can ever tick is required to trigger bAutoDestroyWhenFinished, which is checked in AActor::Tick */
 	PrimaryActorTick.bCanEverTick = true;
 
