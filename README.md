@@ -7,6 +7,10 @@ Third-person survival game for Unreal Engine 4 made entirely in C++. Originally 
 
 See [the main documentation page](https://www.tomlooman.com/survival-sample-game-for-ue4/) for walkthrough of many of the features.
 
+![alt text](https://www.tomlooman.com/wp-content/uploads/2015/04/section6_equipment03.jpg)
+
+![alt text](https://www.tomlooman.com/wp-content/uploads/2015/04/section6_advancedanimbp031.jpg)
+
 For questions & feedback visit [the official thread on the unreal engine forums](https://forums.unrealengine.com/showthread.php?63678-Upcoming-C-Gameplay-Example-Series-Making-a-Survival-Game)
 
 **Looking for a step by step guide?** I released my **[Unreal Engine 4 Mastery: Create Multiplayer Games with C++](https://www.udemy.com/unrealengine-cpp/?couponCode=TLGH14)!** Which includes two games teaching you C++, Networking for multiplayer and multiple AI including advanced behavior trees for ranged shooter AI.
