@@ -247,7 +247,7 @@ bool ASGameMode::IsSpawnpointAllowed(APlayerStart* SpawnPoint, AController* Cont
 	ASPlayerStart* MyPlayerStart = Cast<ASPlayerStart>(SpawnPoint);
 	if (MyPlayerStart)
 	{
-		return MyPlayerStart->GetIsPlayerOnly() && !Controller->PlayerState->bIsABot;
+		return MyPlayerStart->GetIsPlayerOnly() && !Controller->PlayerState->IsABot();
 	}
 
 	/* Cast failed, Anyone can spawn at the base playerstart class */
@@ -282,7 +282,7 @@ bool ASGameMode::IsSpawnpointPreferred(APlayerStart* SpawnPoint, AController* Co
 		ASPlayerStart* MyPlayerStart = Cast<ASPlayerStart>(SpawnPoint);
 		if (MyPlayerStart)
 		{
-			return MyPlayerStart->GetIsPlayerOnly() && !Controller->PlayerState->bIsABot;
+			return MyPlayerStart->GetIsPlayerOnly() && !Controller->PlayerState->IsABot();
 		}
 	}
 
@@ -319,7 +319,7 @@ UClass* ASGameMode::GetDefaultPawnClassForController_Implementation(AController*
 bool ASGameMode::CanSpectate_Implementation(APlayerController* Viewer, APlayerState* ViewTarget)
 {
 	/* Don't allow spectating of other non-player bots */
-	return (ViewTarget && !ViewTarget->bIsABot);
+	return (ViewTarget && !ViewTarget->IsABot());
 }
 
 

@@ -21,7 +21,6 @@ void ASPlayerState::Reset()
 
 	NumKills = 0;
 	NumDeaths = 0;
-	Score = 0;
 }
 
 void ASPlayerState::AddKill()
@@ -36,7 +35,7 @@ void ASPlayerState::AddDeath()
 
 void ASPlayerState::ScorePoints(int32 Points)
 {
-	Score += Points;
+	SetScore(GetScore() + Points);
 
 	/* Add the score to the global score count */
 	ASGameState* GS = GetWorld()->GetGameState<ASGameState>();
@@ -66,12 +65,6 @@ int32 ASPlayerState::GetKills() const
 int32 ASPlayerState::GetDeaths() const
 {
 	return NumDeaths;
-}
-
-
-float ASPlayerState::GetScore() const
-{
-	return Score;
 }
 
 
