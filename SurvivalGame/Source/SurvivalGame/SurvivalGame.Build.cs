@@ -15,9 +15,10 @@ public class SurvivalGame : ModuleRules
             "AIModule",
             /* Temporarily added GameplayTasks to workaround 4.12 compilation bug. */
             "GameplayTasks",
-            "NavigationSystem"
+            "NavigationSystem",
+            "OnlineSubsystem" // For Steam
         });
 
-		PrivateDependencyModuleNames.AddRange(new string[] {  });
+        PrivateDependencyModuleNames.AddRange(new string[] {  });
 	}
 }
