@@ -78,13 +78,15 @@ protected:
 	/* Explode the bomb */
 	void Explode();
 
-	UFUNCTION(Reliable, NetMulticast)
+	/* Blueprint function */
+	UFUNCTION(BlueprintImplementableEvent)
+	void K2_SimulateExplosion();
+
+	/* Note: Marked unreliable as its non-gameplay VFX only */
+	UFUNCTION(Unreliable, NetMulticast)
 	void SimulateFuzeFX();
 
-	void SimulateFuzeFX_Implementation();
-
-	UFUNCTION(Reliable, NetMulticast)
+	/* Note: Marked unreliable as its non-gameplay VFX only */
+	UFUNCTION(Unreliable, NetMulticast)
 	void SimulateExplosion();
-
-	void SimulateExplosion_Implementation();
 };

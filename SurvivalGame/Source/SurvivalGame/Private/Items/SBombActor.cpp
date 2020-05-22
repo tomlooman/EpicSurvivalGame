@@ -126,6 +126,9 @@ void ASBombActor::SimulateExplosion_Implementation()
 		ExplosionPCS->SetTemplate(ExplosionFX);
 		ExplosionPCS->ActivateSystem();
 	}
+
+	// For Blueprint
+	K2_SimulateExplosion();
 }
 
 float ASBombActor::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser)
