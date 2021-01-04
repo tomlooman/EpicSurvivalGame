@@ -16,7 +16,8 @@ public class SurvivalGame : ModuleRules
             /* Temporarily added GameplayTasks to workaround 4.12 compilation bug. */
             "GameplayTasks",
             "NavigationSystem",
-            "OnlineSubsystem" // For Steam
+            "OnlineSubsystem", // For Steam
+            "PhysicsCore" // PhysicalMaterials
         });
 
         PrivateDependencyModuleNames.AddRange(new string[] {  });
