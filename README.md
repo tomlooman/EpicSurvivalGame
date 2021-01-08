@@ -1,7 +1,7 @@
 Epic Survival Game Series
 -------------------------
 
-**Last updated for 4.25!**
+**Last updated for 4.26!**
 
 Third-person survival game for Unreal Engine 4 made entirely in C++. Originally built as a 6 section tutorial series, now available as open-source C++ sample project.
 
