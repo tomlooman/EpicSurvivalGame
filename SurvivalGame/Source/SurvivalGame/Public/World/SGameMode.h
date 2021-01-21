@@ -51,6 +51,10 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Debug")
 	bool bSpawnZombiesAtNight;
 
+	/* Limit the amount of zombies to have at one point in the world (includes players) */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Debug")
+	int32 MaxPawnsInZone;
+
 	float BotSpawnInterval;
 
 	/* Called once on every new player that enters the gamemode */

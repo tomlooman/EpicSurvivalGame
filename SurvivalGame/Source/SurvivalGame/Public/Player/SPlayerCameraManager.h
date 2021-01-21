@@ -19,8 +19,6 @@ class SURVIVALGAME_API ASPlayerCameraManager : public APlayerCameraManager
 	/* Update the FOV */
 	virtual void UpdateCamera(float DeltaTime) override;
 
-	virtual void BeginPlay() override;
-
 	float CurrentCrouchOffset;
 
 	/* Maximum camera offset applied when crouch is initiated. Always lerps back to zero */

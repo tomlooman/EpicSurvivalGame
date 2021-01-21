@@ -122,7 +122,7 @@ public:
 
 	bool ServerUse_Validate();
 
-	class ASUsableActor* GetUsableInView();
+	class ASUsableActor* GetUsableInView() const;
 
 	/*Max distance to use/focus on actors. */
 	UPROPERTY(EditDefaultsOnly, Category = "ObjectInteraction")

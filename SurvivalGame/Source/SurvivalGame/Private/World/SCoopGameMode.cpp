@@ -6,6 +6,8 @@
 #include "Player/SPlayerState.h"
 #include "Player/SCharacter.h"
 #include "World/SGameState.h"
+#include "EngineUtils.h"
+#include "Player/SPlayerController.h"
 
 
 
@@ -25,7 +27,7 @@ ASCoopGameMode::ASCoopGameMode()
 void ASCoopGameMode::RestartPlayer(class AController* NewPlayer)
 {
 	/* Fallback to PlayerStart picking if team spawning is disabled or we're trying to spawn a bot. */
-	if (!bSpawnAtTeamPlayer || (NewPlayer->PlayerState && NewPlayer->PlayerState->bIsABot))
+	if (!bSpawnAtTeamPlayer || (NewPlayer->PlayerState && NewPlayer->PlayerState->IsABot()))
 	{
 		Super::RestartPlayer(NewPlayer);
 		return;
@@ -109,7 +111,7 @@ void ASCoopGameMode::OnNightEnded()
 		ASPlayerController* MyController = Cast<ASPlayerController>(*It);
 		if (MyController)
 		{
-			if (MyController->PlayerState->bIsSpectator)
+			if (MyController->PlayerState->IsSpectator())
 			{
 				RestartPlayer(MyController);
 				MyController->ClientHUDStateChanged(EHUDState::Playing);
@@ -134,16 +136,16 @@ void ASCoopGameMode::OnNightEnded()
 
 void ASCoopGameMode::Killed(AController* Killer, AController* VictimPlayer, APawn* VictimPawn, const UDamageType* DamageType)
 {
-	ASPlayerState* KillerPS = Killer ? Cast<ASPlayerState>(Killer->PlayerState) : NULL;
-	ASPlayerState* VictimPS = VictimPlayer ? Cast<ASPlayerState>(VictimPlayer->PlayerState) : NULL;
+	ASPlayerState* KillerPS = Killer ? Cast<ASPlayerState>(Killer->PlayerState) : nullptr;
+	ASPlayerState* VictimPS = VictimPlayer ? Cast<ASPlayerState>(VictimPlayer->PlayerState) : nullptr;
 
-	if (KillerPS && KillerPS != VictimPS && !KillerPS->bIsABot)
+	if (KillerPS && KillerPS != VictimPS && !KillerPS->IsABot())
 	{
 		KillerPS->AddKill();
 		KillerPS->ScorePoints(10);
 	}
 
-	if (VictimPS && !VictimPS->bIsABot)
+	if (VictimPS && !VictimPS->IsABot())
 	{
 		VictimPS->AddDeath();
 	}
@@ -164,7 +166,7 @@ void ASCoopGameMode::CheckMatchEnd()
 			ASPlayerState* PS = Cast<ASPlayerState>(MyPawn->GetPlayerState());
 			if (PS)
 			{
-				if (!PS->bIsABot)
+				if (!PS->IsABot())
 				{
 					/* Found one player that is still alive, game will continue */
 					bHasAlivePlayer = true;
@@ -184,7 +186,6 @@ void ASCoopGameMode::CheckMatchEnd()
 
 void ASCoopGameMode::FinishMatch()
 {
-	ASGameState* const MyGameState = Cast<ASGameState>(GameState);
 	if (IsMatchInProgress())
 	{
 		EndMatch();

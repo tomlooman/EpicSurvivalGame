@@ -8,7 +8,6 @@
 #include "SZombieAIController.generated.h"
 
 class UBehaviorTreeComponent;
-class ASBotWaypoint;
 class ASBaseCharacter;
 
 /**
@@ -44,11 +43,11 @@ class SURVIVALGAME_API ASZombieAIController : public AAIController
 
 public:
 
-	ASBotWaypoint* GetWaypoint();
+	AActor* GetWaypoint() const;
 
-	ASBaseCharacter* GetTargetEnemy();
+	ASBaseCharacter* GetTargetEnemy() const;
 
-	void SetWaypoint(ASBotWaypoint* NewWaypoint);
+	void SetWaypoint(AActor* NewWaypoint);
 
 	void SetTargetEnemy(APawn* NewTarget);
 

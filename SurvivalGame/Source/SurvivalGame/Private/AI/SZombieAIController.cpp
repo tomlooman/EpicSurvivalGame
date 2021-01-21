@@ -55,7 +55,7 @@ void ASZombieAIController::OnUnPossess()
 }
 
 
-void ASZombieAIController::SetWaypoint(ASBotWaypoint* NewWaypoint)
+void ASZombieAIController::SetWaypoint(AActor* NewWaypoint)
 {
 	if (BlackboardComp)
 	{
@@ -73,18 +73,18 @@ void ASZombieAIController::SetTargetEnemy(APawn* NewTarget)
 }
 
 
-ASBotWaypoint* ASZombieAIController::GetWaypoint()
+AActor* ASZombieAIController::GetWaypoint() const
 {
 	if (BlackboardComp)
 	{
-		return Cast<ASBotWaypoint>(BlackboardComp->GetValueAsObject(CurrentWaypointKeyName));
+		return Cast<AActor>(BlackboardComp->GetValueAsObject(CurrentWaypointKeyName));
 	}
 
 	return nullptr;
 }
 
 
-ASBaseCharacter* ASZombieAIController::GetTargetEnemy()
+ASBaseCharacter* ASZombieAIController::GetTargetEnemy() const
 {
 	if (BlackboardComp)
 	{

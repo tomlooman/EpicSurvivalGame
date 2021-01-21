@@ -41,7 +41,7 @@ class SURVIVALGAME_API ASHUD : public AHUD
 public:
 
 	UFUNCTION(BlueprintCallable, Category = "HUD")
-	EHUDState GetCurrentState();
+	EHUDState GetCurrentState() const;
 
 	/* An event hook to call HUD text events to display in the HUD. Blueprint HUD class must implement how to deal with this event. */
 	UFUNCTION(BlueprintImplementableEvent, Category = "HUDEvents")

@@ -64,7 +64,7 @@ public:
 
 	void ClientHUDMessage_Implementation(EHUDMessage MessageID);
 
-	FText GetText(EHUDMessage MsgID);
+	FText GetText(EHUDMessage MsgID) const;
 
 	/* Kill the current pawn */
 	UFUNCTION(exec)

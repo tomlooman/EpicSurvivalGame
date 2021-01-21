@@ -2,6 +2,8 @@
 
 
 #include "Player/SCharacter.h"
+
+#include "TimerManager.h"
 #include "Items/SUsableActor.h"
 #include "Items/SWeapon.h"
 #include "Items/SWeaponPickup.h"
@@ -13,6 +15,7 @@
 #include "Components/CapsuleComponent.h"
 #include "SurvivalGame/SurvivalGame.h"
 #include "GameFramework/DamageType.h"
+#include "Camera/CameraComponent.h"
 
 
 // Sets default values
@@ -198,7 +201,7 @@ void ASCharacter::MoveRight(float Val)
 /*
 Performs ray-trace to find closest looked-at UsableActor.
 */
-ASUsableActor* ASCharacter::GetUsableInView()
+ASUsableActor* ASCharacter::GetUsableInView() const
 {
 	FVector CamLoc;
 	FRotator CamRot;
@@ -219,8 +222,6 @@ ASUsableActor* ASCharacter::GetUsableInView()
 
 	FHitResult Hit(ForceInit);
 	GetWorld()->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, ECC_Visibility, TraceParams);
-
-	//DrawDebugLine(GetWorld(), TraceStart, TraceEnd, FColor::Red, false, 1.0f);
 
 	return Cast<ASUsableActor>(Hit.GetActor());
 }
