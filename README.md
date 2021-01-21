@@ -30,22 +30,22 @@ Adds weapon support for the character, a flashlight, UT-style inventory with on-
 ### Section 3
 Introduces AI "Zombie" enemy to our game using PawnSensing and Behavior Tree.
 
-- [Documentation page](https://wiki.unrealengine.com/Survival_Sample_Game:_Section_3) // move from unreal wiki WIP
+- [Documentation page](https://www.tomlooman.com/survival-sample-game-for-ue4/section-three/)
 
 ### Section 4
 Introduces a gameloop with enemies, items, scoring and a time of day.
 
-- [Documentation page](https://wiki.unrealengine.com/Survival_Sample_Game:_Section_4) // move from unreal wiki WIP
+- [Documentation page](https://www.ue4community.wiki/Legacy/Survival_Sample_Game:_Section_4)
 
 ### Section 5
 Introduces the ability to carry around objects like barriers and discusses game networking.
 
-- [Documentation page](https://wiki.unrealengine.com/Survival_Sample_Game:_Section_5) // move from unreal wiki WIP
+- [Documentation page](https://www.ue4community.wiki/Legacy/Survival_Sample_Game:_Section_5)
 
 ### Section 6
 The final section in the series focuses on bug fixing and a bit of polish to the existing features. This section is compatible with the 4.8 release.
 
-- [Documentation page](https://wiki.unrealengine.com/Survival_Sample_Game:_Section_6) // move from unreal wiki WIP
+- [Documentation page](https://www.ue4community.wiki/Legacy/Survival_Sample_Game:_Section_6)
 
 ### NEW: Mod Support
 Includes two small mod examples including a Pink Rifle extension and Flashlight replacement mod. [Check out the Modding Sample Project for guidelines & cooker profile setup](https://www.tomlooman.com/add-mod-support-to-your-unreal-engine-4-game/)
