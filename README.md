@@ -7,9 +7,11 @@ Third-person survival game for Unreal Engine 4 made entirely in C++. Originally 
 
 See [the main documentation page](https://www.tomlooman.com/survival-sample-game-for-ue4/) for walkthrough of many of the features.
 
-![alt text](https://www.tomlooman.com/wp-content/uploads/2015/04/section6_equipment03.jpg)
+![equipment header](https://www.tomlooman.com/wp-content/uploads/2015/04/section6_equipment03.jpg)
 
-![alt text](https://www.tomlooman.com/wp-content/uploads/2015/04/section6_advancedanimbp031.jpg)
+![animation blueprint graph example](https://www.tomlooman.com/wp-content/uploads/2015/04/section6_advancedanimbp031.jpg)
+
+![Refreshed look for Landscape Map](https://www.tomlooman.com/wp-content/uploads/2021/01/survivalgame_refresh_05.jpg)
 
 For questions & feedback visit [the official thread on the unreal engine forums](https://forums.unrealengine.com/showthread.php?63678-Upcoming-C-Gameplay-Example-Series-Making-a-Survival-Game)
 
