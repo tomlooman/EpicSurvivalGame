@@ -296,6 +296,7 @@ public:
 	UPROPERTY(Transient, ReplicatedUsing = OnRep_CurrentWeapon)
 	class ASWeapon* CurrentWeapon;
 
+	UPROPERTY()
 	class ASWeapon* PreviousWeapon;
 
 	/* Update the weapon mesh to the newly equipped weapon, this is triggered during an anim montage.

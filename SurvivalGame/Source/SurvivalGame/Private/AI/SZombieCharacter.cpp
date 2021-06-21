@@ -19,7 +19,6 @@
 #include "Kismet/GameplayStatics.h"
 #include "Sound/SoundCue.h"
 
-
 // Sets default values
 ASZombieCharacter::ASZombieCharacter(const class FObjectInitializer& ObjectInitializer)
 : Super(ObjectInitializer)
