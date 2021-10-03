@@ -20,7 +20,7 @@ For questions & feedback visit [the official thread on the unreal engine forums]
 Get the Udemy Course now and learn C++ for Unreal Engine 4: [DISCOUNT LINK](https://www.udemy.com/unrealengine-cpp/?couponCode=TLGH14)
 
 ### Section 1
-This section sets up the third person character movement with animation, object interaction, simple hunger system, all with networking support.
+This section sets up the third person character movement with animation, object interaction, simple hunger system and all with networking support.
 
 - [Documentation page](https://www.tomlooman.com/survival-sample-game-for-ue4/section-one/)
 
