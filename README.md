@@ -9,7 +9,7 @@ See [the main documentation page](https://www.tomlooman.com/survival-sample-game
 
 **Looking for a step-by-step C++ Course?** Check out the **[Professional Game Development in C++ and Unreal Engine](https://courses.tomlooman.com/p/unrealengine-cpp/?product_id=3423335&coupon_code=EARLYBIRD20)** to learn all about C++ Game Programming with Unreal Engine!
 
-Some features include building of a C++ game framework including an "action system" and event-driven code for flexible and re-usable game code the "unreal way". Multiplayer features, AI bots, SaveGame system, async loading of content, UMG menus and UI and so much more!
+The C++ Course features include building of a C++ game framework including an "action system" and event-driven code for flexible and re-usable game code the "unreal way". Multiplayer features, AI bots, SaveGame system, async loading of content, UMG menus and UI and so much more!
 
 ![Refreshed look for Landscape Map](https://www.tomlooman.com/wp-content/uploads/2021/01/survivalgame_refresh_05.jpg)
 
@@ -53,4 +53,4 @@ The final section in the series focuses on bug fixing and a bit of polish to the
 
 **Looking for a step-by-step C++ Course?** Check out the **[Professional Game Development in C++ and Unreal Engine](https://courses.tomlooman.com/p/unrealengine-cpp/?product_id=3423335&coupon_code=EARLYBIRD20)** to learn all about C++ Game Programming with Unreal Engine!
 
-Some features include building of a C++ game framework including an "action system" and event-driven code for flexible and re-usable game code the "unreal way". Multiplayer features, AI bots, SaveGame system, async loading of content, UMG menus and UI and so much more!
+The C++ Course features include building of a C++ game framework including an "action system" and event-driven code for flexible and re-usable game code the "unreal way". Multiplayer features, AI bots, SaveGame system, async loading of content, UMG menus and UI and so much more!
