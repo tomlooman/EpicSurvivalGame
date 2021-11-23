@@ -39,17 +39,17 @@ Introduces AI "Zombie" enemy to our game using PawnSensing and Behavior Tree.
 ### Section 4
 Introduces a gameloop with enemies, items, scoring and a time of day.
 
-- [Documentation page](https://www.ue4community.wiki/Legacy/Survival_Sample_Game:_Section_4)
+- [Documentation page](https://nerivec.github.io/old-ue4-wiki/pages/survival-sample-game-section-4.html)
 
 ### Section 5
 Introduces the ability to carry around objects like barriers and discusses game networking.
 
-- [Documentation page](https://www.ue4community.wiki/Legacy/Survival_Sample_Game:_Section_5)
+- [Documentation page](https://nerivec.github.io/old-ue4-wiki/pages/survival-sample-game-section-5.html)
 
 ### Section 6
 The final section in the series focuses on bug fixing and a bit of polish to the existing features. This section is compatible with the 4.8 release.
 
-- [Documentation page](https://www.ue4community.wiki/Legacy/Survival_Sample_Game:_Section_6)
+- [Documentation page](https://nerivec.github.io/old-ue4-wiki/pages/survival-sample-game-section-6.html)
 
 **Looking for a step-by-step C++ Course?** Check out the **[Professional Game Development in C++ and Unreal Engine](https://www.tomlooman.com/pro-course-github)** to learn all about C++ Game Programming with Unreal Engine!
 
