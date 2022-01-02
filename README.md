@@ -1,11 +1,9 @@
 Survival Game (Example Project)
 -------------------------
 
-Third-person survival game for Unreal Engine 4 made entirely in C++. Originally built as a 6 section tutorial series for Epic Games, now available as open-source C++ sample project.
+Third-person survival game for Unreal Engine 4 made entirely in C++. Originally built as a 6 section tutorial series for Epic Games, now available as open-source C++ sample project. Check out the **[main documentation page](https://www.tomlooman.com/unreal-engine-cpp-survival-sample-game/)** for walkthrough of many of the features.
 
 **Last updated for 4.27**
-
-See **[the main documentation page](https://www.tomlooman.com/unreal-engine-cpp-survival-sample-game/)** for walkthrough of many of the features.
 
 **Looking for a step-by-step C++ Course?** Check out the **[Professional Game Development in C++ and Unreal Engine](https://courses.tomlooman.com/p/unrealengine-cpp?coupon_code=COMMUNITY15&src=github)** to learn all about C++ Game Programming with Unreal Engine!
 
