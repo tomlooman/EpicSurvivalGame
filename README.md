@@ -5,7 +5,7 @@ Third-person survival game for Unreal Engine 4 made entirely in C++. Originally 
 
 **Last updated for 4.27**
 
-See [the main documentation page](https://www.tomlooman.com/unreal-engine-cpp-survival-sample-game/) for walkthrough of many of the features.
+See **[the main documentation page](https://www.tomlooman.com/unreal-engine-cpp-survival-sample-game/)** for walkthrough of many of the features.
 
 **Looking for a step-by-step C++ Course?** Check out the **[Professional Game Development in C++ and Unreal Engine](https://courses.tomlooman.com/p/unrealengine-cpp?coupon_code=COMMUNITY15&src=github)** to learn all about C++ Game Programming with Unreal Engine!
 
