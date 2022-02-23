@@ -1,0 +1,1247 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "SurvivalGame Win32 Debug Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGame",
+				"Win32",
+				"Debug",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win32 Debug Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGame",
+				"Win32",
+				"Debug",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGame Win32 Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win32 Debug Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGame",
+				"Win32",
+				"Debug",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win32 DebugGame Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGame",
+				"Win32",
+				"DebugGame",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win32 DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGame",
+				"Win32",
+				"DebugGame",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGame Win32 DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win32 DebugGame Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGame",
+				"Win32",
+				"DebugGame",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win32 Development Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGame",
+				"Win32",
+				"Development",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win32 Development Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGame",
+				"Win32",
+				"Development",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGame Win32 Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win32 Development Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGame",
+				"Win32",
+				"Development",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win32 Shipping Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGame",
+				"Win32",
+				"Shipping",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win32 Shipping Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGame",
+				"Win32",
+				"Shipping",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGame Win32 Shipping Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win32 Shipping Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGame",
+				"Win32",
+				"Shipping",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win32 Test Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGame",
+				"Win32",
+				"Test",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win32 Test Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGame",
+				"Win32",
+				"Test",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGame Win32 Test Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win32 Test Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGame",
+				"Win32",
+				"Test",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win64 Debug Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGame",
+				"Win64",
+				"Debug",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win64 Debug Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGame",
+				"Win64",
+				"Debug",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGame Win64 Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win64 Debug Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGame",
+				"Win64",
+				"Debug",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win64 DebugGame Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGame",
+				"Win64",
+				"DebugGame",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win64 DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGame",
+				"Win64",
+				"DebugGame",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGame Win64 DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win64 DebugGame Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGame",
+				"Win64",
+				"DebugGame",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win64 Development Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGame",
+				"Win64",
+				"Development",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win64 Development Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGame",
+				"Win64",
+				"Development",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGame Win64 Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win64 Development Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGame",
+				"Win64",
+				"Development",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win64 Shipping Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGame",
+				"Win64",
+				"Shipping",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win64 Shipping Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGame",
+				"Win64",
+				"Shipping",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGame Win64 Shipping Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win64 Shipping Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGame",
+				"Win64",
+				"Shipping",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win64 Test Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGame",
+				"Win64",
+				"Test",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win64 Test Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGame",
+				"Win64",
+				"Test",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGame Win64 Test Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGame Win64 Test Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGame",
+				"Win64",
+				"Test",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameEditor Win64 Debug Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameEditor",
+				"Win64",
+				"Debug",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameEditor Win64 Debug Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameEditor",
+				"Win64",
+				"Debug",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGameEditor Win64 Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameEditor Win64 Debug Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGameEditor",
+				"Win64",
+				"Debug",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameEditor Win64 DebugGame Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameEditor",
+				"Win64",
+				"DebugGame",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameEditor Win64 DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameEditor",
+				"Win64",
+				"DebugGame",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGameEditor Win64 DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameEditor Win64 DebugGame Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGameEditor",
+				"Win64",
+				"DebugGame",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameEditor Win64 Development Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameEditor",
+				"Win64",
+				"Development",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameEditor Win64 Development Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameEditor",
+				"Win64",
+				"Development",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGameEditor Win64 Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameEditor Win64 Development Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGameEditor",
+				"Win64",
+				"Development",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win32 Debug Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win32",
+				"Debug",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win32 Debug Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win32",
+				"Debug",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGameServer Win32 Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win32 Debug Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win32",
+				"Debug",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win32 DebugGame Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win32",
+				"DebugGame",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win32 DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win32",
+				"DebugGame",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGameServer Win32 DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win32 DebugGame Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win32",
+				"DebugGame",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win32 Development Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win32",
+				"Development",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win32 Development Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win32",
+				"Development",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGameServer Win32 Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win32 Development Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win32",
+				"Development",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win32 Shipping Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win32",
+				"Shipping",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win32 Shipping Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win32",
+				"Shipping",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGameServer Win32 Shipping Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win32 Shipping Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win32",
+				"Shipping",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win32 Test Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win32",
+				"Test",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win32 Test Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win32",
+				"Test",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGameServer Win32 Test Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win32 Test Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win32",
+				"Test",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win64 Debug Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win64",
+				"Debug",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win64 Debug Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win64",
+				"Debug",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGameServer Win64 Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win64 Debug Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win64",
+				"Debug",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win64 DebugGame Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win64",
+				"DebugGame",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win64 DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win64",
+				"DebugGame",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGameServer Win64 DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win64 DebugGame Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win64",
+				"DebugGame",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win64 Development Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win64",
+				"Development",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win64 Development Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win64",
+				"Development",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGameServer Win64 Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win64 Development Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win64",
+				"Development",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win64 Shipping Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win64",
+				"Shipping",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win64 Shipping Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win64",
+				"Shipping",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGameServer Win64 Shipping Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win64 Shipping Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win64",
+				"Shipping",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win64 Test Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win64",
+				"Test",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win64 Test Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win64",
+				"Test",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"SurvivalGameServer Win64 Test Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		},
+		{
+			"label": "SurvivalGameServer Win64 Test Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"SurvivalGameServer",
+				"Win64",
+				"Test",
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+			}
+		}
+	]
+}

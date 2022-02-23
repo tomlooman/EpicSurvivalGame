@@ -22,7 +22,7 @@ EBTNodeResult::Type UBTTask_FindPatrolLocation::ExecuteTask(UBehaviorTreeCompone
 		return EBTNodeResult::Failed;
 	}
 
-	AActor* MyWaypoint = MyController->GetWaypoint();
+	AActor* MyWaypoint = MyController->GetWaypoint(); // we make an AActor called MyWayPoint and assign it the value of whatever zombie controller function GetWaypoint returns
 	if (MyWaypoint)
 	{
 		/* Find a position that is close to the waypoint. We add a small random to this position to give build predictable patrol patterns  */

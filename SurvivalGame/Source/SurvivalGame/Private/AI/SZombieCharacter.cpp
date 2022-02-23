@@ -123,11 +123,11 @@ void ASZombieCharacter::OnSeePlayer(APawn* Pawn)
 	bSensedTarget = true;
 
 	ASZombieAIController* AIController = Cast<ASZombieAIController>(GetController());
-	ASBaseCharacter* SensedPawn = Cast<ASBaseCharacter>(Pawn);
-	if (AIController && SensedPawn->IsAlive())
-	{
-		AIController->SetTargetEnemy(SensedPawn);
-	}
+	// ASBaseCharacter* SensedPawn = Cast<ASBaseCharacter>(Pawn); //I think this might be the code that is failing and causing issues also I think pawnsensing comp is what is calling this code
+	// if (AIController && SensedPawn->IsAlive())
+	// {
+	// 	AIController->SetTargetEnemy(SensedPawn);
+	// }
 }
 
 

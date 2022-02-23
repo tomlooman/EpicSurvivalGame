@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "name": "SurvivalGameEditor Editor Win64 Development (SurvivalGame)",
+            "intelliSenseMode": "msvc-x64",
+            "compileCommands": "C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_SurvivalGame.json",
+            "cStandard": "c17",
+            "cppStandard": "c++17"
+        },
+        {
+            "name": "Win32",
+            "intelliSenseMode": "msvc-x64",
+            "compileCommands": "C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default.json",
+            "cStandard": "c17",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}
