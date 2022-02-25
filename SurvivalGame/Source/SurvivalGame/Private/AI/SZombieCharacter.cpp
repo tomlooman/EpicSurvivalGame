@@ -123,11 +123,20 @@ void ASZombieCharacter::OnSeePlayer(APawn* Pawn)
 	bSensedTarget = true;
 
 	ASZombieAIController* AIController = Cast<ASZombieAIController>(GetController());
-	// ASBaseCharacter* SensedPawn = Cast<ASBaseCharacter>(Pawn); //I think this might be the code that is failing and causing issues also I think pawnsensing comp is what is calling this code
-	// if (AIController && SensedPawn->IsAlive())
-	// {
-	// 	AIController->SetTargetEnemy(SensedPawn);
-	// }
+	ASBaseCharacter* SensedPawn = Cast<ASBaseCharacter>(Pawn); //This line is checking to see if the sensed pawn is of the ASBaseCharacter (Actor Survival Base Character) class
+	//because it's not, the cast fails. This means when we build our AI for humans we need to do a cast check here to see if the pawn is of that type
+	// more specifically the IsAlive(); function return the result of health > 0. Which if they are alive it is true. So we need to write a function into our character that returns the same thing
+	if (SensedPawn)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, "Cast Succeeded");
+		if (AIController && SensedPawn->IsAlive())
+		{
+			AIController->SetTargetEnemy(SensedPawn);
+		}
+	}
+	
+	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, "Test");
+	
 }
 
 
