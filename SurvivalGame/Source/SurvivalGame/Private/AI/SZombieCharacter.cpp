@@ -129,10 +129,10 @@ void ASZombieCharacter::OnSeePlayer(APawn* Pawn)
 	if (SensedPawn)
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, "Cast Succeeded");
-		if (AIController && SensedPawn->IsAlive())
-		{
-			AIController->SetTargetEnemy(SensedPawn);
-		}
+		//if (AIController && SensedPawn->IsAlive())
+		//{
+			//AIController->SetTargetEnemy(SensedPawn);
+		//}
 	}
 	
 	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, "Test");
