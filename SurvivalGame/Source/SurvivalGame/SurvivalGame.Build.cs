@@ -13,6 +13,7 @@ public class SurvivalGame : ModuleRules
             "Engine",
             "InputCore",
             "AIModule",
+            "UMG",
             /* Temporarily added GameplayTasks to workaround 4.12 compilation bug. */
             "GameplayTasks",
             "NavigationSystem",
@@ -20,6 +21,6 @@ public class SurvivalGame : ModuleRules
             "PhysicsCore" // PhysicalMaterials
         });
 
-        PrivateDependencyModuleNames.AddRange(new string[] {  });
+        PrivateDependencyModuleNames.AddRange(new string[] { "KantanChartsSlate", "KantanChartsDatasource", "KantanChartsUMG", "Slate", "SlateCore" });
 	}
 }

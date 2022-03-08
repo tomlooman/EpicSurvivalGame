@@ -3,11 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "CartesianPlot.h"
 #include "GameFramework/Character.h"
 #include "SurvivalGame/STypes.h"
 #include "SBaseCharacter.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDeathDelegate);
+
 class USoundCue;
+
 
 UCLASS(ABSTRACT)
 class SURVIVALGAME_API ASBaseCharacter : public ACharacter
@@ -18,6 +22,7 @@ class SURVIVALGAME_API ASBaseCharacter : public ACharacter
 	UPawnNoiseEmitterComponent* NoiseEmitterComp;
 
 public:
+
 	// Sets default values for this character's properties
 	ASBaseCharacter(const class FObjectInitializer& ObjectInitializer);
 
@@ -26,6 +31,23 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Sound")
 	USoundCue* SoundDeath;
+
+	/************************************************************************/
+	/* Graphs                                                               */
+	/************************************************************************/
+
+	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
+		struct FChartDataStruct Datasource;
+
+	//UPROPERTY(BlueprintReadWrite, Category = "Graphs", Replicated)
+		//UKantanSimpleCartesianDatasource* Datasource = UKantanSimpleCartesianDatasource::NewSimpleCartesianDatasource();
+
+	UFUNCTION(BlueprintCallable, Category = "Charts", meta = (WorldContext = "WorldContextObject"))
+		void CreateCartesianSeries(const UObject* WorldContextObject, TArray<FName> VariablesList);
+
+	UFUNCTION(BlueprintCallable, Category = "Charts", meta = (WorldContext = "WorldContextObject"))
+		void AddCartesianDatapoint(const UObject* WorldContextObject, FName SeriesName, FVector2D Point);
+
 
 	/************************************************************************/
 	/* Health                                                               */
@@ -99,6 +121,15 @@ public:
 	/************************************************************************/
 	/* Damage & Death                                                       */
 	/************************************************************************/
+
+	UPROPERTY(BlueprintAssignable, Category = "PlayerCondition")
+		FDeathDelegate DeathDelegate;
+
+	//UFUNCTION(BlueprintImplementableEvent, Category = "PlayerCondition", meta = (DisplayName = "OnDeath"))
+	//	void RecievedOnDeath();
+
+	UPROPERTY(BlueprintReadWrite, Category = "PlayerCondition", Replicated)
+		bool IsDead;
 
 protected:
 

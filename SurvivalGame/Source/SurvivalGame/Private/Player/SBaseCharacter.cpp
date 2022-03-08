@@ -14,6 +14,7 @@
 #include "Sound/SoundCue.h"
 
 
+
 ASBaseCharacter::ASBaseCharacter(const class FObjectInitializer& ObjectInitializer)
 	/* Override the movement class from the base class to our own to support multiple speeds (eg. sprinting) */
 	: Super(ObjectInitializer.SetDefaultSubobjectClass<USCharacterMovementComponent>(ACharacter::CharacterMovementComponentName))
@@ -29,6 +30,9 @@ ASBaseCharacter::ASBaseCharacter(const class FObjectInitializer& ObjectInitializ
 	/* Don't collide with camera checks to keep 3rd person camera at position when zombies or other players are standing behind us */
 	GetMesh()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
+
+	//Datasource->SetDatapointLimit(1);
+	Datasource.Name = "Position";
 }
 
 
@@ -37,6 +41,29 @@ float ASBaseCharacter::GetHealth() const
 	return Health;
 }
 
+
+void ASBaseCharacter::CreateCartesianSeries(const UObject* WorldContextObject, TArray<FName> VariablesList)
+{
+	FText SeriesName;
+	for (int i = 0; i<VariablesList.Num(); ++i)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, VariablesList[i].ToString());
+		SeriesName.FromName(VariablesList[i]);
+		TTuple<FName, FChartSeriesData> SeriesTuple = TTuple<FName, FChartSeriesData>();
+		SeriesTuple.Key = VariablesList[i];
+		SeriesTuple.Value.Name = SeriesName;
+		SeriesTuple.Value.Id = VariablesList[i];
+		Datasource.Series.Add(SeriesTuple);
+	}
+	return;
+}
+
+void ASBaseCharacter::AddCartesianDatapoint(const UObject* WorldContextObject, FName SeriesName, FVector2D Point)
+{
+	FKantanCartesianDatapoint Datapoint;
+	Datapoint.Coords = Point;
+	Datasource.Series.Find(SeriesName)->Points.Add(Datapoint);
+}
 
 float ASBaseCharacter::GetMaxHealth() const
 {
@@ -153,6 +180,9 @@ void ASBaseCharacter::OnDeath(float KillingDamage, FDamageEvent const& DamageEve
 	SetReplicateMovement(true);
 	TearOff();
 	bIsDying = true;
+	IsDead = true;
+
+	DeathDelegate.Broadcast();
 
 	PlayHit(KillingDamage, DamageEvent, PawnInstigator, DamageCauser, true);
 
@@ -388,6 +418,7 @@ FRotator ASBaseCharacter::GetAimOffsets() const
 
 	return AimRotLS;
 }
+
 
 void ASBaseCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {

@@ -1,4 +1,5 @@
 
+#include "CartesianData.h"
 #include "STypes.generated.h"
 #pragma once
 
@@ -26,6 +27,35 @@ enum class EBotBehaviorType : uint8
 
 	/* Patrols a region until a player is spotted */
 	Patrolling,
+};
+
+
+USTRUCT(BlueprintType)
+struct FChartSeriesData
+{
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
+		FName Id;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
+		FText Name;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
+		TArray< FKantanCartesianDatapoint > Points;
+};
+
+
+USTRUCT(BlueprintType)
+struct FChartDataStruct
+{
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
+		FName Name;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
+	TMap<FName, FChartSeriesData> Series;
 };
 
 
