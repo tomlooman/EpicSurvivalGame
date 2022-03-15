@@ -1,382 +1,392 @@
 [
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\AI\\\\BTTask_FindBotWaypoint.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\AI\\\\BTTask_FindPatrolLocation.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\AI\\\\SBotWaypoint.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\AI\\\\SZombieAIController.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\AI\\\\SZombieCharacter.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Components\\\\SCarryObjectComponent.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Components\\\\SCharacterMovementComponent.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Core\\\\SGameplayStatics.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Editor\\\\SoundNodeLocalPlayer.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Items\\\\SBombActor.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Items\\\\SConsumableActor.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Items\\\\SDamageType.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Items\\\\SFlashlight.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Items\\\\SImpactEffect.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Items\\\\SPickupActor.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Items\\\\SUsableActor.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Items\\\\SWeapon.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Items\\\\SWeaponInstant.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Items\\\\SWeaponPickup.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Mutators\\\\SMutator.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Mutators\\\\SMutator_WeaponReplacement.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
+		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\MyBlueprintFunctionLibrary.cpp",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Player\\\\SBaseCharacter.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Player\\\\SCharacter.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Player\\\\SLocalPlayer.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Player\\\\SPlayerCameraManager.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Player\\\\SPlayerController.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Player\\\\SPlayerState.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\Player\\\\SSpectatorPawn.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\UI\\\\SHUD.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\World\\\\SCoopGameMode.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\World\\\\SGameInstance.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\World\\\\SGameMode.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\World\\\\SGameState.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\World\\\\SOpenWorldGameMode.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\World\\\\SPlayerStart.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Private\\\\World\\\\STimeOfDayManager.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\AI\\\\BTTask_FindBotWaypoint.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\AI\\\\BTTask_FindPatrolLocation.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\AI\\\\SBotWaypoint.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\AI\\\\SZombieAIController.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\AI\\\\SZombieCharacter.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Components\\\\SCarryObjectComponent.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Components\\\\SCharacterMovementComponent.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Core\\\\SGameplayStatics.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Editor\\\\SoundNodeLocalPlayer.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Items\\\\SBombActor.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Items\\\\SConsumableActor.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Items\\\\SDamageType.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Items\\\\SFlashlight.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Items\\\\SImpactEffect.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Items\\\\SPickupActor.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Items\\\\SUsableActor.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Items\\\\SWeapon.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Items\\\\SWeaponInstant.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Items\\\\SWeaponPickup.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Mutators\\\\SMutator.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Mutators\\\\SMutator_WeaponReplacement.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
+		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\MyBlueprintFunctionLibrary.h",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Player\\\\SBaseCharacter.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Player\\\\SCharacter.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Player\\\\SLocalPlayer.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Player\\\\SPlayerCameraManager.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Player\\\\SPlayerController.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Player\\\\SPlayerState.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\Player\\\\SSpectatorPawn.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\UI\\\\SHUD.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\World\\\\SCoopGameMode.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\World\\\\SGameInstance.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\World\\\\SGameMode.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\World\\\\SGameState.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\World\\\\SOpenWorldGameMode.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\World\\\\SPlayerStart.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\Public\\\\World\\\\STimeOfDayManager.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\STypes.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\SurvivalGame.Build.cs",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\SurvivalGame.cpp",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	},
 	{
 		"file": "C:\\\\Users\\\\IRL-8\\\\Documents\\\\Sean Work\\\\Unreal Engine GVSC\\\\Unreal Projects\\\\Git Projects\\\\EpicSurvivalGame\\\\SurvivalGame\\\\Source\\\\SurvivalGame\\\\SurvivalGame.h",
-		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.184.rsp\"",
+		"command": "cl.exe @\"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\.vscode\\compileCommands_Default\\SurvivalGame.188.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Source"
 	}
 ]
