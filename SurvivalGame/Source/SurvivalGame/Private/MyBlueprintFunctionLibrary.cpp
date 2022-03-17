@@ -15,3 +15,5 @@ FDamageEvent UMyBlueprintFunctionLibrary::CreateDamageEvent()
 	TSubclassOf<UDamageType> DmgTypeClass = UDamageType::StaticClass();
 	return (FDamageEvent(DmgTypeClass));
 }
+
+

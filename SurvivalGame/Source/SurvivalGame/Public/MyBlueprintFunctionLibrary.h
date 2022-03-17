@@ -23,5 +23,4 @@ class SURVIVALGAME_API UMyBlueprintFunctionLibrary : public UBlueprintFunctionLi
 		UFUNCTION(BlueprintCallable, Category = "MyCategory")
 		static FDamageEvent CreateDamageEvent();
 
-
 };

@@ -119,19 +119,20 @@ void ASZombieCharacter::OnSeePlayer(APawn* Pawn)
 	}
 
 	/* Keep track of the time the player was last sensed in order to clear the target */
-	LastSeenTime = GetWorld()->GetTimeSeconds();
-	bSensedTarget = true;
+	LastSeenTime = GetWorld()->GetTimeSeconds();// gets time of world to reset target?
+	bSensedTarget = true; //set to true
 
 	ASZombieAIController* AIController = Cast<ASZombieAIController>(GetController());
-	ASBaseCharacter* SensedPawn = Cast<ASBaseCharacter>(Pawn); //This line is checking to see if the sensed pawn is of the ASBaseCharacter (Actor Survival Base Character) class
+	//ASBaseCharacter* SensedPawn = Cast<ASBaseCharacter>(Pawn);
+	ACharacter* SensedPawn2 = Cast<ACharacter>(Pawn);//This line is checking to see if the sensed pawn is of the ASBaseCharacter (Actor Survival Base Character) class
 	//because it's not, the cast fails. This means when we build our AI for humans we need to do a cast check here to see if the pawn is of that type
 	// more specifically the IsAlive(); function return the result of health > 0. Which if they are alive it is true. So we need to write a function into our character that returns the same thing
-	if (SensedPawn)
+	if (SensedPawn2)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, "Cast Succeeded");
-		//if (AIController && SensedPawn->IsAlive())
+		//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, "Cast Succeeded");
+		//if (AIController && SensedPawn2->IsAlive())
 		//{
-			//AIController->SetTargetEnemy(SensedPawn);
+			AIController->SetTargetEnemy(SensedPawn2);
 		//}
 	}
 	
