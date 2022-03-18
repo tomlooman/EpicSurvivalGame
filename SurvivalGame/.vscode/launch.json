@@ -1,0 +1,193 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "SurvivalGame (Debug)",
+			"request": "launch",
+			"preLaunchTask": "SurvivalGame Win64 Debug Build",
+			"program": "C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\Binaries\\Win64\\UE4-Win64-Debug.exe",
+			"args": [
+			],
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "SurvivalGame (DebugGame)",
+			"request": "launch",
+			"preLaunchTask": "SurvivalGame Win64 DebugGame Build",
+			"program": "C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\Binaries\\Win64\\UE4-Win64-DebugGame.exe",
+			"args": [
+			],
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "SurvivalGame (Development)",
+			"request": "launch",
+			"preLaunchTask": "SurvivalGame Win64 Development Build",
+			"program": "C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\Binaries\\Win64\\UE4.exe",
+			"args": [
+			],
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "SurvivalGame (Shipping)",
+			"request": "launch",
+			"preLaunchTask": "SurvivalGame Win64 Shipping Build",
+			"program": "C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\Binaries\\Win64\\UE4-Win64-Shipping.exe",
+			"args": [
+			],
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "SurvivalGame (Test)",
+			"request": "launch",
+			"preLaunchTask": "SurvivalGame Win64 Test Build",
+			"program": "C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\Binaries\\Win64\\UE4-Win64-Test.exe",
+			"args": [
+			],
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "SurvivalGameEditor (Debug)",
+			"request": "launch",
+			"preLaunchTask": "SurvivalGameEditor Win64 Debug Build",
+			"program": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Binaries\\Win64\\UE4Editor-Win64-Debug.exe",
+			"args": [
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject"
+			],
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "SurvivalGameEditor (DebugGame)",
+			"request": "launch",
+			"preLaunchTask": "SurvivalGameEditor Win64 DebugGame Build",
+			"program": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Binaries\\Win64\\UE4Editor-Win64-DebugGame.exe",
+			"args": [
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject"
+			],
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "SurvivalGameEditor (Development)",
+			"request": "launch",
+			"preLaunchTask": "SurvivalGameEditor Win64 Development Build",
+			"program": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Binaries\\Win64\\UE4Editor.exe",
+			"args": [
+				"C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject"
+			],
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "SurvivalGameServer (Debug)",
+			"request": "launch",
+			"preLaunchTask": "SurvivalGameServer Win64 Debug Build",
+			"program": "C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\Binaries\\Win64\\UE4Server-Win64-Debug.exe",
+			"args": [
+			],
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "SurvivalGameServer (DebugGame)",
+			"request": "launch",
+			"preLaunchTask": "SurvivalGameServer Win64 DebugGame Build",
+			"program": "C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\Binaries\\Win64\\UE4Server-Win64-DebugGame.exe",
+			"args": [
+			],
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "SurvivalGameServer (Development)",
+			"request": "launch",
+			"preLaunchTask": "SurvivalGameServer Win64 Development Build",
+			"program": "C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\Binaries\\Win64\\UE4Server.exe",
+			"args": [
+			],
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "SurvivalGameServer (Shipping)",
+			"request": "launch",
+			"preLaunchTask": "SurvivalGameServer Win64 Shipping Build",
+			"program": "C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\Binaries\\Win64\\UE4Server-Win64-Shipping.exe",
+			"args": [
+			],
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "SurvivalGameServer (Test)",
+			"request": "launch",
+			"preLaunchTask": "SurvivalGameServer Win64 Test Build",
+			"program": "C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\Binaries\\Win64\\UE4Server-Win64-Test.exe",
+			"args": [
+			],
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "Generate Project Files",
+			"type": "clr",
+			"request": "launch",
+			"program": "C:\\Program Files\\Epic Games\\UE_4.26\\Engine\\Binaries\\DotNET\\UnrealBuildTool.exe",
+			"console": "externalTerminal",
+			"args": [
+				"-projectfiles",
+				"-vscode",
+				"-project=C:\\Users\\IRL-8\\Documents\\Sean Work\\Unreal Engine GVSC\\Unreal Projects\\Git Projects\\EpicSurvivalGame\\SurvivalGame\\SurvivalGame.uproject",
+				"-game",
+				"-engine"
+			],
+			"internalConsoleOptions": "openOnSessionStart",
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.26"
+		}
+	]
+}

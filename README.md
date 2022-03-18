@@ -1,23 +1,25 @@
-Epic Survival Game Series
+Survival Game (Example Project)
 -------------------------
 
-**Last updated for 4.26!**
+Third-person survival game for Unreal Engine 4 made entirely in C++. Originally built as a 6 section tutorial series for Epic Games, now available as open-source C++ sample project. 
 
-Third-person survival game for Unreal Engine 4 made entirely in C++. Originally built as a 6 section tutorial series, now available as open-source C++ sample project.
+Check out the **[main documentation page](https://www.tomlooman.com/unreal-engine-cpp-survival-sample-game/)** for walkthrough of many of the features. **Last updated for 4.27**
 
-See [the main documentation page](https://www.tomlooman.com/survival-sample-game-for-ue4/) for walkthrough of many of the features.
+**Looking for a step-by-step Unreal Engine C++ Course?** Check out the **[Professional Game Development in C++ and Unreal Engine](https://courses.tomlooman.com/p/unrealengine-cpp?coupon_code=COMMUNITY15&src=github)** to learn all about C++ Game Programming with Unreal Engine!
+
+## Project Overview
+
+The C++ Course features include building of a C++ game framework including an "action system" and event-driven code for flexible and re-usable game code the "unreal way". Multiplayer features, AI bots, SaveGame system, async loading of content, UMG menus and UI and so much more!
+
+![Refreshed look for Landscape Map](https://www.tomlooman.com/wp-content/uploads/2021/01/survivalgame_refresh_05.jpg)
 
 ![equipment header](https://www.tomlooman.com/wp-content/uploads/2015/04/section6_equipment03.jpg)
 
 ![animation blueprint graph example](https://www.tomlooman.com/wp-content/uploads/2015/04/section6_advancedanimbp031.jpg)
 
-![Refreshed look for Landscape Map](https://www.tomlooman.com/wp-content/uploads/2021/01/survivalgame_refresh_05.jpg)
+You can browse different Engine Versions by using the Branch Selection drop-down.
 
-For questions & feedback visit [the official thread on the unreal engine forums](https://forums.unrealengine.com/showthread.php?63678-Upcoming-C-Gameplay-Example-Series-Making-a-Survival-Game)
-
-**Looking for a step by step guide?** I released my **[Unreal Engine 4 Mastery: Create Multiplayer Games with C++](https://www.udemy.com/unrealengine-cpp/?couponCode=TLGH14)!** Which includes two games teaching you C++, Networking for multiplayer and multiple AI including advanced behavior trees for ranged shooter AI.
-
-Get the Udemy Course now and learn C++ for Unreal Engine 4: [DISCOUNT LINK](https://www.udemy.com/unrealengine-cpp/?couponCode=TLGH14)
+![GitHub Branch Selection Info](https://www.tomlooman.com/wp-content/uploads/2021/01/github_branchesinfo.jpg)
 
 ### Section 1
 This section sets up the third person character movement with animation, object interaction, simple hunger system, all with networking support.
@@ -37,22 +39,18 @@ Introduces AI "Zombie" enemy to our game using PawnSensing and Behavior Tree.
 ### Section 4
 Introduces a gameloop with enemies, items, scoring and a time of day.
 
-- [Documentation page](https://www.ue4community.wiki/Legacy/Survival_Sample_Game:_Section_4)
+- [Documentation page](https://nerivec.github.io/old-ue4-wiki/pages/survival-sample-game-section-4.html)
 
 ### Section 5
 Introduces the ability to carry around objects like barriers and discusses game networking.
 
-- [Documentation page](https://www.ue4community.wiki/Legacy/Survival_Sample_Game:_Section_5)
+- [Documentation page](https://nerivec.github.io/old-ue4-wiki/pages/survival-sample-game-section-5.html)
 
 ### Section 6
 The final section in the series focuses on bug fixing and a bit of polish to the existing features. This section is compatible with the 4.8 release.
 
-- [Documentation page](https://www.ue4community.wiki/Legacy/Survival_Sample_Game:_Section_6)
+- [Documentation page](https://nerivec.github.io/old-ue4-wiki/pages/survival-sample-game-section-6.html)
 
-### NEW: Mod Support
-Includes two small mod examples including a Pink Rifle extension and Flashlight replacement mod. [Check out the Modding Sample Project for guidelines & cooker profile setup](https://www.tomlooman.com/add-mod-support-to-your-unreal-engine-4-game/)
+**Looking for a step-by-step C++ Course?** Check out the **[Professional Game Development in C++ and Unreal Engine](https://courses.tomlooman.com/p/unrealengine-cpp?coupon_code=COMMUNITY15&src=github)** to learn all about C++ Game Programming with Unreal Engine!
 
-Example commandline arg to load the Mod gamemode with the built-in level "CoopLandscape" in a cooked game build:
-SurvivalGame.exe /Game/Maps/CoopLandscape_Map?game=/ExtendedRifleMod/SurvivalGameMode_PinkRifle.SurvivalGameMode_PinkRifle_C
-
-There is currently no supporting UI to load up specific mod content, please note that the modding pipeline is a experimental and intended for early adopters only!
+The C++ Course features include building of a C++ game framework including an "action system" and event-driven code for flexible and re-usable game code the "unreal way". Multiplayer features, AI bots, SaveGame system, async loading of content, UMG menus and UI and so much more!

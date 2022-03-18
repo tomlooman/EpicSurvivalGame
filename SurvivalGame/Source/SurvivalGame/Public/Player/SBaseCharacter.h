@@ -142,6 +142,13 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, Category = "PlayerCondition", Replicated)
 		bool IsDead;
+	//UFUNCTION(BlueprintCallable)
+	//float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser) override;
+
+	UFUNCTION(BlueprintCallable)
+	void SetHealth(float newHealth);
+
+
 
 protected:
 
@@ -149,12 +156,15 @@ protected:
 	float Health;
 
 	/* Take damage & handle death */
+	UFUNCTION(BlueprintCallable)
 	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser) override;
 
 	virtual bool CanDie(float KillingDamage, FDamageEvent const& DamageEvent, AController* Killer, AActor* DamageCauser) const;
 
+	UFUNCTION(BlueprintCallable)
 	virtual bool Die(float KillingDamage, FDamageEvent const& DamageEvent, AController* Killer, AActor* DamageCauser);
 
+	UFUNCTION(BlueprintCallable)
 	virtual void OnDeath(float KillingDamage, FDamageEvent const& DamageEvent, APawn* PawnInstigator, AActor* DamageCauser);
 
 	virtual void FellOutOfWorld(const class UDamageType& DmgType) override;

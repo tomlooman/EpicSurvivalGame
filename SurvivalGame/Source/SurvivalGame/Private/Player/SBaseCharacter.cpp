@@ -456,6 +456,10 @@ FRotator ASBaseCharacter::GetAimOffsets() const
 	return AimRotLS;
 }
 
+void ASBaseCharacter::SetHealth(float newHealth)
+{
+	Health = newHealth;
+}
 
 void ASBaseCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
