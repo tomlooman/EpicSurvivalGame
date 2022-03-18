@@ -135,6 +135,7 @@ void ASWeaponInstant::ProcessInstantHitConfirmed(const FHitResult& Impact, const
 	if (ShouldDealDamage(Impact.GetActor()))
 	{
 		DealDamage(Impact, ShootDir);
+		HitDelegate.Broadcast(Impact);
 	}
 
 	// Play FX on remote clients

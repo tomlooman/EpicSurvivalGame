@@ -8,7 +8,7 @@
 #include "SurvivalGame/STypes.h"
 #include "SBaseCharacter.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDeathDelegate);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FDeathDelegate, APawn*, Killer);
 
 class USoundCue;
 
@@ -37,16 +37,28 @@ public:
 	/************************************************************************/
 
 	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
-		struct FChartDataStruct Datasource;
+		FCartesianDatasource CartesianDatasource;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
+		FCartesianDatasource TimeDatasource;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
+		FCategoryDatasource CategoryDatasource;
 
 	//UPROPERTY(BlueprintReadWrite, Category = "Graphs", Replicated)
 		//UKantanSimpleCartesianDatasource* Datasource = UKantanSimpleCartesianDatasource::NewSimpleCartesianDatasource();
 
 	UFUNCTION(BlueprintCallable, Category = "Charts", meta = (WorldContext = "WorldContextObject"))
-		void CreateCartesianSeries(const UObject* WorldContextObject, TArray<FName> VariablesList);
+		void CreateSeries(const UObject* WorldContextObject, bool Cartesian, bool Time, bool Category, TArray<FName> VariablesList);
 
 	UFUNCTION(BlueprintCallable, Category = "Charts", meta = (WorldContext = "WorldContextObject"))
-		void AddCartesianDatapoint(const UObject* WorldContextObject, FName SeriesName, FVector2D Point);
+		void AddCartesianDatapoint(const UObject* WorldContextObject, FName SeriesID, FVector2D Point);
+
+	UFUNCTION(BlueprintCallable, Category = "Charts", meta = (WorldContext = "WorldContextObject"))
+		void AddTimeDatapoint(const UObject* WorldContextObject, FName SeriesID, float Value);
+
+	UFUNCTION(BlueprintCallable, Category = "Charts", meta = (WorldContext = "WorldContextObject"))
+		void AddCategoryDatapoint(const UObject* WorldContextObject, FName SeriesID, float Value);
 
 
 	/************************************************************************/

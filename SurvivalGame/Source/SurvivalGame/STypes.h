@@ -1,5 +1,6 @@
 
 #include "CartesianData.h"
+#include "CategoryData.h"
 #include "STypes.generated.h"
 #pragma once
 
@@ -31,7 +32,7 @@ enum class EBotBehaviorType : uint8
 
 
 USTRUCT(BlueprintType)
-struct FChartSeriesData
+struct FCartesianSeriesData
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -39,23 +40,40 @@ struct FChartSeriesData
 		FName Id;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
-		FText Name;
-
-	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
 		TArray< FKantanCartesianDatapoint > Points;
 };
 
 
 USTRUCT(BlueprintType)
-struct FChartDataStruct
+struct FCartesianDatasource
 {
 	GENERATED_USTRUCT_BODY()
 
 	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
-		FName Name;
+		TMap<FName, FCartesianSeriesData> Series;
+};
+
+
+USTRUCT(BlueprintType)
+struct FCategorySeriesData
+{
+	GENERATED_USTRUCT_BODY()
 
 	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
-	TMap<FName, FChartSeriesData> Series;
+		FName Id;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
+		float Value;
+};
+
+
+USTRUCT(BlueprintType)
+struct FCategoryDatasource
+{
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
+		TMap<FName, FCategorySeriesData> Series;
 };
 
 

@@ -12,6 +12,7 @@
 #include "Components/PawnNoiseEmitterComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Sound/SoundCue.h"
+#include "Misc/DateTime.h"
 
 
 
@@ -32,7 +33,6 @@ ASBaseCharacter::ASBaseCharacter(const class FObjectInitializer& ObjectInitializ
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
 
 	//Datasource->SetDatapointLimit(1);
-	Datasource.Name = "Position";
 }
 
 
@@ -42,27 +42,64 @@ float ASBaseCharacter::GetHealth() const
 }
 
 
-void ASBaseCharacter::CreateCartesianSeries(const UObject* WorldContextObject, TArray<FName> VariablesList)
+void ASBaseCharacter::CreateSeries(const UObject* WorldContextObject, bool Cartesian, bool Time, bool Category, TArray<FName> VariablesList)
 {
-	FText SeriesName;
-	for (int i = 0; i<VariablesList.Num(); ++i)
+	if (Cartesian)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, VariablesList[i].ToString());
-		SeriesName.FromName(VariablesList[i]);
-		TTuple<FName, FChartSeriesData> SeriesTuple = TTuple<FName, FChartSeriesData>();
-		SeriesTuple.Key = VariablesList[i];
-		SeriesTuple.Value.Name = SeriesName;
-		SeriesTuple.Value.Id = VariablesList[i];
-		Datasource.Series.Add(SeriesTuple);
+		for (int i = 0; i<VariablesList.Num(); ++i)
+		{
+			//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, VariablesList[i].ToString());
+			TTuple<FName, FCartesianSeriesData> SeriesTuple;
+			SeriesTuple.Key = VariablesList[i];
+			SeriesTuple.Value.Id = VariablesList[i];
+			CartesianDatasource.Series.Add(SeriesTuple);
+		}
+	}
+	if (Time)
+	{
+		for (int i = 0; i < VariablesList.Num(); ++i)
+		{
+			//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, VariablesList[i].ToString());
+			TTuple<FName, FCartesianSeriesData> SeriesTuple;
+			SeriesTuple.Key = VariablesList[i];
+			SeriesTuple.Value.Id = VariablesList[i];
+			TimeDatasource.Series.Add(SeriesTuple);
+		}
+	}
+	if (Category)
+	{
+		for (int i = 0; i < VariablesList.Num(); ++i)
+		{
+			//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, VariablesList[i].ToString());
+			TTuple<FName, FCategorySeriesData> SeriesTuple;
+			SeriesTuple.Key = VariablesList[i];
+			SeriesTuple.Value.Id = VariablesList[i];
+			CategoryDatasource.Series.Add(SeriesTuple);
+		}
 	}
 	return;
 }
 
-void ASBaseCharacter::AddCartesianDatapoint(const UObject* WorldContextObject, FName SeriesName, FVector2D Point)
+void ASBaseCharacter::AddCartesianDatapoint(const UObject* WorldContextObject, FName SeriesID, FVector2D Point)
 {
 	FKantanCartesianDatapoint Datapoint;
 	Datapoint.Coords = Point;
-	Datasource.Series.Find(SeriesName)->Points.Add(Datapoint);
+	CartesianDatasource.Series.Find(SeriesID)->Points.Add(Datapoint);
+	return;
+}
+
+void ASBaseCharacter::AddTimeDatapoint(const UObject* WorldContextObject, FName SeriesID, float Value)
+{
+	FKantanCartesianDatapoint Datapoint;
+	Datapoint.Coords.Set(GetGameTimeSinceCreation(), Value);
+	TimeDatasource.Series.Find(SeriesID)->Points.Add(Datapoint);
+	return;
+}
+
+void ASBaseCharacter::AddCategoryDatapoint(const UObject* WorldContextObject, FName SeriesID, float Value)
+{
+	CategoryDatasource.Series.Find(SeriesID)->Value = Value;
+	return;
 }
 
 float ASBaseCharacter::GetMaxHealth() const
@@ -182,7 +219,7 @@ void ASBaseCharacter::OnDeath(float KillingDamage, FDamageEvent const& DamageEve
 	bIsDying = true;
 	IsDead = true;
 
-	DeathDelegate.Broadcast();
+	DeathDelegate.Broadcast(PawnInstigator);
 
 	PlayHit(KillingDamage, DamageEvent, PawnInstigator, DamageCauser, true);
 

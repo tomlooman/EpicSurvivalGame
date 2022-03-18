@@ -9,10 +9,18 @@
 /**
  * 
  */
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FHitDelegate, FHitResult, Hit);
+
 UCLASS(Abstract)
 class SURVIVALGAME_API ASWeaponInstant : public ASWeapon
 {
 	GENERATED_BODY()
+
+public:
+
+	UPROPERTY(BlueprintAssignable)
+		FHitDelegate HitDelegate;
 
 private:
 

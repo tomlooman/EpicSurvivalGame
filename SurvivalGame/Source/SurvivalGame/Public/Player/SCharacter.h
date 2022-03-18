@@ -37,10 +37,6 @@ class SURVIVALGAME_API ASCharacter : public ASBaseCharacter
 
 private:
 
-	/* Boom to handle distance to player mesh. */
-	UPROPERTY(VisibleAnywhere, Category = "Camera")
-	USpringArmComponent* CameraBoomComp;
-
 	/* Primary camera of the player*/
 	UPROPERTY(VisibleAnywhere, Category = "Camera")
 	UCameraComponent* CameraComp;
@@ -49,6 +45,10 @@ private:
 	class USCarryObjectComponent* CarriedObjectComp;
 
 public:
+
+	/* Boom to handle distance to player mesh. */
+	UPROPERTY(BlueprintReadOnly, Category = "Camera")
+	USpringArmComponent* CameraBoomComp;
 
 	UFUNCTION(BlueprintCallable, Category = "AI")
 	float GetLastNoiseLoudness();
