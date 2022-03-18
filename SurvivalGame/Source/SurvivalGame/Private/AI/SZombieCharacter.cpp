@@ -31,7 +31,7 @@ ASZombieCharacter::ASZombieCharacter(const class FObjectInitializer& ObjectIniti
 	/* Our sensing component to detect players by visibility and noise checks. */
 	PawnSensingComp = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("PawnSensingComp"));
 	PawnSensingComp->SetPeripheralVisionAngle(60.0f);
-	PawnSensingComp->SightRadius = 2000;
+	PawnSensingComp->SightRadius = 3000;
 	PawnSensingComp->HearingThreshold = 600;
 	PawnSensingComp->LOSHearingThreshold = 1200;
 
@@ -124,20 +124,21 @@ void ASZombieCharacter::OnSeePlayer(APawn* Pawn)
 
 	ASZombieAIController* AIController = Cast<ASZombieAIController>(GetController());
 	//ASBaseCharacter* SensedPawn = Cast<ASBaseCharacter>(Pawn);
-	ACharacter* SensedPawn2 = Cast<ACharacter>(Pawn);//This line is checking to see if the sensed pawn is of the ASBaseCharacter (Actor Survival Base Character) class
-	//because it's not, the cast fails. This means when we build our AI for humans we need to do a cast check here to see if the pawn is of that type
-	// more specifically the IsAlive(); function return the result of health > 0. Which if they are alive it is true. So we need to write a function into our character that returns the same thing
-	if (SensedPawn2)
+	ACharacter* SensedPawn = Cast<ACharacter>(Pawn);
+	
+	if (SensedPawn)
 	{
-		//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, "Cast Succeeded");
-		//if (AIController && SensedPawn2->IsAlive())
-		//{
-			AIController->SetTargetEnemy(SensedPawn2);
-		//}
+		//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, "Sensed a Character");
+		//if (AIController && SensedPawn->IsAlive())
+		if (AIController && SensedPawn->ActorHasTag(TEXT("AI_Infil_Bot")))
+		{
+			AIController->SetTargetEnemy(SensedPawn);
+			//for (FName Tag : SensedPawn->Tags)
+			//{
+				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, Tag.ToString());
+			//}
+		}
 	}
-	
-	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, "Test");
-	
 }
 
 
@@ -171,16 +172,28 @@ void ASZombieCharacter::PerformMeleeStrike(AActor* HitActor)
 		ACharacter* OtherPawn = Cast<ACharacter>(HitActor);
 		if (OtherPawn)
 		{
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("It's a character.")));
 			ASPlayerState* MyPS = Cast<ASPlayerState>(GetPlayerState());
 			ASPlayerState* OtherPS = Cast<ASPlayerState>(OtherPawn->GetPlayerState());
-
-			if (MyPS && OtherPS)
+			/*
+			Note that in the current implementation everything has a player state for server replication purposes. 
+			This should be readded in the future for this project but at the moment to have a working local sim, it
+			seems superfluous 
+			*/
+			if (OtherPS) 
 			{
-				if (MyPS->GetTeamNumber() == OtherPS->GetTeamNumber())
-				{
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("Other PS Exists")));
+			}
+
+			//if (MyPS && OtherPS)
+			if (MyPS && OtherPawn->ActorHasTag(TEXT("AI_Infil_Bot")))
+			{
+				//if (MyPS->GetTeamNumber() == OtherPS->GetTeamNumber())
+				//{
 					/* Do not attack other zombies. */
-					return;
-				}
+					//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("Don't attack other zombies")));
+					//return;
+				//}
 
 				/* Set to prevent a zombie to attack multiple times in a very short time */
 				LastMeleeAttackTime = GetWorld()->GetTimeSeconds();
@@ -192,6 +205,11 @@ void ASZombieCharacter::PerformMeleeStrike(AActor* HitActor)
 				HitActor->TakeDamage(DmgEvent.Damage, DmgEvent, GetController(), this);
 			}
 		}
+	}
+
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("What is being attacked is unfortunately not alive")));
 	}
 }
 
