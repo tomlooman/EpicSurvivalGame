@@ -122,12 +122,13 @@ float ASBaseCharacter::TakeDamage(float Damage, struct FDamageEvent const& Damag
 	{
 		return 0.f;
 	}
-
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "Inside TakeDamage: " + FString::SanitizeFloat(Damage));
 	/* Modify based based on gametype rules */
 	ASGameMode* MyGameMode = Cast<ASGameMode>(GetWorld()->GetAuthGameMode());
-	Damage = MyGameMode ? MyGameMode->ModifyDamage(Damage, this, DamageEvent, EventInstigator, DamageCauser) : Damage;
+	//Damage = MyGameMode ? MyGameMode->ModifyDamage(Damage, this, DamageEvent, EventInstigator, DamageCauser) : Damage;
 
 	const float ActualDamage = Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "Inside ActualDamage: " + FString::SanitizeFloat(Damage));
 	if (ActualDamage > 0.f)
 	{
 		Health -= ActualDamage;
