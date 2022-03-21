@@ -37,6 +37,15 @@ public:
 	/************************************************************************/
 
 	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
+		TArray<FName> CartesianVars;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
+		TArray<FName> TimeVars;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
+		TArray<FName> CategoryVars;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
 		FCartesianDatasource CartesianDatasource;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
