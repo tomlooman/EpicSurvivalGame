@@ -131,7 +131,7 @@ float ASBaseCharacter::TakeDamage(float Damage, struct FDamageEvent const& Damag
 	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "Inside ActualDamage: " + FString::SanitizeFloat(Damage));
 	if (ActualDamage > 0.f)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "Inside ActualDamage: " + FString::SanitizeFloat(Health));
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "Inside ActualDamage: " + FString::SanitizeFloat(Health));
 		Health -= ActualDamage;
 		if (Health <= 0)
 		{

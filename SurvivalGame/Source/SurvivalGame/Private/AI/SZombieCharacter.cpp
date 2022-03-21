@@ -171,7 +171,7 @@ void ASZombieCharacter::PerformMeleeStrike(AActor* HitActor)
 		ACharacter* OtherPawn = Cast<ACharacter>(HitActor);
 		if (OtherPawn)
 		{
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("It's a character.")));
+			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("It's a character.")));
 			ASPlayerState* MyPS = Cast<ASPlayerState>(GetPlayerState());
 			ASPlayerState* OtherPS = Cast<ASPlayerState>(OtherPawn->GetPlayerState());
 			/*
@@ -181,7 +181,7 @@ void ASZombieCharacter::PerformMeleeStrike(AActor* HitActor)
 			*/
 			if (OtherPS) 
 			{
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("Other PS Exists")));
+				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("Other PS Exists")));
 			}
 
 			//if (MyPS && OtherPS)
@@ -208,7 +208,7 @@ void ASZombieCharacter::PerformMeleeStrike(AActor* HitActor)
 
 	else
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("What is being attacked is unfortunately not alive")));
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("What is being attacked is unfortunately not alive")));
 	}
 }
 

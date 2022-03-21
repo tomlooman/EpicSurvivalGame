@@ -151,7 +151,7 @@ void ASCoopGameMode::Killed(AController* Killer, AController* VictimPlayer, APaw
 	}
 
 	/* End match is all players died */
-	CheckMatchEnd();
+	//CheckMatchEnd();
 }
 
 
