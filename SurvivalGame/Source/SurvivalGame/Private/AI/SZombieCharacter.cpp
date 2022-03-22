@@ -48,7 +48,7 @@ ASZombieCharacter::ASZombieCharacter(const class FObjectInitializer& ObjectIniti
 	AudioLoopComp->bAutoDestroy = false;
 	AudioLoopComp->SetupAttachment(RootComponent);
 
-	Health = 100;
+	Health = 500;
 	MeleeDamage = 24.0f;
 	SprintingSpeedModifier = 3.0f;
 

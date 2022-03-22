@@ -20,7 +20,7 @@ ASBaseCharacter::ASBaseCharacter(const class FObjectInitializer& ObjectInitializ
 	/* Override the movement class from the base class to our own to support multiple speeds (eg. sprinting) */
 	: Super(ObjectInitializer.SetDefaultSubobjectClass<USCharacterMovementComponent>(ACharacter::CharacterMovementComponentName))
 {
-	Health = 100;
+	Health = 500;
 
 	TargetingSpeedModifier = 0.5f;
 	SprintingSpeedModifier = 2.0f;

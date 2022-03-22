@@ -56,7 +56,7 @@ ASCharacter::ASCharacter(const class FObjectInitializer& ObjectInitializer)
 	TargetingSpeedModifier = 0.5f;
 	SprintingSpeedModifier = 2.5f;
 
-	Health = 100;
+	Health = 500;
 
 	IncrementHungerAmount = 5.0f;
 	IncrementHungerInterval = 5.0f;
