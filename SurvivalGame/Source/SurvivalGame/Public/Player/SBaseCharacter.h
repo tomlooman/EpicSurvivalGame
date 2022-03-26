@@ -37,37 +37,37 @@ public:
 	/************************************************************************/
 
 	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
-		TArray<FName> CartesianVars;
+		TMap<FName, FVector2D> CartesianVars;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
-		TArray<FName> TimeVars;
+		TMap<FName, float> TimeVars;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
-		TArray<FName> CategoryVars;
+		TMap<FName, float> CategoryVars;
 
-	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
-		FCartesianDatasource CartesianDatasource;
+	//UPROPERTY(BlueprintReadWrite, Category = "Graphs")
+		//FCartesianDatasource CartesianDatasource;
 
-	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
-		FCartesianDatasource TimeDatasource;
+	//UPROPERTY(BlueprintReadWrite, Category = "Graphs")
+		//FCartesianDatasource TimeDatasource;
 
-	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
-		FCategoryDatasource CategoryDatasource;
+	//UPROPERTY(BlueprintReadWrite, Category = "Graphs")
+		//FCategoryDatasource CategoryDatasource;
 
 	//UPROPERTY(BlueprintReadWrite, Category = "Graphs", Replicated)
 		//UKantanSimpleCartesianDatasource* Datasource = UKantanSimpleCartesianDatasource::NewSimpleCartesianDatasource();
 
-	UFUNCTION(BlueprintCallable, Category = "Charts", meta = (WorldContext = "WorldContextObject"))
-		void CreateSeries(const UObject* WorldContextObject, bool Cartesian, bool Time, bool Category, TArray<FName> VariablesList);
+	//UFUNCTION(BlueprintCallable, Category = "Charts", meta = (WorldContext = "WorldContextObject"))
+		//void CreateSeries(const UObject* WorldContextObject, bool Cartesian, bool Time, bool Category, TArray<FName> VariablesList);
 
-	UFUNCTION(BlueprintCallable, Category = "Charts", meta = (WorldContext = "WorldContextObject"))
-		void AddCartesianDatapoint(const UObject* WorldContextObject, FName SeriesID, FVector2D Point);
+	//UFUNCTION(BlueprintCallable, Category = "Charts", meta = (WorldContext = "WorldContextObject"))
+		//void AddCartesianDatapoint(const UObject* WorldContextObject, FName SeriesID, FVector2D Point);
 
-	UFUNCTION(BlueprintCallable, Category = "Charts", meta = (WorldContext = "WorldContextObject"))
-		void AddTimeDatapoint(const UObject* WorldContextObject, FName SeriesID, float Value);
+	//UFUNCTION(BlueprintCallable, Category = "Charts", meta = (WorldContext = "WorldContextObject"))
+		//void AddTimeDatapoint(const UObject* WorldContextObject, FName SeriesID, float Value);
 
-	UFUNCTION(BlueprintCallable, Category = "Charts", meta = (WorldContext = "WorldContextObject"))
-		void AddCategoryDatapoint(const UObject* WorldContextObject, FName SeriesID, float Value);
+	//UFUNCTION(BlueprintCallable, Category = "Charts", meta = (WorldContext = "WorldContextObject"))
+		//void AddCategoryDatapoint(const UObject* WorldContextObject, FName SeriesID, float Value);
 
 
 	/************************************************************************/

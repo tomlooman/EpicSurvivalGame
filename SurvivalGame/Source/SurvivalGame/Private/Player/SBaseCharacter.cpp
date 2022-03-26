@@ -42,65 +42,65 @@ float ASBaseCharacter::GetHealth() const
 }
 
 
-void ASBaseCharacter::CreateSeries(const UObject* WorldContextObject, bool Cartesian, bool Time, bool Category, TArray<FName> VariablesList)
-{
-	if (Cartesian)
-	{
-		for (int i = 0; i<VariablesList.Num(); ++i)
-		{
-			//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, VariablesList[i].ToString());
-			TTuple<FName, FCartesianSeriesData> SeriesTuple;
-			SeriesTuple.Key = VariablesList[i];
-			SeriesTuple.Value.Id = VariablesList[i];
-			CartesianDatasource.Series.Add(SeriesTuple);
-		}
-	}
-	if (Time)
-	{
-		for (int i = 0; i < VariablesList.Num(); ++i)
-		{
-			//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, VariablesList[i].ToString());
-			TTuple<FName, FCartesianSeriesData> SeriesTuple;
-			SeriesTuple.Key = VariablesList[i];
-			SeriesTuple.Value.Id = VariablesList[i];
-			TimeDatasource.Series.Add(SeriesTuple);
-		}
-	}
-	if (Category)
-	{
-		for (int i = 0; i < VariablesList.Num(); ++i)
-		{
-			//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, VariablesList[i].ToString());
-			TTuple<FName, FCategorySeriesData> SeriesTuple;
-			SeriesTuple.Key = VariablesList[i];
-			SeriesTuple.Value.Id = VariablesList[i];
-			CategoryDatasource.Series.Add(SeriesTuple);
-		}
-	}
-	return;
-}
-
-void ASBaseCharacter::AddCartesianDatapoint(const UObject* WorldContextObject, FName SeriesID, FVector2D Point)
-{
-	FKantanCartesianDatapoint Datapoint;
-	Datapoint.Coords = Point;
-	CartesianDatasource.Series.Find(SeriesID)->Points.Add(Datapoint);
-	return;
-}
-
-void ASBaseCharacter::AddTimeDatapoint(const UObject* WorldContextObject, FName SeriesID, float Value)
-{
-	FKantanCartesianDatapoint Datapoint;
-	Datapoint.Coords.Set(GetGameTimeSinceCreation(), Value);
-	TimeDatasource.Series.Find(SeriesID)->Points.Add(Datapoint);
-	return;
-}
-
-void ASBaseCharacter::AddCategoryDatapoint(const UObject* WorldContextObject, FName SeriesID, float Value)
-{
-	CategoryDatasource.Series.Find(SeriesID)->Value = Value;
-	return;
-}
+//void ASBaseCharacter::CreateSeries(const UObject* WorldContextObject, bool Cartesian, bool Time, bool Category, TArray<FName> VariablesList)
+//{
+//	if (Cartesian)
+//	{
+//		for (int i = 0; i<VariablesList.Num(); ++i)
+//		{
+//			//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, VariablesList[i].ToString());
+//			TTuple<FName, FCartesianSeriesData> SeriesTuple;
+//			SeriesTuple.Key = VariablesList[i];
+//			SeriesTuple.Value.Id = VariablesList[i];
+//			CartesianDatasource.Series.Add(SeriesTuple);
+//		}
+//	}
+//	if (Time)
+//	{
+//		for (int i = 0; i < VariablesList.Num(); ++i)
+//		{
+//			//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, VariablesList[i].ToString());
+//			TTuple<FName, FCartesianSeriesData> SeriesTuple;
+//			SeriesTuple.Key = VariablesList[i];
+//			SeriesTuple.Value.Id = VariablesList[i];
+//			TimeDatasource.Series.Add(SeriesTuple);
+//		}
+//	}
+//	if (Category)
+//	{
+//		for (int i = 0; i < VariablesList.Num(); ++i)
+//		{
+//			//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, VariablesList[i].ToString());
+//			TTuple<FName, FCategorySeriesData> SeriesTuple;
+//			SeriesTuple.Key = VariablesList[i];
+//			SeriesTuple.Value.Id = VariablesList[i];
+//			CategoryDatasource.Series.Add(SeriesTuple);
+//		}
+//	}
+//	return;
+//}
+//
+//void ASBaseCharacter::AddCartesianDatapoint(const UObject* WorldContextObject, FName SeriesID, FVector2D Point)
+//{
+//	FKantanCartesianDatapoint Datapoint;
+//	Datapoint.Coords = Point;
+//	CartesianDatasource.Series.Find(SeriesID)->Points.Add(Datapoint);
+//	return;
+//}
+//
+//void ASBaseCharacter::AddTimeDatapoint(const UObject* WorldContextObject, FName SeriesID, float Value)
+//{
+//	FKantanCartesianDatapoint Datapoint;
+//	Datapoint.Coords.Set(GetGameTimeSinceCreation(), Value);
+//	TimeDatasource.Series.Find(SeriesID)->Points.Add(Datapoint);
+//	return;
+//}
+//
+//void ASBaseCharacter::AddCategoryDatapoint(const UObject* WorldContextObject, FName SeriesID, float Value)
+//{
+//	CategoryDatasource.Series.Find(SeriesID)->Value = Value;
+//	return;
+//}
 
 float ASBaseCharacter::GetMaxHealth() const
 {
