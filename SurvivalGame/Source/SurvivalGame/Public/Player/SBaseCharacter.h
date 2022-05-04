@@ -37,13 +37,13 @@ public:
 	/************************************************************************/
 
 	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
-		TMap<FName, FVector2D> CartesianVars;
+		TMap<FName, FVector2D> CartesianValues;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
-		TMap<FName, float> TimeVars;
+		TMap<FName, float> TimeValues;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Graphs")
-		TMap<FName, float> CategoryVars;
+		TMap<FName, float> CategoryValues;
 
 	//UPROPERTY(BlueprintReadWrite, Category = "Graphs")
 		//FCartesianDatasource CartesianDatasource;
