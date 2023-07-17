@@ -4,6 +4,7 @@
 #include "World/SGameState.h"
 #include "Player/SPlayerController.h"
 #include "World/SGameInstance.h"
+#include "Net/UnrealNetwork.h"
 
 
 ASGameState::ASGameState()

@@ -10,6 +10,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Net/UnrealNetwork.h"
 #include "Components/PawnNoiseEmitterComponent.h"
+#include "Engine/DamageEvents.h"
 #include "Kismet/GameplayStatics.h"
 #include "Sound/SoundCue.h"
 
@@ -103,10 +104,7 @@ float ASBaseCharacter::TakeDamage(float Damage, struct FDamageEvent const& Damag
 bool ASBaseCharacter::CanDie(float KillingDamage, FDamageEvent const& DamageEvent, AController* Killer, AActor* DamageCauser) const
 {
 	/* Check if character is already dying, destroyed or if we have authority */
-	if (bIsDying ||
-		IsPendingKill() ||
-		!HasAuthority() ||
-		GetWorld()->GetAuthGameMode() == NULL)
+	if (bIsDying || !IsValid(this) || !HasAuthority() || GetWorld()->GetAuthGameMode() == nullptr)
 	{
 		return false;
 	}
@@ -117,7 +115,7 @@ bool ASBaseCharacter::CanDie(float KillingDamage, FDamageEvent const& DamageEven
 
 void ASBaseCharacter::FellOutOfWorld(const class UDamageType& DmgType)
 {
-	Die(Health, FDamageEvent(DmgType.GetClass()), NULL, NULL);
+	Die(Health, FDamageEvent(DmgType.GetClass()), nullptr, nullptr);
 }
 
 
@@ -193,10 +191,10 @@ void ASBaseCharacter::OnDeath(float KillingDamage, FDamageEvent const& DamageEve
 
 void ASBaseCharacter::SetRagdollPhysics()
 {
-	bool bInRagdoll = false;
+	bool bInRagdoll;
 	USkeletalMeshComponent* Mesh3P = GetMesh();
 
-	if (IsPendingKill())
+	if (!IsValid(this))
 	{
 		bInRagdoll = false;
 	}

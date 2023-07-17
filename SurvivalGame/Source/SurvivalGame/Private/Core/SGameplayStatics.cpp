@@ -19,7 +19,7 @@ bool USGameplayStatics::ProjectWorldToScreenBidirectional(APlayerController cons
 	{
 		// get the projection data
 		FSceneViewProjectionData ProjectionData;
-		if (LP->GetProjectionData(LP->ViewportClient->Viewport, eSSP_FULL, /*out*/ ProjectionData))
+		if (LP->GetProjectionData(LP->ViewportClient->Viewport, /*out*/ ProjectionData))
 		{
 			const FMatrix ViewProjectionMatrix = ProjectionData.ComputeViewProjectionMatrix();
 			const FIntRect ViewRectangle = ProjectionData.GetConstrainedViewRect();

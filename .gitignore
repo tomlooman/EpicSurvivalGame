@@ -21,3 +21,4 @@ SurvivalGame/Releases
 *.modules
 *.opendb
 *.VC.db
+.vsconfig
