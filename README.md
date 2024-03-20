@@ -27,7 +27,7 @@ You can browse different Engine Versions by using the Branch Selection drop-down
 ![GitHub Branch Selection Info](https://www.tomlooman.com/wp-content/uploads/2021/01/github_branchesinfo.jpg)
 
 ### Section 1
-This section sets up the third person character movement with animation, object interaction, simple hunger system, all with networking support.
+This section sets up the third person character movement with animation, object interaction, simple hunger system and all with networking support.
 
 - [Documentation page](https://www.tomlooman.com/survival-sample-game-for-ue4/section-one/)
 
